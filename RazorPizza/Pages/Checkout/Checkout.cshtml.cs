@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPizza.Data;
 using RazorPizza.Models;
 
 namespace RazorPizza.Pages.Checkout
@@ -7,13 +8,14 @@ namespace RazorPizza.Pages.Checkout
     [BindProperties(SupportsGet = true)]
     public class CheckoutModel : PageModel
     {
-        public string? PizzaName { get; set; }
-        public float PizzaPrice { get; set; }
-        public string? ImageTitle { get; set; }
-        public PizzasModel Pizza { get; set; }
+        public CheckoutModel(ApplicationDbContext context)
+        {
+                _context = context;
+        }
+
         public void OnGet()
         {
-            if (string.IsNullOrWhiteSpace(PizzaName)) 
+            if (string.IsNullOrWhiteSpace(PizzaName))
             {
                 PizzaName = "Custom";
             }
@@ -21,6 +23,19 @@ namespace RazorPizza.Pages.Checkout
             {
                 ImageTitle = "Create";
             }
+            PizzaOrder order = new PizzaOrder()
+            {
+                pizza_name = PizzaName,
+                pizza_price = PizzaPrice,
+            };
+            _context.PizzaOrders.Add(order);
+            _context.SaveChanges();
         }
+
+        private readonly ApplicationDbContext _context;
+        public string? PizzaName { get; set; }
+        public float PizzaPrice { get; set; }
+        public string? ImageTitle { get; set; }
+      
     }
 }
