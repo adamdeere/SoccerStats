@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System.Net.Security;
 
 #nullable disable
 
@@ -13,7 +12,7 @@ namespace RazorPizza.Migrations
         {
             migrationBuilder.CreateTable(
                 name: "PizzaOrders",
-               
+
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)

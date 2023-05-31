@@ -7,10 +7,9 @@ namespace RazorPizza.Data
     {
         public DbSet<PizzaOrder> PizzaOrders { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-                
         }
     }
 }

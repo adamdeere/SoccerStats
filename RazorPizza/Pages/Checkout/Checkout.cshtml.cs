@@ -10,7 +10,7 @@ namespace RazorPizza.Pages.Checkout
     {
         public CheckoutModel(ApplicationDbContext context)
         {
-                _context = context;
+            _context = context;
         }
 
         public void OnGet()
@@ -36,6 +36,5 @@ namespace RazorPizza.Pages.Checkout
         public string? PizzaName { get; set; }
         public float PizzaPrice { get; set; }
         public string? ImageTitle { get; set; }
-      
     }
 }
