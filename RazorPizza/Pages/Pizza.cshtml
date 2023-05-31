@@ -35,6 +35,19 @@
                     </div>
                 </div>
             </div>
+            @foreach (var item in @Model.fakeDB)
+            {
+                var image = $"~/images/{item.ImageTitle}.png";
+                <div class="col-4 mb-5">
+                    <img src=@image class="w-100" asp-append-version="true"/>
+                    <a class="btn btn-primary mt-1" asp-area="" 
+                    asp-page="Checkout/Checkout"
+                    asp-route-ImageTitle="@item.ImageTitle"
+                    asp-route-PizzaPrice="@item.Price"
+                    asp-route-PizzaName="@item.PizzaName">Get this Pizza</a>
+                </div>
+            }
+       
         </div>
     </div>
 </div> 

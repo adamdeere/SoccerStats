@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RazorPizza.Models;
 
 namespace RazorPizza.Pages.Checkout
 {
@@ -9,7 +10,7 @@ namespace RazorPizza.Pages.Checkout
         public string? PizzaName { get; set; }
         public float PizzaPrice { get; set; }
         public string? ImageTitle { get; set; }
-
+        public PizzasModel Pizza { get; set; }
         public void OnGet()
         {
             if (string.IsNullOrWhiteSpace(PizzaName)) 
