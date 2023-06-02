@@ -1,20 +1,41 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
+using NuGet.Protocol;
+using SoccerStats.Data;
 using SoccerStats.Models;
+using SoccerStats.RequestModel;
+using SoccerStats.Services;
 using System.Diagnostics;
+using System.Net.Http;
+
 
 namespace SoccerStats.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly CountryService _CountryService;
+        private readonly ApplicationDbContext _context;
+        public CountryResponse? countryResponse { get; set; }
+        public HomeController(CountryService countryService, ApplicationDbContext context)
         {
-            _logger = logger;
+           
+            _CountryService = countryService;
+            _context = context;
+        } 
+
+        public IList<CountryModel>? Countries { get; set; }  
+        public async Task OnGetAsync()
+        {
+            Countries = await _context.Countries.ToListAsync();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+
+            countryResponse = await _CountryService.GetLol();
+
             return View();
         }
 
