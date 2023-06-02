@@ -1,46 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json;
-using NuGet.Protocol;
-using SoccerStats.Data;
+using Microsoft.Data.SqlClient;
+using RazorPizza.Models;
 using SoccerStats.Models;
-using SoccerStats.RequestModel;
 using SoccerStats.Services;
+using System.Data;
 using System.Diagnostics;
-using System.Net.Http;
 
 
 namespace SoccerStats.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly CountryService _CountryService;
-        private readonly ApplicationDbContext _context;
-        public CountryResponse? countryResponse { get; set; }
-        public HomeController(CountryService countryService, ApplicationDbContext context)
+        private readonly IConfiguration _configuration;
+        private readonly ICountriesDBService _testservice;
+        public HomeController(IConfiguration config, ICountriesDBService testService)
         {
-           
-            _CountryService = countryService;
-            _context = context;
+            _testservice = testService;
+            _configuration = config;
         } 
 
         public IList<CountryModel>? Countries { get; set; }  
-        public async Task OnGetAsync()
-        {
-            Countries = await _context.Countries.ToListAsync();
-        }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-           
-            countryResponse = await _CountryService.GetCountries();
-
             return View();
         }
 
         public IActionResult Privacy()
         {
+
+            string connString = ConfigurationExtensions.GetConnectionString(_configuration, "DefaultConnection");
+            List<CountryModel> orders = _testservice.RetriveCountries(connString, "RetriveCountries");
             return View();
         }
 

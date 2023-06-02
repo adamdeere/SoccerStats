@@ -17,7 +17,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddHttpClient<CountryService>();
+builder.Services.AddHttpClient<CountryHttpService>();
+builder.Services.AddScoped<ICountriesDBService, CountriesDBService>();
 
 var app = builder.Build();
 
