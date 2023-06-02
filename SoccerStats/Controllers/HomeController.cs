@@ -33,8 +33,8 @@ namespace SoccerStats.Controllers
 
         public async Task<IActionResult> Index()
         {
-
-            countryResponse = await _CountryService.GetLol();
+           
+            countryResponse = await _CountryService.GetCountries();
 
             return View();
         }

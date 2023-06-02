@@ -1,12 +1,14 @@
 ﻿using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using SoccerStats.RequestModel;
+using System;
 
 namespace SoccerStats.Services
 {
     public class CountryService
     {
         private readonly HttpClient? _httpClient;
+
         public CountryService(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -25,21 +27,21 @@ namespace SoccerStats.Services
               "x-rapidapi-key", "60553e4650d7942cb159d23481c9cbba");
         }
 
-        public async Task<CountryResponse> GetLol()
+        public async Task<CountryResponse?> GetCountries()
         {
             try
             {
                 if (_httpClient != null)
                 {
-                    using HttpResponseMessage response = await _httpClient.GetAsync(_httpClient.BaseAddress);
+                   // using HttpResponseMessage response = await _httpClient.GetAsync(_httpClient.BaseAddress);
 
-                    response.EnsureSuccessStatusCode();
-                    string responseBody = await response.Content.ReadAsStringAsync();
+                  //  response.EnsureSuccessStatusCode();
+                    string responseBody = await _httpClient.GetStringAsync(_httpClient.BaseAddress);
                     // Above three lines can be replaced with new helper method below
                     // string responseBody = await client.GetStringAsync(uri);
 
                     Console.WriteLine(responseBody);
-                    
+
                     CountryResponse? deserializedProduct = JsonConvert.DeserializeObject<CountryResponse>(responseBody);
 
                     return deserializedProduct;
@@ -48,49 +50,12 @@ namespace SoccerStats.Services
                 {
                     return null;
                 }
-                
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
                 return null;
-            }
-        }
-        
-        public async Task<string> GetCountries(IHttpClientFactory _httpClientFactory)
-        {
-          
-           var httpRequestMessage = new HttpRequestMessage(
-           HttpMethod.Get,
-           "https://v3.football.api-sports.io/countries")
-            {
-                Headers =
-            {
-                { HeaderNames.Accept, "*/*" },
-                { HeaderNames.UserAgent, "HttpRequestsSample" },
-                { "x-rapidapi-key", "60553e4650d7942cb159d23481c9cbba"}
-                }
-            };
-
-            var httpClient = _httpClientFactory.CreateClient();
-            var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
-
-            if (httpResponseMessage.IsSuccessStatusCode)
-            {
-                using var contentStream =
-                    await httpResponseMessage.Content.ReadAsStreamAsync();
-
-                using (StreamReader reader = new StreamReader(contentStream))
-                {
-                    string line = await reader.ReadToEndAsync();
-                    return line;
-                }
-            }
-            else
-            {
-
-                return $"Error code: {httpResponseMessage.StatusCode}";
             }
         }
     }

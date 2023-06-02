@@ -13,7 +13,7 @@ namespace SoccerStats.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230601110755_addCountriesDb")]
-    partial class addCountriesDb
+    partial class AddCountriesDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
