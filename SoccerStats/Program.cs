@@ -18,6 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<CountryHttpService>();
+// this is actually a memory leak as it creates a new instance for every page request
 builder.Services.AddScoped<ICountriesDBService, CountriesDBService>();
 
 var app = builder.Build();

@@ -4,8 +4,24 @@ using System.Data;
 
 namespace SoccerStats.Services
 {
-    public class CountriesDBService : ICountriesDBService
+    public class CountriesDBService : ICountriesDBService, IDisposable
     {
+        string id;
+        public CountriesDBService()
+        {
+            id = Guid.NewGuid().ToString();
+            Console.WriteLine(id);
+        }
+        ~CountriesDBService() 
+        {
+            Console.WriteLine($"Deonstructer called: {id}");
+        }
+
+        public void Dispose()
+        {
+            Console.WriteLine($"Dispose called: {id}");
+        }
+
         public List<CountryModel> RetriveCountries(string connectionString, string proc)
         {
             List<CountryModel> list = new List<CountryModel>();
@@ -38,7 +54,9 @@ namespace SoccerStats.Services
                         }
                     }
                 }
-               
+
+                connection.Close();
+                connection.Dispose();
             }
 
             return list;
