@@ -151,14 +151,14 @@ namespace SoccerStatsNew.Controllers
             {
                 _context.LeagueModel.Remove(leagueModel);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool LeagueModelExists(int id)
         {
-          return (_context.LeagueModel?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.LeagueModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

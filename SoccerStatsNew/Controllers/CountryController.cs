@@ -17,9 +17,9 @@ namespace SoccerStatsNew.Controllers
         // GET: Country
         public async Task<IActionResult> Index()
         {
-              return _context.CountryModel != null ? 
-                          View(await _context.CountryModel.ToListAsync()) :
-                          Problem("Entity set 'SoccerStatsDbContext.CountryModel'  is null.");
+            return _context.CountryModel != null ?
+                        View(await _context.CountryModel.ToListAsync()) :
+                        Problem("Entity set 'SoccerStatsDbContext.CountryModel'  is null.");
         }
 
         // GET: Country/Details/5
@@ -145,14 +145,14 @@ namespace SoccerStatsNew.Controllers
             {
                 _context.CountryModel.Remove(countryModel);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CountryModelExists(string id)
         {
-          return (_context.CountryModel?.Any(e => e.CountryCode == id)).GetValueOrDefault();
+            return (_context.CountryModel?.Any(e => e.CountryCode == id)).GetValueOrDefault();
         }
     }
 }

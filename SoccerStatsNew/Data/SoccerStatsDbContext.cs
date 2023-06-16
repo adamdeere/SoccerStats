@@ -5,7 +5,7 @@ namespace SoccerStatsNew.Data
 {
     public class SoccerStatsDbContext : DbContext
     {
-        public SoccerStatsDbContext (DbContextOptions<SoccerStatsDbContext> options)
+        public SoccerStatsDbContext(DbContextOptions<SoccerStatsDbContext> options)
             : base(options)
         {
         }

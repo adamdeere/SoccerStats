@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoccerStatsNew.Models
 {
@@ -8,6 +8,7 @@ namespace SoccerStatsNew.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
+
         public string Name { get; set; }
         public string Type { get; set; }
         public string LogoURL { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoccerStatsNew.Data;
 using SoccerStatsNew.Models;
 using System.Diagnostics;
 
@@ -6,11 +7,13 @@ namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SoccerStatsDbContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, SoccerStatsDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()

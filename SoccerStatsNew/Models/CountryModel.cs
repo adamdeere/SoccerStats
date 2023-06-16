@@ -10,7 +10,7 @@ namespace SoccerStatsNew.Models
         public string? CountryCode { get; set; }
 
         public string? Name { get; set; }
-       
+
         public string? FlagURL { get; set; }
     }
 }
