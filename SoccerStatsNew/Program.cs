@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SoccerStatsNew.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SoccerStatsDbContext") ?? throw new InvalidOperationException("Connection string 'SoccerStatsDbContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
