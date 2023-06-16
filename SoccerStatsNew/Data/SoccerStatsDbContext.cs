@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Models;
 
 namespace SoccerStatsNew.Data
@@ -14,8 +10,8 @@ namespace SoccerStatsNew.Data
         {
         }
 
-        public DbSet<SoccerStatsNew.Models.CountryModel> CountryModel { get; set; } = default!;
+        public DbSet<CountryModel> CountryModel { get; set; } = default!;
 
-        public DbSet<SoccerStatsNew.Models.LeagueModel> LeagueModel { get; set; } = default!;
+        public DbSet<LeagueModel> LeagueModel { get; set; } = default!;
     }
 }
