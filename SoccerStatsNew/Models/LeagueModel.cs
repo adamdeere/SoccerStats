@@ -12,9 +12,9 @@ namespace SoccerStatsNew.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string LogoURL { get; set; }
-        public string CountryCode { get; set; }
+        public string CountryName { get; set; }
 
-        [ForeignKey("CountryCode")]
+        [ForeignKey("Name")]
         public CountryModel Country { get; set; }
     }
 }

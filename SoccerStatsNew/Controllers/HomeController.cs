@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.Models;
+using SoccerStatsNew.RequestModels;
 using System.Diagnostics;
 
 namespace SoccerStatsNew.Controllers
