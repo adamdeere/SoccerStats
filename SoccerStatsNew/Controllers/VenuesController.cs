@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.Models;
-using SoccerStatsNew.RequestModels;
 
 namespace SoccerStatsNew.Controllers
 {
@@ -19,32 +17,9 @@ namespace SoccerStatsNew.Controllers
         // GET: Venues
         public async Task<IActionResult> Index()
         {
-            using (StreamReader sr = new StreamReader("Test/venues.json"))
-            {
-                string line = sr.ReadToEnd();
-
-                VenueRoot venues = JsonConvert.DeserializeObject<VenueRoot>(line);
-                foreach (var venue in venues.response)
-                {
-                    VenuesModel model = new VenuesModel
-                    {
-                        StadiumId = venue.id,
-                        Address = venue.address,
-                        City = venue.city,
-                        Capacity = venue.capacity,
-                        Image = venue.image,
-                        Country = venue.country,
-                        Surface = venue.surface,
-
-                    };
-                    _context.VenuesModel.Add(model);
-                    _context.SaveChanges();
-                }
-            }
-
-              return _context.VenuesModel != null ? 
-                          View(await _context.VenuesModel.ToListAsync()) :
-                          Problem("Entity set 'SoccerStatsDbContext.VenuesModel'  is null.");
+            return _context.VenuesModel != null ?
+                        View(await _context.VenuesModel.ToListAsync()) :
+                        Problem("Entity set 'SoccerStatsDbContext.VenuesModel'  is null.");
         }
 
         // GET: Venues/Details/5
@@ -170,14 +145,14 @@ namespace SoccerStatsNew.Controllers
             {
                 _context.VenuesModel.Remove(venuesModel);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VenuesModelExists(int id)
         {
-          return (_context.VenuesModel?.Any(e => e.StadiumId == id)).GetValueOrDefault();
+            return (_context.VenuesModel?.Any(e => e.StadiumId == id)).GetValueOrDefault();
         }
     }
 }

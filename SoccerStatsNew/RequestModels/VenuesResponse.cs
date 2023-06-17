@@ -33,6 +33,4 @@
         public VenuePaging paging { get; set; }
         public List<VenueResponse> response { get; set; }
     }
-
-
 }

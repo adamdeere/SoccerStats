@@ -37,7 +37,7 @@ namespace SoccerStatsNew.Controllers
                     league => league.CountryCode,
                     (league, country) => new { Country = country, League = league })
                 .ToListAsync();
-           
+
             if (leagueModel == null)
             {
                 return NotFound();
