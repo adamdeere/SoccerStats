@@ -23,7 +23,7 @@ namespace SoccerStatsNew.Controllers
         }
 
         // GET: League/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null || _context.LeagueModel == null)
             {
@@ -31,8 +31,13 @@ namespace SoccerStatsNew.Controllers
             }
 
             var leagueModel = await _context.LeagueModel
-                .Include(l => l.Country)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Where(m => m.CountryCode == id)
+                .Join(_context.CountryModel,
+                    country => country.CountryCode,
+                    league => league.CountryCode,
+                    (league, country) => new { Country = country, League = league })
+                .ToListAsync();
+           
             if (leagueModel == null)
             {
                 return NotFound();
