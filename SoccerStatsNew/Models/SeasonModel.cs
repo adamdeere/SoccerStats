@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoccerStatsNew.Models
 {
@@ -9,15 +9,19 @@ namespace SoccerStatsNew.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string SeasonId { get; set; }
+
         //League Id
         public int Id { get; set; }
 
         [ForeignKey("Id")]
         public LeagueModel League { get; set; }
-        public string CountryCode { get; set; }
+
+        public string CountryName { get; set; }
+
         // Country code id
-        [ForeignKey("CountryCode")]
+        [ForeignKey("CountryName")]
         public CountryModel Country { get; set; }
+
         public int Year { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }

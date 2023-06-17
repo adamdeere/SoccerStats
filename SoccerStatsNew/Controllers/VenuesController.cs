@@ -20,7 +20,7 @@ namespace SoccerStatsNew.Controllers
             if (venues == null)
             {
                 return Problem("Entity set 'SoccerStatsDbContext.VenuesModel'  is null.");
-            } 
+            }
             return View(venues);
         }
 

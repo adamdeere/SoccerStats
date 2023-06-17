@@ -16,6 +16,8 @@ namespace SoccerStatsNew.Data
 
         public DbSet<VenuesModel> VenuesModel { get; set; } = default!;
 
-        public DbSet<SoccerStatsNew.Models.SeasonModel> SeasonModel { get; set; } = default!;
+        public DbSet<SeasonModel> SeasonModel { get; set; } = default!;
+
+        public DbSet<TeamModel> TeamModel { get; set; } = default!;
     }
 }

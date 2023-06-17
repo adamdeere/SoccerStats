@@ -44,6 +44,4 @@ namespace SoccerStatsNew.RequestModels
         [JsonProperty("response")]
         public List<CountryResponse> Response { get; set; }
     }
-
-
 }

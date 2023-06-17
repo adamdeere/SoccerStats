@@ -60,7 +60,7 @@ namespace SoccerStatsNew.RequestModels
         public bool StatisticsPlayers { get; set; }
     }
 
-    public class League
+    public class PlayerPlayerLeague
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -87,7 +87,7 @@ namespace SoccerStatsNew.RequestModels
     public class LeagueResponse
     {
         [JsonProperty("league")]
-        public League League { get; set; }
+        public PlayerPlayerLeague League { get; set; }
 
         [JsonProperty("country")]
         public LeagueCountry Country { get; set; }
@@ -134,6 +134,4 @@ namespace SoccerStatsNew.RequestModels
         [JsonProperty("coverage")]
         public LeagueCoverage Coverage { get; set; }
     }
-
-
 }

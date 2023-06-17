@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.Models;
 
 namespace SoccerStatsNew.Controllers
 {

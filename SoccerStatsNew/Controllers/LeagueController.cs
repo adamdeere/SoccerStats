@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.Models;
 
 namespace SoccerStatsNew.Controllers
 {
@@ -31,10 +29,10 @@ namespace SoccerStatsNew.Controllers
             }
 
             var leagueModel = await _context.LeagueModel
-                .Where(m => m.CountryCode == id)
+                .Where(m => m.CountryName == id)
                 .Join(_context.CountryModel,
-                    country => country.CountryCode,
-                    league => league.CountryCode,
+                    country => country.CountryName,
+                    league => league.Name,
                     (league, country) => new { Country = country, League = league })
                 .ToListAsync();
 

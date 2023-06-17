@@ -39,7 +39,7 @@ namespace SoccerStatsNew.Controllers
                                 {
                                     SeasonId = id.ToString(),
                                     Id = venue.League.Id,
-                                    CountryCode = venue.Country.Code,
+                                    CountryName = venue.Country.Name,
                                     Year = venue.Seasons[i].Year,
                                     StartDate = venue.Seasons[i].Start,
                                     EndDate = venue.Seasons[i].End,
@@ -56,7 +56,6 @@ namespace SoccerStatsNew.Controllers
                                 _context.SeasonModel.Add(model);
                                 _context.SaveChanges();
                             }
-
                         }
                     }
                     catch (Exception e)
@@ -65,7 +64,6 @@ namespace SoccerStatsNew.Controllers
                     }
                 }
             }
-
 
             var soccerStatsDbContext = _context.SeasonModel.Include(s => s.Country).Include(s => s.League);
             return View(await soccerStatsDbContext.ToListAsync());
@@ -112,7 +110,7 @@ namespace SoccerStatsNew.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CountryCode"] = new SelectList(_context.CountryModel, "CountryCode", "CountryCode", seasonModel.CountryCode);
+            ViewData["CountryCode"] = new SelectList(_context.CountryModel, "CountryCode", "CountryCode", seasonModel.CountryName);
             ViewData["Id"] = new SelectList(_context.LeagueModel, "Id", "Id", seasonModel.Id);
             return View(seasonModel);
         }
@@ -130,7 +128,7 @@ namespace SoccerStatsNew.Controllers
             {
                 return NotFound();
             }
-            ViewData["CountryCode"] = new SelectList(_context.CountryModel, "CountryCode", "CountryCode", seasonModel.CountryCode);
+            ViewData["CountryCode"] = new SelectList(_context.CountryModel, "CountryCode", "CountryCode", seasonModel.CountryName);
             ViewData["Id"] = new SelectList(_context.LeagueModel, "Id", "Id", seasonModel.Id);
             return View(seasonModel);
         }
@@ -167,7 +165,7 @@ namespace SoccerStatsNew.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CountryCode"] = new SelectList(_context.CountryModel, "CountryCode", "CountryCode", seasonModel.CountryCode);
+            ViewData["CountryCode"] = new SelectList(_context.CountryModel, "CountryCode", "CountryCode", seasonModel.CountryName);
             ViewData["Id"] = new SelectList(_context.LeagueModel, "Id", "Id", seasonModel.Id);
             return View(seasonModel);
         }
@@ -206,14 +204,14 @@ namespace SoccerStatsNew.Controllers
             {
                 _context.SeasonModel.Remove(seasonModel);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SeasonModelExists(string id)
         {
-          return (_context.SeasonModel?.Any(e => e.SeasonId == id)).GetValueOrDefault();
+            return (_context.SeasonModel?.Any(e => e.SeasonId == id)).GetValueOrDefault();
         }
     }
 }
