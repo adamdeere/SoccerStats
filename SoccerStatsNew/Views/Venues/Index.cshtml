@@ -4,7 +4,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container">
+    <h1>Venues</h1>
+    <div class="row select-box">
+        @foreach (var item in Model)
+        {
+            <div class="col-2 mb-5 align-content-center">
+                <form>
+                    <input type="image" src="@item.Image" class="w-100"
+                           asp-controller="Venues"
+                           asp-action="Details"
+                           asp-route-id="@item.StadiumId">
+                </form>
+                <p>@item.Address</p>
+                <p>@item.City</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+
 
 <p>
     <a asp-action="Create">Create New</a>
