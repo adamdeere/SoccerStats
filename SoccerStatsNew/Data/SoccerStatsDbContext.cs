@@ -13,5 +13,7 @@ namespace SoccerStatsNew.Data
         public DbSet<CountryModel> CountryModel { get; set; } = default!;
 
         public DbSet<LeagueModel> LeagueModel { get; set; } = default!;
+
+        public DbSet<VenuesModel> VenuesModel { get; set; } = default!;
     }
 }

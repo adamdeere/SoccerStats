@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoccerStatsNew.Data;
 
@@ -10,9 +11,11 @@ using SoccerStatsNew.Data;
 namespace SoccerStatsNew.Migrations
 {
     [DbContext(typeof(SoccerStatsDbContext))]
-    partial class SoccerStatsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230617124900_VenuesMigration")]
+    partial class VenuesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
