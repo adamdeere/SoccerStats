@@ -27,20 +27,22 @@ namespace SoccerStatsNew.Controllers
             {
                 return NotFound();
             }
-
             var leagueModel = await _context.LeagueModel
                 .Where(m => m.CountryName == id)
                 .Join(_context.CountryModel,
-                    country => country.CountryName,
-                    league => league.Name,
-                    (league, country) => new { Country = country, League = league })
+                    league => league.CountryName,
+                    country => country.Name,
+                 (league, country) => new 
+                 { 
+                     Country = country, 
+                     League = league,
+                 })
                 .ToListAsync();
 
             if (leagueModel == null)
             {
                 return NotFound();
             }
-
             return View(leagueModel);
         }
     }

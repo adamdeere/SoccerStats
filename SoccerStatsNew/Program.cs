@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
+using SoccerStatsNew.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
@@ -7,6 +8,9 @@ builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<TeamHttpService>();
+
 
 var app = builder.Build();
 
