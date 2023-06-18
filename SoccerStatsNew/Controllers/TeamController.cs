@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.Models;
 using SoccerStatsNew.Services;
 
 namespace SoccerStatsNew.Controllers
@@ -53,8 +52,7 @@ namespace SoccerStatsNew.Controllers
             {
                 return NotFound();
             }
-            TeamModel model = teamModel[0].Team;
-            return View(model);
+            return View(teamModel[0].Team);
         }
     }
 }
