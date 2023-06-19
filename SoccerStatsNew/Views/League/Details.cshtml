@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<SoccerStatsNew.Models.LeagueModel>
 @{
     ViewData["Title"] = "Details";
 }
@@ -11,12 +11,12 @@
             <div class="col-2 mb-5">
 
                 <form>
-                    <input type="image" src="@item.League.LogoURL" class="w-100"
+                    <input type="image" src="@item.LogoURL" class="w-100"
                            asp-controller="Team"
                            asp-action="Index"
-                           asp-route-id="@item.League.Id">
+                           asp-route-id="@item.Id">
                 </form>
-                <p>@item.League.Name</p>
+                <p>@item.Name</p>
               
             </div>
         }

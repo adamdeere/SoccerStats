@@ -38,7 +38,9 @@ namespace SoccerStatsNew.Controllers
             }
 
             var teamModel = await _context.TeamModel
-               .Where(m => m.TeamId == id)
+                .FirstOrDefaultAsync(m => m.TeamId == id);
+            
+                await _context.TeamModel
                .Join(_context.VenuesModel,
                    team => team.StadiumId,
                    venue => venue.StadiumId,
@@ -52,7 +54,7 @@ namespace SoccerStatsNew.Controllers
             {
                 return NotFound();
             }
-            return View(teamModel[0].Team);
+            return View(teamModel);
         }
     }
 }

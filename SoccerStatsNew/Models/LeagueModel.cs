@@ -1,5 +1,4 @@
-﻿using SoccerStatsNew.RequestModels;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoccerStatsNew.Models
@@ -17,9 +16,5 @@ namespace SoccerStatsNew.Models
 
         [ForeignKey("CountryName")]
         public CountryModel Country { get; set; }
-        public int LeagueId { get; set; }
-
-        [ForeignKey("LeagueId")]
-        public List<SeasonModel> SeasonsModel { get; set; }
     }
 }
