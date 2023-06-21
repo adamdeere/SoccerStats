@@ -1,0 +1,115 @@
+﻿@model PracticeApp.Models.LocationModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container">
+    <div class="align-content-center">
+        <h1>Details</h1>
+        <div>
+            <h4>Location Model</h4>
+            <hr />
+            <dl class="row">
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.LocationId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.LocationId)
+                </dd>
+
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Length)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Length)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Height)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Height)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Width)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Width)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <form>
+                <button class="btn btn-primary custom-button" asp-controller="Location" asp-action="Edit" asp-route-id="@Model?.LocationId">Edit </button>
+                <button class="btn btn-primary custom-button" asp-controller="Location" asp-action="Index">Back </button>
+            </form>
+        </div>
+        <div class="row">
+            @if (Model != null)
+            {
+                @foreach (var item in Model.ItemLocations)
+                {
+                    <div class="col-3 mb-5 custom-text-box">
+
+                        <div class="image-text">
+                            @if (item.Item != null)
+                            {
+                                <form>
+                                    <input class="thumb-nail mt-4"
+                                           src="~/images/placeholder.png"
+                                           type="image"
+                                           asp-controller="Product"
+                                           asp-action="Details"
+                                           asp-route-id="@item.Item.SKUCode" />
+                                    <p><i>click to edit details</i></p>
+                                </form>
+                            }
+                           
+                        </div>
+
+                        <div class="custom-text">
+                            @Html.DisplayNameFor(model => model.LocationId) :
+                            @Html.DisplayFor(modelItem => item.LocationId)
+                        </div>
+                        <div class="custom-text">
+                            @Html.DisplayNameFor(modelItem => item.ItemNo) :
+                            @Html.DisplayFor(modelItem => item.ItemNo)
+                        </div>
+                        <div class="custom-text">
+                            @Html.DisplayNameFor(modelItem => item.GRN) :
+                            @Html.DisplayFor(modelItem => item.GRN)
+                        </div>
+                        <div class="custom-text">
+                            @Html.DisplayNameFor(modelItem => item.Quantity) :
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </div>
+                        @if (item.Item != null)
+                        {
+                            <div class="custom-text">
+                                @Html.DisplayNameFor(modelItem => item.Item.SKUCode) :
+                                @Html.DisplayFor(modelItem => item.Item.SKUCode)
+                            </div>
+                            @if (item.Item.Product != null)
+                            {
+                                <div class="custom-text">
+                                    @Html.DisplayNameFor(modelItem => item.Item.Product) :
+                                    @Html.DisplayFor(modelItem => item.Item.Product.Description)
+                                </div>
+                            }
+                        }
+                        <form method="post">
+                            <button class="btn btn-danger custom-button"
+                                    asp-controller="Location"
+                                    asp-action="DeleteItem"
+                                    asp-route-id="@item.Id">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                }
+            }
+            
+        </div>
+    </div>
+</div>
+
