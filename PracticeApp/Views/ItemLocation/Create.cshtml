@@ -1,0 +1,50 @@
+﻿@model PracticeApp.Models.ItemLocationModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Item Storage</h1>
+
+<h4>Item Location Model</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.GRN) :
+                @Html.DisplayFor(model => model.GRN)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(model => model.ItemNo) :
+                @Html.DisplayFor(model => model.ItemNo)
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LocationId" class="control-label"></label>
+                <select asp-for="LocationId" class ="form-control" asp-items="ViewBag.LocationId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-5">
+                <input type="submit" value="Create" asp-route-item="@Model?.ItemNo" asp-route-grn="@Model?.GRN" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+}
