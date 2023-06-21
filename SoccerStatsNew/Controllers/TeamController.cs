@@ -18,17 +18,17 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index(int? id)
         {
-            if (id == null || _service == null)
-            {
+            string? idString = id.ToString();
+            if (string.IsNullOrWhiteSpace(idString) || _service == null) 
+            { 
                 return NotFound();
             }
-            string idString = id.ToString();
             var teams = await _service.GetCountry(idString);
-            if (teams == null)
+            if (teams != null)
             {
-                return NotFound();
+                return View(teams.Response);
             }
-            return View(teams.Response);
+            return NotFound();
         }
 
         [HttpPost]

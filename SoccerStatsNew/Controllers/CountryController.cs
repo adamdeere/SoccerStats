@@ -26,8 +26,11 @@ namespace SoccerStatsNew.Controllers
         }
 
         // GET: Country/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string? id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+                return NotFound();
+
             var details = await _countryService.GetCountryDetails(id);
             if (details != null)
             {

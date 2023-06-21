@@ -22,9 +22,6 @@ namespace SoccerStatsNew.Services
 
         public async Task<CountryModel?> GetCountryDetails(string id)
         {
-            if (string.IsNullOrWhiteSpace(id))
-                return null;
-
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel
                       .FirstOrDefaultAsync(m => m.CountryCode == id)

@@ -1,51 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
+using SoccerStatsNew.Services;
 
 namespace SoccerStatsNew.Controllers
 {
     public class LeagueController : Controller
     {
-        private readonly SoccerStatsDbContext _context;
+        private readonly LeagueService _leagueService;
 
-        public LeagueController(SoccerStatsDbContext context)
+        public LeagueController(LeagueService service)
         {
-            _context = context;
+            _leagueService = service;
         }
 
         // GET: League
         public async Task<IActionResult> Index()
         {
-            var soccerStatsDbContext = _context.LeagueModel.Include(l => l.Country);
-            return View(await soccerStatsDbContext.ToListAsync());
+            var league = await _leagueService.GetLeagues();
+            if (league != null)
+            {
+                return View(league);
+            }
+            return NotFound();
+
         }
 
         // GET: League/Details/5
         public async Task<IActionResult> Details(string? id)
         {
-            if (id == null || _context.LeagueModel == null)
-            {
+            if (string.IsNullOrWhiteSpace(id))
                 return NotFound();
-            }
 
-            var leagueModel = await _context.LeagueModel
-                .Where(m => m.CountryName == id).ToListAsync();
-
-            await _context.LeagueModel
-                .Join(_context.CountryModel,
-                league => league.CountryName,
-                country => country.Name,
-                (league, country) => new
-                {
-                    League = league,
-                    Country = country
-                }).ToListAsync();
-
-            if (leagueModel == null)
+            var leagueModel = await _leagueService.GetLeagueDetails(id);
+            if (leagueModel != null)
             {
-                return NotFound();
+                return View(leagueModel);
+               
             }
-            return View(leagueModel);
+            return NotFound();
         }
     }
 }
