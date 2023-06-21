@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<SoccerStatsNew.Models.LeagueModel>
+@{
     ViewData["Title"] = "Details";
 }
 
@@ -7,8 +8,16 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-2 mb-5 select-box">
-                <img src="@item.League.LogoURL" class="w-100" asp-append-version="true" />
+            <div class="col-2 mb-5">
+
+                <form>
+                    <input type="image" src="@item.LogoURL" class="w-100"
+                           asp-controller="Team"
+                           asp-action="Index"
+                           asp-route-id="@item.Id">
+                </form>
+                <p>@item.Name</p>
+              
             </div>
         }
         
