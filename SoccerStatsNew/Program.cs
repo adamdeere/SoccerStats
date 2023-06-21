@@ -10,7 +10,8 @@ builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<TeamHttpService>();
-
+builder.Services.AddScoped<CountryService>();
+builder.Services.AddScoped<LeagueService>();
 
 var app = builder.Build();
 

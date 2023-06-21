@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.Models;
-using SoccerStatsNew.RequestModels;
 
 namespace SoccerStatsNew.Controllers
 {
@@ -44,7 +39,5 @@ namespace SoccerStatsNew.Controllers
 
             return View(seasonModel);
         }
-
-      
     }
 }

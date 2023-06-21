@@ -1,6 +1,6 @@
 ﻿using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json;
 using SoccerStatsNew.RequestModels;
+using SoccerStatsNew.Utils;
 
 namespace SoccerStatsNew.Services
 {
@@ -8,6 +8,7 @@ namespace SoccerStatsNew.Services
     {
         private readonly HttpClient? _httpClient;
         private string Address { get; } = "https://v3.football.api-sports.io/";
+
         public TeamHttpService(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -32,14 +33,16 @@ namespace SoccerStatsNew.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<TeamRoot>(data);
 
+                    return JsonConverterUtil.GetObjectFromJson<TeamRoot>(data);
                 }
             }
             return null;
-           
         }
 
-        public void Dispose() => _httpClient?.Dispose();
+        public void Dispose()
+        {
+            _httpClient?.Dispose();
+        }
     }
 }
