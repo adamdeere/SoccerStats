@@ -30,9 +30,9 @@ namespace SoccerStatsNew.Controllers
             return View(teams.Response);
         }
         [HttpPost]
-        public async Task<IActionResult> Details(int? id, int? b)
+        public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.TeamModel == null || b == null)
+            if (id == null || _context.TeamModel == null)
             {
                 return NotFound();
             }
