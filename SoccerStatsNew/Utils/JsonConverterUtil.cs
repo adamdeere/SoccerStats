@@ -9,11 +9,9 @@ namespace SoccerStatsNew.Utils
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
 
-        public static T? GetObjectFromJson<T>(this ISession session, string key)
+        public static T? GetObjectFromJson<T>(string key)
         {
-            var value = session.GetString(key);
-
-            return value == null ? default : JsonConvert.DeserializeObject<T>(value);
+            return key == null ? default : JsonConvert.DeserializeObject<T>(key);
         }
     }
 }

@@ -9,11 +9,9 @@ namespace SoccerStatsNew.Controllers
     {
         private readonly SoccerStatsDbContext _context;
         private readonly ILogger<HomeController> _logger;
-      
 
         public HomeController(ILogger<HomeController> logger, SoccerStatsDbContext context)
         {
-           
             _logger = logger;
             _context = context;
         }
@@ -22,7 +20,7 @@ namespace SoccerStatsNew.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Privacy()
         {
             return View();

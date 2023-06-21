@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.RequestModels;
 
 namespace SoccerStatsNew.Controllers
 {
@@ -28,7 +27,7 @@ namespace SoccerStatsNew.Controllers
             {
                 return NotFound();
             }
-           
+
             var leagueModel = await _context.LeagueModel
                 .Where(m => m.CountryName == id).ToListAsync();
 
@@ -36,7 +35,7 @@ namespace SoccerStatsNew.Controllers
                 .Join(_context.CountryModel,
                 league => league.CountryName,
                 country => country.Name,
-                (league, country) => new 
+                (league, country) => new
                 {
                     League = league,
                     Country = country

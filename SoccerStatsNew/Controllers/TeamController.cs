@@ -9,6 +9,7 @@ namespace SoccerStatsNew.Controllers
     {
         private readonly SoccerStatsDbContext _context;
         private readonly TeamHttpService? _service;
+
         public TeamController(SoccerStatsDbContext context, TeamHttpService service)
         {
             _service = service;
@@ -29,6 +30,7 @@ namespace SoccerStatsNew.Controllers
             }
             return View(teams.Response);
         }
+
         [HttpPost]
         public async Task<IActionResult> Details(int? id)
         {
@@ -39,17 +41,17 @@ namespace SoccerStatsNew.Controllers
 
             var teamModel = await _context.TeamModel
                 .FirstOrDefaultAsync(m => m.TeamId == id);
-            
-                await _context.TeamModel
-               .Join(_context.VenuesModel,
-                   team => team.StadiumId,
-                   venue => venue.StadiumId,
-                (team, venue) => new
-                {
-                    Venue = venue,
-                    Team = team,
-                }).ToListAsync();
-           
+
+            await _context.TeamModel
+           .Join(_context.VenuesModel,
+               team => team.StadiumId,
+               venue => venue.StadiumId,
+            (team, venue) => new
+            {
+                Venue = venue,
+                Team = team,
+            }).ToListAsync();
+
             if (teamModel == null)
             {
                 return NotFound();

@@ -1,42 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
+using SoccerStatsNew.Services;
 
 namespace SoccerStatsNew.Controllers
 {
     public class CountryController : Controller
     {
-        private readonly SoccerStatsDbContext _context;
+        private readonly CountryService _countryService;
 
-        public CountryController(SoccerStatsDbContext context)
+        public CountryController(CountryService service)
         {
-            _context = context;
+            _countryService = service;
         }
 
         // GET: Country
         public async Task<IActionResult> Index()
         {
-            return _context.CountryModel != null ?
-                        View(await _context.CountryModel.ToListAsync()) :
-                        Problem("Entity set 'SoccerStatsDbContext.CountryModel'  is null.");
+            var countries = await _countryService.GetCountrys();
+            if (countries != null)
+            {
+                return View(countries);
+            }
+            return Problem("Entity set 'SoccerStatsDbContext.CountryModel'  is null.");
         }
 
         // GET: Country/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null || _context.CountryModel == null)
+            var details = await _countryService.GetCountryDetails(id);
+            if (details != null)
             {
-                return NotFound();
+                return View(details);
             }
-
-            var countryModel = await _context.CountryModel
-                .FirstOrDefaultAsync(m => m.CountryCode == id);
-            if (countryModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(countryModel);
+            return NotFound();
         }
     }
 }
