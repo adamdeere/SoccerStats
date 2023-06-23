@@ -50,7 +50,7 @@ namespace PracticeApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _ = await _locationService.CreateLocation(locationModel);
+                await _locationService.CreateLocation(locationModel);
                 return RedirectToAction(nameof(Index));
             }
             return View(locationModel);

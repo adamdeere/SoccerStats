@@ -79,12 +79,10 @@ namespace PracticeApp.Services
             Context.Add(model);
         }
 
-        public async Task<LocationModel?> CreateLocation(LocationModel locationModel)
+        public async Task CreateLocation(LocationModel locationModel)
         {
             Context.Add(locationModel);
             await Context.SaveChangesAsync();
-
-            return locationModel ?? null;
         }
 
         public async Task<LocationModel?> EditLocation(string id, LocationModel locationModel)

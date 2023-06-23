@@ -58,8 +58,7 @@ namespace PracticeApp.Controllers
             }
             if (ModelState.IsValid)
             {
-                _ = await _itemLocationService.CreateItemLocation(itemLocationModel);
-
+                await _itemLocationService.CreateItemLocation(itemLocationModel);
                 return RedirectToAction(nameof(Index));
             }
 

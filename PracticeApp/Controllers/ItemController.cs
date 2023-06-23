@@ -53,7 +53,7 @@ namespace PracticeApp.Controllers
                 {
                     itemModel.GRN = (int)id;
                 }
-                _ = await _service.CreateItemModel(itemModel);
+                await _service.CreateItemModel(itemModel);
                 return Redirect(LastAddress);
             }
             ViewData["SKUCode"] = new SelectList(_service.Context.ProductModel, "SKUCode", "SKUCode", itemModel.SKUCode);

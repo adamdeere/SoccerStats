@@ -61,30 +61,11 @@ namespace PracticeApp.Services
             }
             return receiptModel ?? null;
         }
-
-        /// <summary>
-        /// async void methods cannot be used inside services that contain
-        /// a DB context as the dependancy injection manager disposes of the context
-        /// before the thread is finished and thus throws an exception.
-        /// This is why this method returns null and the result is discarded
-        /// as the method needs to return something
-        /// </summary>
-        /// <param name="receiptModel"></param>
-        /// <returns></returns>
-        /// 
-
-        public async void CreateReceiptModel(ReceiptModel receiptModel)
+        public async Task CreateReceipt(ReceiptModel receiptModel)
         {
             Context.Add(receiptModel);
             await Context.SaveChangesAsync();
         }
-        public async Task<ReceiptModel?> CreateReceipt(ReceiptModel receiptModel)
-        {
-            Context.Add(receiptModel);
-            await Context.SaveChangesAsync();
-            return receiptModel ?? null;
-        }
-
         public async Task<ReceiptModel?> EditReceipt(int? id)
         {
             return Context.ReceiptModel != null ?

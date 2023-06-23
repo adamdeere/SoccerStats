@@ -50,8 +50,7 @@ namespace PracticeApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _ = await _productService.CreateProductModel(productModel);
-
+                await _productService.CreateProductModel(productModel);
                 return RedirectToAction(nameof(Index));
             }
             return View(productModel);

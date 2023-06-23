@@ -43,12 +43,10 @@ namespace PracticeApp.Services
             return itemModel ?? null;
         }
 
-        public async Task<ItemModel?> CreateItemModel(ItemModel itemModel)
+        public async Task CreateItemModel(ItemModel itemModel)
         {
             Context.Add(itemModel);
             await Context.SaveChangesAsync();
-
-            return itemModel ?? null;
         }
 
         public async Task<ItemModel?> GetDetails(int? id)

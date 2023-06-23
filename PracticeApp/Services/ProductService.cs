@@ -69,11 +69,11 @@ namespace PracticeApp.Services
             }
         }
 
-        public async Task<ProductModel?> CreateProductModel(ProductModel model)
+        public async Task CreateProductModel(ProductModel model)
         {
             Context.ProductModel.Add(model);
             await Context.SaveChangesAsync();
-            return model ?? null;
+          
         }
 
         private bool ProductModelExists(string id)
