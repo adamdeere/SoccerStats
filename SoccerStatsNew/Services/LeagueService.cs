@@ -7,6 +7,7 @@ namespace SoccerStatsNew.Services
     public class LeagueService
     {
         private readonly SoccerStatsDbContext _context;
+
         public LeagueService(SoccerStatsDbContext context)
         {
             _context = context;
@@ -19,6 +20,7 @@ namespace SoccerStatsNew.Services
                   await soccerStatsDbContext.ToListAsync()
             : null;
         }
+
         public async Task<ICollection<LeagueModel>?> GetLeagueDetails(string id)
         {
             var leagueModel = await _context.LeagueModel

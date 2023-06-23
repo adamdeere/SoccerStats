@@ -24,6 +24,18 @@ namespace SoccerStatsNew.Controllers
             return View(venues);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Index(string city)
+        {
+            var venues = await _context.VenuesModel
+                .Where(v => v.City.ToLower().Contains(city.ToLower()))
+                .ToListAsync();
+
+            return venues != null
+                ? View(venues)
+                : Problem("Entity set 'SoccerStatsDbContext.VenuesModel'  is null.");
+        }
+
         // GET: Venues/Details/5
         public async Task<IActionResult> Details(int? id)
         {

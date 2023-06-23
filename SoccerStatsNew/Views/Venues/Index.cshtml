@@ -1,85 +1,39 @@
-﻿@model IEnumerable<SoccerStatsNew.Models.VenuesModel>
+﻿@model IEnumerable<VenuesModel>
 
 @{
     ViewData["Title"] = "Index";
 }
+<div class="mb-3">
 
+    <form method="post">
+        <label for="City" class="form-label">City</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="Search by city">
+        <input type="submit" class="btn btn-primary" asp-controller="Venues" asp-action="Index">
+    </form>
+    
+   
+</div>
 <div class="container">
     <h1>Venues</h1>
-    <div class="row select-box">
+    <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-2 mb-5 align-content-center">
+            <div class="card" style="width: 18rem;">
+
                 <form>
                     <input type="image" src="@item.Image" class="w-100"
                            asp-controller="Venues"
                            asp-action="Details"
                            asp-route-id="@item.StadiumId">
                 </form>
-                <p>@item.Address</p>
-                <p>@item.City</p>
+
+                <div class="card-body">
+                    <h5 class="card-title">@item.City, @item.Country</h5>
+                    <p class="card-text">Address: @item.Address</p>
+                    <p class="card-text">Capacity: @item.Capacity</p>
+                    <p class="card-text">Surface: @item.Surface</p>
+                </div>
             </div>
         }
     </div>
 </div>
-
-
-
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Capacity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Surface)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surface)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.StadiumId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StadiumId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StadiumId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
