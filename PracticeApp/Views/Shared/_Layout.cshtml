@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PracticeApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -18,42 +18,97 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <div class="dropdown">
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
                     <ul class="navbar-nav flex-grow-1">
+                        <!-- Home -->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        <!-- Privacy -->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link dropdown-item" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <!--   Pre-alert -->
+                        <li class="nav-item dropdown">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pre-alert
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Trader SKU's</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Receipt" asp-action="Index">Warehouse traders</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Location" asp-action="Index">Recieipt advice maintance</a>
+                                </li>
+                            </ul>
                         </li>
+                        <!--  Receive Process -->
+                        <li class="nav-item dropdown">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Item" asp-action="Index">Item</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Receive Process
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">WIP</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Receipt" asp-action="Index">Receipt advice history</a>
+                                </li>
+                            </ul>
                         </li>
+                        <!-- Inventory -->
+                        <li class="nav-item dropdown">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Receipt" asp-action="Index">Receipt</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Inventory
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li>
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link dropdown-item" asp-area="">SKU Enquiry</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Receipt" asp-action="Index">Location Enquiry</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Location adjustment</a>
+                                </li>
+
+                            </ul>
                         </li>
+                        <!-- ill get round to this later -->
+                        <li class="nav-item dropdown">
+                          
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Despatch Process
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">WIP</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Receipt" asp-action="Index">Receipt advice history</a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Location" asp-action="Index">Location</a>
+                                <li class="nav-item">
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                                </li>
+
+                            </ul>
                         </li>
                     </ul>
-                </div>
 
+                   
+                </div>
             </div>
         </nav>
     </header>
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -71,3 +126,29 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+
+                    <form method="post">
+                        <label for="SKUCode">SKU code</label>
+                        <input type="text" id="sku" name="sku" placeholder="Enter your SKU code" />
+                        <input type="submit" asp-action="Details" asp-controller="Product" />
+                    </form>
+                  
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

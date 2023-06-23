@@ -21,7 +21,6 @@ namespace PracticeApp.Controllers
                         View(productList) :
                         Problem("Entity set 'PracticeAppDbContext.ProductModel'  is null.");
         }
-
         // GET: Product/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -35,7 +34,6 @@ namespace PracticeApp.Controllers
             }
             return NotFound();
         }
-
         // GET: Product/Create
         public IActionResult Create()
         {
