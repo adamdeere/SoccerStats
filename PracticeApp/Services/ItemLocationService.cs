@@ -74,9 +74,19 @@ namespace PracticeApp.Services
             {
                 itemLocation.LocationId = itemLocationModel.LocationId;
                 itemLocation.GRN = itemLocationModel.GRN;
-
+               
                 Context.ItemLocationModel.Update(itemLocation);
                 await Context.SaveChangesAsync();
+
+                var storedItem = await Context.ItemModel
+                    .FirstOrDefaultAsync(m => m.ItemNo == itemLocation.ItemNo);
+                if (storedItem != null)
+                {
+                    storedItem.GRN = itemLocation.GRN;
+                    Context.ItemModel.Update(storedItem);
+                    await Context.SaveChangesAsync();
+                }
+               
 
                 return itemLocation;
             }

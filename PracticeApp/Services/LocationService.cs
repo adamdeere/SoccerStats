@@ -28,12 +28,14 @@ namespace PracticeApp.Services
 
         public async Task<LocationModel?> GetLocationAsync(string id)
         {
-            return await Context.LocationModel.FindAsync(id) ?? null;
+            return await Context.LocationModel
+                .FindAsync(id) ?? null;
         }
 
         public async Task<ItemLocationModel?> GetItemLocation(int? id)
         {
-            return await Context.ItemLocationModel.FindAsync(id) ?? null;
+            return await Context.ItemLocationModel
+                .FindAsync(id) ?? null;
         }
 
         public async Task<ItemModel?> GetItemModel(int id)
@@ -140,11 +142,9 @@ namespace PracticeApp.Services
             {
                 Context.LocationModel.Remove(locationModel);
                 await Context.SaveChangesAsync();
-
-                return locationModel;
             }
 
-            return null;
+            return locationModel ?? null;
         }
     }
 }

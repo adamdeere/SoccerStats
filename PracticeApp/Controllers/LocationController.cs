@@ -26,7 +26,7 @@ namespace PracticeApp.Controllers
         // GET: Location/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (ControllerErrorChecker.CheckDbAndStringId(id, _locationService.Context.LocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _locationService.Context.LocationModel))
             {
                 return NotFound();
             }
@@ -59,7 +59,7 @@ namespace PracticeApp.Controllers
         // GET: Location/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (ControllerErrorChecker.CheckDbAndStringId(id, _locationService.Context.LocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _locationService.Context.LocationModel))
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace PracticeApp.Controllers
 
         public async Task<IActionResult> Delete(string id)
         {
-            if (ControllerErrorChecker.CheckDbAndStringId(id, _locationService.Context.LocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _locationService.Context.LocationModel))
             {
                 return NotFound();
             }
@@ -117,7 +117,7 @@ namespace PracticeApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (ControllerErrorChecker.CheckDb(_locationService.Context.LocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(_locationService.Context.LocationModel))
             {
                 return Problem("Entity set 'PracticeAppDbContext.LocationModel'  is null.");
             }

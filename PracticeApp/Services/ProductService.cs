@@ -44,10 +44,8 @@ namespace PracticeApp.Services
             {
                 Context.ProductModel.Remove(productModel);
                 await Context.SaveChangesAsync();
-
-                return productModel;
             }
-            return null;
+            return productModel ?? null;
         }
 
         public async Task<ProductModel?> EditProductModel(ProductModel model)
@@ -75,12 +73,14 @@ namespace PracticeApp.Services
         {
             Context.ProductModel.Add(model);
             await Context.SaveChangesAsync();
-            return model;
+            return model ?? null;
         }
 
         private bool ProductModelExists(string id)
         {
-            return (Context.ProductModel?.Any(e => e.SKUCode == id)).GetValueOrDefault();
+            return (Context.ProductModel?
+                .Any(e => e.SKUCode == id))
+                .GetValueOrDefault();
         }
     }
 }

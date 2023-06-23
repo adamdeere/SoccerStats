@@ -1,23 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PracticeApp.Data;
 using PracticeApp.Models;
 using PracticeApp.Services;
 using PracticeApp.Utils;
-using Rotativa.AspNetCore;
 
 namespace PracticeApp.Controllers
 {
     public class ReceiptController : Controller
     {
-        private readonly PracticeAppDbContext _context;
-
         private readonly ReceiptService _service;
 
-        public ReceiptController(ReceiptService service, PracticeAppDbContext context)
+        public ReceiptController(ReceiptService service)
         {
             _service = service;
-            _context = context;
+          
         }
 
         // GET: Receipt
@@ -29,43 +24,9 @@ namespace PracticeApp.Controllers
                 : Problem("Entity set 'PracticeAppDbContext.ReceiptModel'  is null.");
         }
 
-        //Convert Index Page as PDF
-        public async Task<IActionResult> Print(int? id)
-        {
-            if (id == null || _context.ReceiptModel == null)
-            {
-                return NotFound();
-            }
-
-            var receiptModel = await _context.ReceiptModel
-                .FirstOrDefaultAsync(m => m.GRN == id);
-
-            await _context.ItemModel
-               .Join(_context.ProductModel,
-                     item => item.SKUCode,
-                     product => product.SKUCode,
-
-                     (item, product) => new
-                     {
-                         ProductModel = product,
-                         Item = item
-                     }).ToListAsync();
-
-            if (receiptModel == null)
-            {
-                return NotFound();
-            }
-            var report = new ViewAsPdf($"Details", receiptModel)
-            {
-                FileName = "File.pdf",
-            };
-
-            return report;
-        }
-
         public async Task<IActionResult> Details(int? id)
         {
-            if (ControllerErrorChecker.CheckDbAndIntId(id, _context.ReceiptModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _service.Context.ReceiptModel))
             {
                 return NotFound();
             }
@@ -99,7 +60,9 @@ namespace PracticeApp.Controllers
         // GET: Receipt/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            return id != null ? View(await _service.EditReceipt(id)) : NotFound();
+            return id != null 
+                ? View(await _service.EditReceipt(id)) 
+                : NotFound();
         }
 
         [HttpPost]

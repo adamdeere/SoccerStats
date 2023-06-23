@@ -27,7 +27,7 @@ namespace PracticeApp.Controllers
         // GET: ItemLocation/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (ControllerErrorChecker.CheckDbAndIntId(id, _itemLocationService.Context.ItemLocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _itemLocationService.Context.ItemLocationModel))
             {
                 return NotFound();
             }
@@ -81,7 +81,7 @@ namespace PracticeApp.Controllers
         // GET: ItemLocation/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (ControllerErrorChecker.CheckDbAndIntId(id, _itemLocationService.Context.ItemLocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _itemLocationService.Context.ItemLocationModel))
             {
                 return NotFound();
             }
@@ -118,7 +118,7 @@ namespace PracticeApp.Controllers
         // GET: ItemLocation/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (ControllerErrorChecker.CheckDbAndIntId(id, _itemLocationService.Context.ItemLocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _itemLocationService.Context.ItemLocationModel))
             {
                 return NotFound();
             }
@@ -135,7 +135,7 @@ namespace PracticeApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (ControllerErrorChecker.CheckDb(_itemLocationService.Context.ItemLocationModel))
+            if (ControllerErrorChecker.CheckDbAndId(_itemLocationService.Context.ItemLocationModel))
             {
                 return Problem("Entity set 'PracticeAppDbContext.ItemLocationModel'  is null.");
             }

@@ -29,7 +29,7 @@ namespace PracticeApp.Controllers
         // GET: Item/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            return ControllerErrorChecker.CheckDbAndIntId(id, _service.Context.ItemModel) == false
+            return ControllerErrorChecker.CheckDbAndId(id, _service.Context.ItemModel) == false
                 ? View(await _service.GetDetails(id))
                 : NotFound();
         }
@@ -65,7 +65,7 @@ namespace PracticeApp.Controllers
         // GET: Item/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (ControllerErrorChecker.CheckDbAndIntId(id, _service.Context.ItemModel))
+            if (ControllerErrorChecker.CheckDbAndId(id, _service.Context.ItemModel))
             {
                 return NotFound();
             }
@@ -106,7 +106,7 @@ namespace PracticeApp.Controllers
         {
             LastAddress = RedirectBack();
 
-            return ControllerErrorChecker.CheckDbAndIntId(id, _service.Context.ItemModel) == false
+            return ControllerErrorChecker.CheckDbAndId(id, _service.Context.ItemModel) == false
                 ? View(await _service.GetItemModelAsync(id))
                 : NotFound();
         }
@@ -116,7 +116,7 @@ namespace PracticeApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (ControllerErrorChecker.CheckDb(_service.Context.ItemModel))
+            if (ControllerErrorChecker.CheckDbAndId(_service.Context.ItemModel))
             {
                 return Problem("Entity set 'PracticeAppDbContext.ItemModel'  is null.");
             }

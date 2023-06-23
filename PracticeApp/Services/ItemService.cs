@@ -39,10 +39,8 @@ namespace PracticeApp.Services
             {
                 Context.ItemModel.Remove(itemModel);
                 await Context.SaveChangesAsync();
-
-                return itemModel;
             }
-            return null;
+            return itemModel ?? null;
         }
 
         public async Task<ItemModel?> CreateItemModel(ItemModel itemModel)
@@ -50,7 +48,7 @@ namespace PracticeApp.Services
             Context.Add(itemModel);
             await Context.SaveChangesAsync();
 
-            return itemModel;
+            return itemModel ?? null;
         }
 
         public async Task<ItemModel?> GetDetails(int? id)
@@ -81,7 +79,6 @@ namespace PracticeApp.Services
                     throw;
                 }
             }
-
             return model;
         }
 

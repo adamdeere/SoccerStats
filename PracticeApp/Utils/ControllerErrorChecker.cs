@@ -2,17 +2,17 @@
 {
     public static class ControllerErrorChecker
     {
-        public static bool CheckDbAndIntId(int? id, object contextModel)
+        public static bool CheckDbAndId(int? id, object contextModel)
         {
             return id == null || contextModel == null;
         }
 
-        public static bool CheckDbAndStringId(string id, object contextModel)
+        public static bool CheckDbAndId(string id, object contextModel)
         {
             return string.IsNullOrEmpty(id) || contextModel == null;
         }
 
-        public static bool CheckDb(object contextModel)
+        public static bool CheckDbAndId(object contextModel)
         {
             return contextModel == null;
         }

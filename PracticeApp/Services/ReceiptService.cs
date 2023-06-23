@@ -71,6 +71,13 @@ namespace PracticeApp.Services
         /// </summary>
         /// <param name="receiptModel"></param>
         /// <returns></returns>
+        /// 
+
+        public async void CreateReceiptModel(ReceiptModel receiptModel)
+        {
+            Context.Add(receiptModel);
+            await Context.SaveChangesAsync();
+        }
         public async Task<ReceiptModel?> CreateReceipt(ReceiptModel receiptModel)
         {
             Context.Add(receiptModel);
@@ -103,9 +110,8 @@ namespace PracticeApp.Services
             {
                 Context.Update(receiptModel);
                 await Context.SaveChangesAsync();
-
-                var receiptModelFromDb = await Context.ReceiptModel.FindAsync(receiptModel.GRN);
-                return receiptModelFromDb ?? null;
+               
+                return receiptModel ?? null;
             }
             catch (DbUpdateConcurrencyException)
             {
