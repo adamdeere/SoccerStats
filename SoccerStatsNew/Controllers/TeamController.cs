@@ -45,7 +45,7 @@ namespace SoccerStatsNew.Controllers
             await _context.TeamModel
            .Join(_context.VenuesModel,
                team => team.StadiumId,
-               venue => venue.StadiumId,
+               venue => venue.VenueId,
             (team, venue) => new
             {
                 Venue = venue,

@@ -30,11 +30,10 @@ namespace SoccerStatsNew.Controllers
                 return NotFound();
 
             var leagueModel = await _leagueService.GetLeagueDetails(id);
-            if (leagueModel != null)
-            {
-                return View(leagueModel);
-            }
-            return NotFound();
+
+            return leagueModel != null 
+                ? View(leagueModel) 
+                : NotFound();
         }
     }
 }

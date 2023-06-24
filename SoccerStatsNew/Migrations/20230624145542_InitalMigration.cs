@@ -44,18 +44,18 @@ namespace SoccerStatsNew.Migrations
                 name: "LeagueModel",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LeagueId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LogoURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CountryName = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LeagueModel", x => x.Id);
+                    table.PrimaryKey("PK_LeagueModel", x => x.LeagueId);
                     table.ForeignKey(
-                        name: "FK_LeagueModel_CountryModel_Name",
-                        column: x => x.Name,
+                        name: "FK_LeagueModel_CountryModel_CountryName",
+                        column: x => x.CountryName,
                         principalTable: "CountryModel",
                         principalColumn: "Name",
                         onDelete: ReferentialAction.Cascade);
@@ -89,8 +89,8 @@ namespace SoccerStatsNew.Migrations
                 columns: table => new
                 {
                     SeasonId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    CountryName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LeagueId = table.Column<int>(type: "int", nullable: false),
+                    CountryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EndDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -101,39 +101,28 @@ namespace SoccerStatsNew.Migrations
                     TopCards = table.Column<bool>(type: "bit", nullable: false),
                     Injuries = table.Column<bool>(type: "bit", nullable: false),
                     Predictions = table.Column<bool>(type: "bit", nullable: false),
-                    Odds = table.Column<bool>(type: "bit", nullable: false)
+                    Odds = table.Column<bool>(type: "bit", nullable: false),
+                    LeagueModelLeagueId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SeasonModel", x => x.SeasonId);
                     table.ForeignKey(
-                        name: "FK_SeasonModel_CountryModel_CountryName",
-                        column: x => x.CountryName,
-                        principalTable: "CountryModel",
-                        principalColumn: "Name",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SeasonModel_LeagueModel_Id",
-                        column: x => x.Id,
+                        name: "FK_SeasonModel_LeagueModel_LeagueModelLeagueId",
+                        column: x => x.LeagueModelLeagueId,
                         principalTable: "LeagueModel",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LeagueId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_LeagueModel_Name",
+                name: "IX_LeagueModel_CountryName",
                 table: "LeagueModel",
-                column: "Name");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SeasonModel_CountryName",
-                table: "SeasonModel",
                 column: "CountryName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SeasonModel_Id",
+                name: "IX_SeasonModel_LeagueModelLeagueId",
                 table: "SeasonModel",
-                column: "Id");
+                column: "LeagueModelLeagueId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeamModel_StadiumId",

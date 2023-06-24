@@ -16,8 +16,8 @@ namespace SoccerStatsNew.Controllers
         // GET: Season
         public async Task<IActionResult> Index()
         {
-            var soccerStatsDbContext = _context.SeasonModel.Include(s => s.Country).Include(s => s.League);
-            return View(await soccerStatsDbContext.ToListAsync());
+            //var soccerStatsDbContext = _context.SeasonModel.Include(s => s.Country).Include(s => s.League);
+            return View();
         }
 
         // GET: Season/Details/5
@@ -29,8 +29,6 @@ namespace SoccerStatsNew.Controllers
             }
 
             var seasonModel = await _context.SeasonModel
-                .Include(s => s.Country)
-                .Include(s => s.League)
                 .FirstOrDefaultAsync(m => m.SeasonId == id);
             if (seasonModel == null)
             {

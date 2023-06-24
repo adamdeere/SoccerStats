@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.Models;
+using SoccerStatsNew.RequestModels;
 
 namespace SoccerStatsNew.Services
 {
@@ -36,6 +37,13 @@ namespace SoccerStatsNew.Services
                     Country = country
                 }).ToListAsync();
 
+            foreach (var item in leagueModel)
+            {
+                item.Seasons = await _context.SeasonModel
+                    .Where(s => s.LeagueId == item.LeagueId)
+                    .OrderBy(x => x.Year)
+                    .ToListAsync();
+            }
             return leagueModel ?? null;
         }
     }

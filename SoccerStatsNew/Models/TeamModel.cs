@@ -7,12 +7,9 @@ namespace SoccerStatsNew.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
 
         public int? StadiumId { get; set; }
-
-        [ForeignKey("StadiumId")]
-        public VenuesModel? VenueModel { get; set; }
 
         public string? Name { get; set; }
         public string? Code { get; set; }

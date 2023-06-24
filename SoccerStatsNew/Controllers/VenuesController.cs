@@ -45,7 +45,7 @@ namespace SoccerStatsNew.Controllers
             }
 
             var venuesModel = await _context.VenuesModel
-                .FirstOrDefaultAsync(m => m.StadiumId == id);
+                .FirstOrDefaultAsync(m => m.VenueId == id);
             if (venuesModel == null)
             {
                 return NotFound();
