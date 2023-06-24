@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.Models;
-using SoccerStatsNew.RequestModels;
 
 namespace SoccerStatsNew.Services
 {

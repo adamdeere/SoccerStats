@@ -13,14 +13,17 @@ namespace SoccerStatsNew.Controllers
         }
 
         // GET: Country
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)
         {
-            var countries = await _countryService.GetCountrys();
-            if (countries != null)
+            if (string.IsNullOrEmpty(id)) 
             {
-                return View(countries);
+                id = "A";
             }
-            return Problem("Entity set 'SoccerStatsDbContext.CountryModel'  is null.");
+            var countries = await _countryService.GetCountrys(id);
+
+            return countries != null 
+                ? View(countries) 
+                : Problem("Entity set 'SoccerStatsDbContext.CountryModel'  is null.");
         }
 
         // GET: Country/Details/5
