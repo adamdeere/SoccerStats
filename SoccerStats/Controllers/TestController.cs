@@ -13,6 +13,8 @@ namespace SoccerStats.Controllers
         }
         public IActionResult Index()
         {
+
+
             return View();
         }
 
