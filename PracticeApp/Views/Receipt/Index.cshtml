@@ -6,56 +6,175 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GRN)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Arrival)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExpectedArrival)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalWeight)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalCube)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
+<a class="btn btn-primary custom-button" asp-controller="Receipt" asp-action="Create">Create Receipt</a>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.GRN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Arrival)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpectedArrival)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalWeight)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalCube)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.GRN">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.GRN">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.GRN">Delete</a> |
-               
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="accordion accordion-flush" id="accordionFlush">
+
+    @foreach (var item in Model)
+    {
+        var headingString = $"flush-heading-{item.GRN}";
+        var collapseString = $"flush-collapse{item.GRN}";
+        var itemCount = 0;
+
+        @if (item.ReceiptItems != null)
+        {
+            itemCount = item.ReceiptItems.Count();
+        }
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="@headingString">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseString" aria-expanded="false" aria-controls="@collapseString">
+                    Receipt GRN : @item.GRN Items on the receipt : @itemCount
+                </button>
+            </h2>
+            <div id="@collapseString" class="accordion-collapse collapse" aria-labelledby="@headingString" data-bs-parent="#accordionFlush">
+                <div class="accordion-body">
+                    <div class="container">
+                        <div class="align-content-center">
+                            <h5>Details</h5>
+                            <dl class="row">
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.GRN)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.GRN)
+                                </dd>
+
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.Arrival)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.Arrival)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.ExpectedArrival)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.ExpectedArrival)
+                                </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.TotalWeight)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.TotalWeight)
+                                </dd>
+
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.TotalCube)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @Html.DisplayFor(modelItem => item.TotalCube)
+                                </dd>
+
+
+                            </dl>
+                            <a class="btn btn-primary" asp-controller="Item" asp-action="Create" asp-route-id="@item.GRN">Create Item</a>
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.GRN">Edit</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.GRN">Delete</a> 
+
+                        </div>
+                        <div class="row">
+                            <h5> Products </h5>
+                            @if (item.ReceiptItems != null)
+                            {
+                                <!-- Displays all the products stored at a particular receipt -->
+                                @foreach (var grnItem in item.ReceiptItems)
+                                {
+                                    <div class="card custom-card-style">
+
+                                        @if (grnItem.Product != null)
+                                        {
+                                            <input class="card-img-top"
+                                                   src="~/images/placeholder.png"
+                                                   type="image"
+                                                   asp-controller="Product"
+                                                   asp-action="Details"
+                                                   asp-route-id="@grnItem.Product.SKUCode" />
+                                        }
+                                       
+                                        <div class="card-body">
+                                            <h5 class="card-title">Product</h5>
+
+                                            <div class="custom-text">
+                                                @Html.DisplayNameFor(modelItem => grnItem.GRN) :
+                                                @Html.DisplayFor(modelItem => grnItem.GRN)
+                                            </div>
+                                            @if (grnItem.Product != null)
+                                            {
+                                                <div class="custom-text">
+                                                    @Html.DisplayNameFor(model => grnItem.Product.SKUCode) :
+                                                    @Html.DisplayFor(modelItem =>  grnItem.Product.SKUCode)
+                                                </div>
+                                            }
+                                            
+                                            <div class="custom-text">
+                                                @Html.DisplayNameFor(modelItem => grnItem.ItemNo) :
+                                                @Html.DisplayFor(modelItem => grnItem.ItemNo)
+                                            </div>
+
+                                            <div class="custom-text">
+                                                Expected @Html.DisplayNameFor(modelItem => grnItem.Quantity) :
+                                                @Html.DisplayFor(modelItem => grnItem.Quantity)
+                                            </div>
+                                            @if (grnItem.Location != null)
+                                            {
+                                                @foreach (var itemStorage in grnItem.Location.ItemLocations)
+                                                {
+                                                    @if (itemStorage.Location != null)
+                                                    {
+                                                        <div class="text-black">
+                                                            @Html.DisplayNameFor(storeItem => itemStorage.Quantity) in storage :
+                                                            @Html.DisplayFor(modelItem => itemStorage.Quantity)
+                                                            <br />
+                                                            @Html.DisplayNameFor(storeItem => itemStorage.LocationId) :
+                                                            @Html.DisplayFor(modelItem => itemStorage.LocationId)
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                            <form>
+
+                                                <a class="btn btn-danger custom-button"
+                                                   asp-controller="Item"
+                                                   asp-action="Delete"
+                                                   asp-route-id="@grnItem.ItemNo">
+                                                    Delete
+                                                </a>
+
+                                                @if (grnItem.Location == null)
+                                                {
+                                                    <a class="btn btn-primary custom-button"
+                                                       asp-controller="ItemLocation"
+                                                       asp-action="Create"
+                                                       asp-route-item="@grnItem.ItemNo"
+                                                       asp-route-grn="item.GRN">
+                                                        Store
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    @foreach (var itemLocation in grnItem.Location.ItemLocations)
+                                                    {
+                                                        <a class="btn btn-primary custom-button"
+                                                           asp-controller="ItemLocation"
+                                                           asp-action="Edit"
+                                                           asp-route-id="@itemLocation.Id">
+                                                            Edit
+                                                        </a>
+                                                    }
+                                                }
+
+                                            </form>
+                                           
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -15,20 +15,6 @@ namespace PracticeApp.Controllers
 
         public IActionResult Index()
         {
-            char[] X = @"¿/˙'\‾¡zʎxʍʌnʇsɹbdouɯlʞɾıɥƃɟǝpɔqɐ".ToCharArray();
-            string V = @"?\.,/_!zyxwvutsrqponmlkjihgfedcba";
-
-            string InputString = "this will be rendered upside down";
-
-            string lols =  new string((from char obj in InputString.ToCharArray()
-                               select (V.IndexOf(obj) != -1) ? X[V.IndexOf(obj)] : obj).Reverse().ToArray());
-
-            char[] Y = lols.ToCharArray();
-            foreach (char c in Y) 
-            {
-                Console.Write(c);
-            }
-
             return View();
         }
 

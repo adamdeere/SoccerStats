@@ -128,3 +128,7 @@ body {
     float: right;
     padding-right: 8px;
 }
+
+.custom-card-style {
+    width: 18rem;
+}

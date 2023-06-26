@@ -13,14 +13,21 @@ namespace PracticeApp.Controllers
         {
             _locationService = service;
         }
-
         // GET: Location
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? id)
         {
-            var locationList = await _locationService.GetLocationList();
-            return locationList != null
-                ? View(locationList)
+            if (string.IsNullOrEmpty(id))
+            {
+                var locationList = await _locationService.GetLocationList();
+                return locationList != null
+                    ? View(locationList)
+                    : Problem("Entity set 'PracticeAppDbContext.LocationModel'  is null.");
+            }
+            var locationSearchList = await _locationService.GetLocationSearchList(id);
+            return locationSearchList != null
+                ? View(locationSearchList)
                 : Problem("Entity set 'PracticeAppDbContext.LocationModel'  is null.");
+
         }
 
         // GET: Location/Details/5
@@ -94,21 +101,15 @@ namespace PracticeApp.Controllers
         {
             if (id != null)
             {
-                _ = await _locationService.DeleteItem(id);
+                await _locationService.DeleteItem(id);
             }
             return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Delete(string id)
         {
-            if (ControllerErrorChecker.CheckDbAndId(id, _locationService.Context.LocationModel))
-            {
-                return NotFound();
-            }
-            var locationModel = await _locationService.GetLocation(id);
-
-            return locationModel != null
-                ? View(locationModel)
+            return ControllerErrorChecker.CheckDbAndId(id, _locationService.Context.LocationModel) == false
+                ? View(await _locationService.GetLocation(id))
                 : NotFound();
         }
 
@@ -122,7 +123,7 @@ namespace PracticeApp.Controllers
                 return Problem("Entity set 'PracticeAppDbContext.LocationModel'  is null.");
             }
 
-            _ = await _locationService.ConfirmDelete(id);
+            await _locationService.ConfirmDelete(id);
             return RedirectToAction(nameof(Index));
         }
     }

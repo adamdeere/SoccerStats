@@ -15,8 +15,30 @@ namespace PracticeApp.Services
 
         public async Task<ICollection<ProductModel>?> GetProducts()
         {
+
+            if (Context.ProductModel == null)
+            {
+                return null;
+            }
+            var products = await Context.ProductModel.ToListAsync();
+
+            foreach (var item in products)
+            {
+                item.Items = await Context.ItemModel
+                    .Where(i => i.SKUCode == item.SKUCode)
+                    .ToListAsync();
+            }
             return Context.ProductModel != null
                 ? await Context.ProductModel.ToListAsync()
+                : null;
+        }
+
+        public async Task<ICollection<ProductModel>?> SearchForProducts(string sku)
+        {
+            return Context.ProductModel != null
+                ? await Context.ProductModel
+                .Where(m => m.SKUCode.Contains(sku))
+                .ToListAsync()
                 : null;
         }
 

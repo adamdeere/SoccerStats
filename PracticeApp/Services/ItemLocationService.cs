@@ -53,6 +53,16 @@ namespace PracticeApp.Services
         {
             Context.ItemLocationModel.Add(model);
             await Context.SaveChangesAsync();
+
+            var item = await Context.ItemModel.
+                FirstOrDefaultAsync(i => i.ItemNo == model.ItemNo);
+            if (item != null)
+            {
+                item.LocationId = model.LocationId;
+                Context.ItemModel.Update(item);
+                await Context.SaveChangesAsync();
+            }
+            
         }
 
         public async Task<ItemLocationModel?> GetItemLocationAsync(int? id)

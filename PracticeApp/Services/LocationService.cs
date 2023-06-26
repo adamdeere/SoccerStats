@@ -13,11 +13,70 @@ namespace PracticeApp.Services
             Context = context;
         }
 
+        public async Task<ICollection<LocationModel>?> GetLocationSearchList(string id)
+        {
+            if (Context.LocationModel == null)
+            {
+                return null;
+            }
+
+            var locations = await Context.LocationModel
+                .Where(l=> l.LocationId.Contains(id))
+                .ToListAsync();
+
+            await Context.ItemLocationModel
+            .Join(Context.LocationModel,
+                  item => item.LocationId,
+                  location => location.LocationId,
+                  (item, location) => new { Item = item })
+            .Join(Context.ItemModel,
+                  item => item.Item.ItemNo,
+                  location => location.ItemNo,
+                  (item, location) => new { item.Item, Location = location })
+            .Join(Context.ProductModel,
+                  item => item.Item.Item.SKUCode,
+                  product => product.SKUCode,
+                  (item, product) => new { Item = item, Product = product })
+            .Join(Context.ReceiptModel,
+                  item => item.Item.Location.GRN,
+                  receipt => receipt.GRN,
+                  (item, receipt) => new { Item = item, Receipt = receipt })
+            .ToListAsync();
+
+            return locations ?? null;
+
+
+        }
+
         public async Task<ICollection<LocationModel>?> GetLocationList()
         {
-            return Context != null
-                ? await Context.LocationModel.ToListAsync()
-                : null;
+            if (Context.LocationModel == null)
+            {
+                return null;
+            }
+            var locationModel = await Context.LocationModel
+                .ToListAsync();
+
+            await Context.ItemLocationModel
+            .Join(Context.LocationModel,
+                  item => item.LocationId,
+                  location => location.LocationId,
+                  (item, location) => new { Item = item })
+            .Join(Context.ItemModel,
+                  item => item.Item.ItemNo,
+                  location => location.ItemNo,
+                  (item, location) => new { item.Item, Location = location })
+            .Join(Context.ProductModel,
+                  item => item.Item.Item.SKUCode,
+                  product => product.SKUCode,
+                  (item, product) => new { Item = item, Product = product })
+            .Join(Context.ReceiptModel,
+                  item => item.Item.Location.GRN,
+                  receipt => receipt.GRN,
+                  (item, receipt) => new { Item = item, Receipt = receipt })
+            .ToListAsync();
+
+            return locationModel ?? null;
         }
 
         public async Task<LocationModel?> GetLocation(string id)
@@ -112,7 +171,7 @@ namespace PracticeApp.Services
             return (Context.LocationModel?.Any(e => e.LocationId == id)).GetValueOrDefault();
         }
 
-        public async Task<ItemLocationModel?> DeleteItem(int? id)
+        public async Task DeleteItem(int? id)
         {
             var itemLocationModel = await GetItemLocation(id);
             if (itemLocationModel != null)
@@ -126,14 +185,11 @@ namespace PracticeApp.Services
                     item.LocationId = null;
                     Context.ItemModel.Update(item);
                     await Context.SaveChangesAsync();
-
-                    return itemLocationModel;
                 }
             }
-            return itemLocationModel ?? null;
         }
 
-        public async Task<LocationModel?> ConfirmDelete(string id)
+        public async Task ConfirmDelete(string id)
         {
             var locationModel = await GetLocationAsync(id);
             if (locationModel != null)
@@ -141,8 +197,6 @@ namespace PracticeApp.Services
                 Context.LocationModel.Remove(locationModel);
                 await Context.SaveChangesAsync();
             }
-
-            return locationModel ?? null;
         }
     }
 }

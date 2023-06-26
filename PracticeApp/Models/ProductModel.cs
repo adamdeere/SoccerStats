@@ -19,5 +19,7 @@ namespace PracticeApp.Models
         public float Width { get; set; }
 
         public float Weight { get; set; }
+
+        public List<ItemModel>? Items { get; set; } = new List<ItemModel>();
     }
 }

@@ -9,7 +9,6 @@ namespace PracticeApp.Controllers
     public class ItemController : Controller
     {
         private readonly ItemService _service;
-        public static string LastAddress { get; set; } = "";
 
         public ItemController(ItemService service)
         {
@@ -37,7 +36,6 @@ namespace PracticeApp.Controllers
         // GET: Item/Create
         public IActionResult Create()
         {
-            LastAddress = Request.Headers["Referer"].ToString();
             ViewData["SKUCode"] = new SelectList(_service.Context.ProductModel, "SKUCode", "SKUCode");
             ViewData["GRN"] = new SelectList(_service.Context.Set<ReceiptModel>(), "GRN", "GRN");
             return View();
@@ -54,7 +52,7 @@ namespace PracticeApp.Controllers
                     itemModel.GRN = (int)id;
                 }
                 await _service.CreateItemModel(itemModel);
-                return Redirect(LastAddress);
+                return RedirectToAction(nameof(Index));
             }
             ViewData["SKUCode"] = new SelectList(_service.Context.ProductModel, "SKUCode", "SKUCode", itemModel.SKUCode);
             ViewData["GRN"] = new SelectList(_service.Context.Set<ReceiptModel>(), "GRN", "GRN", itemModel.GRN);
@@ -104,8 +102,6 @@ namespace PracticeApp.Controllers
         // GET: Item/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            LastAddress = RedirectBack();
-
             return ControllerErrorChecker.CheckDbAndId(id, _service.Context.ItemModel) == false
                 ? View(await _service.GetItemModelAsync(id))
                 : NotFound();
@@ -121,14 +117,9 @@ namespace PracticeApp.Controllers
                 return Problem("Entity set 'PracticeAppDbContext.ItemModel'  is null.");
             }
 
-            _ = await _service.ConfirmDelete(id);
+            await _service.ConfirmDelete(id);
 
-            return Redirect(LastAddress);
-        }
-
-        private string RedirectBack()
-        {
-            return Request.Headers["Referer"].ToString();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

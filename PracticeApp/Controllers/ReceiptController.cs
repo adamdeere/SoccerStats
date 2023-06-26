@@ -50,7 +50,6 @@ namespace PracticeApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // discard used intentionlly. see notes left above the service method
                 await _service.CreateReceipt(receiptModel);
                 return RedirectToAction(nameof(Index));
             }

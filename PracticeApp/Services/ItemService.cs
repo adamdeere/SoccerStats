@@ -30,8 +30,7 @@ namespace PracticeApp.Services
              .Include(i => i.Receipt)
              .FirstOrDefaultAsync(m => m.ItemNo == id) ?? null;
         }
-
-        public async Task<ItemModel?> ConfirmDelete(int id)
+        public async Task ConfirmDelete(int id)
         {
             var itemModel = await FindItemAsync(id);
 
@@ -40,9 +39,7 @@ namespace PracticeApp.Services
                 Context.ItemModel.Remove(itemModel);
                 await Context.SaveChangesAsync();
             }
-            return itemModel ?? null;
         }
-
         public async Task CreateItemModel(ItemModel itemModel)
         {
             Context.Add(itemModel);
@@ -87,7 +84,8 @@ namespace PracticeApp.Services
 
         public async Task<ItemModel?> FindItemAsync(int? id)
         {
-            return await Context.ItemModel.FindAsync(id) ?? null;
+            var item = await Context.ItemModel.FindAsync(id);
+            return item ?? null;
         }
 
         private bool ItemModelExists(int id)

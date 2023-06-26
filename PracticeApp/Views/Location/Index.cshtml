@@ -6,51 +6,154 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
+<a class="btn btn-primary custom-button" asp-controller="Location" asp-action="Create">Create </a>
 
-            <th>
-                @Html.DisplayNameFor(model => model.LocationId)
-            </th>
+<div class="accordion accordion-flush" id="accordionFlush">
+    @if (Model.Count() > 0)
+    {
+        @foreach (var item in Model)
+        {
+            var headingString = $"flush-heading-{item.LocationId}";
+            var collapseString = $"flush-collapse{item.LocationId}";
+            var itemCount = 0;
 
-            <th>
-                @Html.DisplayNameFor(model => model.Length)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Width)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
+            @if (item.ItemLocations != null)
+            {
+                itemCount = item.ItemLocations.Count();
+            }
 
-            <td>
-                @Html.DisplayFor(modelItem => item.LocationId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Length)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Height)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Width)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LocationId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LocationId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LocationId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="@headingString">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseString" aria-expanded="false" aria-controls="@collapseString">
+                        Location : @item.LocationId Items in Storage : @itemCount
+                    </button>
+                </h2>
+                <div id="@collapseString" class="accordion-collapse collapse" aria-labelledby="@headingString" data-bs-parent="#accordionFlush">
+                    <div class="accordion-body">
+                        <div class="container">
+                            <div class="align-content-center">
+                                <h5>Details</h5>
+                                <dl class="row">
+
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => item.LocationId)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => item.LocationId)
+                                    </dd>
+
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => item.Length)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => item.Length)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => item.Height)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => item.Height)
+                                    </dd>
+                                    <dt class="col-sm-2">
+                                        @Html.DisplayNameFor(model => item.Width)
+                                    </dt>
+                                    <dd class="col-sm-10">
+                                        @Html.DisplayFor(model => item.Width)
+                                    </dd>
+                                </dl>
+
+                                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.LocationId">Edit</a>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LocationId">Delete</a>
+                            </div>
+                            <div class="row">
+                                <h5> Products </h5>
+                                @if (item.ItemLocations != null)
+                                {
+                                    <!-- Displays all the products stored at a particular location -->
+                                    @foreach (var products in item.ItemLocations)
+                                    {
+                                        <div class="card custom-card-style">
+
+                                            
+                                           
+
+                                            @if (@products.Item != null)
+                                            {
+                                                <form>
+                                                    <input class="card-img-top"
+                                                           src="~/images/placeholder.png"
+                                                           type="image"
+                                                           asp-controller="Product"
+                                                           asp-action="Details"
+                                                           asp-route-id="@products.Item.SKUCode" />
+                                                </form>
+                                               
+                                            }
+                                           
+                                            <div class="card-body">
+                                                <h5 class="card-title">Product</h5>
+
+                                                <div class="custom-text">
+                                                    @Html.DisplayNameFor(model => model.LocationId) :
+                                                    @Html.DisplayFor(modelItem => item.LocationId)
+                                                </div>
+                                                <div class="custom-text">
+                                                    @Html.DisplayNameFor(modelItem => products.ItemNo) :
+                                                    @Html.DisplayFor(modelItem => products.ItemNo)
+                                                </div>
+                                                <div class="custom-text">
+                                                    @Html.DisplayNameFor(modelItem => products.GRN) :
+                                                    @Html.DisplayFor(modelItem => products.GRN)
+                                                </div>
+                                                <div class="custom-text">
+                                                    @Html.DisplayNameFor(modelItem => products.Quantity) :
+                                                    @Html.DisplayFor(modelItem => products.Quantity)
+                                                </div>
+                                                @if (products.Item != null)
+                                                {
+                                                    <div class="custom-text">
+                                                        @Html.DisplayNameFor(modelItem => products.Item.SKUCode) :
+                                                        @Html.DisplayFor(modelItem => products.Item.SKUCode)
+                                                    </div>
+                                                    @if (products.Item.Product != null)
+                                                    {
+                                                        <div class="custom-text">
+                                                            @Html.DisplayNameFor(modelItem => products.Item.Product) :
+                                                            @Html.DisplayFor(modelItem => products.Item.Product.Description)
+                                                        </div>
+                                                    }
+                                                }
+
+                                                <a class="btn btn-danger custom-button"
+                                                   asp-controller="Location"
+                                                   asp-action="DeleteItem"
+                                                   asp-route-id="@products.Id">
+                                                    Delete
+                                                </a>
+
+                                                <a class="btn btn-primary custom-button"
+                                                   asp-controller="Receipt"
+                                                   asp-action="Details"
+                                                   asp-route-id="@products.GRN">
+                                                    Receipt
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Could not find any locations to match your search parameter. Please try again</p>
+    }
+
+</div>
+

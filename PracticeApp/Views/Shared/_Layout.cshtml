@@ -68,14 +68,16 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                 <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link dropdown-item" asp-area="">SKU Enquiry</a>
+                                    <a data-bs-toggle="modal" data-bs-target="#skuModal" class="nav-link dropdown-item" asp-area="">SKU Enquiry</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Receipt" asp-action="Index">Location Enquiry</a>
+
+                                    <a data-bs-toggle="modal" data-bs-target="#locationModal" class="nav-link dropdown-item" asp-area="">Location Enquiry</a>
+                               
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Location adjustment</a>
+                                    <a class="nav-link dropdown-item" asp-area="" asp-controller="Item" asp-action="Index">Location adjustment</a>
                                 </li>
 
                             </ul>
@@ -127,12 +129,12 @@
 </body>
 </html>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
+<!-- Modal for sku searching. Placed here to save a seprate view -->
+<div class="modal fade" id="skuModal" tabindex="-1" aria-labelledby="skuModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="skuModalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -141,13 +143,38 @@
                     <form method="post">
                         <label for="SKUCode">SKU code</label>
                         <input type="text" id="sku" name="sku" placeholder="Enter your SKU code" />
-                        <input type="submit" asp-action="Details" asp-controller="Product" />
+                        <input type="submit" asp-action="Index" asp-controller="Product" id="sku" name="sku" />
                     </form>
                   
                 </div>
             </div>
             <div class="modal-footer">
 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for location searching. Placed here to save a seprate view -->
+<div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="locationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="locationModalLabel">Location search</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+
+                    <form method="post">
+                        <label for="LocationId">Location id</label>
+                        <input type="text" id="id" name="id" placeholder="Enter the location id" />
+                        <input class="btn btn-primary" type="submit" asp-action="Index" asp-controller="Location" id="id" name="id" />
+                    </form>
+
+                </div>
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
     </div>

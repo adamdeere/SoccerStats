@@ -39,10 +39,9 @@
             </dl>
         </div>
         <div>
-            <form>
-                <button class="btn btn-primary custom-button" asp-controller="Location" asp-action="Edit" asp-route-id="@Model?.LocationId">Edit </button>
-                <button class="btn btn-primary custom-button" asp-controller="Location" asp-action="Index">Back </button>
-            </form>
+
+            <a class="btn btn-primary custom-button" asp-action="Edit" asp-route-id="@Model?.LocationId">Edit </a>
+            <a class="btn btn-primary custom-button" asp-action="Index">Back </a>
         </div>
         <div class="row">
             @if (Model != null)
@@ -108,7 +107,6 @@
                     </div>
                 }
             }
-            
         </div>
     </div>
 </div>

@@ -15,8 +15,30 @@ namespace PracticeApp.Services
 
         public async Task<ICollection<ReceiptModel>?> GetReceipts()
         {
-            return Context.ReceiptModel != null
-                ? await Context.ReceiptModel.ToListAsync()
+            if (Context.ReceiptModel == null)
+            {
+                return null;
+            }
+            ICollection<ReceiptModel> receipts = new List<ReceiptModel>();
+            var receiptModel = await Context.ReceiptModel.ToListAsync();
+
+            if (receiptModel != null)
+            {
+                foreach (var item in receiptModel)
+                {
+                    if (item != null)
+                    {
+                        var receipt = await GetReceiptDetails(item.GRN);
+                        if (receipt != null)
+                        {
+                            receipts.Add(receipt);
+                        }
+                    }
+                }
+            }
+            
+            return receipts.Count > 0
+                ? receipts
                 : null;
         }
 

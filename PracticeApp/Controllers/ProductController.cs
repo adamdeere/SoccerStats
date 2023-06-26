@@ -14,12 +14,22 @@ namespace PracticeApp.Controllers
         }
 
         // GET: Product
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sku)
         {
+            
+            if (!string.IsNullOrEmpty(sku))
+            {
+                var searchProductList = await _productService.SearchForProducts(sku);
+                return searchProductList != null ?
+                            View(searchProductList) :
+                            Problem("Entity set 'PracticeAppDbContext.ProductModel'  is null.");
+            }
+
             var productList = await _productService.GetProducts();
             return productList != null ?
                         View(productList) :
                         Problem("Entity set 'PracticeAppDbContext.ProductModel'  is null.");
+
         }
         // GET: Product/Details/5
         public async Task<IActionResult> Details(string id)

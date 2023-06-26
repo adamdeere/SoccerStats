@@ -6,39 +6,53 @@
 
 <h1>Item page</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="container">
     <div class="row">
+
+        <!-- Displays all the products stored at a particular location -->
         @foreach (var item in Model)
         {
-            <div class="col-2 mb-5 custom-text-box">
-                <div class="text-black">
-                    @Html.DisplayNameFor(model => model.Receipt) :
-                    @if (item.Receipt != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.Receipt.GRN)
-                    }
-                   
-                </div>
-                <div class="text-black">
-                    @Html.DisplayNameFor(model => model.Quantity) :
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </div>
-                <div class="text-black">
-                    @Html.DisplayNameFor(model => model.Product) :
-                    @if (item.Product != null)
-                    {
-                        @Html.DisplayFor(modelItem => item.Product.SKUCode)
-                    }
-                </div>
+            <div class="card custom-card-style">
 
-                <a asp-action="Edit" asp-route-id="@item.ItemNo">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ItemNo">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ItemNo">Delete</a>
+                <form>
+                    <input class="card-img-top"
+                           src="~/images/placeholder.png"
+                           type="image"
+                           asp-controller="Product"
+                           asp-action="Details"
+                           asp-route-id="@item.SKUCode" />
+                </form>
+               
+                <div class="card-body">
+                    <h5 class="card-title">Product</h5>
+
+                    <div class="text-black">
+                        @Html.DisplayNameFor(model => model.Receipt) :
+                        @if (item.Receipt != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Receipt.GRN)
+                        }
+
+                    </div>
+                    <div class="text-black">
+                        @Html.DisplayNameFor(model => model.Quantity) :
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </div>
+                    <div class="text-black">
+                        @Html.DisplayNameFor(model => model.Product) :
+                        @if (item.Product != null)
+                        {
+                            @Html.DisplayFor(modelItem => item.Product.SKUCode)
+                        }
+                    </div>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.ItemNo">Edit</a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ItemNo">Details</a>
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.ItemNo">Delete</a>
+                </div>
             </div>
-        }
+
+            
         
+        }
     </div>
 </div>

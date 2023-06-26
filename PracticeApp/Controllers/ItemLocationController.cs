@@ -66,7 +66,7 @@ namespace PracticeApp.Controllers
 
             return View(itemLocationModel);
         }
-
+        // This needs some work today
         [AcceptVerbs("GET", "POST")]
         public IActionResult CheckMaxQTY([Bind("Id,LocationId,GRN,ItemNo,Quantity")] ItemLocationModel itemLocationModel, int ItemNo)
         {
