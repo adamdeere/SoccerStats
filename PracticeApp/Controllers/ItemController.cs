@@ -36,6 +36,7 @@ namespace PracticeApp.Controllers
         // GET: Item/Create
         public IActionResult Create()
         {
+         
             ViewData["SKUCode"] = new SelectList(_service.Context.ProductModel, "SKUCode", "SKUCode");
             ViewData["GRN"] = new SelectList(_service.Context.Set<ReceiptModel>(), "GRN", "GRN");
             return View();
@@ -52,7 +53,9 @@ namespace PracticeApp.Controllers
                     itemModel.GRN = (int)id;
                 }
                 await _service.CreateItemModel(itemModel);
-                return RedirectToAction(nameof(Index));
+                // I like this better than getting the refferer from the headers as its less error prone and feels more secure
+                return RedirectToRoute("default", new { controller = "Receipt", action = "Index" });
+
             }
             ViewData["SKUCode"] = new SelectList(_service.Context.ProductModel, "SKUCode", "SKUCode", itemModel.SKUCode);
             ViewData["GRN"] = new SelectList(_service.Context.Set<ReceiptModel>(), "GRN", "GRN", itemModel.GRN);

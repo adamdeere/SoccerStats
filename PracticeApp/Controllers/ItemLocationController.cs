@@ -62,6 +62,7 @@ namespace PracticeApp.Controllers
                 await _itemLocationService.CreateItemLocation(itemLocationModel);
                 return RedirectToAction(nameof(Index));
             }
+           
             ViewData["LocationId"] = new SelectList(_itemLocationService.Locations, "LocationId", "LocationId", itemLocationModel.LocationId);
 
             return View(itemLocationModel);

@@ -8,11 +8,12 @@
 {
     @if (item.LocationId != null)
     {
+        var imageURL = $"~/images/{item.SKUCode}.jpg";
         <div class="card custom-card-style">
 
             <form>
                 <input class="card-img-top mt-2"
-                       src="~/images/placeholder.png"
+                       src="@imageURL" alt="~/images/placeholder.png"
                        type="image"
                        asp-controller="Product"
                        asp-action="Details"

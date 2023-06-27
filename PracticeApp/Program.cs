@@ -2,6 +2,7 @@
 using PracticeApp.Data;
 using PracticeApp.Services;
 using Rotativa.AspNetCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<PracticeAppDbContext>(options =>
