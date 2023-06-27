@@ -63,22 +63,17 @@ namespace SoccerStatsNew.Services
 
         public async Task<TeamRoot?> GetCountry(string id)
         {
-            var countries = await _context.CountryModel.ToListAsync();
-
-            foreach (var country in countries)
+            if (_httpClient != null)
             {
-                if (_httpClient != null)
+                HttpResponseMessage response = await _httpClient.GetAsync($"teams/?league={id}&season=2022");
+                if (response.IsSuccessStatusCode)
                 {
-                    HttpResponseMessage response = await _httpClient.GetAsync($"teams/?league={id}&season=2022");
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var data = await response.Content.ReadAsStringAsync();
+                    var data = await response.Content.ReadAsStringAsync();
 
-                        return JsonConverterUtil.GetObjectFromJsonFile<TeamRoot>(data);
-                    }
+                    return JsonConverterUtil.GetObjectFromJsonFile<TeamRoot>(data);
                 }
             }
-            
+
             return null;
         }
 
