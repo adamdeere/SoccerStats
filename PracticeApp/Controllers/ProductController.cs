@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PracticeApp.Models;
 using PracticeApp.Services;
+using PracticeApp.Utils;
 
 namespace PracticeApp.Controllers
 {
@@ -117,9 +118,11 @@ namespace PracticeApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            return await _productService.ConfirmDelete(id) != null
-                ? RedirectToAction(nameof(Index))
-                : Problem("Entity set 'PracticeAppDbContext.ProductModel'  is null.");
+            if (ControllerErrorChecker.CheckDbAndId(id, _productService.Context))
+            {
+                return Problem("Entity set 'PracticeAppDbContext.ProductModel'  is null.");
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

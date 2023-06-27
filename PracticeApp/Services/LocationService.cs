@@ -12,18 +12,8 @@ namespace PracticeApp.Services
         {
             Context = context;
         }
-
-        public async Task<ICollection<LocationModel>?> GetLocationSearchList(string id)
+        private async Task JoinTables()
         {
-            if (Context.LocationModel == null)
-            {
-                return null;
-            }
-
-            var locations = await Context.LocationModel
-                .Where(l=> l.LocationId.Contains(id))
-                .ToListAsync();
-
             await Context.ItemLocationModel
             .Join(Context.LocationModel,
                   item => item.LocationId,
@@ -42,6 +32,19 @@ namespace PracticeApp.Services
                   receipt => receipt.GRN,
                   (item, receipt) => new { Item = item, Receipt = receipt })
             .ToListAsync();
+        }
+        public async Task<ICollection<LocationModel>?> GetLocationSearchList(string id)
+        {
+            if (Context.LocationModel == null)
+            {
+                return null;
+            }
+
+            var locations = await Context.LocationModel
+                .Where(l=> l.LocationId.Contains(id))
+                .ToListAsync();
+
+            await JoinTables();
 
             return locations ?? null;
 
@@ -57,24 +60,7 @@ namespace PracticeApp.Services
             var locationModel = await Context.LocationModel
                 .ToListAsync();
 
-            await Context.ItemLocationModel
-            .Join(Context.LocationModel,
-                  item => item.LocationId,
-                  location => location.LocationId,
-                  (item, location) => new { Item = item })
-            .Join(Context.ItemModel,
-                  item => item.Item.ItemNo,
-                  location => location.ItemNo,
-                  (item, location) => new { item.Item, Location = location })
-            .Join(Context.ProductModel,
-                  item => item.Item.Item.SKUCode,
-                  product => product.SKUCode,
-                  (item, product) => new { Item = item, Product = product })
-            .Join(Context.ReceiptModel,
-                  item => item.Item.Location.GRN,
-                  receipt => receipt.GRN,
-                  (item, receipt) => new { Item = item, Receipt = receipt })
-            .ToListAsync();
+            await JoinTables();
 
             return locationModel ?? null;
         }

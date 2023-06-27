@@ -1,0 +1,91 @@
+﻿@model IEnumerable<PracticeApp.Models.ItemLocationModel>
+@{
+}
+
+<!-- Displays all the products stored at a particular location -->
+@foreach (var products in Model)
+{
+    <div class="card custom-card-style">
+
+        @if (products.Item != null)
+        {
+            @if (products.Item.Product != null)
+            {
+                @if (products.Item.Product.ImageURL != null)
+                    {
+                    <form>
+                        <input class="card-img-top"
+                               src="@products.Item.Product.ImageURL"
+                               type="image"
+                               asp-controller="Product"
+                               asp-action="Details"
+                               asp-route-id="@products.Item.SKUCode" />
+                    </form>
+                }
+                else
+                {
+                    <form>
+                        <input class="card-img-top"
+                               src="~/images/placeholder.png"
+                               type="image"
+                               asp-controller="Product"
+                               asp-action="Details"
+                               asp-route-id="@products.Item.SKUCode" />
+                    </form>
+                }
+            }
+            
+
+        }
+
+        <div class="card-body">
+            <h5 class="card-title">Product</h5>
+
+            <div class="custom-text">
+                @Html.DisplayNameFor(model => model.LocationId) :
+                @Html.DisplayFor(modelItem => products.LocationId)
+            </div>
+            <div class="custom-text">
+                @Html.DisplayNameFor(modelItem => products.ItemNo) :
+                @Html.DisplayFor(modelItem => products.ItemNo)
+            </div>
+            <div class="custom-text">
+                @Html.DisplayNameFor(modelItem => products.GRN) :
+                @Html.DisplayFor(modelItem => products.GRN)
+            </div>
+            <div class="custom-text">
+                @Html.DisplayNameFor(modelItem => products.Quantity) :
+                @Html.DisplayFor(modelItem => products.Quantity)
+            </div>
+            @if (products.Item != null)
+            {
+                <div class="custom-text">
+                    @Html.DisplayNameFor(modelItem => products.Item.SKUCode) :
+                    @Html.DisplayFor(modelItem => products.Item.SKUCode)
+                </div>
+                @if (products.Item.Product != null)
+                {
+                    <div class="custom-text">
+                        @Html.DisplayNameFor(modelItem => products.Item.Product) :
+                        @Html.DisplayFor(modelItem => products.Item.Product.Description)
+                    </div>
+                }
+            }
+            <form>
+                <input class="btn btn-danger custom-button"
+                       type="submit"
+                       value="Delete"
+                       asp-controller="Location"
+                       asp-action="DeleteItem"
+                       asp-route-id="@products.Id" />
+
+                <input class="btn btn-primary custom-button"
+                       type="submit"
+                       value="Details"
+                       asp-controller="Receipt"
+                       asp-action="Details"
+                       asp-route-id="@products.GRN" />
+            </form>
+        </div>
+    </div>
+}

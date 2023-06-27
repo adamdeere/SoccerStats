@@ -13,6 +13,16 @@ namespace PracticeApp.Services
             Context = context;
         }
 
+        private async Task JoinProductTable()
+        {
+            await Context.ItemModel
+                .Join(Context.ProductModel,
+                item => item.SKUCode,
+                product => product.SKUCode,
+                (item, product) => new { Item = item, Product = product })
+                .ToListAsync();
+        }
+
         public async Task<ICollection<ProductModel>?> GetProducts()
         {
 
@@ -22,12 +32,7 @@ namespace PracticeApp.Services
             }
             var products = await Context.ProductModel.ToListAsync();
 
-            await Context.ItemModel
-               .Join(Context.ProductModel,
-               item => item.SKUCode,
-               product => product.SKUCode,
-               (item, product) => new { Item = item, Product = product })
-               .ToListAsync();
+           await JoinProductTable();
             
             return products ?? null;
         }
@@ -42,12 +47,7 @@ namespace PracticeApp.Services
                 .Where(m => m.SKUCode.Contains(sku))
                 .ToListAsync();
 
-            await Context.ItemModel
-                .Join(Context.ProductModel,
-                item => item.SKUCode,
-                product => product.SKUCode,
-                (item, product) => new { Item = item, Product = product })
-                .ToListAsync();
+            await JoinProductTable();
 
             return list ?? null;
         }
@@ -68,7 +68,7 @@ namespace PracticeApp.Services
                  : null;
         }
 
-        public async Task<ProductModel?> ConfirmDelete(string id)
+        public async Task ConfirmDelete(string id)
         {
             var productModel = await GetProductAsync(id);
 
@@ -77,7 +77,6 @@ namespace PracticeApp.Services
                 Context.ProductModel.Remove(productModel);
                 await Context.SaveChangesAsync();
             }
-            return productModel ?? null;
         }
 
         public async Task EditProductModel(ProductModel model)
