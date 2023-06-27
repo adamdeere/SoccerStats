@@ -94,27 +94,7 @@ namespace PracticeApp.Services
             var locationModel = await Context.LocationModel
                 .FirstOrDefaultAsync(m => m.LocationId == id);
 
-            await Context.ItemLocationModel
-            .Join(Context.LocationModel,
-                  item => item.LocationId,
-                  location => location.LocationId,
-                  (item, location) => new
-                  {
-                      Item = item
-                  })
-            .Join(Context.ItemModel,
-                  item => item.Item.ItemNo,
-                  location => location.ItemNo,
-                  (item, location) => new
-                  {
-                      item.Item,
-                      Location = location
-                  })
-            .Join(Context.ProductModel,
-            item => item.Item.Item.SKUCode,
-            product => product.SKUCode,
-            (item, product) => new { Item = item, Product = product })
-            .ToListAsync();
+            await JoinTables();
 
             return locationModel ?? null;
         }
