@@ -93,9 +93,9 @@ namespace PracticeApp.Controllers
             }
             if (ModelState.IsValid)
             {
-                return await _service.UpdateItemModel(itemModel) != null
-                    ? RedirectToAction(nameof(Index))
-                    : NotFound();
+                await _service.UpdateItemModel(itemModel);
+                return RedirectToAction(nameof(Index));
+                  
             }
             ViewData["SKUCode"] = new SelectList(_service.Context.ProductModel, "SKUCode", "SKUCode", itemModel.SKUCode);
             ViewData["GRN"] = new SelectList(_service.Context.Set<ReceiptModel>(), "GRN", "GRN", itemModel.GRN);

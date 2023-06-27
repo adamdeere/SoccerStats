@@ -91,9 +91,9 @@ namespace PracticeApp.Controllers
 
             if (ModelState.IsValid)
             {
-                return await _productService.EditProductModel(productModel) != null
-                    ? RedirectToAction(nameof(Index))
-                    : NotFound();
+                await _productService.EditProductModel(productModel);
+                return RedirectToAction(nameof(Index));
+                    
             }
             return View(productModel);
         }

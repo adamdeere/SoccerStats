@@ -144,22 +144,16 @@ namespace PracticeApp.Services
             await Context.SaveChangesAsync();
         }
 
-        public async Task<LocationModel?> EditLocation(string id, LocationModel locationModel)
+        public async Task EditLocation(string id, LocationModel locationModel)
         {
             try
             {
                 Context.Update(locationModel);
                 await Context.SaveChangesAsync();
-
-                return locationModel;
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LocationModelExists(locationModel.LocationId))
-                {
-                    return null;
-                }
-                else
+                if (LocationModelExists(locationModel.LocationId))
                 {
                     throw;
                 }

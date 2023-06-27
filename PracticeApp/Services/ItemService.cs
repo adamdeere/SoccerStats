@@ -56,7 +56,7 @@ namespace PracticeApp.Services
             return itemModel ?? null;
         }
 
-        public async Task<ItemModel?> UpdateItemModel(ItemModel model)
+        public async Task UpdateItemModel(ItemModel model)
         {
             try
             {
@@ -65,16 +65,11 @@ namespace PracticeApp.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ItemModelExists(model.ItemNo))
-                {
-                    return null;
-                }
-                else
+                if (ItemModelExists(model.ItemNo))
                 {
                     throw;
                 }
             }
-            return model;
         }
 
         public void Remove(ItemModel model)
@@ -84,8 +79,7 @@ namespace PracticeApp.Services
 
         public async Task<ItemModel?> FindItemAsync(int? id)
         {
-            var item = await Context.ItemModel.FindAsync(id);
-            return item ?? null;
+            return await Context.ItemModel.FindAsync(id) ?? null;
         }
 
         private bool ItemModelExists(int id)

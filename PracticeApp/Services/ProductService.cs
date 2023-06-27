@@ -22,24 +22,34 @@ namespace PracticeApp.Services
             }
             var products = await Context.ProductModel.ToListAsync();
 
-            foreach (var item in products)
-            {
-                item.Items = await Context.ItemModel
-                    .Where(i => i.SKUCode == item.SKUCode)
-                    .ToListAsync();
-            }
-            return Context.ProductModel != null
-                ? await Context.ProductModel.ToListAsync()
-                : null;
+            await Context.ItemModel
+               .Join(Context.ProductModel,
+               item => item.SKUCode,
+               product => product.SKUCode,
+               (item, product) => new { Item = item, Product = product })
+               .ToListAsync();
+            
+            return products ?? null;
         }
 
         public async Task<ICollection<ProductModel>?> SearchForProducts(string sku)
         {
-            return Context.ProductModel != null
-                ? await Context.ProductModel
+            if (Context.ProductModel == null)
+            {
+                return null;
+            }
+           var list = await Context.ProductModel
                 .Where(m => m.SKUCode.Contains(sku))
-                .ToListAsync()
-                : null;
+                .ToListAsync();
+
+            await Context.ItemModel
+                .Join(Context.ProductModel,
+                item => item.SKUCode,
+                product => product.SKUCode,
+                (item, product) => new { Item = item, Product = product })
+                .ToListAsync();
+
+            return list ?? null;
         }
 
         public async Task<ProductModel?> GetProductBySku(string id)
@@ -70,24 +80,20 @@ namespace PracticeApp.Services
             return productModel ?? null;
         }
 
-        public async Task<ProductModel?> EditProductModel(ProductModel model)
+        public async Task EditProductModel(ProductModel model)
         {
             try
             {
                 Context.Update(model);
                 await Context.SaveChangesAsync();
-                return model;
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductModelExists(model.SKUCode))
-                {
-                    return null;
-                }
-                else
+                if (ProductModelExists(model.SKUCode))
                 {
                     throw;
                 }
+                
             }
         }
 

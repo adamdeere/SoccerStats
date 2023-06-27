@@ -88,7 +88,7 @@ namespace PracticeApp.Controllers
 
             if (ModelState.IsValid)
             {
-                _ = await _locationService.EditLocation(id, locationModel);
+                await _locationService.EditLocation(id, locationModel);
                 return RedirectToAction(nameof(Index));
             }
             return View(locationModel);

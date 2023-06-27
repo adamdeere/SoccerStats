@@ -60,7 +60,7 @@ namespace PracticeApp.Controllers
             if (ModelState.IsValid)
             {
                 await _itemLocationService.CreateItemLocation(itemLocationModel);
-                return RedirectToAction(nameof(Index));
+                return RedirectToRoute("default", new { controller = "Receipt", action = "Index" });
             }
            
             ViewData["LocationId"] = new SelectList(_itemLocationService.Locations, "LocationId", "LocationId", itemLocationModel.LocationId);

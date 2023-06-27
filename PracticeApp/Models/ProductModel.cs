@@ -20,6 +20,8 @@ namespace PracticeApp.Models
 
         public float Weight { get; set; }
 
+        public string? ImageURL { get; set; }
+
         public List<ItemModel>? Items { get; set; } = new List<ItemModel>();
     }
 }

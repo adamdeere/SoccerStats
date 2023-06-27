@@ -8,17 +8,31 @@
 {
     @if (item.LocationId != null)
     {
-        var imageURL = $"~/images/{item.SKUCode}.jpg";
         <div class="card custom-card-style">
 
-            <form>
-                <input class="card-img-top mt-2"
-                       src="@imageURL" alt="~/images/placeholder.png"
-                       type="image"
-                       asp-controller="Product"
-                       asp-action="Details"
-                       asp-route-id="@item.SKUCode" />
-            </form>
+            @if (item.Product != null)
+            {
+                <form>
+                    <input class="card-img-top mt-2"
+                           src="@item.Product.ImageURL" alt="~/images/placeholder.png"
+                           type="image"
+                           asp-controller="Product"
+                           asp-action="Details"
+                           asp-route-id="@item.SKUCode" />
+                </form>
+            }
+            else
+            {
+                <form>
+                    <input class="card-img-top mt-2"
+                           src="~/images/placeholder.png
+                           type="image"
+                           asp-controller="Product"
+                           asp-action="Details"
+                           asp-route-id="@item.SKUCode" />
+                </form>
+            }
+
             <div class="card-body">
                 <h5 class="card-title">Product</h5>
 

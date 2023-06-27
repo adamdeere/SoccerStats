@@ -17,8 +17,6 @@ builder.Services.AddScoped<LocationService>();
 builder.Services.AddScoped<ItemLocationService>();
 
 var app = builder.Build();
-IWebHostEnvironment env = app.Environment;
-RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env);
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
