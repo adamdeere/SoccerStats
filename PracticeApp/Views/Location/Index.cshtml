@@ -74,9 +74,6 @@
                                     {
                                         <div class="card custom-card-style">
 
-                                            
-                                           
-
                                             @if (@products.Item != null)
                                             {
                                                 <form>
@@ -123,21 +120,21 @@
                                                         </div>
                                                     }
                                                 }
+                                                <form>
+                                                    <input class="btn btn-danger custom-button"
+                                                           type="submit"
+                                                           value="Delete"
+                                                           asp-controller="Location"
+                                                           asp-action="DeleteItem"
+                                                           asp-route-id="@products.Id" />
 
-                                                <a class="btn btn-danger custom-button"
-                                                   asp-controller="Location"
-                                                   asp-action="DeleteItem"
-                                                   asp-route-id="@products.Id">
-                                                    Delete
-                                                </a>
-
-                                                <a class="btn btn-primary custom-button"
-                                                   asp-controller="Receipt"
-                                                   asp-action="Details"
-                                                   asp-route-id="@products.GRN">
-                                                    Receipt
-                                                </a>
-
+                                                    <input class="btn btn-primary custom-button"
+                                                           type="submit"
+                                                           value="Details"
+                                                           asp-controller="Receipt"
+                                                           asp-action="Details"
+                                                           asp-route-id="@products.GRN" />
+                                                </form>
                                             </div>
                                         </div>
                                     }

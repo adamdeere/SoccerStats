@@ -49,19 +49,19 @@ namespace PracticeApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,LocationId,GRN,ItemNo,Quantity")] ItemLocationModel itemLocationModel, int? item, int? grn)
+        public async Task<IActionResult> Create([Bind("Id,LocationId,GRN,ItemNo,Quantity")] ItemLocationModel itemLocationModel, int? item, int? grn, int? expected)
         {
-            if (item != null && grn != null)
+            if (item != null && grn != null && expected != null)
             {
                 itemLocationModel.GRN = (int)grn;
                 itemLocationModel.ItemNo = (int)item;
+                itemLocationModel.Quantity = (int)expected;
             }
             if (ModelState.IsValid)
             {
                 await _itemLocationService.CreateItemLocation(itemLocationModel);
                 return RedirectToAction(nameof(Index));
             }
-
             ViewData["LocationId"] = new SelectList(_itemLocationService.Locations, "LocationId", "LocationId", itemLocationModel.LocationId);
 
             return View(itemLocationModel);
@@ -106,7 +106,8 @@ namespace PracticeApp.Controllers
             }
             if (ModelState.IsValid)
             {
-                _ = await _itemLocationService.EditItemLocation(id, itemLocationModel);
+                await _itemLocationService.EditItemLocation(id, itemLocationModel);
+                return RedirectToAction(nameof(Index));
             }
 
             ViewData["LocationId"] = new SelectList(_itemLocationService.Locations, "LocationId", "LocationId", itemLocationModel.LocationId);
@@ -139,7 +140,7 @@ namespace PracticeApp.Controllers
                 return Problem("Entity set 'PracticeAppDbContext.ItemLocationModel'  is null.");
             }
 
-            _ = await _itemLocationService.RemoveItemLocation(id);
+            await _itemLocationService.RemoveItemLocation(id);
 
             return RedirectToAction(nameof(Index));
         }

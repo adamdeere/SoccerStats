@@ -18,10 +18,10 @@ namespace PracticeApp.Controllers
         // GET: Item
         public async Task<IActionResult> Index()
         {
-            var practiceAppDbContext = await _service.GetItemModels();
+            var itemsList = await _service.GetItemModels();
 
-            return practiceAppDbContext != null
-                ? View(practiceAppDbContext)
+            return itemsList != null
+                ? View(itemsList)
                 : NotFound();
         }
 

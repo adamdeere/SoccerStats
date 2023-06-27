@@ -67,51 +67,56 @@ namespace PracticeApp.Services
 
         public async Task<ItemLocationModel?> GetItemLocationAsync(int? id)
         {
-            return await Context.ItemLocationModel.FindAsync(id) ?? null;
+            var itemLocation = await Context.ItemLocationModel
+                .FirstOrDefaultAsync(i => i.ItemNo == id);
+
+            await Context.ItemLocationModel
+                .Join(Context.LocationModel,
+                item => item.LocationId,
+                location => location.LocationId,
+                (item, location) => new { Item = item, Location = location })
+                .FirstOrDefaultAsync();
+
+            return itemLocation ?? null;
         }
 
-        public async Task<ItemLocationModel?> EditItemLocation(int id, ItemLocationModel itemLocationModel)
+        public async Task EditItemLocation(int id, ItemLocationModel itemLocationModel)
         {
             var itemLocation = await Context.ItemLocationModel
-                        .FirstOrDefaultAsync(m => m.Id == id);
-            if (itemLocation == null)
+                        .FirstOrDefaultAsync(m => m.ItemNo == id);
+            if (itemLocation != null)
             {
-                return null;
-            }
-            try
-            {
-                itemLocation.LocationId = itemLocationModel.LocationId;
-                itemLocation.GRN = itemLocationModel.GRN;
-               
-                Context.ItemLocationModel.Update(itemLocation);
-                await Context.SaveChangesAsync();
-
-                var storedItem = await Context.ItemModel
-                    .FirstOrDefaultAsync(m => m.ItemNo == itemLocation.ItemNo);
-                if (storedItem != null)
+                try
                 {
-                    storedItem.GRN = itemLocation.GRN;
-                    Context.ItemModel.Update(storedItem);
+                    itemLocation.LocationId = itemLocationModel.LocationId;
+                    itemLocation.GRN = itemLocationModel.GRN;
+
+                    Context.ItemLocationModel.Update(itemLocation);
                     await Context.SaveChangesAsync();
-                }
-               
 
-                return itemLocation;
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ItemLocationModelExists(itemLocationModel.Id))
-                {
-                    return null;
+                    var storedItem = await Context.ItemModel
+                        .FirstOrDefaultAsync(m => m.ItemNo == itemLocation.ItemNo);
+                    if (storedItem != null)
+                    {
+                        storedItem.GRN = itemLocationModel.GRN;
+                        storedItem.LocationId = itemLocationModel.LocationId;
+                        storedItem.Quantity = itemLocationModel.Quantity;
+                        Context.ItemModel.Update(storedItem);
+                        await Context.SaveChangesAsync();
+                    }
                 }
-                else
+                catch (DbUpdateConcurrencyException)
                 {
-                    throw;
+                    if (ItemLocationModelExists(itemLocationModel.Id))
+                    {
+                        throw;
+                    }
                 }
             }
+          
         }
 
-        public async Task<ItemLocationModel?> RemoveItemLocation(int id)
+        public async Task RemoveItemLocation(int id)
         {
             var itemLocationModel = await GetItemLocationAsync(id);
 
@@ -119,9 +124,8 @@ namespace PracticeApp.Services
             {
                 Context.ItemLocationModel.Remove(itemLocationModel);
                 await Context.SaveChangesAsync();
-                return itemLocationModel;
+             
             }
-            return null;
         }
 
         private bool ItemLocationModelExists(int id)

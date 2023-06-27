@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PracticeApp.Models.ItemModel>
+
+@{
+}
+
+<!-- Displays all the products stored at a particular location -->
+@foreach (var item in Model)
+{
+    @if (item.LocationId != null)
+    {
+        <div class="card custom-card-style">
+
+            <form>
+                <input class="card-img-top mt-2"
+                       src="~/images/placeholder.png"
+                       type="image"
+                       asp-controller="Product"
+                       asp-action="Details"
+                       asp-route-id="@item.SKUCode" />
+            </form>
+            <div class="card-body">
+                <h5 class="card-title">Product</h5>
+
+                <div class="text-black">
+                    @Html.DisplayNameFor(model => model.Receipt) :
+                    @if (item.Receipt != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Receipt.GRN)
+                    }
+
+                </div>
+                <div class="text-black">
+                    @Html.DisplayNameFor(model => model.Quantity) :
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </div>
+                <div class="text-black">
+                    @Html.DisplayNameFor(model => model.Product) :
+                    @if (item.Product != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.Product.SKUCode)
+                    }
+                </div>
+
+                <div class="text-black">
+                    @Html.DisplayNameFor(model => model.LocationId) :
+                    @if (item.Product != null)
+                    {
+                        @Html.DisplayFor(modelItem => item.LocationId)
+                    }
+                </div>
+                <div class="mt-2">
+                    <a class="btn btn-primary" asp-controller="ItemLocation" asp-action="Edit" asp-route-id="@item.ItemNo">Edit</a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.ItemNo">Details</a>
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.ItemNo">Delete</a>
+                </div>
+              
+            </div>
+
+
+        </div>
+    }
+   
+}

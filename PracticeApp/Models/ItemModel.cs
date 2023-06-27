@@ -22,6 +22,7 @@ namespace PracticeApp.Models
         [ForeignKey("SKUCode")]
         public ProductModel? Product { get; set; }
 
+        [Display(Name = "Storage location")]
         public string? LocationId { get; set; }
 
         // change this to a list of locations

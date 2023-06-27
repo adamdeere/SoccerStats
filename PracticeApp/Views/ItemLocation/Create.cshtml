@@ -14,10 +14,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                @Html.DisplayNameFor(model => model.GRN) :
-                @Html.DisplayFor(model => model.GRN)
+                Expected @Html.DisplayNameFor(model => model.Quantity) :
+                @Html.DisplayFor(model => model.Quantity)
+            </div>
+
+            <div class="form-group">
+
+                <label asp-for="GRN" class="control-label"></label>
+                <input asp-for="GRN" class="form-control" value="@Model.GRN" />
+                <span asp-validation-for="GRN" class="text-danger"></span>
+               
             </div>
             <div class="form-group">
+
+                <label asp-for="ItemNo" class="control-label"></label>
+                <input asp-for="ItemNo" class="form-control" value="@Model.ItemNo" />
+                <span asp-validation-for="ItemNo" class="text-danger"></span>
+
                 @Html.DisplayNameFor(model => model.ItemNo) :
                 @Html.DisplayFor(model => model.ItemNo)
             </div>
@@ -33,10 +46,11 @@
             </div>
             <div class="form-group mt-5">
                 <input type="submit" value="Create" asp-route-item="@Model.ItemNo" asp-route-grn="@Model.GRN" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="Index">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 <div>
-    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+  
 </div>

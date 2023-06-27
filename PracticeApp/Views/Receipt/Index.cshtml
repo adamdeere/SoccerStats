@@ -84,12 +84,16 @@
 
                                         @if (grnItem.Product != null)
                                         {
-                                            <input class="card-img-top"
-                                                   src="~/images/placeholder.png"
-                                                   type="image"
-                                                   asp-controller="Product"
-                                                   asp-action="Details"
-                                                   asp-route-id="@grnItem.Product.SKUCode" />
+                                            <form>
+                                                <input class="card-img-top"
+                                                       src="~/images/placeholder.png"
+                                                       type="image"
+                                                       asp-controller="Product"
+                                                       asp-action="Details"
+                                                       asp-route-id="@grnItem.Product.SKUCode" />
+
+                                            </form>
+                                           
                                         }
                                        
                                         <div class="card-body">
@@ -132,40 +136,43 @@
                                                     }
                                                 }
                                             }
-                                            <form>
+                                            <form method="post">
 
-                                                <a class="btn btn-danger custom-button"
+                                                <input class="btn btn-danger custom-button"
+                                                   value="Delete"
+                                                   type="submit"
                                                    asp-controller="Item"
                                                    asp-action="Delete"
-                                                   asp-route-id="@grnItem.ItemNo">
-                                                    Delete
-                                                </a>
+                                                   asp-route-id="@grnItem.ItemNo"/>
+                                          
 
                                                 @if (grnItem.Location == null)
                                                 {
-                                                    <a class="btn btn-primary custom-button"
+                                                   <form method="post">
+
+                                                        <input class="btn btn-primary custom-button"
+                                                       type="submit"
+                                                       value="Store"
                                                        asp-controller="ItemLocation"
                                                        asp-action="Create"
                                                        asp-route-item="@grnItem.ItemNo"
-                                                       asp-route-grn="item.GRN">
-                                                        Store
-                                                    </a>
+                                                       asp-route-grn="@item.GRN"
+                                                       asp-route-expected="@grnItem.Quantity" />
+                                                   </form>
                                                 }
                                                 else
                                                 {
                                                     @foreach (var itemLocation in grnItem.Location.ItemLocations)
                                                     {
-                                                        <a class="btn btn-primary custom-button"
+                                                        <input class="btn btn-primary custom-button"
+                                                        type="submit"
+                                                        value="Edit"
                                                            asp-controller="ItemLocation"
                                                            asp-action="Edit"
-                                                           asp-route-id="@itemLocation.Id">
-                                                            Edit
-                                                        </a>
+                                                           asp-route-id="@itemLocation.Id"/>
                                                     }
                                                 }
-
                                             </form>
-                                           
                                         </div>
                                     </div>
                                 }
