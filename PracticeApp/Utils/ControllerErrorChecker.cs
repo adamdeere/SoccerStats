@@ -16,5 +16,9 @@
         {
             return contextModel == null;
         }
+        public static bool CheckResponseObject(object response)
+        {
+            return response != null || response != default;
+        }
     }
 }

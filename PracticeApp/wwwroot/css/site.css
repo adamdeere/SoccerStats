@@ -37,11 +37,11 @@ body {
 }
 
 .thumb-nail {
-    height: 100px;
-    width: 100px;
     object-fit: contain;
     float: right;
     border: 1px;
+    width: 190px;
+    height: 84px;
 }
 
 .image-text {

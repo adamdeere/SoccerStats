@@ -32,7 +32,7 @@ namespace PracticeApp.Services
             }
             var products = await Context.ProductModel.ToListAsync();
 
-           await JoinProductTable();
+            await JoinProductTable();
             
             return products ?? null;
         }

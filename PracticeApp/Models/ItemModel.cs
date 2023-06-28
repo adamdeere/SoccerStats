@@ -8,7 +8,7 @@ namespace PracticeApp.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ItemNo { get; set; }
-
+        
         public int GRN { get; set; }
 
         [ForeignKey("GRN")]

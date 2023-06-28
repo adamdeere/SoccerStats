@@ -2,7 +2,7 @@
 
 namespace PracticeApp.Utils
 {
-    public static class JsonConverter
+    public static class JsonConverterUtil
     {
         public static T? GetObjectFromJson<T>(string key)
         {

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PracticeApp.HttpServices;
 using PracticeApp.Models;
+using PracticeApp.RequestModels;
 using PracticeApp.Services;
 using PracticeApp.Utils;
 
@@ -8,16 +10,29 @@ namespace PracticeApp.Controllers
     public class ProductController : Controller
     {
         private readonly ProductService _productService;
+        private readonly HttpService _httpService;
 
-        public ProductController(ProductService service)
+        public ProductController(ProductService service, HttpService httpservice)
         {
             _productService = service;
+            _httpService = httpservice;
         }
 
         // GET: Product
         public async Task<IActionResult> Index(string sku)
         {
-            
+            string url = $"whbase2/rest/whbase2Service/product";
+            var product = await _httpService.GetObjectJson<ProductRoot>(url);
+
+            if (product != null)
+            {
+                Console.WriteLine("success in the product controller");
+            }
+            else
+            {
+                Console.WriteLine("this has messed up somewhere in the product controller");
+            }
+
             if (!string.IsNullOrEmpty(sku))
             {
                 var searchProductList = await _productService.SearchForProducts(sku);
@@ -122,6 +137,9 @@ namespace PracticeApp.Controllers
             {
                 return Problem("Entity set 'PracticeAppDbContext.ProductModel'  is null.");
             }
+
+            await _productService.ConfirmDelete(id);
+
             return RedirectToAction(nameof(Index));
         }
     }
