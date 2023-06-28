@@ -27,6 +27,10 @@ namespace PracticeApp.Controllers
             if (product != null)
             {
                 Console.WriteLine("success in the product controller");
+                foreach (var item in product.List)
+                {
+                    Console.WriteLine($"Product Width is : {item.Width} && Sku is : {item.SKU}");
+                }
             }
             else
             {

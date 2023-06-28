@@ -27,6 +27,10 @@ namespace PracticeApp.Controllers
             if (item != null)
             {
                 Console.WriteLine("success in the Item controller");
+                foreach (var element in item.ListOfItems)
+                {
+                    Console.WriteLine($"{element.ItemNo} && {element.SKU}");
+                }
             }
             else
             {

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PracticeApp.HttpServices;
 using PracticeApp.Models;
+using PracticeApp.RequestModels;
 using PracticeApp.Services;
 using PracticeApp.Utils;
 
@@ -8,9 +10,11 @@ namespace PracticeApp.Controllers
     public class ReceiptController : Controller
     {
         private readonly ReceiptService _service;
+        private readonly HttpService _httpService;
 
-        public ReceiptController(ReceiptService service)
+        public ReceiptController(ReceiptService service, HttpService httpService)
         {
+            _httpService = httpService;    
             _service = service;
           
         }
@@ -18,6 +22,23 @@ namespace PracticeApp.Controllers
         // GET: Receipt
         public async Task<IActionResult> Index()
         {
+            string paramters = $"item/GRN=GRN00003ANDlimit=8";
+            var grn = await _httpService.GetObjectJson<GRNRoot>(paramters);
+
+            if (grn != null)
+            {
+                Console.WriteLine("success in the Item controller");
+                foreach (var element in grn.ListOfGRN)
+                {
+                    Console.WriteLine($"{element.ItemNo} && {element.SKU}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Somethings gone wrong in Item Controller");
+            }
+
+
             var modelList = await _service.GetReceipts();
             return modelList != null
                 ? View(modelList)

@@ -27,6 +27,10 @@ namespace PracticeApp.Controllers
             if (location != null)
             {
                 Console.WriteLine("success in the location controller");
+                foreach (var item in location.List)
+                {
+                    Console.WriteLine($"Location Weight is : {item.Weight} && Height is {item.Height}");
+                }
             }
             else
             {
