@@ -2,7 +2,6 @@
 
 namespace PracticeApp.RequestModels
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class ProductList
     {
         [JsonProperty(nameof(SKU))]

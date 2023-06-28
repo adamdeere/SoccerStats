@@ -113,7 +113,6 @@ namespace PracticeApp.Services
                     }
                 }
             }
-          
         }
 
         public async Task RemoveItemLocation(int id)

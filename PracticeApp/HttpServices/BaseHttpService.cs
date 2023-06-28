@@ -1,13 +1,12 @@
 ﻿using Microsoft.Net.Http.Headers;
 using PracticeApp.Utils;
-using static PracticeApp.RequestModels.ItemRequestModel;
 
 namespace PracticeApp.HttpServices
 {
     public abstract class BaseHttpService : IDisposable
     {
         protected readonly HttpClient _httpClient;
-        protected readonly string Address = "https://192.168.200.70:4911/";
+        protected readonly string Address = "https://192.168.200.70:4911/whbase2/rest/whbase2Service/";
         public BaseHttpService(HttpClient httpClient)
         {
             _httpClient = httpClient;
@@ -30,17 +29,17 @@ namespace PracticeApp.HttpServices
             return _httpClient != null;
         }
 
-        protected async Task<T?> ConvertResponseToJson<T>(string url)
+        protected async Task<T?> ConvertResponseToJson<T>(string parameters)
         {
             if (ClientStatus())
             {
                 try
                 {
-                    HttpResponseMessage response = await _httpClient.GetAsync(url);
+                    HttpResponseMessage response = await _httpClient.GetAsync(parameters);
                     if (response.IsSuccessStatusCode)
                     {
-                        var data = await response.Content.ReadAsStringAsync();
-                        return JsonConverterUtil.GetObjectFromJson<T>(data);
+                        var responseData = await response.Content.ReadAsStringAsync();
+                        return JsonConverterUtil.GetObjectFromJson<T>(responseData);
                     }
                 }
                 catch (Exception e)
@@ -49,27 +48,6 @@ namespace PracticeApp.HttpServices
                 }
             }
             return default;
-        }
-
-        protected async Task<string?> ReadResponseData(string url)
-        {
-            if (ClientStatus()) 
-            {
-                try
-                {
-                    HttpResponseMessage response = await _httpClient.GetAsync(url);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var data = await response.Content.ReadAsStringAsync();
-                        return data;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            return null;
         }
     }
 }

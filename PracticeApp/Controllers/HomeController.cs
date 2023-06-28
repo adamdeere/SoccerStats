@@ -1,35 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PracticeApp.HttpServices;
 using PracticeApp.Models;
+using PracticeApp.RequestModels;
 using System.Diagnostics;
-using static PracticeApp.RequestModels.ItemRequestModel;
 
 namespace PracticeApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly HttpService _contextAccessor;
+        private readonly HttpService _httpService;
+       
       
-        public HomeController(ILogger<HomeController> logger, HttpService service)
+        public HomeController(ILogger<HomeController> logger, HttpService httpService)
         {
-            _contextAccessor = service;
+            _httpService = httpService;
             _logger = logger;
         }
         public async Task<IActionResult> Index()
         {
-            string url = $"whbase2/rest/whbase2Service/item";
-            var item = await _contextAccessor.GetObjectJson<ItemRoot>(url);
-
-            if (item != null)
+            string parameters = $"health";
+            var health = await _httpService.GetObjectJson<HealthCheckRequestModel>(parameters);
+            if (health != null)
             {
-                Console.WriteLine("success in the home controller");
+                Console.WriteLine($"staus code {health.ResultCode} message is {health.ResultMsg}");
             }
-            else 
+            else
             {
-                Console.WriteLine("Somethings gone wrong in Home Controller");
+                Console.WriteLine("Somethings gone wrong in home controller");
             }
-            
             return View();
         }
 

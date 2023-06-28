@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PracticeApp.HttpServices;
 using PracticeApp.Models;
+using PracticeApp.RequestModels;
 using PracticeApp.Services;
 using PracticeApp.Utils;
 
@@ -9,15 +11,28 @@ namespace PracticeApp.Controllers
     public class ItemController : Controller
     {
         private readonly ItemService _service;
-
-        public ItemController(ItemService service)
+        private readonly HttpService _httpService;
+        public ItemController(ItemService service, HttpService httpService)
         {
+            _httpService = httpService;
             _service = service;
         }
 
         // GET: Item
         public async Task<IActionResult> Index()
         {
+            string parameters = $"item";
+            var item = await _httpService.GetObjectJson<ItemRoot>(parameters);
+
+            if (item != null)
+            {
+                Console.WriteLine("success in the home controller");
+            }
+            else
+            {
+                Console.WriteLine("Somethings gone wrong in Home Controller");
+            }
+
             var itemsList = await _service.GetItemModels();
 
             return itemsList != null

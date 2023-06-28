@@ -21,7 +21,7 @@ namespace PracticeApp.Controllers
         // GET: Product
         public async Task<IActionResult> Index(string sku)
         {
-            string url = $"whbase2/rest/whbase2Service/product";
+            string url = $"product";
             var product = await _httpService.GetObjectJson<ProductRoot>(url);
 
             if (product != null)

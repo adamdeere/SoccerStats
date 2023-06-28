@@ -1,7 +1,4 @@
-﻿using PracticeApp.Utils;
-using static PracticeApp.RequestModels.ItemRequestModel;
-
-namespace PracticeApp.HttpServices
+﻿namespace PracticeApp.HttpServices
 {
     public class HttpService : BaseHttpService
     {
@@ -10,24 +7,10 @@ namespace PracticeApp.HttpServices
         {
         }
 
-        public async Task<T?> GetObjectJson<T>(string url)
+        public async Task<T?> GetObjectJson<T>(string parameters)
         {
-            return await ConvertResponseToJson<T>(url);
+            return await ConvertResponseToJson<T>(parameters);
         }
-
-        public async Task<ItemRoot?> GetItemList()
-        {
-            string url = $"whbase2/rest/whbase2Service/item";
-            var data = await ReadResponseData(url);
-
-            if (data != null)
-            {
-                return JsonConverterUtil.GetObjectFromJson<ItemRoot>(data);
-            }
-
-            return null;
-        }
-
         public override void Dispose()
         {
             base.Dispose();

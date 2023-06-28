@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using PracticeApp.HttpServices;
 using PracticeApp.Models;
+using PracticeApp.RequestModels;
 using PracticeApp.Services;
 using PracticeApp.Utils;
 
@@ -8,14 +11,28 @@ namespace PracticeApp.Controllers
     public class LocationController : Controller
     {
         private readonly LocationService _locationService;
+        private readonly HttpService _httpService;
 
-        public LocationController(LocationService service)
+        public LocationController(LocationService service, HttpService httpService)
         {
             _locationService = service;
+            _httpService = httpService;
         }
         // GET: Location
         public async Task<IActionResult> Index(string? id)
         {
+            string parameters = $"location";
+            var location = await _httpService.GetObjectJson<LocationRoot>(parameters);
+
+            if (location != null)
+            {
+                Console.WriteLine("success in the location controller");
+            }
+            else
+            {
+                Console.WriteLine("Somethings gone wrong in location Controller");
+            }
+
             if (string.IsNullOrEmpty(id))
             {
                 var locationList = await _locationService.GetLocationList();

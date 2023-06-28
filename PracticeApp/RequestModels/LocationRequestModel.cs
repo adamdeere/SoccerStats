@@ -20,7 +20,7 @@ namespace PracticeApp.RequestModels
         public double Length { get; set; }
     }
 
-    public class Root
+    public class LocationRoot
     {
         [JsonProperty("List")]
         public List<LocationList> List { get; set; }
