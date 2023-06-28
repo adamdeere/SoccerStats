@@ -26,11 +26,11 @@ namespace PracticeApp.Controllers
 
             if (item != null)
             {
-                Console.WriteLine("success in the home controller");
+                Console.WriteLine("success in the Item controller");
             }
             else
             {
-                Console.WriteLine("Somethings gone wrong in Home Controller");
+                Console.WriteLine("Somethings gone wrong in Item Controller");
             }
 
             var itemsList = await _service.GetItemModels();
