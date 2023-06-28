@@ -7,7 +7,7 @@
         {
         }
 
-        public async Task<T?> GetObjectJson<T>(string parameters)
+        public async Task<T?> GetObjectFromJson<T>(string parameters)
         {
             return await ConvertResponseToJson<T>(parameters);
         }

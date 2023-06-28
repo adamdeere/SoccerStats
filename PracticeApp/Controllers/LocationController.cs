@@ -22,7 +22,7 @@ namespace PracticeApp.Controllers
         public async Task<IActionResult> Index(string? id)
         {
             string parameters = $"location";
-            var location = await _httpService.GetObjectJson<LocationRoot>(parameters);
+            var location = await _httpService.GetObjectFromJson<LocationRoot>(parameters);
 
             if (location != null)
             {

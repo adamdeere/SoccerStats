@@ -23,7 +23,7 @@ namespace PracticeApp.Controllers
         public async Task<IActionResult> Index()
         {
             string paramters = $"item/GRN=GRN00003ANDlimit=8";
-            var grn = await _httpService.GetObjectJson<GRNRoot>(paramters);
+            var grn = await _httpService.GetObjectFromJson<GRNRoot>(paramters);
 
             if (grn != null)
             {

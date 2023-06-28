@@ -22,7 +22,7 @@ namespace PracticeApp.Controllers
         public async Task<IActionResult> Index(string sku)
         {
             string url = $"product";
-            var product = await _httpService.GetObjectJson<ProductRoot>(url);
+            var product = await _httpService.GetObjectFromJson<ProductRoot>(url);
 
             if (product != null)
             {

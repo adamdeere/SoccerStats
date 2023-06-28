@@ -22,7 +22,7 @@ namespace PracticeApp.Controllers
         public async Task<IActionResult> Index()
         {
             string parameters = $"item";
-            var item = await _httpService.GetObjectJson<ItemRoot>(parameters);
+            var item = await _httpService.GetObjectFromJson<ItemRoot>(parameters);
 
             if (item != null)
             {

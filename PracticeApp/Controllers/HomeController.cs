@@ -2,7 +2,9 @@
 using PracticeApp.HttpServices;
 using PracticeApp.Models;
 using PracticeApp.RequestModels;
+using PracticeApp.Utils;
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace PracticeApp.Controllers
 {
@@ -20,10 +22,13 @@ namespace PracticeApp.Controllers
         public async Task<IActionResult> Index()
         {
             string parameters = $"health";
-            var health = await _httpService.GetObjectJson<HealthCheckRequestModel>(parameters);
+            var health = await _httpService.GetObjectFromJson<HealthCheckRequestModel>(parameters);
             if (health != null)
             {
                 Console.WriteLine($"staus code {health.ResultCode} message is {health.ResultMsg}");
+
+                string healthJson = JsonConverterUtil.ConvertObjectToJson(health);
+                Console.WriteLine(healthJson);
             }
             else
             {
