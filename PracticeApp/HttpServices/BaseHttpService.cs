@@ -24,30 +24,9 @@ namespace PracticeApp.HttpServices
             _httpClient?.Dispose();
         }
 
-        private bool ClientStatus()
+        protected bool ClientStatus()
         {
             return _httpClient != null;
-        }
-
-        protected async Task<T?> ConvertResponseToJson<T>(string parameters)
-        {
-            if (ClientStatus())
-            {
-                try
-                {
-                    HttpResponseMessage response = await _httpClient.GetAsync(parameters);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var responseData = await response.Content.ReadAsStringAsync();
-                        return JsonConverterUtil.GetObjectFromJson<T>(responseData);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            return default;
         }
     }
 }

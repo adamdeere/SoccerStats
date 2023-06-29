@@ -4,7 +4,8 @@ using PracticeApp.Models;
 using PracticeApp.RequestModels;
 using PracticeApp.Utils;
 using System.Diagnostics;
-using System.Text.Json.Serialization;
+using System.Text;
+using YamlDotNet.Serialization;
 
 namespace PracticeApp.Controllers
 {
@@ -19,6 +20,17 @@ namespace PracticeApp.Controllers
             _httpService = httpService;
             _logger = logger;
         }
+
+        private  void DumpAsYaml(object data)
+        {
+            Console.WriteLine("***Dumping Object Using Yaml Serializer***");
+            var stringBuilder = new StringBuilder();
+            var serializer = new Serializer();
+            stringBuilder.AppendLine(serializer.Serialize(data));
+            Console.WriteLine(stringBuilder);
+            Console.WriteLine("");
+        }
+
         public async Task<IActionResult> Index()
         {
             string parameters = $"health";
@@ -34,6 +46,7 @@ namespace PracticeApp.Controllers
             {
                 Console.WriteLine("Somethings gone wrong in home controller");
             }
+            DumpAsYaml(parameters);
             return View();
         }
 
