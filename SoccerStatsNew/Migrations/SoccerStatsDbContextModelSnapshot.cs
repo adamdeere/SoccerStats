@@ -40,12 +40,12 @@ namespace SoccerStatsNew.Migrations
 
             modelBuilder.Entity("SoccerStatsNew.Models.LeagueModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LeagueId")
                         .HasColumnType("int");
 
                     b.Property<string>("CountryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LogoURL")
                         .IsRequired()
@@ -53,15 +53,15 @@ namespace SoccerStatsNew.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("LeagueId");
 
-                    b.HasIndex("Name");
+                    b.HasIndex("CountryName");
 
                     b.ToTable("LeagueModel");
                 });
@@ -73,17 +73,20 @@ namespace SoccerStatsNew.Migrations
 
                     b.Property<string>("CountryName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EndDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Injuries")
                         .HasColumnType("bit");
+
+                    b.Property<int>("LeagueId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LeagueModelLeagueId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Odds")
                         .HasColumnType("bit");
@@ -115,9 +118,7 @@ namespace SoccerStatsNew.Migrations
 
                     b.HasKey("SeasonId");
 
-                    b.HasIndex("CountryName");
-
-                    b.HasIndex("Id");
+                    b.HasIndex("LeagueModelLeagueId");
 
                     b.ToTable("SeasonModel");
                 });
@@ -187,7 +188,7 @@ namespace SoccerStatsNew.Migrations
                 {
                     b.HasOne("SoccerStatsNew.Models.CountryModel", "Country")
                         .WithMany()
-                        .HasForeignKey("Name")
+                        .HasForeignKey("CountryName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -196,21 +197,9 @@ namespace SoccerStatsNew.Migrations
 
             modelBuilder.Entity("SoccerStatsNew.Models.SeasonModel", b =>
                 {
-                    b.HasOne("SoccerStatsNew.Models.CountryModel", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SoccerStatsNew.Models.LeagueModel", "League")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
-
-                    b.Navigation("League");
+                    b.HasOne("SoccerStatsNew.Models.LeagueModel", null)
+                        .WithMany("Seasons")
+                        .HasForeignKey("LeagueModelLeagueId");
                 });
 
             modelBuilder.Entity("SoccerStatsNew.Models.TeamModel", b =>
@@ -220,6 +209,11 @@ namespace SoccerStatsNew.Migrations
                         .HasForeignKey("StadiumId");
 
                     b.Navigation("VenueModel");
+                });
+
+            modelBuilder.Entity("SoccerStatsNew.Models.LeagueModel", b =>
+                {
+                    b.Navigation("Seasons");
                 });
 #pragma warning restore 612, 618
         }

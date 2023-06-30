@@ -19,8 +19,8 @@ namespace SoccerStatsNew.Controllers
         public async Task<IActionResult> Index(int? id)
         {
             string? idString = id.ToString();
-            if (string.IsNullOrWhiteSpace(idString) || _service == null) 
-            { 
+            if (string.IsNullOrWhiteSpace(idString) || _service == null)
+            {
                 return NotFound();
             }
             var teams = await _service.GetCountry(idString);
@@ -45,7 +45,7 @@ namespace SoccerStatsNew.Controllers
             await _context.TeamModel
            .Join(_context.VenuesModel,
                team => team.StadiumId,
-               venue => venue.StadiumId,
+               venue => venue.VenueId,
             (team, venue) => new
             {
                 Venue = venue,

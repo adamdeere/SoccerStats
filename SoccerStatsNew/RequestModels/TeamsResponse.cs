@@ -2,22 +2,6 @@
 
 namespace SoccerStatsNew.RequestModels
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-    public class TeamPaging
-    {
-        [JsonProperty("current")]
-        public int? Current { get; set; }
-
-        [JsonProperty("total")]
-        public int? Total { get; set; }
-    }
-
-    public class TeamParameters
-    {
-        [JsonProperty("country")]
-        public string? Country { get; set; }
-    }
-
     public class TeamResponse
     {
         [JsonProperty("team")]
@@ -29,21 +13,6 @@ namespace SoccerStatsNew.RequestModels
 
     public class TeamRoot
     {
-        [JsonProperty("get")]
-        public string? Get { get; set; }
-
-        [JsonProperty("parameters")]
-        public TeamParameters Parameters { get; set; }
-
-        [JsonProperty("errors")]
-        public List<object> Errors { get; set; }
-
-        [JsonProperty("results")]
-        public int? Results { get; set; }
-
-        [JsonProperty("paging")]
-        public TeamPaging Paging { get; set; }
-
         [JsonProperty("response")]
         public List<TeamResponse> Response { get; set; }
     }

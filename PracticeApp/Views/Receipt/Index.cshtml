@@ -1,0 +1,15 @@
+﻿@model IEnumerable<PracticeApp.Models.ReceiptModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<a class="btn btn-primary custom-button" asp-controller="Receipt" asp-action="Create">Create Receipt</a>
+
+<div class="accordion accordion-flush" id="accordionFlush">
+  
+    @await Html.PartialAsync("_ReceiptAccordianPartial.cshtml", Model)
+   
+</div>

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using SoccerStatsNew.Data;
 using SoccerStatsNew.Services;
 
 namespace SoccerStatsNew.Controllers
@@ -23,7 +21,6 @@ namespace SoccerStatsNew.Controllers
                 return View(league);
             }
             return NotFound();
-
         }
 
         // GET: League/Details/5
@@ -33,12 +30,10 @@ namespace SoccerStatsNew.Controllers
                 return NotFound();
 
             var leagueModel = await _leagueService.GetLeagueDetails(id);
-            if (leagueModel != null)
-            {
-                return View(leagueModel);
-               
-            }
-            return NotFound();
+
+            return leagueModel != null 
+                ? View(leagueModel) 
+                : NotFound();
         }
     }
 }

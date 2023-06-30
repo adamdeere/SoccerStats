@@ -7,6 +7,7 @@ namespace SoccerStatsNew.Services
     public class LeagueService
     {
         private readonly SoccerStatsDbContext _context;
+
         public LeagueService(SoccerStatsDbContext context)
         {
             _context = context;
@@ -19,6 +20,7 @@ namespace SoccerStatsNew.Services
                   await soccerStatsDbContext.ToListAsync()
             : null;
         }
+
         public async Task<ICollection<LeagueModel>?> GetLeagueDetails(string id)
         {
             var leagueModel = await _context.LeagueModel
@@ -34,6 +36,13 @@ namespace SoccerStatsNew.Services
                     Country = country
                 }).ToListAsync();
 
+            foreach (var item in leagueModel)
+            {
+                item.Seasons = await _context.SeasonModel
+                    .Where(s => s.LeagueId == item.LeagueId)
+                    .OrderBy(x => x.Year)
+                    .ToListAsync();
+            }
             return leagueModel ?? null;
         }
     }

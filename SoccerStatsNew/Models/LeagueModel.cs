@@ -7,7 +7,7 @@ namespace SoccerStatsNew.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int LeagueId { get; set; }
 
         public string Name { get; set; }
         public string Type { get; set; }
@@ -16,5 +16,9 @@ namespace SoccerStatsNew.Models
 
         [ForeignKey("CountryName")]
         public CountryModel Country { get; set; }
+
+        public List<SeasonModel> Seasons { get; set; } = new List<SeasonModel>();
+
+
     }
 }

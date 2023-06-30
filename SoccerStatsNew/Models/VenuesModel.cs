@@ -7,12 +7,12 @@ namespace SoccerStatsNew.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int StadiumId { get; set; }
-
+        public int? VenueId { get; set; }
+        public string? Name { get; set; }
         public string? Address { get; set; }
         public string? City { get; set; }
         public string? Country { get; set; }
-        public int Capacity { get; set; }
+        public int? Capacity { get; set; }
         public string? Surface { get; set; }
         public string? Image { get; set; }
     }
