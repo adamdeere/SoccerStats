@@ -5,9 +5,9 @@ namespace SoccerStatsNew.Controllers
 {
     public class CountryController : Controller
     {
-        private readonly CountryService _countryService;
+        private readonly CountryDbService _countryService;
 
-        public CountryController(CountryService service)
+        public CountryController(CountryDbService service)
         {
             _countryService = service;
         }

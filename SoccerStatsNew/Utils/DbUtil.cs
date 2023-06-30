@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nest;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.Models;
 using SoccerStatsNew.RequestModels;
-using System.Diagnostics.Metrics;
 
 namespace SoccerStatsNew.Utils
 {

@@ -125,7 +125,7 @@ namespace SoccerStatsNew.Migrations
 
             modelBuilder.Entity("SoccerStatsNew.Models.TeamModel", b =>
                 {
-                    b.Property<int>("TeamId")
+                    b.Property<int?>("TeamId")
                         .HasColumnType("int");
 
                     b.Property<string>("Code")
@@ -151,20 +151,18 @@ namespace SoccerStatsNew.Migrations
 
                     b.HasKey("TeamId");
 
-                    b.HasIndex("StadiumId");
-
                     b.ToTable("TeamModel");
                 });
 
             modelBuilder.Entity("SoccerStatsNew.Models.VenuesModel", b =>
                 {
-                    b.Property<int>("StadiumId")
+                    b.Property<int?>("VenueId")
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Capacity")
+                    b.Property<int?>("Capacity")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -176,10 +174,13 @@ namespace SoccerStatsNew.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Surface")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StadiumId");
+                    b.HasKey("VenueId");
 
                     b.ToTable("VenuesModel");
                 });
@@ -200,15 +201,6 @@ namespace SoccerStatsNew.Migrations
                     b.HasOne("SoccerStatsNew.Models.LeagueModel", null)
                         .WithMany("Seasons")
                         .HasForeignKey("LeagueModelLeagueId");
-                });
-
-            modelBuilder.Entity("SoccerStatsNew.Models.TeamModel", b =>
-                {
-                    b.HasOne("SoccerStatsNew.Models.VenuesModel", "VenueModel")
-                        .WithMany()
-                        .HasForeignKey("StadiumId");
-
-                    b.Navigation("VenueModel");
                 });
 
             modelBuilder.Entity("SoccerStatsNew.Models.LeagueModel", b =>

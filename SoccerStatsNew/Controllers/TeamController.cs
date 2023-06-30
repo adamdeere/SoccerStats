@@ -8,27 +8,16 @@ namespace SoccerStatsNew.Controllers
     public class TeamController : Controller
     {
         private readonly SoccerStatsDbContext _context;
-        private readonly TeamHttpService? _service;
+       
 
-        public TeamController(SoccerStatsDbContext context, TeamHttpService service)
+        public TeamController(SoccerStatsDbContext context)
         {
-            _service = service;
             _context = context;
         }
 
-        public async Task<IActionResult> Index(int? id)
+        public IActionResult Index(int? id)
         {
-            string? idString = id.ToString();
-            if (string.IsNullOrWhiteSpace(idString) || _service == null)
-            {
-                return NotFound();
-            }
-            var teams = await _service.GetCountry(idString);
-            if (teams != null)
-            {
-                return View(teams.Response);
-            }
-            return NotFound();
+            return View();
         }
 
         [HttpPost]

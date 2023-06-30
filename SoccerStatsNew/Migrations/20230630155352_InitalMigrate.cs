@@ -5,7 +5,7 @@
 namespace SoccerStatsNew.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalMigration : Migration
+    public partial class InitalMigrate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,20 +24,39 @@ namespace SoccerStatsNew.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TeamModel",
+                columns: table => new
+                {
+                    TeamId = table.Column<int>(type: "int", nullable: false),
+                    StadiumId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Founded = table.Column<int>(type: "int", nullable: true),
+                    National = table.Column<bool>(type: "bit", nullable: true),
+                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeamModel", x => x.TeamId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "VenuesModel",
                 columns: table => new
                 {
-                    StadiumId = table.Column<int>(type: "int", nullable: false),
+                    VenueId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: true),
                     Surface = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VenuesModel", x => x.StadiumId);
+                    table.PrimaryKey("PK_VenuesModel", x => x.VenueId);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,29 +78,6 @@ namespace SoccerStatsNew.Migrations
                         principalTable: "CountryModel",
                         principalColumn: "Name",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TeamModel",
-                columns: table => new
-                {
-                    TeamId = table.Column<int>(type: "int", nullable: false),
-                    StadiumId = table.Column<int>(type: "int", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Founded = table.Column<int>(type: "int", nullable: true),
-                    National = table.Column<bool>(type: "bit", nullable: true),
-                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeamModel", x => x.TeamId);
-                    table.ForeignKey(
-                        name: "FK_TeamModel_VenuesModel_StadiumId",
-                        column: x => x.StadiumId,
-                        principalTable: "VenuesModel",
-                        principalColumn: "StadiumId");
                 });
 
             migrationBuilder.CreateTable(
@@ -123,11 +119,6 @@ namespace SoccerStatsNew.Migrations
                 name: "IX_SeasonModel_LeagueModelLeagueId",
                 table: "SeasonModel",
                 column: "LeagueModelLeagueId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TeamModel_StadiumId",
-                table: "TeamModel",
-                column: "StadiumId");
         }
 
         /// <inheritdoc />
@@ -140,10 +131,10 @@ namespace SoccerStatsNew.Migrations
                 name: "TeamModel");
 
             migrationBuilder.DropTable(
-                name: "LeagueModel");
+                name: "VenuesModel");
 
             migrationBuilder.DropTable(
-                name: "VenuesModel");
+                name: "LeagueModel");
 
             migrationBuilder.DropTable(
                 name: "CountryModel");

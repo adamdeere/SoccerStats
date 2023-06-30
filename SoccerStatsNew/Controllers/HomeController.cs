@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoccerStatsNew.HttpServices;
 using SoccerStatsNew.Models;
 using SoccerStatsNew.RequestModels;
 using SoccerStatsNew.Services;
@@ -9,29 +10,17 @@ namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly TeamHttpService _context;
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger, TeamHttpService context)
+        private readonly WebService _webService;
+        private readonly CountryDbService _countryService;  
+        public HomeController(WebService webService, CountryDbService service)
         {
-            _logger = logger;
-            _context = context;
+            _webService = webService;
+            _countryService = service;
         }
 
         public async Task<IActionResult> Index()
         {
-
-          // await _context.GetTeams("?country=");
-
-            //var teams = JsonConverterUtil.GetObjectFromJsonFile<TeamRoot>("Test/teams.json");
-            //if (teams != null)
-            //{
-            //    await DbUtil.UpdateTeams(teams, _context._context);
-
-            //    await DbUtil.UpdateVenues(teams, _context._context);
-            //}
-
-
+            var countries = await _countryService.GetAllCountries();
             return View();
         }
 
