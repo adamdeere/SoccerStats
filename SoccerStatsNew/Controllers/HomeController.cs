@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SoccerStatsData;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
@@ -20,15 +21,8 @@ namespace SoccerStatsNew.Controllers
         public async Task<IActionResult> Index()
         {
             var countries = await _countryService.GetAllCountries();
-            if (countries != null)
-            {
-                HomePageDisplay homePageDisplay = new HomePageDisplay()
-                {
-                    CountryList = (IEnumerable<CountryModel>)countries,
-                };
-                return View(homePageDisplay.CountryList);
-            }
-          
+            
+            ViewData["CountryId"] = new SelectList(countries, "Name", "Name");
             return View(countries);
         }
 
