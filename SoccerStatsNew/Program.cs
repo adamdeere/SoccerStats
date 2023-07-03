@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.HttpServices;
+using UtilityLibraries;
 using SoccerStatsNew.Services;
 
 var builder = WebApplication.CreateBuilder(args);

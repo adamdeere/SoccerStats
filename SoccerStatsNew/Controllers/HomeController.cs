@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoccerStatsNew.HttpServices;
 using SoccerStatsNew.Models;
-using SoccerStatsNew.RequestModels;
 using SoccerStatsNew.Services;
-using SoccerStatsNew.Utils;
 using System.Diagnostics;
 using UtilityLibraries;
+
 
 namespace SoccerStatsNew.Controllers
 {

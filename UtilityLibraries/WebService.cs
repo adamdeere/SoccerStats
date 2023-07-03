@@ -1,6 +1,4 @@
-﻿using UtilityLibraries;
-
-namespace SoccerStatsNew.HttpServices
+﻿namespace UtilityLibraries
 {
     public class WebService : BaseHttpService
     {
