@@ -6,14 +6,14 @@ using SoccerStatsNew.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("WorkDbContext") 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HomeDbContext") 
     ?? throw new InvalidOperationException("Connection string 'SoccerStatsDbContext' not found.")));
 
 string Address = "https://v3.football.api-sports.io/";
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddKendo();
 
 builder.Services.AddHttpClient<WebService>(_httpClient =>
 {

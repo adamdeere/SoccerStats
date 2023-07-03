@@ -35,7 +35,7 @@ namespace SoccerStatsNew.Services
             }
             
         }
-        public async Task<ICollection<CountryModel>?> GetAllCountries()
+        public async Task<ICollection<CountryModel>?> GetAllCountriesToList()
         {
             return _dbContext.CountryModel != null 
                 ? await _dbContext.CountryModel.ToListAsync() 
