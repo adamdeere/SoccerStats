@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SoccerStatsData;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.Models;
+
 
 namespace SoccerStatsNew.Services
 {
-    public class LeagueService
+    public class LeagueDbService
     {
         private readonly SoccerStatsDbContext _context;
 
-        public LeagueService(SoccerStatsDbContext context)
+        public LeagueDbService(SoccerStatsDbContext context)
         {
             _context = context;
         }

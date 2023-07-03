@@ -5,9 +5,9 @@ namespace SoccerStatsNew.Controllers
 {
     public class LeagueController : Controller
     {
-        private readonly LeagueService _leagueService;
+        private readonly LeagueDbService _leagueService;
 
-        public LeagueController(LeagueService service)
+        public LeagueController(LeagueDbService service)
         {
             _leagueService = service;
         }

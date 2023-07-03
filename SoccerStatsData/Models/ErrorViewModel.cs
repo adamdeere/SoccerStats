@@ -1,4 +1,4 @@
-namespace SoccerStatsNew.Models
+namespace SoccerStatsData
 {
     public class ErrorViewModel
     {

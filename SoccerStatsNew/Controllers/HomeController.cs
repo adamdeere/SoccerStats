@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoccerStatsNew.Models;
+using SoccerStatsData;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
 using UtilityLibraries;

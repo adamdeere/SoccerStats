@@ -29,7 +29,7 @@ builder.Services.AddHttpClient<WebService>(_httpClient =>
 });
 
 builder.Services.AddScoped<CountryDbService>();
-builder.Services.AddScoped<LeagueService>();
+builder.Services.AddScoped<LeagueDbService>();
 
 var app = builder.Build();
 
