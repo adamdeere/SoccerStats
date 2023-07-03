@@ -10,11 +10,9 @@ namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly WebService _webService;
         private readonly CountryDbService _countryService;  
-        public HomeController(WebService webService, CountryDbService service)
+        public HomeController(CountryDbService service)
         {
-            _webService = webService;
             _countryService = service;
         }
 

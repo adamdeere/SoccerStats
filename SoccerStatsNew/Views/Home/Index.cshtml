@@ -1,13 +1,33 @@
-﻿@model IEnumerable<SoccerStatsData.CountryModel>
+﻿@model IEnumerable<SoccerStatsData.CountryDbModel>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="col-sm-6">
-    @(Html.Kendo().DropDownList()
-        .Name("SelectedAssigneeId")
-        .BindTo(ViewBag.CountryId)
-        )
+    
+    <kendo-combobox name="filterAssignee"
+                    bind-to="Model"
+                    datatextfield="Name"
+                    datavaluefield="CountryCode"
+                    placeholder="Select country"
+                    template-id="CountrySelectTemplate"
+                    on-change="OnCountrySelect"
+                    style="width:260px">
+
+    </kendo-combobox>
+
 
 </div>
+
+@section scripts {
+    <script src="~/js/site.js" ></script>
+}
+
+<script id="CountrySelectTemplate" type="text/x-kendo-template">
+      <div class="row" style="margin-left: 5px">
+         
+        <img src="#:data.FlagURL#" class="li-avatar rounded mx-auto"/>
+        <span style="margin-left: 5px">#:data.Name#</span>
+    </div>
+</script>

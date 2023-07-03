@@ -20,7 +20,7 @@ namespace SoccerStatsNew.Services
                 {
                     if (country.Code != null)
                     {
-                        CountryModel countryModel = new CountryModel()
+                        CountryDbModel countryModel = new CountryDbModel()
                         {
                             Name = country.Name,
                             CountryCode = country.Code,
@@ -34,14 +34,14 @@ namespace SoccerStatsNew.Services
             }
             
         }
-        public async Task<ICollection<CountryModel>?> GetAllCountries()
+        public async Task<ICollection<CountryDbModel>?> GetAllCountries()
         {
             return _dbContext.CountryModel != null 
                 ? await _dbContext.CountryModel.ToListAsync() 
                 : null;
         }
 
-        public async Task<ICollection<CountryModel>?> GetCountrys(string id)
+        public async Task<ICollection<CountryDbModel>?> GetCountrys(string id)
         {
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel
@@ -50,7 +50,7 @@ namespace SoccerStatsNew.Services
                 : null;
         }
 
-        public async Task<CountryModel?> GetCountryDetails(string id)
+        public async Task<CountryDbModel?> GetCountryDetails(string id)
         {
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel

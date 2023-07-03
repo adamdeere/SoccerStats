@@ -3,19 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoccerStatsData
 {
-    public class TeamModel
+    public class VenuesDbModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int? TeamId { get; set; }
-
-        public int? StadiumId { get; set; }
-
+        public int? VenueId { get; set; }
         public string? Name { get; set; }
-        public string? Code { get; set; }
+        public string? Address { get; set; }
+        public string? City { get; set; }
         public string? Country { get; set; }
-        public int? Founded { get; set; }
-        public bool? National { get; set; }
-        public string? Logo { get; set; }
+        public int? Capacity { get; set; }
+        public string? Surface { get; set; }
+        public string? Image { get; set; }
     }
 }

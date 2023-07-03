@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoccerStatsData
 {
-    public class SeasonModel
+    public class SeasonDbModel
     {
         // GUID primary key
         [Key]
