@@ -37,8 +37,8 @@ namespace SoccerStatsNew.Services
                                 Predictions = seasons.Coverage.Predictions,
                                 Odds = seasons.Coverage.Odds,
                             };
-                            _dbContext.SeasonModel.Add(seasonDbModel);
-                            await _dbContext.SaveChangesAsync();
+                            _context.SeasonModel.Add(seasonDbModel);
+                            await _context.SaveChangesAsync();
                         }
                         LeagueModel model = new()
                         {
@@ -50,13 +50,12 @@ namespace SoccerStatsNew.Services
                             CountryCode = item.Country.Code
                         };
 
-                        _dbContext.LeagueModel.Add(model);
-                        await _dbContext.SaveChangesAsync();
+                        _context.LeagueModel.Add(model);
+                        await _context.SaveChangesAsync();
                     }
                 }
             }
         }
-
         public LeagueDbService(SoccerStatsDbContext context)
         {
             _context = context;

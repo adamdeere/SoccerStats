@@ -204,7 +204,7 @@ namespace SoccerStatsData.RequestModels
         public string Photo { get; set; }
     }
 
-    public class PlayerResponse
+    public class PlayerRequestFile
     {
         [JsonProperty("player")]
         public Player Player { get; set; }
@@ -231,7 +231,7 @@ namespace SoccerStatsData.RequestModels
         public PlayerPaging Paging { get; set; }
 
         [JsonProperty("response")]
-        public List<PlayerResponse> Response { get; set; }
+        public List<PlayerRequestFile> Response { get; set; }
     }
 
     public class PlayerShots

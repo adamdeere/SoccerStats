@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SoccerStatsData.RequestModels
+namespace SoccerStatsData
 {
     public class TeamResponse
     {
