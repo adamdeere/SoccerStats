@@ -1,0 +1,23 @@
+﻿@model SoccerStatsNew.Models.HomeDisplay
+@{
+}
+
+@if (Model.LeagueList != null)
+{
+    @foreach (var item in Model.LeagueList)
+    {
+
+        <div class="k-card">
+            <div class="k-card-header">
+                <h5 class="k-card-title">@item.Name</h5>
+                <h6 class="k-card-subtitle">@item.CountryName</h6>
+            </div>
+            <img class="k-card-image" alt="Telerik UI for ASP.NET MVC Cards Rome" src="@item.LogoURL" />
+            <div class="k-card-body">
+                <p>Buttons go here. The seasons will have to be checked on the other side</p>
+            </div>
+        </div>
+    }
+}
+
+

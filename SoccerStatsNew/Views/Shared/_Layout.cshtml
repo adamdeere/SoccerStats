@@ -4,18 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SoccerStatsNew</title>
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/lib/kendo/styles/kendo.default-v2.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/kendo/styles/kendo.default-v2.css" />
+    <link rel="stylesheet" href="~/css/site.css"  />
+   
     @RenderSection("styles", required: false)
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/kendo/js/kendo.all.min.js"></script>
     <script src="~/lib/kendo/js/kendo.aspnetmvc.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-  
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/site.js" ></script>
+    @Html.Kendo().DeferredScripts();
+    @RenderSection("scripts", required: false)
 </head>
 <body>
     <header>
@@ -33,18 +34,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Country" asp-action="Index">Country</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Venues" asp-action="Index">Venues</a>
-                        </li>
-
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Season" asp-action="Index">Seasons</a>
                         </li>
                     </ul>
                 </div>

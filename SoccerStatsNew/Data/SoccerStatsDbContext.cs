@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SoccerStatsNew.Models;
+using SoccerStatsData;
 
 namespace SoccerStatsNew.Data
 {

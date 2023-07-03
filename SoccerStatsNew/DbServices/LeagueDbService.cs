@@ -2,26 +2,20 @@
 using SoccerStatsData;
 using SoccerStatsNew.Data;
 
+
 namespace SoccerStatsNew.Services
 {
-    public class CountryDbService
+    public class LeagueDbService
     {
-        private readonly SoccerStatsDbContext _dbContext;
-
-        public CountryDbService(SoccerStatsDbContext context)
-        {
-            _dbContext = context;
-        }
-
+        private readonly SoccerStatsDbContext _context;
         public async Task SaveLeagueAndSeason(LeagueRoot root)
         {
-            if (_dbContext.LeagueModel != null && _dbContext.SeasonModel != null)
+            if (_context.LeagueModel != null && _context.SeasonModel != null)
             {
                 foreach (var item in root.Response)
                 {
                     if (item.Country.Code != null)
                     {
-
                         foreach (var seasons in item.Seasons)
                         {
                             string g = Guid.NewGuid().ToString();
@@ -43,8 +37,8 @@ namespace SoccerStatsNew.Services
                                 Predictions = seasons.Coverage.Predictions,
                                 Odds = seasons.Coverage.Odds,
                             };
-                            _dbContext.SeasonModel.Add(seasonDbModel);
-                            await _dbContext.SaveChangesAsync();    
+                            _context.SeasonModel.Add(seasonDbModel);
+                            await _context.SaveChangesAsync();
                         }
                         LeagueModel model = new()
                         {
@@ -56,57 +50,46 @@ namespace SoccerStatsNew.Services
                             CountryCode = item.Country.Code
                         };
 
-                        _dbContext.LeagueModel.Add(model);
-                        await _dbContext.SaveChangesAsync();
+                        _context.LeagueModel.Add(model);
+                        await _context.SaveChangesAsync();
                     }
                 }
             }
         }
-
-        public async Task SaveCountries(ICollection<CountryHttpResponse> countries)
+        public LeagueDbService(SoccerStatsDbContext context)
         {
-            if (_dbContext.CountryModel != null)
-            {
-                foreach (var country in countries)
+            _context = context;
+        }
+        public async Task<ICollection<LeagueModel>?> GetLeagues()
+        {
+            var soccerStatsDbContext = _context.LeagueModel.Include(l => l.Country);
+            return soccerStatsDbContext != null ?
+                  await soccerStatsDbContext.ToListAsync()
+            : null;
+        }
+        public async Task<ICollection<LeagueModel>?> GetLeagueDetails(string code)
+        {
+            var leagueModel = await _context.LeagueModel
+                 .Where(m => m.CountryName == code).ToListAsync();
+
+            await _context.LeagueModel
+                .Join(_context.CountryModel,
+                league => league.CountryName,
+                country => country.Name,
+                (league, country) => new
                 {
-                    if (country.Code != null)
-                    {
-                        CountryModel countryModel = new CountryModel()
-                        {
-                            Name = country.Name,
-                            CountryCode = country.Code,
-                            FlagURL = country.Flag
-                        };
+                    League = league,
+                    Country = country
+                }).ToListAsync();
 
-                       _dbContext.CountryModel.Add(countryModel);
-                        await _dbContext.SaveChangesAsync();
-                    }
-                }
+            foreach (var item in leagueModel)
+            {
+                item.Seasons = await _context.SeasonModel
+                    .Where(s => s.LeagueId == item.LeagueId)
+                    .OrderBy(x => x.Year)
+                    .ToListAsync();
             }
-            
-        }
-        public async Task<ICollection<CountryModel>?> GetAllCountriesToList()
-        {
-            return _dbContext.CountryModel != null 
-                ? await _dbContext.CountryModel.ToListAsync() 
-                : null;
-        }
-
-        public async Task<ICollection<CountryModel>?> GetCountrys(string id)
-        {
-            return _dbContext.CountryModel != null ?
-                await _dbContext.CountryModel
-                .Where(c => c.Name.StartsWith(id))
-                .ToListAsync()
-                : null;
-        }
-
-        public async Task<CountryModel?> GetCountryDetails(string id)
-        {
-            return _dbContext.CountryModel != null ?
-                await _dbContext.CountryModel
-                      .FirstOrDefaultAsync(m => m.CountryCode == id)
-               : null;
+            return leagueModel ?? null;
         }
     }
 }

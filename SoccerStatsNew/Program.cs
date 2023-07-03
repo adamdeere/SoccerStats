@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using SoccerStatsNew.Data;
-using SoccerStatsNew.HttpServices;
+using UtilityLibraries;
 using SoccerStatsNew.Services;
+using SoccerStatsNew.DbServices;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
@@ -28,8 +29,11 @@ builder.Services.AddHttpClient<WebService>(_httpClient =>
               "x-rapidapi-key", "60553e4650d7942cb159d23481c9cbba");
 });
 
+builder.Services.AddKendo(); 
 builder.Services.AddScoped<CountryDbService>();
-builder.Services.AddScoped<LeagueService>();
+builder.Services.AddScoped<LeagueDbService>();
+builder.Services.AddScoped<TeamDbService>();
+builder.Services.AddScoped<VenueDbService>();
 
 var app = builder.Build();
 
