@@ -7,7 +7,7 @@
         {
         }
 
-        public async Task<T?> GetObjectFromJson<T>(string parameters)
+        public async Task<T?> GetObjectRequest<T>(string parameters)
         {
             if (ClientStatus())
             {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace SoccerStatsData.RequestModels
+namespace SoccerStatsData
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class LeagueCountry
@@ -75,14 +75,7 @@ namespace SoccerStatsData.RequestModels
         public string Logo { get; set; }
     }
 
-    public class LeaguePaging
-    {
-        [JsonProperty("current")]
-        public int Current { get; set; }
-
-        [JsonProperty("total")]
-        public int Total { get; set; }
-    }
+    
 
     public class LeagueResponse
     {
@@ -109,9 +102,6 @@ namespace SoccerStatsData.RequestModels
 
         [JsonProperty("results")]
         public int Results { get; set; }
-
-        [JsonProperty("paging")]
-        public LeaguePaging Paging { get; set; }
 
         [JsonProperty("response")]
         public List<LeagueResponse> Response { get; set; }

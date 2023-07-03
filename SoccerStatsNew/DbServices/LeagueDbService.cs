@@ -14,7 +14,7 @@ namespace SoccerStatsNew.Services
             _context = context;
         }
 
-        public async Task<ICollection<LeagueDbModel>?> GetLeagues()
+        public async Task<ICollection<LeagueModel>?> GetLeagues()
         {
             var soccerStatsDbContext = _context.LeagueModel.Include(l => l.Country);
             return soccerStatsDbContext != null ?
@@ -22,7 +22,7 @@ namespace SoccerStatsNew.Services
             : null;
         }
 
-        public async Task<ICollection<LeagueDbModel>?> GetLeagueDetails(string id)
+        public async Task<ICollection<LeagueModel>?> GetLeagueDetails(string id)
         {
             var leagueModel = await _context.LeagueModel
                  .Where(m => m.CountryName == id).ToListAsync();
