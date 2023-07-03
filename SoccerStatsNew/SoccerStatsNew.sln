@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerStatsNew", "SoccerStatsNew.csproj", "{1EF8AD10-69D9-4272-B405-3204A722E9B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerStatsNew", "SoccerStatsNew.csproj", "{1EF8AD10-69D9-4272-B405-3204A722E9B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityLibraries", "..\UtilityLibraries\UtilityLibraries.csproj", "{3B8F580A-E60C-4327-ABE8-1DE1996A9DEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1EF8AD10-69D9-4272-B405-3204A722E9B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EF8AD10-69D9-4272-B405-3204A722E9B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EF8AD10-69D9-4272-B405-3204A722E9B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B8F580A-E60C-4327-ABE8-1DE1996A9DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B8F580A-E60C-4327-ABE8-1DE1996A9DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B8F580A-E60C-4327-ABE8-1DE1996A9DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B8F580A-E60C-4327-ABE8-1DE1996A9DEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
