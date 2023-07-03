@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SoccerStatsNew.Data;
 using SoccerStatsData;
-using SoccerStatsNew.RequestModels;
+using SoccerStatsNew.Data;
 
 namespace SoccerStatsNew.Services
 {
@@ -13,7 +12,7 @@ namespace SoccerStatsNew.Services
         {
             _dbContext = context;
         }
-        public async Task SaveCountries(ICollection<CountryResponse> countries)
+        public async Task SaveCountries(ICollection<CountryHttpResponse> countries)
         {
             if (_dbContext.CountryModel != null)
             {

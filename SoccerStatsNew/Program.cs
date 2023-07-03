@@ -28,6 +28,7 @@ builder.Services.AddHttpClient<WebService>(_httpClient =>
               "x-rapidapi-key", "60553e4650d7942cb159d23481c9cbba");
 });
 
+builder.Services.AddKendo(); 
 builder.Services.AddScoped<CountryDbService>();
 builder.Services.AddScoped<LeagueDbService>();
 

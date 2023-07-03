@@ -20,7 +20,16 @@ namespace SoccerStatsNew.Controllers
         public async Task<IActionResult> Index()
         {
             var countries = await _countryService.GetAllCountries();
-            return View();
+            if (countries != null)
+            {
+                HomePageDisplay homePageDisplay = new HomePageDisplay()
+                {
+                    CountryList = (IEnumerable<CountryModel>)countries,
+                };
+                return View(homePageDisplay.CountryList);
+            }
+          
+            return View(countries);
         }
 
         public IActionResult Privacy()

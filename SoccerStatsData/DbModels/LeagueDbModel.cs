@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoccerStatsData
 {
-    public class LeagueModel
+    public class LeagueDbModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

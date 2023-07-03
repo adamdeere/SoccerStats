@@ -1,4 +1,4 @@
-﻿namespace SoccerStatsNew.RequestModels
+﻿namespace SoccerStatsData.RequestModels
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class VenuePaging
