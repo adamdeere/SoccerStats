@@ -20,16 +20,6 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index()
         {
-            using (StreamReader sr = new("Test/leagues.json"))
-            {
-                var lol = JsonHelper.GetObjectFromJson<LeagueRoot>(sr.ReadToEnd());
-                if (lol != null)
-                {
-                    await _countryService.SaveLeagueAndSeason(lol);
-                }
-               
-            }
-            
             var countries = await _countryService.GetAllCountries();
            
             return countries != null 
