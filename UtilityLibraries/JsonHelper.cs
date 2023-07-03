@@ -1,14 +1,17 @@
-﻿namespace UtilityLibraries
+﻿using Newtonsoft.Json;
+
+namespace UtilityLibraries
 {
     public static class JsonHelper
     {
-        public static bool StartsWithUpper(this string? str)
+        public static T? GetObjectFromJson<T>(string key)
         {
-            if (string.IsNullOrWhiteSpace(str))
-                return false;
+            return key == null ? default : JsonConvert.DeserializeObject<T>(key);
+        }
 
-            char ch = str[0];
-            return char.IsUpper(ch);
+        public static string ConvertObjectToJson(object jsonObject)
+        {
+            return JsonConvert.SerializeObject(jsonObject);
         }
     }
 }

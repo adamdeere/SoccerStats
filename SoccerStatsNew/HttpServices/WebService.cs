@@ -1,4 +1,4 @@
-﻿using SoccerStatsNew.Utils;
+﻿using UtilityLibraries;
 
 namespace SoccerStatsNew.HttpServices
 {
@@ -19,7 +19,7 @@ namespace SoccerStatsNew.HttpServices
                     if (response.IsSuccessStatusCode)
                     {
                         var responseData = await response.Content.ReadAsStringAsync();
-                        return JsonConverterUtil.GetObjectFromJson<T>(responseData);
+                        return JsonHelper.GetObjectFromJson<T>(responseData);
                     }
                 }
                 catch (Exception e)

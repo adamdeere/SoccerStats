@@ -21,7 +21,6 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index()
         {
-            bool test = JsonHelper.StartsWithUpper("Adam");
             var countries = await _countryService.GetAllCountries();
             return View();
         }
