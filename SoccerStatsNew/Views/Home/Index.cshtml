@@ -1,54 +1,36 @@
+@model IEnumerable<CountryModel>
 
-﻿@model IEnumerable<CountryModel>
+<div class="btn-group mr-2">
 
-<div class="k-d-flex k-justify-content-center" style="padding-top: 54px;">
-    <div class="k-w-300">
-        <h4 style="text-align: center;">Customize your Kendo Cap</h4>
-        <div id="cap" class="black-cap"></div>
-        
-        <label for="size">Cap Size:</label>
-        <div class="btn-group mr-2">
-            <kendo-combobox name="CountrySelectBox"
-                            bind-to="Model"
-                            datatextfield="CountryName"
-                            datavaluefield="Id"
-                            placeholder="Select Country"
-                            template-id="TemplateCountry"
-                            style="width:260px">
+    <kendo-combobox name="CountrySelectBox"
+                    bind-to="Model"
+                    datatextfield="Name"
+                    datavaluefield="CountryCode"
+                    placeholder="Select Country"
+                    template-id="TemplateCountry"
+                    height="300"
+                    on-change="OnCountrySelect"
+                    style="width:100%">
 
-            </kendo-combobox>
-        </div>
-
-        <button class="k-button k-button-solid-primary k-button-solid k-button-md k-rounded-md" id="get" style="margin-top: 2em; float: right;">Customize</button>
-    </div>
+    </kendo-combobox>
 </div>
 
 <script id="TemplateCountry" type="text/x-kendo-template">
-       <div class="row" style="margin-left: 5px">
-        <img src="@Url.RouteUrl("#:data.FlagURL#")" class="li-avatar rounded mx-auto"/>
-        <span style="margin-left: 5px">#:data.FullName#</span>
+
+    <div class="container">
+        <div class="image">
+            <img src="#:data.FlagURL#">
+        </div>
+        <span style="margin-left: 5px">#:data.Name#</span>
     </div>
 </script>
 
-<style>
-    #cap {
-        width: 242px;
-        height: 225px;
-        margin: 20px auto;
-        background-image: url('@Url.Content("~/shared/web/dropdownlist/cap.png")');
-        background-repeat: no-repeat;
-        background-color: transparent;
-    }
+@section styles {
+    <link rel="stylesheet" href="~/css/leagues.css" />
+}
 
-    .black-cap {
-        background-position: 0 0;
-    }
+@section scripts {
+    <script src="~/js/leagues.js"></script>
+}
 
-    .grey-cap {
-        background-position: 0 -225px;
-    }
 
-    .orange-cap {
-        background-position: 0 -450px;
-    }
-</style>
