@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using SoccerStatsData;
-using SoccerStatsNew.DbServices;
+using SoccerStatsNew.Models;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
 using UtilityLibraries;
@@ -11,27 +10,32 @@ namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly WebService _webService;
-        private readonly TeamDbService _countryService;  
-        public HomeController(WebService webService, TeamDbService service)
+        private readonly LeagueDbService _leagueService;
+        private readonly CountryDbService _countryService;  
+        public HomeController(LeagueDbService webService, CountryDbService service)
         {
-            _webService = webService;
+            _leagueService = webService;
             _countryService = service;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string code)
         {
-            //var countries = null;// await _countryService.GetAllCountries();
-            using StreamReader sr = new("Test/teams.json");
-            var teams = JsonHelper.GetObjectFromJson<TeamRoot>(sr.ReadToEnd());
-            if (teams != null)
+            var countries = await _countryService.GetAllCountries();
+            HomeDisplay home = new()
             {
-               await _countryService.SaveTeamsAndVenues(teams);
+                CountryList = countries
+            };
+
+            if (code != null)
+            {
+               home.LeagueList = await _leagueService.GetLeagueDetails(code);
+                int i = 0;
+                i++;
             }
-            return View();
-            //return countries != null
-            //    ? View(countries)
-            //    : NotFound();
+
+            return countries != null
+                ? View(home)
+                : NotFound();
         }
 
         public IActionResult Privacy()

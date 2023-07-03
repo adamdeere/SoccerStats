@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SoccerStatsData.CountryModel>
+﻿@model SoccerStatsNew.Models.HomeDisplay
 
 @{
     ViewData["Title"] = "Home Page";
@@ -6,8 +6,8 @@
 
 <div class="col-sm-6">
     
-    <kendo-combobox name="filterAssignee"
-                    bind-to="Model"
+    <kendo-combobox name="chooseCountry"
+                    bind-to="Model.CountryList"
                     datatextfield="Name"
                     datavaluefield="CountryCode"
                     placeholder="Select country"
@@ -17,11 +17,43 @@
 
     </kendo-combobox>
 
-
 </div>
 
+
+<div>
+    <div class="cards-container">
+        @if (Model.LeagueList != null)
+        {
+            @foreach (var item in Model.LeagueList)
+            {
+
+                <div class="k-card">
+                    <div class="k-card-header">
+                        <h5 class="k-card-title">@item.Name</h5>
+                        <h6 class="k-card-subtitle">@item.CountryName</h6>
+                        @(Html.Kendo().DropDownList()
+                            .Name("seasons")
+                            .BindTo(item.Seasons)
+                            .Label(label => label.Content("Select a season"))
+                            .DataTextField("Year")
+                            .DataValueField("LeagueId")
+                            .Deferred(true)
+                            )
+                    </div>
+                    <img class="k-card-image" alt="Telerik UI for ASP.NET MVC Cards Rome" src="@item.LogoURL" />
+                    
+                    </div>
+            }
+        }
+    </div>
+</div>
+
+@section styles {
+    <link rel="stylesheet" href="~/css/leagues.css" />
+}
+
 @section scripts {
-    <script src="~/js/site.js" ></script>
+    <script src="~/js/leagues.js" ></script>
 }
 
 <script id="CountrySelectTemplate" type="text/x-kendo-template">

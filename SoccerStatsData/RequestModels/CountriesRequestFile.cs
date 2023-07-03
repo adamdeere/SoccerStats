@@ -2,16 +2,6 @@
 
 namespace SoccerStatsData
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-    public class CountryPaging
-    {
-        [JsonProperty("current")]
-        public int Current { get; set; }
-
-        [JsonProperty("total")]
-        public int Total { get; set; }
-    }
-
     public class CountryHttpResponse
     {
         [JsonProperty("name")]
@@ -37,9 +27,6 @@ namespace SoccerStatsData
 
         [JsonProperty("results")]
         public int Results { get; set; }
-
-        [JsonProperty("paging")]
-        public CountryPaging Paging { get; set; }
 
         [JsonProperty("response")]
         public List<CountryHttpResponse> Response { get; set; }

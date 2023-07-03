@@ -2,7 +2,7 @@
 
 namespace SoccerStatsData
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+  
     public class LeagueCountry
     {
         [JsonProperty("name")]
