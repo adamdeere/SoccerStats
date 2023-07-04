@@ -16,7 +16,7 @@ namespace SoccerStatsNew.DbServices
             _dbContext = context;   
         }
 
-        public async Task<TeamPageDisplay?> GetTeamsDisplayPage(int league)
+        public async Task<TeamPageDisplay?> GetTeamsDisplayPage(int league, string season)
         {
             TeamPageDisplay? team = null;
 
@@ -24,7 +24,16 @@ namespace SoccerStatsNew.DbServices
 
             if (seasons != null)
             {
-                var year = seasons.Last().Year;
+                string year;
+                if (string.IsNullOrEmpty(season))
+                {
+                    year = seasons.Last().Year.ToString();
+                }
+                else
+                {
+                    year = season;
+                }
+               
                 string endPoint = $"teams?league={league}&season={year}";
                 var teamResponse = await _webService.GetObjectRequest<TeamRoot>(endPoint);
 

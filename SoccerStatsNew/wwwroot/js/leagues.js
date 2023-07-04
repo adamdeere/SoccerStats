@@ -5,9 +5,13 @@ function OnCountrySelect(e) {
         location.href = `/?code=${countryName}`;
     }
 }
+function OnSelect(e) {
+    var season = e.sender.text();
+    var league = e.sender.value();
 
-function OnSeasonSelect(e) {
-    alert(e.sender.text() + e.sender.value());
+    if (season && league) {
+        location.href = `/Team?league=${league}&season=${season}`;
+    }
 }
 
 function scrollButtonClick(e) {

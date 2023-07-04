@@ -6,11 +6,15 @@
 <h5>This is the teams page</h5>
 
 @(Html.Kendo().DropDownList()
-      .Name("territories")
+      .Name("seasons")
       .Label(label => label.Content("Select a season"))
       .DataTextField("Year")
       .DataValueField("LeagueId")
       .BindTo(Model.SeasonModelList)
+      .Events(e =>
+      {
+          e.Change("OnSelect");
+      })
 )
 
 
@@ -29,33 +33,15 @@
                     <partial name="_stadiums" model="@Model.VenueModelList" />
                 </content>
             </tabstrip-item>
-         
         </items>
 
     </kendo-tabstrip>
 </div>
+@section scripts {
+    <script src="~/js/leagues.js"></script>
+}
 
 <style>
-
-    #tabstrip h2 {
-        font-weight: lighter;
-        font-size: 5em;
-        line-height: 1;
-        padding: 0 0 0 30px;
-        margin: 0;
-    }
-
-        #tabstrip h2 span {
-            background: none;
-            padding-left: 5px;
-            font-size: .3em;
-            vertical-align: top;
-        }
-
-    #tabstrip p {
-        margin: 0;
-        padding: 0;
-    }
 
     .cards-container {
         display: flex;

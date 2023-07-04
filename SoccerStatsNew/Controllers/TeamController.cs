@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoccerStatsData;
 using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Models;
-using UtilityLibraries;
 
 namespace SoccerStatsNew.Controllers
 {
@@ -14,12 +12,12 @@ namespace SoccerStatsNew.Controllers
         {
             _seasonDbService = seasonDbService;
         }
-        public async Task<IActionResult> Index(int? league)
+        public async Task<IActionResult> Index(int? league, string season)
         {
             TeamPageDisplay? team = null;
             if (league != null) 
             {
-                team = await _seasonDbService.GetTeamsDisplayPage((int)league);
+                team = await _seasonDbService.GetTeamsDisplayPage((int)league, season);
             }
             return team != null 
                 ? View(team) 

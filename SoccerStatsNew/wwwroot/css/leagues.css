@@ -3,16 +3,6 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-
-.k-card {
-    width: 285px;
-    margin: 5%;
-}
-
-.k-card-footer {
-    text-align: center;
-}
-
 .container {
     display: grid;
     align-items: center;
@@ -45,5 +35,40 @@ img {
     padding: 16px 16px 16px;
     overflow-y: hidden;
     overflow-x: auto;
+}
+
+#tabstrip h2 {
+    font-weight: lighter;
+    font-size: 5em;
+    line-height: 1;
+    padding: 0 0 0 30px;
+    margin: 0;
+}
+
+    #tabstrip h2 span {
+        background: none;
+        padding-left: 5px;
+        font-size: .3em;
+        vertical-align: top;
+    }
+
+#tabstrip p {
+    margin: 0;
+    padding: 0;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.k-card {
+    width: 285px;
+    margin: 5%;
+}
+
+.k-card-footer {
+    text-align: center;
 }
 
