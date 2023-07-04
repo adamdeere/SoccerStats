@@ -5,75 +5,34 @@
 
 <h5>This is the teams page</h5>
 
+@(Html.Kendo().DropDownList()
+      .Name("territories")
+      .Label(label => label.Content("Select a season"))
+      .DataTextField("Year")
+      .DataValueField("LeagueId")
+      .BindTo(Model.SeasonModelList)
+)
+
+
 <div class="demo-section">
-    @(Html.Kendo().TabStrip()
-            .Name("tabstrip")
-            .Animation(animation =>
-            animation.Open(effect =>
-            effect.Fade(FadeDirection.In)))
-            .Items(tabstrip =>
-            {
-                tabstrip.Add().Text("Teams")
-            .Selected(true)
-            .Content(@<text>
-                <h5>This is the teams tab</h5>
-                <div id="example">
-                    <div class="cards-container">
 
-                        <div class="row">
-                        @if (Model.TeamsModelList != null)
-                        {
-                            @foreach (var item in Model.TeamsModelList)
-                            {
-                                        <div class="k-card">
-                                            <div class="k-card-header">
-                                                <h5 class="k-card-title">@item.Name</h5>
-                                                <h6 class="k-card-title">@item.Country</h6>
-                                            </div>
-                                            <img class="k-card-image" alt="Telerik UI for ASP.NET Core Cards Rome" src=@item.Logo />
-                                            <div class="k-card-body">
-                                                <p>Founded: @item.Founded</p>
-                                            </div>
-                                        </div>
-                            }
-                        }
-                        
-                        </div>
-                    </div>
-                </div>
-            </text>);
-                tabstrip.Add().Text("Stadiums")
-            .Content(@<text>
-                <h5>This is the stadiums tab</h5>
-                <div id="example">
-                        <div class="cards-container">
+    <kendo-tabstrip name="tabstrip">
 
-                            <div class="row">
-                                @if (Model.VenueModelList != null)
-                                    {
-                                        @foreach (var item in Model.VenueModelList)
-                                        {
-                                            <div class="k-card">
-                                                <div class="k-card-header">
-                                                    <h5 class="k-card-title">@item.Name</h5>
-                                                    <h6 class="k-card-title">@item.City</h6>
-                                                </div>
-                                                <img class="k-card-image" alt="Telerik UI for ASP.NET Core Cards Rome" src=@item.Image />
-                                                <div class="k-card-body">
-                                                    <p>Address: @item.Address</p>
-                                                    <p>Capacity: @item.Capacity</p>
-                                                    <p>Surface: @item.Surface</p>
-                                                </div>
-                                            </div>
-                                        }
-                                    }
+        <items>
+            <tabstrip-item text="Teams">
+                <content>
+                    <partial name="_teams" model="@Model.TeamsModelList" />
+                </content>
+            </tabstrip-item>
+            <tabstrip-item text="Stadiums">
+                <content>
+                    <partial name="_stadiums" model="@Model.VenueModelList" />
+                </content>
+            </tabstrip-item>
+         
+        </items>
 
-                                </div>
-                            </div>
-                        </div>
-            </text>);
-            })
-        )
+    </kendo-tabstrip>
 </div>
 
 <style>
