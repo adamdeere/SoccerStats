@@ -34,6 +34,7 @@ builder.Services.AddScoped<CountryDbService>();
 builder.Services.AddScoped<LeagueDbService>();
 builder.Services.AddScoped<TeamDbService>();
 builder.Services.AddScoped<VenueDbService>();
+builder.Services.AddScoped<SeasonDbService>();
 
 var app = builder.Build();
 

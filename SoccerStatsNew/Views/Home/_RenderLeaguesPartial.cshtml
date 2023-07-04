@@ -20,7 +20,13 @@
                         </div>
                         <div class="k-card-actions k-card-actions-vertical k-card-actions-stretched">
                             <span class="k-card-action">
-                                <span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md" data-value="View details of @item.Name">View Details</span>
+                                <span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md" data-value="View details of @item.Name">
+                                    <a asp-controller="Team" 
+                                       asp-action="Index" 
+                                       asp-route-league="@item.LeagueId">
+                                       View Details 
+                                   </a>
+                                </span>
                             </span>
                         </div>
                     </div>

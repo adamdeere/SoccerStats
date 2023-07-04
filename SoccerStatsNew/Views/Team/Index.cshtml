@@ -1,0 +1,59 @@
+﻿@model SoccerStatsNew.Models.TeamPageDisplay
+
+@{
+}
+
+<h5>This is the teams page</h5>
+
+@(Html.Kendo().DropDownList()
+      .Name("seasons")
+      .Label(label => label.Content("Select a season"))
+      .DataTextField("Year")
+      .DataValueField("LeagueId")
+      .BindTo(Model.SeasonModelList)
+      .Events(e =>
+      {
+          e.Change("OnSelect");
+      })
+)
+
+<div class="demo-section">
+
+    <kendo-tabstrip name="tabstrip">
+
+        <items>
+            <tabstrip-item text="Teams">
+                <content>
+                    <partial name="_teams" model="@Model.TeamsModelList" />
+                </content>
+            </tabstrip-item>
+            <tabstrip-item text="Stadiums">
+                <content>
+                    <partial name="_stadiums" model="@Model.VenueModelList" />
+                </content>
+            </tabstrip-item>
+        </items>
+
+    </kendo-tabstrip>
+</div>
+@section scripts {
+    <script src="~/js/leagues.js"></script>
+}
+
+<style>
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .k-card {
+        width: 285px;
+        margin: 5%;
+    }
+
+    .k-card-footer {
+        text-align: center;
+    }
+</style>

@@ -1,0 +1,35 @@
+﻿@model List<SoccerStatsData.TeamVenue>
+@{
+}
+
+<h5>This is the stadiums tab</h5>
+<div id="example">
+    <div class="container">
+
+        <div class="row">
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="k-card">
+                        <div class="k-card-header">
+                            <h5 class="k-card-title">@item.Name</h5>
+                            <h6 class="k-card-title">@item.City</h6>
+                        </div>
+                        <img class="k-card-image" alt="Telerik UI for ASP.NET Core Cards Rome" src=@item.Image />
+                        <div class="k-card-body">
+                            <p>Address: @item.Address</p>
+                            <p>Capacity: @item.Capacity</p>
+                            <p>Surface: @item.Surface</p>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link rel="stylesheet" href="~/css/leagues.css" />
+}

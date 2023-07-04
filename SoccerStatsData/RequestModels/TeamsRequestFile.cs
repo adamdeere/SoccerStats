@@ -5,7 +5,7 @@ namespace SoccerStatsData
     public class TeamResponse
     {
         [JsonProperty("team")]
-        public TeamTeam Team { get; set; }
+        public TeamsPage Team { get; set; }
 
         [JsonProperty("venue")]
         public TeamVenue Venue { get; set; }
@@ -17,7 +17,7 @@ namespace SoccerStatsData
         public List<TeamResponse> Response { get; set; }
     }
 
-    public class TeamTeam
+    public class TeamsPage
     {
         [JsonProperty("id")]
         public int? Id { get; set; }
