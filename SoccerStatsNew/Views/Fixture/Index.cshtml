@@ -16,21 +16,22 @@
                 {
                     columns.Bound(p => p.Date)
                            .Title("Fixture date")
-                           .Width(80);
+                           .Width(130);
 
                     columns.Bound(p => p.League)
                            .Title("League")
-                           .Width(130);
+                           .Width(250);
 
                     columns.Bound(p => p.HomeTeam)
                            .Title("Home Team")
-                           .Width(130);
+                           .Width(250);
 
                     columns.Bound(p => p.AwayTeam)
                            .Title("Away Team")
-                           .Width(130);
+                           .Width(250);
 
                 })
+                .ClientRowTemplate(@line)
                 .BindTo(Model)
                 .Pageable()
                 .Sortable()
@@ -40,8 +41,11 @@
                 {
                     events.Change("OnGridSelect");
                 })
-             
 )
+
+@section styles {
+    <link rel="stylesheet" href="~/css/leagues.css" />
+}
 
 @section scripts {
     <script src="~/js/fixtures.js"></script>

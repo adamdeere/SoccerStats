@@ -3,6 +3,7 @@
     public class FixturePageData
     {
         public DateTime Date { get; set; }
+        public int FixtureId { get; set; }
         public string League { get; set; }
         public string LeagueLogo { get; set; }
         public string HomeTeam { get; set; }

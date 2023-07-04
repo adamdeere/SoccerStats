@@ -18,8 +18,9 @@ namespace SoccerStatsNew.Controllers
                     FixturePageData page = new()
                     {
                         Date = item.Fixture.Date,
+                        FixtureId = item.Fixture.Id,
                         League = item.League.Name,
-                        LeagueLogo = item.League.Flag,
+                        LeagueLogo = item.League.Logo,
                         HomeTeam = item.Teams.Home.Name,
                         HomeTeamLogo = item.Teams.Home.Logo,
                         AwayTeam = item.Teams.Away.Name,
@@ -36,6 +37,11 @@ namespace SoccerStatsNew.Controllers
                 : NotFound();
 
            
+        }
+
+        public IActionResult Details(int? fixture)
+        { 
+            return View();
         }
     }
 }
