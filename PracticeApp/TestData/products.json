@@ -1,0 +1,181 @@
+{
+  "List": [
+    {
+      "SKU": "SKU00001",
+      "description": "some text",
+      "height": 2.1,
+      "length": 13.4,
+      "width": 0.0,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00001",
+      "description": "some text",
+      "height": 2.1,
+      "length": 13.4,
+      "width": 0.0,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00003",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00003",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00002",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00003",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00003",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00003",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00004",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00004",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "",
+      "description": "SKU00005",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "",
+      "description": "SKU00006",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "",
+      "description": "SKU00006",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00006",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00001",
+      "description": "some text",
+      "height": 2.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00001",
+      "description": "some text",
+      "height": 2.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00001",
+      "description": "some text",
+      "height": 2.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00001",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    },
+    {
+      "SKU": "SKU00001",
+      "description": "some text",
+      "height": 3.1,
+      "length": 13.4,
+      "width": 2.4,
+      "weight": 1.0,
+      "test1": "1"
+    }
+  ],
+  "QueryTotal": 19,
+  "RecordTotal": 19,
+  "Limit": 100,
+  "Page": 1,
+  "Filter": null,
+  "Message": ""
+}

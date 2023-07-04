@@ -1,0 +1,42 @@
+﻿@model PracticeApp.Models.ItemLocationModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ItemLocationModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Location.LocationId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Receipt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Receipt.GRN)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Item)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Item.ItemNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+</div>

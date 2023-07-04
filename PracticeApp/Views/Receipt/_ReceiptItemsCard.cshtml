@@ -1,0 +1,126 @@
+﻿@model IEnumerable<PracticeApp.Models.ItemModel>
+
+@{
+}
+
+<!-- Displays all the products stored at a particular receipt -->
+@foreach (var grnItem in Model)
+{
+    <div class="card custom-card-style">
+
+        @if (grnItem.Product != null)
+        {
+            @if (grnItem.Product.ImageURL != null)
+            {
+                <form>
+                    <input class="card-img-top"
+                           src="@grnItem.Product.ImageURL"
+                           type="image"
+                           asp-controller="Product"
+                           asp-action="Details"
+                           asp-route-id="@grnItem.Product.SKUCode" />
+
+                </form>
+            }
+            else
+            {
+                <form>
+                    <input class="card-img-top"
+                           src="~/images/placeholder.png"
+                           type="image"
+                           asp-controller="Product"
+                           asp-action="Details"
+                           asp-route-id="@grnItem.Product.SKUCode" />
+
+                </form>
+                <p><i>please upload an image from the products page</i></p>
+            }
+
+
+        }
+
+        <div class="card-body">
+            <h5 class="card-title">Product</h5>
+
+            <div class="custom-text">
+                @Html.DisplayNameFor(modelItem => grnItem.GRN) :
+                @Html.DisplayFor(modelItem => grnItem.GRN)
+            </div>
+            @if (grnItem.Product != null)
+            {
+                <div class="custom-text">
+                    @Html.DisplayNameFor(model => grnItem.Product.SKUCode) :
+                    @Html.DisplayFor(modelItem =>  grnItem.Product.SKUCode)
+                </div>
+
+                <div class="custom-text">
+                    @Html.DisplayNameFor(modelItem => grnItem.Product.Description) :
+                    @Html.DisplayFor(modelItem => grnItem.Product.Description)
+                </div>
+            }
+           
+            <div class="custom-text">
+                @Html.DisplayNameFor(modelItem => grnItem.ItemNo) :
+                @Html.DisplayFor(modelItem => grnItem.ItemNo)
+            </div>
+
+            <div class="custom-text">
+                Expected @Html.DisplayNameFor(modelItem => grnItem.Quantity) :
+                @Html.DisplayFor(modelItem => grnItem.Quantity)
+            </div>
+            @if (grnItem.Location != null)
+            {
+                @foreach (var itemStorage in grnItem.Location.ItemLocations)
+                {
+                    @if (itemStorage.Location != null)
+                    {
+                        <div class="text-black">
+                            @Html.DisplayNameFor(storeItem => itemStorage.Quantity) in storage :
+                            @Html.DisplayFor(modelItem => itemStorage.Quantity)
+                            <br />
+                            @Html.DisplayNameFor(storeItem => itemStorage.LocationId) :
+                            @Html.DisplayFor(modelItem => itemStorage.LocationId)
+                        </div>
+                    }
+                }
+            }
+            <form method="post">
+
+                <input class="btn btn-danger custom-button"
+                       value="Delete"
+                       type="submit"
+                       asp-controller="Item"
+                       asp-action="Delete"
+                       asp-route-id="@grnItem.ItemNo" />
+
+
+                @if (grnItem.Location == null)
+                {
+                    <form method="post">
+
+                        <input class="btn btn-primary custom-button"
+                               type="submit"
+                               value="Store"
+                               asp-controller="ItemLocation"
+                               asp-action="Create"
+                               asp-route-item="@grnItem.ItemNo"
+                               asp-route-grn="@grnItem.GRN"
+                               asp-route-expected="@grnItem.Quantity" />
+                    </form>
+                }
+                else
+                {
+                    @foreach (var itemLocation in grnItem.Location.ItemLocations)
+                    {
+                        <input class="btn btn-primary custom-button"
+                               type="submit"
+                               value="Edit"
+                               asp-controller="ItemLocation"
+                               asp-action="Edit"
+                               asp-route-id="@itemLocation.Id" />
+                    }
+                }
+            </form>
+        </div>
+    </div>
+}

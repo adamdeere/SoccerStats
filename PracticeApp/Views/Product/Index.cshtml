@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PracticeApp.Models.ProductModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="align-content-center">
+    <div class="container">
+        <h1>Products</h1>
+
+        <div class="container">
+
+            <a class="btn btn-primary custom-button" asp-action="Create"> Create new</a>
+
+            <button class="btn btn-primary custom-button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#skuModal"
+                    class="nav-link dropdown-item"
+                    asp-area="">
+                Search
+            </button>
+        </div>
+
+        <div class="row">
+            @if (Model.Count() > 0)
+            {
+                @await Html.PartialAsync("_ProductCardPartial.cshtml", Model)
+            }
+            else
+            {
+                <p>There are no items that match your search. Please try again or add a new product</p>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal for sku searching. Placed here to save a seprate view -->
+<div class="modal fade" id="skuModal" tabindex="-1" aria-labelledby="skuModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="skuModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+
+                    <form method="post">
+                        <label for="SKUCode">SKU code</label>
+                        <input type="text" id="sku" name="sku" placeholder="Enter your SKU code" />
+                        <input class="btn btn-primary custom-button" type="submit" asp-action="Index" asp-controller="Product" id="sku" name="sku" />
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

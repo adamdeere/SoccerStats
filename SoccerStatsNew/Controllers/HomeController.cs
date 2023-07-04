@@ -1,24 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoccerStatsNew.Data;
+using SoccerStatsData;
 using SoccerStatsNew.Models;
+using SoccerStatsNew.Services;
 using System.Diagnostics;
+using UtilityLibraries;
+
 
 namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SoccerStatsDbContext _context;
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger, SoccerStatsDbContext context)
+        private readonly LeagueDbService _leagueService;
+        private readonly CountryDbService _countryService;  
+        public HomeController(LeagueDbService webService, CountryDbService service)
         {
-            _logger = logger;
-            _context = context;
+            _leagueService = webService;
+            _countryService = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string code)
         {
-            return View();
+            HomeDisplay? home = null;
+            var countries = await _countryService.GetAllCountriesToList();
+            if (countries != null)
+            {
+                home = new()
+                {
+                    CountryList = countries
+                };
+
+                if (code != null)
+                {
+                    home.LeagueList = await _leagueService.GetLeagueDetails(code);
+                }
+            }
+            
+
+            return home != null
+                ? View(home)
+                : NotFound();
         }
 
         public IActionResult Privacy()

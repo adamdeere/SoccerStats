@@ -1,8 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model SoccerStatsNew.Models.HomeDisplay
+<div class="btn-group mr-2">
+
+    <kendo-combobox name="CountrySelectBox"
+                    bind-to="Model.CountryList"
+                    datatextfield="Name"
+                    datavaluefield="CountryCode"
+                    placeholder="Select Country"
+                    template-id="TemplateCountry"
+                    height="300"
+                    on-change="OnCountrySelect"
+                    style="width:100%">
+
+    </kendo-combobox>
+</div>
+
+<div class="row cards-container">
+    @await Html.PartialAsync("_RenderLeaguesPartial.cshtml", Model)
+</div>
+
+
+
+
+<script id="TemplateCountry" type="text/x-kendo-template">
+
+    <div class="container">
+        <div class="image">
+            <img src="#:data.FlagURL#">
+        </div>
+        <span style="margin-left: 5px">#:data.Name#</span>
+    </div>
+</script>
+
+@section styles {
+    <link rel="stylesheet" href="~/css/leagues.css" />
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section scripts {
+    <script src="~/js/leagues.js"></script>
+}
+
+

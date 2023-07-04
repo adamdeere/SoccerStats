@@ -1,0 +1,71 @@
+﻿@model IEnumerable<PracticeApp.Models.LocationModel>
+@{
+}
+
+@foreach (var item in Model)
+{
+    var headingString = $"flush-heading-{item.LocationId}";
+    var collapseString = $"flush-collapse{item.LocationId}";
+    var itemCount = 0;
+
+    @if (item.ItemLocations != null)
+    {
+        itemCount = item.ItemLocations.Count();
+    }
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="@headingString">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseString" aria-expanded="false" aria-controls="@collapseString">
+                Location : @item.LocationId Items in Storage : @itemCount
+            </button>
+        </h2>
+        <div id="@collapseString" class="accordion-collapse collapse" aria-labelledby="@headingString" data-bs-parent="#accordionFlush">
+            <div class="accordion-body">
+                <div class="container">
+                    <div class="align-content-center">
+                        <h5>Details</h5>
+                        <dl class="row">
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => item.LocationId)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.LocationId)
+                            </dd>
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => item.Length)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Length)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => item.Height)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Height)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => item.Width)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Width)
+                            </dd>
+                        </dl>
+
+                        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.LocationId">Edit</a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.LocationId">Delete</a>
+                    </div>
+                    <div class="row">
+                        <h5> Products </h5>
+                        @if (item.ItemLocations != null)
+                        {
+                            @await Html.PartialAsync("_LocationCardPartial.cshtml", item.ItemLocations)
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

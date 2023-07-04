@@ -1,0 +1,63 @@
+{
+  "List": [
+    {
+      "GRN": "GRN00003",
+      "ItemNo": 3,
+      "Quantity": 3.0,
+      "SKU": "SKU00003"
+    },
+    {
+      "GRN": "GRN00003",
+      "ItemNo": 3,
+      "Quantity": 3.0,
+      "SKU": "SKU00003"
+    },
+    {
+      "GRN": "GRN00001",
+      "ItemNo": 1,
+      "Quantity": 1.0,
+      "SKU": "SKU00001"
+    },
+    {
+      "GRN": "GRN00001",
+      "ItemNo": 1,
+      "Quantity": 1.0,
+      "SKU": "SKU00001"
+    },
+    {
+      "GRN": "GRN00002",
+      "ItemNo": 1,
+      "Quantity": 1.0,
+      "SKU": "SKU00002"
+    },
+    {
+      "GRN": "",
+      "ItemNo": 0,
+      "Quantity": 0.0,
+      "SKU": ""
+    },
+    {
+      "GRN": "",
+      "ItemNo": 0,
+      "Quantity": 0.0,
+      "SKU": ""
+    },
+    {
+      "GRN": "GRN00003",
+      "ItemNo": 3,
+      "Quantity": 3.0,
+      "SKU": "SKU00003"
+    },
+    {
+      "GRN": "GRN00003",
+      "ItemNo": 3,
+      "Quantity": 3.0,
+      "SKU": "SKU00003"
+    }
+  ],
+  "QueryTotal": 9,
+  "Limit": 100,
+  "Page": 1,
+  "Filter": null,
+  "Message": ""
+}
