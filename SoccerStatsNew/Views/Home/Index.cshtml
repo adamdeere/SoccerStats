@@ -1,9 +1,8 @@
-@model IEnumerable<CountryModel>
-
+@model SoccerStatsNew.Models.HomeDisplay
 <div class="btn-group mr-2">
 
     <kendo-combobox name="CountrySelectBox"
-                    bind-to="Model"
+                    bind-to="Model.CountryList"
                     datatextfield="Name"
                     datavaluefield="CountryCode"
                     placeholder="Select Country"
@@ -14,6 +13,13 @@
 
     </kendo-combobox>
 </div>
+
+<div class="row cards-container">
+    @await Html.PartialAsync("_RenderLeaguesPartial.cshtml", Model)
+</div>
+
+
+
 
 <script id="TemplateCountry" type="text/x-kendo-template">
 

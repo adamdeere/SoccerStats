@@ -29,3 +29,21 @@ img {
     font-size: 5px;
 }
 
+#example {
+    display: flex;
+    justify-content: center;
+}
+
+.k-card-deck-scrollwrap {
+    max-width: 1324px;
+}
+
+.k-card-deck {
+    box-sizing: border-box;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 16px 16px 16px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+

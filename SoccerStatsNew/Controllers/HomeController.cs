@@ -20,20 +20,24 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index(string code)
         {
-
+            HomeDisplay? home = null;
             var countries = await _countryService.GetAllCountriesToList();
-            HomeDisplay home = new()
+            if (countries != null)
             {
-                CountryList = countries
-            };
+                home = new()
+                {
+                    CountryList = countries
+                };
 
-            if (code != null)
-            {
-               home.LeagueList = await _leagueService.GetLeagueDetails(code);
+                if (code != null)
+                {
+                    home.LeagueList = await _leagueService.GetLeagueDetails(code);
+                }
             }
+            
 
-            return countries != null
-                ? View(countries)
+            return home != null
+                ? View(home)
                 : NotFound();
         }
 
