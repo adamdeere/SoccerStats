@@ -1,0 +1,115 @@
+﻿@model SoccerStatsNew.Models.TeamPageDisplay
+
+@{
+}
+
+<h5>This is the teams page</h5>
+
+<div class="demo-section">
+    @(Html.Kendo().TabStrip()
+            .Name("tabstrip")
+            .Animation(animation =>
+            animation.Open(effect =>
+            effect.Fade(FadeDirection.In)))
+            .Items(tabstrip =>
+            {
+                tabstrip.Add().Text("Teams")
+            .Selected(true)
+            .Content(@<text>
+                <h5>This is the teams tab</h5>
+                <div id="example">
+                    <div class="cards-container">
+
+                        <div class="row">
+                        @if (Model.TeamsModelList != null)
+                        {
+                            @foreach (var item in Model.TeamsModelList)
+                            {
+                                        <div class="k-card">
+                                            <div class="k-card-header">
+                                                <h5 class="k-card-title">@item.Name</h5>
+                                                <h6 class="k-card-title">@item.Country</h6>
+                                            </div>
+                                            <img class="k-card-image" alt="Telerik UI for ASP.NET Core Cards Rome" src=@item.Logo />
+                                            <div class="k-card-body">
+                                                <p>Founded: @item.Founded</p>
+                                            </div>
+                                        </div>
+                            }
+                        }
+                        
+                        </div>
+                    </div>
+                </div>
+            </text>);
+                tabstrip.Add().Text("Stadiums")
+            .Content(@<text>
+                <h5>This is the stadiums tab</h5>
+                <div id="example">
+                        <div class="cards-container">
+
+                            <div class="row">
+                                @if (Model.VenueModelList != null)
+                                    {
+                                        @foreach (var item in Model.VenueModelList)
+                                        {
+                                            <div class="k-card">
+                                                <div class="k-card-header">
+                                                    <h5 class="k-card-title">@item.Name</h5>
+                                                    <h6 class="k-card-title">@item.City</h6>
+                                                </div>
+                                                <img class="k-card-image" alt="Telerik UI for ASP.NET Core Cards Rome" src=@item.Image />
+                                                <div class="k-card-body">
+                                                    <p>Address: @item.Address</p>
+                                                    <p>Capacity: @item.Capacity</p>
+                                                    <p>Surface: @item.Surface</p>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+            </text>);
+            })
+        )
+</div>
+
+<style>
+
+    #tabstrip h2 {
+        font-weight: lighter;
+        font-size: 5em;
+        line-height: 1;
+        padding: 0 0 0 30px;
+        margin: 0;
+    }
+
+        #tabstrip h2 span {
+            background: none;
+            padding-left: 5px;
+            font-size: .3em;
+            vertical-align: top;
+        }
+
+    #tabstrip p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .k-card {
+        width: 285px;
+        margin: 5%;
+    }
+
+    .k-card-footer {
+        text-align: center;
+    }
+</style>
