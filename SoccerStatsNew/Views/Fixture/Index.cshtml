@@ -1,0 +1,48 @@
+﻿@model List<SoccerStatsNew.Models.FixturePageData>
+
+@{
+    var line = string.Empty;
+    using (StreamReader sr = new StreamReader("Views/Shared/_grid.cshtml"))
+    {
+        line = sr.ReadToEnd();
+    }
+}
+
+<h5>This is the fixture controller</h5>
+
+@(Html.Kendo().Grid(Model)
+                .Name("Grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(p => p.Date)
+                           .Title("Fixture date")
+                           .Width(80);
+
+                    columns.Bound(p => p.League)
+                           .Title("League")
+                           .Width(130);
+
+                    columns.Bound(p => p.HomeTeam)
+                           .Title("Home Team")
+                           .Width(130);
+
+                    columns.Bound(p => p.AwayTeam)
+                           .Title("Away Team")
+                           .Width(130);
+
+                })
+                .BindTo(Model)
+                .Pageable()
+                .Sortable()
+                .Scrollable(scr => scr.Height(430))
+                .Selectable()
+                .Events(events =>
+                {
+                    events.Change("OnGridSelect");
+                })
+             
+)
+
+@section scripts {
+    <script src="~/js/fixtures.js"></script>
+}
