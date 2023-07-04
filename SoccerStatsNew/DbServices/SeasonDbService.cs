@@ -56,10 +56,8 @@ namespace SoccerStatsNew.DbServices
                     }
                 }
             }
-
             return team;
         }
-
         public async Task<ICollection<SeasonModel>?> GetLeagueAvailableSeasons(int id)
         {
             return _dbContext.SeasonModel != null
