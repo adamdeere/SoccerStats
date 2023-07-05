@@ -1,0 +1,253 @@
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionComparison
+
+@{
+}
+
+<script id="tmplChart" type="text/html">
+    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
+                   <chart-title text="Att"></chart-title>
+
+                   <series-defaults type="ChartSeriesType.Pie"
+                                    gap=0.06>
+
+                       <stack enabled=true />
+                   </series-defaults>
+
+                   <series>
+                       <series-item data="Model.Att.Home"
+                                    name="AttHome"
+                                    color=\\#CC3458
+                                    opacity="0.7">
+
+                       </series-item>
+                       <series-item data="Model.Att.Away"
+                                    name="AttAway"
+                                    color=\\#35C473
+                                    opacity="0.7">
+
+                       </series-item>
+                   </series>
+                   <chart-legend position="ChartLegendPosition.Bottom">
+
+                   </chart-legend>
+               </kendo-chart>
+</script>
+
+<script id="tmplChartDef" type="text/html">
+    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
+                   <chart-title text="Att"></chart-title>
+
+                   <series-defaults type="ChartSeriesType.Pie"
+                                    gap=0.06>
+
+                       <stack enabled=true />
+                   </series-defaults>
+
+                   <series>
+                       <series-item data="Model.Def.Home"
+                                    name="AttHome"
+                                    color=\\#CC3458
+                                    opacity="0.7">
+
+                       </series-item>
+                       <series-item data="Model.Def.Away"
+                                    name="AttAway"
+                                    color=\\#35C473
+                                    opacity="0.7">
+
+                       </series-item>
+                   </series>
+                   <chart-legend position="ChartLegendPosition.Bottom">
+
+                   </chart-legend>
+               </kendo-chart>
+</script>
+<script id="tmplChartForm" type="text/html">
+    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
+                   <chart-title text="Att"></chart-title>
+
+                   <series-defaults type="ChartSeriesType.Pie"
+                                    gap=0.06>
+
+                       <stack enabled=true />
+                   </series-defaults>
+
+                   <series>
+                       <series-item data="Model.Form.Home"
+                                    name="AttHome"
+                                    color=\\#CC3458
+                                    opacity="0.7">
+
+                       </series-item>
+                       <series-item data="Model.Form.Away"
+                                    name="AttAway"
+                                    color=\\#35C473
+                                    opacity="0.7">
+
+                       </series-item>
+                   </series>
+                   <chart-legend position="ChartLegendPosition.Bottom">
+
+                   </chart-legend>
+               </kendo-chart>
+</script>
+<script id="tmplChartGoals" type="text/html">
+    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
+                   <chart-title text="Att"></chart-title>
+
+                   <series-defaults type="ChartSeriesType.Pie"
+                                    gap=0.06>
+
+                       <stack enabled=true />
+                   </series-defaults>
+
+                   <series>
+                       <series-item data="Model.Goals.Home"
+                                    name="AttHome"
+                                    color=\\#CC3458
+                                    opacity="0.7">
+
+                       </series-item>
+                       <series-item data="Model.Goals.Away"
+                                    name="AttAway"
+                                    color=\\#35C473
+                                    opacity="0.7">
+
+                       </series-item>
+                   </series>
+                   <chart-legend position="ChartLegendPosition.Bottom">
+
+                   </chart-legend>
+               </kendo-chart>
+</script>
+<script id="tmplChartH2H" type="text/html">
+    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
+                   <chart-title text="Att"></chart-title>
+
+                   <series-defaults type="ChartSeriesType.Pie"
+                                    gap=0.06>
+
+                       <stack enabled=true />
+                   </series-defaults>
+
+                   <series>
+                       <series-item data="Model.HeadToHead.Home"
+                                    name="AttHome"
+                                    color=\\#CC3458
+                                    opacity="0.7">
+
+                       </series-item>
+                       <series-item data="Model.HeadToHead.Away"
+                                    name="AttAway"
+                                    color=\\#35C473
+                                    opacity="0.7">
+
+                       </series-item>
+                   </series>
+                   <chart-legend position="ChartLegendPosition.Bottom">
+
+                   </chart-legend>
+               </kendo-chart>
+</script>
+<script id="tmplChartPDis" type="text/html">
+    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
+                   <chart-title text="Att"></chart-title>
+
+                   <series-defaults type="ChartSeriesType.Pie"
+                                    gap=0.06>
+
+                       <stack enabled=true />
+                   </series-defaults>
+
+                   <series>
+                       <series-item data="Model.PoissonDistribution.Home"
+                                    name="AttHome"
+                                    color=\\#CC3458
+                                    opacity="0.7">
+
+                       </series-item>
+                       <series-item data="Model.PoissonDistribution.Away"
+                                    name="AttAway"
+                                    color=\\#35C473
+                                    opacity="0.7">
+
+                       </series-item>
+                   </series>
+                   <chart-legend position="ChartLegendPosition.Bottom">
+
+                   </chart-legend>
+               </kendo-chart>
+</script>
+<script id="tmplChartTotal" type="text/html">
+    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
+                   <chart-title text="Att"></chart-title>
+
+                   <series-defaults type="ChartSeriesType.Pie"
+                                    gap=0.06>
+
+                       <stack enabled=true />
+                   </series-defaults>
+
+                   <series>
+                       <series-item data="Model.Total.Home"
+                                    name="AttHome"
+                                    color=\\#CC3458
+                                    opacity="0.7">
+
+                       </series-item>
+                       <series-item data="Model.Total.Away"
+                                    name="AttAway"
+                                    color=\\#35C473
+                                    opacity="0.7">
+
+                       </series-item>
+                   </series>
+                   <chart-legend position="ChartLegendPosition.Bottom">
+
+                   </chart-legend>
+               </kendo-chart>
+</script>
+
+@(Html.Kendo().TileLayout()
+                  .Name("PredictionTileLayout")
+                  .Columns(4)
+                  .Containers(c =>
+                  {
+                      c.Add().Header(h => h.Text("Att"))
+                             .BodyTemplateId("tmplChart")
+                             .ColSpan(1)
+                             .RowSpan(1);
+
+                      c.Add().Header(h => h.Text("Def"))
+                      .BodyTemplateId("tmplChartDef")
+                      .ColSpan(1)
+                      .RowSpan(1);
+
+                      c.Add().Header(h => h.Text("Form"))
+                             .BodyTemplateId("tmplChartForm")
+                             .ColSpan(1)
+                             .RowSpan(1);
+
+                      c.Add().Header(h => h.Text("Goals"))
+                      .BodyTemplateId("tmplChartGoals")
+                      .ColSpan(1)
+                      .RowSpan(1);
+
+                      c.Add().Header(h => h.Text("H2h"))
+                     .BodyTemplateId("tmplChartH2H")
+                     .ColSpan(1)
+                     .RowSpan(1);
+
+                      c.Add().Header(h => h.Text("poissonDis"))
+                             .BodyTemplateId("tmplChartPDis")
+                             .ColSpan(1)
+                             .RowSpan(1);
+
+                      c.Add().Header(h => h.Text("Total"))
+                      .BodyTemplateId("tmplChartTotal")
+                      .ColSpan(1)
+                      .RowSpan(1);
+                  })
+                  .Reorderable(true)
+                  .Resizable(true)
+                 )

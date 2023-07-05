@@ -1,0 +1,42 @@
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
+
+@{
+}
+
+<h5>These are the predictions</h5>
+
+<kendo-tabstrip name="tabstrip">
+
+    <items>
+        <tabstrip-item text="Comparison">
+            <content>
+                <partial name="_Comparison" model="@Model.Comparison" />
+            </content>
+        </tabstrip-item>
+        <tabstrip-item text="Head to Head">
+            <content>
+
+            </content>
+        </tabstrip-item>
+        <tabstrip-item text="League">
+            <content>
+                
+            </content>
+        </tabstrip-item>
+
+        <tabstrip-item text="Predictions">
+            <content>
+
+            </content>
+        </tabstrip-item>
+
+        <tabstrip-item text="Teams">
+            <content>
+
+            </content>
+        </tabstrip-item>
+    </items>
+
+</kendo-tabstrip>
+
+

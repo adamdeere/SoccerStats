@@ -15,12 +15,8 @@ namespace SoccerStatsNew.Controllers
         {
                 _Service = service;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            string urlParams = "predictions?fixture=881252";
-
-            var predictions = await _Service.GetObjectRequest<PredictionRoot>(urlParams);
-
             var fixture = JsonHelper.GetObjectFromJsonFile<FixtureRoot>("Test/individualTeamFixtures.json");
             List<FixturePageData> list = new();
             if (fixture != null)
