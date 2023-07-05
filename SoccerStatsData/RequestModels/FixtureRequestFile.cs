@@ -44,7 +44,7 @@ namespace SoccerStatsData.RequestModels
         public int Timestamp { get; set; }
 
         [JsonProperty("periods")]
-        public Periods Periods { get; set; }
+        public PredictionPeriods Periods { get; set; }
 
         [JsonProperty("venue")]
         public Venue Venue { get; set; }
@@ -62,14 +62,7 @@ namespace SoccerStatsData.RequestModels
         public object Away { get; set; }
     }
 
-    public class Goals
-    {
-        [JsonProperty("home")]
-        public object Home { get; set; }
-
-        [JsonProperty("away")]
-        public object Away { get; set; }
-    }
+    
 
     public class Halftime
     {
@@ -128,7 +121,7 @@ namespace SoccerStatsData.RequestModels
         public object Away { get; set; }
     }
 
-    public class Periods
+    public class PredictionPeriods
     {
         [JsonProperty("first")]
         public object First { get; set; }
@@ -153,6 +146,15 @@ namespace SoccerStatsData.RequestModels
 
         [JsonProperty("score")]
         public Score Score { get; set; }
+    }
+
+    public class Goals
+    {
+        [JsonProperty("home")]
+        public int? Home { get; set; }
+
+        [JsonProperty("away")]
+        public int? Away { get; set; }
     }
 
     public class FixtureRoot
