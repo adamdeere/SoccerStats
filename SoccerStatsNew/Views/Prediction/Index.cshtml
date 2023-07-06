@@ -4,104 +4,18 @@
 }
 
 <h5>These are the predictions</h5>
-
-
-<div id="example">
-    <div class="cards-container">
-        <div class="k-card-group">
-            <div class="k-card">
-
-                @if (Model.Teams.Home != null)
-                {
-                    <div class="k-card-header">
-                        <h5 class="k-card-title">Home team</h5>
-                        <h6 class="k-card-subtitle">@Model.Teams.Home.Name</h6>
-                    </div>
-                    <img class="k-card-image" alt="Image home" src="@Model.Teams.Home.Logo" />
-                    <div class="k-card-body">
-                        <p>Form: @Model.Teams.Home.League.Form</p>
-                    </div>
-                    <div class="k-card-actions k-card-actions-stretched">
-                        <span class="k-card-action"><span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Map</span></span>
-                        <span class="k-card-action"><span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Weather</span></span>
-                    </div>
-                }
-                
-            </div>
-
-            <div class="k-card">
-                @if (Model.Teams.Away != null)
-                {
-                    <div class="k-card-header">
-                        <h5 class="k-card-title">Away team</h5>
-                        <h6 class="k-card-subtitle">@Model.Teams.Away.Name</h6>
-                    </div>
-                    <img class="k-card-image" alt="Image for away team" src="@Model.Teams.Away.Logo" />
-                    <div class="k-card-body">
-                        <p>Form: @Model.Teams.Away.League.Form</p>
-                      
-                    </div>
-                    <div class="k-card-actions">
-                        <span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Map</span>
-                        <span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Weather</span>
-                    </div>
-                }
-                
-            </div>
-
-            <div class="k-card">
-                <div class="k-card-header">
-                    <h5 class="k-card-title">San Francisco</h5>
-                    <h6 class="k-card-subtitle">City in California</h6>
-                </div>
-                <img class="k-card-image" alt="Image for Venue" src="@Model.Teams.Home.Logo" />
-                <div class="k-card-body">
-                </div>
-                <div class="k-card-actions k-card-actions-vertical">
-                    <span class="k-card-action"><span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Map</span></span>
-                    <span class="k-card-action"><span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Weather</span></span>
-                </div>
-             
-            </div>
-        </div>
-        
-    </div>
-</div>
-
-
 <kendo-tabstrip name="tabstrip">
 
     <items>
         <tabstrip-item text="Comparison">
             <content>
-                <partial name="_Comparison" model="@Model.Comparison" />
-            </content>
-        </tabstrip-item>
-        <tabstrip-item text="Head to Head">
-            <content>
-
-            </content>
-        </tabstrip-item>
-        <tabstrip-item text="League">
-            <content>
-                
-            </content>
-        </tabstrip-item>
-
-        <tabstrip-item text="Predictions">
-            <content>
-
-            </content>
-        </tabstrip-item>
-
-        <tabstrip-item text="Teams">
-            <content>
-
+                <partial name="_Comparison" model="@Model" />
             </content>
         </tabstrip-item>
     </items>
 
 </kendo-tabstrip>
+
 
 <style>
 
@@ -119,6 +33,15 @@
     .k-card-footer {
         text-align: center;
     }
+
+    #tabstrip-parent,
+    #tabstrip {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border-width: 0;
+    }
+
 </style>
 
 

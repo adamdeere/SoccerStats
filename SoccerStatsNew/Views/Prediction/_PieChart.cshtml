@@ -1,0 +1,22 @@
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.ComparisonStats
+
+@{
+    var chartLabelPosition = ChartSeriesLabelsPosition.InsideEnd;
+    var homeColour = "\\#E51AD6";
+    var awayColour = "\\#1AE529";
+}
+
+<kendo-chart name="@Model" is-in-client-template="true">
+    <chart-legend visible="true"></chart-legend>
+    <series-defaults type="ChartSeriesType.Pie"></series-defaults>
+
+    <series>
+        <series-item start-angle="150" name="Attack" data='new dynamic[] {
+                new {category="Home",value=Model.Home,color=homeColour},
+                new {category="Away",value=Model.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@chartLabelPosition" background="transparent"></labels>
+        </series-item>
+    </series>
+
+</kendo-chart>

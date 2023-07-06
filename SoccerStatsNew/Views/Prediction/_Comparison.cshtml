@@ -1,27 +1,16 @@
-﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionComparison
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
 @{
-    var lol = ChartSeriesLabelsPosition.InsideEnd;
+    var labelPosition = ChartSeriesLabelsPosition.InsideEnd;
     var homeColour = "\\#E51AD6";
     var awayColour = "\\#1AE529";
 }
 
 <script id="tmplChartAtt" type="text/html">
-    <kendo-chart name="chartAtt" is-in-client-template="true">
-          <chart-title text="Att"></chart-title>
-          <chart-legend visible="true"></chart-legend>
-          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-           <series>
-            <series-item start-angle="150" name="Attack" data='new dynamic[] {
-                new {category="Home",value=Model.Att.Home,color=homeColour},
-                new {category="Away",value=Model.Att.Away,color=awayColour},
-            }'>
-            <labels visible="true" position="@lol" background="transparent"></labels>
-            </series-item>
-        </series>
-
-      </kendo-chart>
+     <partial name="_TeamLogos" model="@Model" />
+     <partial name="_PieChart" model="@Model.Comparison.Att" />
+   
 </script>
 
 <script id="tmplChartDef" type="text/html">
@@ -32,10 +21,10 @@
 
            <series>
             <series-item start-angle="150" name="Defence" data='new dynamic[] {
-                new {category="Home",value=Model.Def.Home,color=homeColour},
-                new {category="Away",value=Model.Def.Away,color=awayColour},
+                new {category="Home",value=Model.Comparison.Def.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Def.Away,color=awayColour},
             }'>
-            <labels visible="true" position="@lol" background="transparent"></labels>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
             </series-item>
         </series>
 
@@ -50,10 +39,10 @@
 
            <series>
             <series-item start-angle="150" name="Form" data='new dynamic[] {
-                new {category="Home",value=Model.Form.Home,color=homeColour},
-                new {category="Away",value=Model.Form.Away,color=awayColour},
+                new {category="Home",value=Model.Comparison.Form.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Form.Away,color=awayColour},
             }'>
-            <labels visible="true" position="@lol" background="transparent"></labels>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
             </series-item>
         </series>
 
@@ -68,10 +57,10 @@
 
            <series>
             <series-item start-angle="150" name="Goals" data='new dynamic[] {
-                new {category="Home",value=Model.Goals.Home,color=homeColour},
-                new {category="Away",value=Model.Goals.Away,color=awayColour},
+                new {category="Home",value=Model.Comparison.Goals.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Goals.Away,color=awayColour},
             }'>
-            <labels visible="true" position="@lol" background="transparent"></labels>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
             </series-item>
         </series>
 
@@ -86,10 +75,10 @@
 
            <series>
             <series-item start-angle="150" name="H2H" data='new dynamic[] {
-                new {category="Home",value=Model.HeadToHead.Home,color=homeColour},
-                new {category="Away",value=Model.HeadToHead.Away,color=awayColour},
+                new {category="Home",value=Model.Comparison.HeadToHead.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.HeadToHead.Away,color=awayColour},
             }'>
-            <labels visible="true" position="@lol" background="transparent"></labels>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
             </series-item>
         </series>
 
@@ -103,11 +92,11 @@
           <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
            <series>
-            <series-item start-angle="150" name="PosDis" data='new dynamic[] {
-                new {category="Home",value=Model.PoissonDistribution.Home,color=homeColour},
-                new {category="Away",value=Model.PoissonDistribution.Away,color=awayColour},
+            <series-item start-angle="150" name="Poisson Distribution" data='new dynamic[] {
+                new {category="Home",value=Model.Comparison.PoissonDistribution.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.PoissonDistribution.Away,color=awayColour},
             }'>
-            <labels visible="true" position="@lol" background="transparent"></labels>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
             </series-item>
         </series>
 
@@ -122,10 +111,10 @@
 
            <series>
             <series-item start-angle="150" name="Total" data='new dynamic[] {
-                new {category="Home",value=Model.Total.Home,color=homeColour},
-                new {category="Away",value=Model.Total.Away,color=awayColour},
+                new {category="Home",value=Model.Comparison.Total.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Total.Away,color=awayColour},
             }'>
-            <labels visible="true" position="@lol" background="transparent"></labels>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
             </series-item>
         </series>
 
@@ -138,7 +127,7 @@
                   .Containers(c =>
                   {
                       c.Add().Header(h => h.Text("Attack"))
-                             .ColSpan(1)
+                             .ColSpan(2)
                              .RowSpan(1)
                              .BodyTemplateId("tmplChartAtt");
 
@@ -151,8 +140,6 @@
                       .ColSpan(1)
                       .RowSpan(1)
                       .BodyTemplateId("tmplChartForm");
-
-
                      
 
                       c.Add().Header(h => h.Text("H2H"))
