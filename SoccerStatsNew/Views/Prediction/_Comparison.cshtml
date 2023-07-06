@@ -1,253 +1,177 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionComparison
 
 @{
+    var lol = ChartSeriesLabelsPosition.InsideEnd;
+    var homeColour = "\\#E51AD6";
+    var awayColour = "\\#1AE529";
 }
 
-<script id="tmplChart" type="text/html">
-    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
-                   <chart-title text="Att"></chart-title>
+<script id="tmplChartAtt" type="text/html">
+    <kendo-chart name="chartAtt" is-in-client-template="true">
+          <chart-title text="Att"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-                   <series-defaults type="ChartSeriesType.Pie"
-                                    gap=0.06>
+           <series>
+            <series-item start-angle="150" name="Attack" data='new dynamic[] {
+                new {category="Home",value=Model.Att.Home,color=homeColour},
+                new {category="Away",value=Model.Att.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@lol" background="transparent"></labels>
+            </series-item>
+        </series>
 
-                       <stack enabled=true />
-                   </series-defaults>
-
-                   <series>
-                       <series-item data="Model.Att.Home"
-                                    name="AttHome"
-                                    color=\\#CC3458
-                                    opacity="0.7">
-
-                       </series-item>
-                       <series-item data="Model.Att.Away"
-                                    name="AttAway"
-                                    color=\\#35C473
-                                    opacity="0.7">
-
-                       </series-item>
-                   </series>
-                   <chart-legend position="ChartLegendPosition.Bottom">
-
-                   </chart-legend>
-               </kendo-chart>
+      </kendo-chart>
 </script>
 
 <script id="tmplChartDef" type="text/html">
-    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
-                   <chart-title text="Att"></chart-title>
+    <kendo-chart name="chartDef" is-in-client-template="true">
+          <chart-title text="Def"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-                   <series-defaults type="ChartSeriesType.Pie"
-                                    gap=0.06>
+           <series>
+            <series-item start-angle="150" name="Defence" data='new dynamic[] {
+                new {category="Home",value=Model.Def.Home,color=homeColour},
+                new {category="Away",value=Model.Def.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@lol" background="transparent"></labels>
+            </series-item>
+        </series>
 
-                       <stack enabled=true />
-                   </series-defaults>
-
-                   <series>
-                       <series-item data="Model.Def.Home"
-                                    name="AttHome"
-                                    color=\\#CC3458
-                                    opacity="0.7">
-
-                       </series-item>
-                       <series-item data="Model.Def.Away"
-                                    name="AttAway"
-                                    color=\\#35C473
-                                    opacity="0.7">
-
-                       </series-item>
-                   </series>
-                   <chart-legend position="ChartLegendPosition.Bottom">
-
-                   </chart-legend>
-               </kendo-chart>
+      </kendo-chart>
 </script>
+
 <script id="tmplChartForm" type="text/html">
-    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
-                   <chart-title text="Att"></chart-title>
+    <kendo-chart name="chartForm" is-in-client-template="true">
+          <chart-title text="Form"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-                   <series-defaults type="ChartSeriesType.Pie"
-                                    gap=0.06>
+           <series>
+            <series-item start-angle="150" name="Form" data='new dynamic[] {
+                new {category="Home",value=Model.Form.Home,color=homeColour},
+                new {category="Away",value=Model.Form.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@lol" background="transparent"></labels>
+            </series-item>
+        </series>
 
-                       <stack enabled=true />
-                   </series-defaults>
-
-                   <series>
-                       <series-item data="Model.Form.Home"
-                                    name="AttHome"
-                                    color=\\#CC3458
-                                    opacity="0.7">
-
-                       </series-item>
-                       <series-item data="Model.Form.Away"
-                                    name="AttAway"
-                                    color=\\#35C473
-                                    opacity="0.7">
-
-                       </series-item>
-                   </series>
-                   <chart-legend position="ChartLegendPosition.Bottom">
-
-                   </chart-legend>
-               </kendo-chart>
+      </kendo-chart>
 </script>
+
 <script id="tmplChartGoals" type="text/html">
-    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
-                   <chart-title text="Att"></chart-title>
+    <kendo-chart name="chartGoals" is-in-client-template="true">
+          <chart-title text="Goals"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-                   <series-defaults type="ChartSeriesType.Pie"
-                                    gap=0.06>
+           <series>
+            <series-item start-angle="150" name="Goals" data='new dynamic[] {
+                new {category="Home",value=Model.Goals.Home,color=homeColour},
+                new {category="Away",value=Model.Goals.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@lol" background="transparent"></labels>
+            </series-item>
+        </series>
 
-                       <stack enabled=true />
-                   </series-defaults>
-
-                   <series>
-                       <series-item data="Model.Goals.Home"
-                                    name="AttHome"
-                                    color=\\#CC3458
-                                    opacity="0.7">
-
-                       </series-item>
-                       <series-item data="Model.Goals.Away"
-                                    name="AttAway"
-                                    color=\\#35C473
-                                    opacity="0.7">
-
-                       </series-item>
-                   </series>
-                   <chart-legend position="ChartLegendPosition.Bottom">
-
-                   </chart-legend>
-               </kendo-chart>
+      </kendo-chart>
 </script>
+
 <script id="tmplChartH2H" type="text/html">
-    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
-                   <chart-title text="Att"></chart-title>
+    <kendo-chart name="chartH2H" is-in-client-template="true">
+          <chart-title text="H2H"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-                   <series-defaults type="ChartSeriesType.Pie"
-                                    gap=0.06>
+           <series>
+            <series-item start-angle="150" name="H2H" data='new dynamic[] {
+                new {category="Home",value=Model.HeadToHead.Home,color=homeColour},
+                new {category="Away",value=Model.HeadToHead.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@lol" background="transparent"></labels>
+            </series-item>
+        </series>
 
-                       <stack enabled=true />
-                   </series-defaults>
-
-                   <series>
-                       <series-item data="Model.HeadToHead.Home"
-                                    name="AttHome"
-                                    color=\\#CC3458
-                                    opacity="0.7">
-
-                       </series-item>
-                       <series-item data="Model.HeadToHead.Away"
-                                    name="AttAway"
-                                    color=\\#35C473
-                                    opacity="0.7">
-
-                       </series-item>
-                   </series>
-                   <chart-legend position="ChartLegendPosition.Bottom">
-
-                   </chart-legend>
-               </kendo-chart>
+      </kendo-chart>
 </script>
-<script id="tmplChartPDis" type="text/html">
-    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
-                   <chart-title text="Att"></chart-title>
 
-                   <series-defaults type="ChartSeriesType.Pie"
-                                    gap=0.06>
+<script id="tmplChartPosDis" type="text/html">
+    <kendo-chart name="chartPosDis" is-in-client-template="true">
+          <chart-title text="PosDis"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-                       <stack enabled=true />
-                   </series-defaults>
+           <series>
+            <series-item start-angle="150" name="PosDis" data='new dynamic[] {
+                new {category="Home",value=Model.PoissonDistribution.Home,color=homeColour},
+                new {category="Away",value=Model.PoissonDistribution.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@lol" background="transparent"></labels>
+            </series-item>
+        </series>
 
-                   <series>
-                       <series-item data="Model.PoissonDistribution.Home"
-                                    name="AttHome"
-                                    color=\\#CC3458
-                                    opacity="0.7">
-
-                       </series-item>
-                       <series-item data="Model.PoissonDistribution.Away"
-                                    name="AttAway"
-                                    color=\\#35C473
-                                    opacity="0.7">
-
-                       </series-item>
-                   </series>
-                   <chart-legend position="ChartLegendPosition.Bottom">
-
-                   </chart-legend>
-               </kendo-chart>
+      </kendo-chart>
 </script>
+
 <script id="tmplChartTotal" type="text/html">
-    <kendo-chart name="chart" theme="sass" is-in-client-template="true">
-                   <chart-title text="Att"></chart-title>
+    <kendo-chart name="chartTotal" is-in-client-template="true">
+          <chart-title text="Total"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
 
-                   <series-defaults type="ChartSeriesType.Pie"
-                                    gap=0.06>
+           <series>
+            <series-item start-angle="150" name="Total" data='new dynamic[] {
+                new {category="Home",value=Model.Total.Home,color=homeColour},
+                new {category="Away",value=Model.Total.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@lol" background="transparent"></labels>
+            </series-item>
+        </series>
 
-                       <stack enabled=true />
-                   </series-defaults>
-
-                   <series>
-                       <series-item data="Model.Total.Home"
-                                    name="AttHome"
-                                    color=\\#CC3458
-                                    opacity="0.7">
-
-                       </series-item>
-                       <series-item data="Model.Total.Away"
-                                    name="AttAway"
-                                    color=\\#35C473
-                                    opacity="0.7">
-
-                       </series-item>
-                   </series>
-                   <chart-legend position="ChartLegendPosition.Bottom">
-
-                   </chart-legend>
-               </kendo-chart>
+      </kendo-chart>
 </script>
 
 @(Html.Kendo().TileLayout()
                   .Name("PredictionTileLayout")
-                  .Columns(4)
+                  .Columns(3)
                   .Containers(c =>
                   {
-                      c.Add().Header(h => h.Text("Att"))
-                             .BodyTemplateId("tmplChart")
+                      c.Add().Header(h => h.Text("Attack"))
                              .ColSpan(1)
-                             .RowSpan(1);
+                             .RowSpan(1)
+                             .BodyTemplateId("tmplChartAtt");
 
-                      c.Add().Header(h => h.Text("Def"))
-                      .BodyTemplateId("tmplChartDef")
+                      c.Add().Header(h => h.Text("Defence"))
                       .ColSpan(1)
-                      .RowSpan(1);
+                      .RowSpan(1)
+                      .BodyTemplateId("tmplChartDef");
 
                       c.Add().Header(h => h.Text("Form"))
-                             .BodyTemplateId("tmplChartForm")
-                             .ColSpan(1)
-                             .RowSpan(1);
-
-                      c.Add().Header(h => h.Text("Goals"))
-                      .BodyTemplateId("tmplChartGoals")
                       .ColSpan(1)
-                      .RowSpan(1);
+                      .RowSpan(1)
+                      .BodyTemplateId("tmplChartForm");
 
-                      c.Add().Header(h => h.Text("H2h"))
-                     .BodyTemplateId("tmplChartH2H")
+
+                     
+
+                      c.Add().Header(h => h.Text("H2H"))
                      .ColSpan(1)
-                     .RowSpan(1);
+                     .RowSpan(1)
+                     .BodyTemplateId("tmplChartH2H");
 
-                      c.Add().Header(h => h.Text("poissonDis"))
-                             .BodyTemplateId("tmplChartPDis")
-                             .ColSpan(1)
-                             .RowSpan(1);
+                      c.Add().Header(h => h.Text("Poisson Distribution"))
+                      .ColSpan(1)
+                      .RowSpan(1)
+                      .BodyTemplateId("tmplChartPosDis");
 
                       c.Add().Header(h => h.Text("Total"))
-                      .BodyTemplateId("tmplChartTotal")
-                      .ColSpan(1)
-                      .RowSpan(1);
+                     .ColSpan(1)
+                     .RowSpan(1)
+                     .BodyTemplateId("tmplChartTotal");
+
                   })
                   .Reorderable(true)
                   .Resizable(true)
                  )
+
