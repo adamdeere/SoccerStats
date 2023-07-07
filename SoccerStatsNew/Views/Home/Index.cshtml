@@ -5,11 +5,12 @@
         <label for="countries">Choose shipping countries:</label>
         @(Html.Kendo().AutoComplete()
                       .Name("countries")
+                        .DataTextField("Name")
                       .FooterTemplate("Total <strong>#: instance.dataSource.total() #</strong> items found")
                       .Template("<div class=\"container\"> " 
-                              + "<div class=\"image\"> "
-                              + " <img src=\"#:data.FlagURL#\">" 
-                              + " </div>  <span style=\"margin-left: 5px\">#:data.Name#</span> </div>")
+                              + "<div> "
+                              + " <img src=\"#:data.FlagURL#\">"
+                              + " </div>  <span class=\"k-state-default\"><h3>#: data.Name #</h3><p>#: data.CountryCode #</p></span> </div>")
                       .Filter("contains")
                       .Placeholder("Search for a country...")
                       .DataSource(source =>
@@ -29,7 +30,7 @@
 </div>
 
 <div id="countries">
-    <div class="row cards-container">
+    <div class="row container">
 
         @if (Model != null)
         {

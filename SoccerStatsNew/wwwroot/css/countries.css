@@ -1,8 +1,4 @@
-﻿.cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+﻿
 
 .container {
     display: grid;
@@ -20,16 +16,8 @@ img {
     font-size: 5px;
 }
 
-#countries {
-    display: flex;
-    justify-content: center;
-}
-
 .k-card {
     width: 285px;
     margin: 5%;
 }
 
-.k-card-footer {
-    text-align: center;
-}
