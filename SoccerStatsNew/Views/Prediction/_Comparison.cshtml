@@ -1,0 +1,164 @@
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
+
+@{
+    var labelPosition = ChartSeriesLabelsPosition.InsideEnd;
+    var homeColour = "\\#E51AD6";
+    var awayColour = "\\#1AE529";
+}
+
+<script id="tmplChartAtt" type="text/html">
+
+     <partial name="_TeamLogos" model="@Model" />
+     <partial name="_PieChart" model="@Model.Comparison.Att" />
+   
+</script>
+
+<script id="tmplChartDef" type="text/html">
+    <kendo-chart name="chartDef" is-in-client-template="true">
+          <chart-title text="Def"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
+
+           <series>
+            <series-item start-angle="150" name="Defence" data='new dynamic[] {
+                new {category="Home",value=Model.Comparison.Def.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Def.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
+            </series-item>
+        </series>
+
+      </kendo-chart>
+</script>
+
+<script id="tmplChartForm" type="text/html">
+    <kendo-chart name="chartForm" is-in-client-template="true">
+          <chart-title text="Form"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
+
+           <series>
+            <series-item start-angle="150" name="Form" data='new dynamic[] {
+                new {category="Home",value=Model.Comparison.Form.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Form.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
+            </series-item>
+        </series>
+
+      </kendo-chart>
+</script>
+
+<script id="tmplChartGoals" type="text/html">
+    <kendo-chart name="chartGoals" is-in-client-template="true">
+          <chart-title text="Goals"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
+
+           <series>
+            <series-item start-angle="150" name="Goals" data='new dynamic[] {
+                new {category="Home",value=Model.Comparison.Goals.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Goals.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
+            </series-item>
+        </series>
+
+      </kendo-chart>
+</script>
+
+<script id="tmplChartH2H" type="text/html">
+    <kendo-chart name="chartH2H" is-in-client-template="true">
+          <chart-title text="H2H"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
+
+           <series>
+            <series-item start-angle="150" name="H2H" data='new dynamic[] {
+                new {category="Home",value=Model.Comparison.HeadToHead.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.HeadToHead.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
+            </series-item>
+        </series>
+
+      </kendo-chart>
+</script>
+
+<script id="tmplChartPosDis" type="text/html">
+    <kendo-chart name="chartPosDis" is-in-client-template="true">
+          <chart-title text="PosDis"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
+
+           <series>
+            <series-item start-angle="150" name="Poisson Distribution" data='new dynamic[] {
+                new {category="Home",value=Model.Comparison.PoissonDistribution.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.PoissonDistribution.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
+            </series-item>
+        </series>
+
+      </kendo-chart>
+</script>
+
+<script id="tmplChartTotal" type="text/html">
+    <kendo-chart name="chartTotal" is-in-client-template="true">
+          <chart-title text="Total"></chart-title>
+          <chart-legend visible="true"></chart-legend>
+          <series-defaults type="ChartSeriesType.Pie"></series-defaults>
+
+           <series>
+            <series-item start-angle="150" name="Total" data='new dynamic[] {
+                new {category="Home",value=Model.Comparison.Total.Home,color=homeColour},
+                new {category="Away",value=Model.Comparison.Total.Away,color=awayColour},
+            }'>
+            <labels visible="true" position="@labelPosition" background="transparent"></labels>
+            </series-item>
+        </series>
+
+      </kendo-chart>
+</script>
+
+@(Html.Kendo().TileLayout()
+                  .Name("PredictionTileLayout")
+                  .Columns(3)
+                  .Containers(c =>
+                  {
+                      c.Add().Header(h => h.Text("Attack"))
+                             .ColSpan(2)
+                             .RowSpan(1)
+                             .BodyTemplateId("tmplChartAtt");
+
+                      c.Add().Header(h => h.Text("Defence"))
+                      .ColSpan(1)
+                      .RowSpan(1)
+                      .BodyTemplateId("tmplChartDef");
+
+                      c.Add().Header(h => h.Text("Form"))
+                      .ColSpan(1)
+                      .RowSpan(1)
+                      .BodyTemplateId("tmplChartForm");
+                     
+
+                      c.Add().Header(h => h.Text("H2H"))
+                     .ColSpan(1)
+                     .RowSpan(1)
+                     .BodyTemplateId("tmplChartH2H");
+
+                      c.Add().Header(h => h.Text("Poisson Distribution"))
+                      .ColSpan(1)
+                      .RowSpan(1)
+                      .BodyTemplateId("tmplChartPosDis");
+
+                      c.Add().Header(h => h.Text("Total"))
+                     .ColSpan(1)
+                     .RowSpan(1)
+                     .BodyTemplateId("tmplChartTotal");
+
+                  })
+                  .Reorderable(true)
+                  .Resizable(true)
+                 )
+

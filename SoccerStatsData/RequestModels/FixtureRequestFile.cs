@@ -16,7 +16,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("winner")]
         public object Winner { get; set; }
     }
-
     public class Extratime
     {
         [JsonProperty("home")]
@@ -25,7 +24,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("away")]
         public object Away { get; set; }
     }
-
     public class Fixture
     {
         [JsonProperty("id")]
@@ -52,7 +50,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("status")]
         public Status Status { get; set; }
     }
-
     public class Fulltime
     {
         [JsonProperty("home")]
@@ -61,9 +58,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("away")]
         public object Away { get; set; }
     }
-
-    
-
     public class Halftime
     {
         [JsonProperty("home")]
@@ -72,7 +66,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("away")]
         public object Away { get; set; }
     }
-
     public class Home
     {
         [JsonProperty("id")]
@@ -87,7 +80,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("winner")]
         public object Winner { get; set; }
     }
-
     public class League
     {
         [JsonProperty("id")]
@@ -111,7 +103,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("round")]
         public string Round { get; set; }
     }
-
     public class Penalty
     {
         [JsonProperty("home")]
@@ -120,7 +111,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("away")]
         public object Away { get; set; }
     }
-
     public class PredictionPeriods
     {
         [JsonProperty("first")]
@@ -129,7 +119,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("second")]
         public object Second { get; set; }
     }
-
     public class Response
     {
         [JsonProperty("fixture")]
@@ -147,7 +136,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("score")]
         public Score Score { get; set; }
     }
-
     public class Goals
     {
         [JsonProperty("home")]
@@ -156,13 +144,11 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("away")]
         public int? Away { get; set; }
     }
-
     public class FixtureRoot
     {
         [JsonProperty("response")]
         public List<Response> Response { get; set; }
     }
-
     public class Score
     {
         [JsonProperty("halftime")]
@@ -177,7 +163,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("penalty")]
         public Penalty Penalty { get; set; }
     }
-
     public class Status
     {
         [JsonProperty("long")]
@@ -189,7 +174,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("elapsed")]
         public object Elapsed { get; set; }
     }
-
     public class Teams
     {
         [JsonProperty("home")]
@@ -198,7 +182,6 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("away")]
         public Away Away { get; set; }
     }
-
     public class Venue
     {
         [JsonProperty("id")]

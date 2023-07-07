@@ -55,6 +55,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Fixture}/{action=Index}/{id?}");
+    pattern: "{controller=Prediction}/{action=Index}/{id?}");
 
 app.Run();
