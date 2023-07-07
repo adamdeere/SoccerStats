@@ -9,11 +9,11 @@ namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly LeagueDbService _leagueService;
+       
         private readonly CountryDbService _countryService;  
-        public HomeController(LeagueDbService webService, CountryDbService service)
+        public HomeController(CountryDbService service)
         {
-            _leagueService = webService;
+           
             _countryService = service;
         }
 
@@ -35,7 +35,6 @@ namespace SoccerStatsNew.Controllers
                     return View(country);
                 }
             }
-
             return NotFound();
         }
 
@@ -60,11 +59,7 @@ namespace SoccerStatsNew.Controllers
                 : Json("");
         }
 
-        public IActionResult Details (string country) 
-        {
-            Console.WriteLine(country);
-            return View();
-        }
+        
 
     }
 }

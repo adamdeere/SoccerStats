@@ -67,10 +67,10 @@ namespace SoccerStatsNew.Services
                   await soccerStatsDbContext.ToListAsync()
             : null;
         }
-        public async Task<ICollection<LeagueModel>?> GetLeagueDetails(string code)
+        public async Task<ICollection<LeagueModel>?> GetLeagueDetails(string country)
         {
             var leagueModel = await _context.LeagueModel
-                 .Where(m => m.CountryName == code).ToListAsync();
+                 .Where(m => m.CountryName == country).ToListAsync();
 
             await _context.LeagueModel
                 .Join(_context.CountryModel,

@@ -1,13 +1,6 @@
-﻿.cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.container {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 5px;
+﻿.k-card-image {
+    width: 285px;
+    margin: 5%;
 }
 
 img {
@@ -15,56 +8,69 @@ img {
     max-height: 100%;
 }
 
-.text {
-    font-size: 5px;
+#listView {
+    padding: 10px 5px;
+    margin-bottom: -1px;
+    min-height: 510px;
+    /* Avoid cutout if font or line is bigger */
+    font: inherit;
 }
 
-#example {
-    display: flex;
-    justify-content: center;
-}
-
-.k-card-deck-scrollwrap {
-    max-width: 1324px;
-}
-
-.k-card-deck {
-    box-sizing: border-box;
-    margin-left: -16px;
-    margin-right: -16px;
-    padding: 16px 16px 16px;
-    overflow-y: hidden;
-    overflow-x: auto;
-}
-
-#tabstrip h2 {
-    font-weight: lighter;
-    font-size: 5em;
-    line-height: 1;
-    padding: 0 0 0 30px;
-    margin: 0;
-}
-
-    #tabstrip h2 span {
-        background: none;
-        padding-left: 5px;
-        font-size: .3em;
-        vertical-align: top;
-    }
-
-#tabstrip p {
-    margin: 0;
+.product {
+    float: left;
+    position: relative;
+    width: 111px;
+    height: 170px;
+    margin: 0 5px;
     padding: 0;
 }
 
+    .product img {
+        width: 110px;
+        height: 110px;
+    }
 
+    .product h3 {
+        margin: 0;
+        padding: 3px 5px 0 0;
+        max-width: 96px;
+        overflow: hidden;
+        line-height: 1.1em;
+        font-size: .9em;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #999;
+    }
 
-.k-card {
-    width: 285px;
-    margin: 5%;
+    .product p {
+        visibility: hidden;
+    }
+
+    .product:hover p {
+        visibility: visible;
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 110px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        transition: background .2s linear, color .2s linear;
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+    }
+
+.k-listview:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
 }
 
-.k-card-footer {
-    text-align: center;
-}
 

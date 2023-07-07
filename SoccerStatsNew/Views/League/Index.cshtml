@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SoccerStatsData.LeagueModel>
+
+@{
+}
+
+<h3>League details</h3>
+
+@(Html.Kendo().ListView<SoccerStatsData.TeamRoot>()
+                        .Name("listView")
+                        .TagName("div")
+                        .ClientTemplateId("template")
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .Read(read => read.Action("Team_Read", "League"))
+                            .PageSize(21))
+                        .Pageable(pageable => pageable
+                        .ButtonCount(5)
+                        .PageSizes(new[] { 5, 15, 21 })))
+
+
+@foreach (var item in Model)
+{
+    <div class="k-card k-card-horizontal">
+        <div class="image">
+            <img alt="League image not found" src="@item.LogoURL" class="k-card-image">
+        </div>
+        <div class="k-vbox k-column">
+            <div class="k-card-header">
+                <h5 class="k-card-title">@item.Name</h5>
+                <h6 class="k-card-subtitle">@item.CountryName</h6>
+            </div>
+            <div class="k-card-body">
+                <div class="demo-section wide">
+                    
+                </div>
+            </div>
+            <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
+                <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Action 1</button>
+            </div>
+            <div class="k-card-footer">
+                <span>Click here to view teams</span>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="product">
+        <img src="#:data.Team.Logo#" alt="image" />
+        <h3>#:data.Team.Name#</h3>
+        <p>testing</p>
+    </div>
+</script>
+
+@section styles {
+    <link rel="stylesheet" href="~/css/leagues.css" />
+}
+
+
