@@ -19,12 +19,24 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index(string code)
         {
-            
-            var countries = await _countryService.GetAllCountriesToList();
+            if (string.IsNullOrEmpty(code))
+            {
+                var countries = await _countryService.GetAllCountriesToList();
+                if (countries != null)
+                {
+                    return View(countries);
+                }
+            }
+            else
+            {
+                var country = await _countryService.GetCountryDetails(code);
+                if (country != null)
+                {
+                    return View(country);
+                }
+            }
 
-            return countries != null
-                ? View(countries)
-                : NotFound();
+            return NotFound();
         }
 
 
@@ -42,8 +54,17 @@ namespace SoccerStatsNew.Controllers
         public async Task<JsonResult> ServerFiltering_GetProducts(string text)
         {
             var countries = await _countryService.GetCountrys(text);
-
-            return Json(countries);
+            
+            return countries != null 
+                ? Json(countries)
+                : Json("");
         }
+
+        public IActionResult Details (string country) 
+        {
+            Console.WriteLine(country);
+            return View();
+        }
+
     }
 }
