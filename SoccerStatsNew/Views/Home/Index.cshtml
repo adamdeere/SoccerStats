@@ -1,25 +1,55 @@
-@model SoccerStatsNew.Models.HomeDisplay
-<div class="btn-group mr-2">
+@model IEnumerable<SoccerStatsData.CountryModel>
 
-    <kendo-combobox name="CountrySelectBox"
-                    bind-to="Model.CountryList"
-                    datatextfield="Name"
-                    datavaluefield="CountryCode"
-                    placeholder="Select Country"
-                    template-id="TemplateCountry"
-                    height="300"
-                    on-change="OnCountrySelect"
-                    style="width:100%">
-
-    </kendo-combobox>
+<div class="k-d-flex k-justify-content-center" style="padding-top: 54px;">
+    <div class="k-w-300">
+        <label for="countries">Choose shipping countries:</label>
+        @(Html.Kendo().AutoComplete()
+                      .Name("countries")
+                      .FooterTemplate("Total <strong>#: instance.dataSource.total() #</strong> items found")
+                      .Template("<div class=\"container\"> " 
+                              + "<div class=\"image\"> "
+                              + " <img src=\"#:data.FlagURL#\">" 
+                              + " </div>  <span style=\"margin-left: 5px\">#:data.Name#</span> </div>")
+                      .Filter("contains")
+                      .Placeholder("Search for a country...")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                             read.Action("ServerFiltering_GetProducts", "Home")
+                                 .Data("onAdditionalData");
+                      })
+                      .ServerFiltering(true);
+            
+              })
+              .HtmlAttributes(new { style = "width: 100%;"})
+        )
+        <div class="demo-hint">Start typing the name of a country</div>
+    </div>
 </div>
 
-<div class="row cards-container">
-    @await Html.PartialAsync("_RenderLeaguesPartial.cshtml", Model)
+<div id="countries">
+    <div class="row cards-container">
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="k-card k-card-horizontal k-text-center">
+                    <div class="k-card-header">
+                        <h5 class="k-card-title">@item.Name</h5>
+                        <img src="@item.FlagURL" alt="undefined" class="k-card-image">
+                    </div>
+                    <div class="k-card-actions k-card-actions-vertical k-card-actions-stretched">
+                        <span class="k-card-action">
+                            <span class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">View Leagues</span>
+                        </span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
 </div>
-
-
-
 
 <script id="TemplateCountry" type="text/x-kendo-template">
 
@@ -31,12 +61,13 @@
     </div>
 </script>
 
+
 @section styles {
-    <link rel="stylesheet" href="~/css/leagues.css" />
+    <link rel="stylesheet" href="~/css/countries.css" />
 }
 
 @section scripts {
-    <script src="~/js/leagues.js"></script>
+    <script src="~/js/countries.js"> </script>
 }
 
 

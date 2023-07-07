@@ -96,7 +96,7 @@ namespace SoccerStatsNew.Services
         {
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel
-                .Where(c => c.Name.StartsWith(id))
+                .Where(c => c.Name.ToLower().Contains(id.ToLower()))
                 .ToListAsync()
                 : null;
         }

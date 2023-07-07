@@ -6,5 +6,8 @@ namespace SoccerStatsNew.Models
     {
         public IEnumerable<CountryModel>? CountryList { get; set; }
         public IEnumerable<LeagueModel>? LeagueList { get; set; }
+
+        public IEnumerable<string>? CountryNames { get; set; }
+       
     }
 }

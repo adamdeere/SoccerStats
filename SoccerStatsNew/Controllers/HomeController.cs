@@ -3,7 +3,6 @@ using SoccerStatsData;
 using SoccerStatsNew.Models;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
-using UtilityLibraries;
 
 
 namespace SoccerStatsNew.Controllers
@@ -20,26 +19,14 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index(string code)
         {
-            HomeDisplay? home = null;
-            var countries = await _countryService.GetAllCountriesToList();
-            if (countries != null)
-            {
-                home = new()
-                {
-                    CountryList = countries
-                };
-
-                if (code != null)
-                {
-                    home.LeagueList = await _leagueService.GetLeagueDetails(code);
-                }
-            }
             
+            var countries = await _countryService.GetAllCountriesToList();
 
-            return home != null
-                ? View(home)
+            return countries != null
+                ? View(countries)
                 : NotFound();
         }
+
 
         public IActionResult Privacy()
         {
@@ -50,6 +37,13 @@ namespace SoccerStatsNew.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public async Task<JsonResult> ServerFiltering_GetProducts(string text)
+        {
+            var countries = await _countryService.GetCountrys(text);
+
+            return Json(countries);
         }
     }
 }
