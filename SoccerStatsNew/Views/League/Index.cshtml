@@ -2,10 +2,7 @@
 
 @{
 }
-
 <h3>League details</h3>
-
-
 
 @foreach (var item in Model)
 {
@@ -21,22 +18,9 @@
             </div>
             <div class="k-card-body">
                 @{
-                    var name = $"combobox{item.LeagueId}";
                     var listName = $"listView_{UtilityLibraries.StringStripper.StripPunctuation(item.Name)}";
-                   
                 }
-                @(Html.Kendo().ComboBox()
-                    .Name(name)
-                    .Label(label => label.Content("Select a season"))
-                    .Filter(FilterType.Contains)
-                    .DataTextField("Year")
-                    .DataValueField("LeagueId")
-                    .DataSource(dataSource =>
-                    {
-                        dataSource.Read(read => read.Action("Season_Read", "League", new { LeagueId = item.LeagueId }));
-                    })
-                    .SelectedIndex(0)
-                    .Suggest(true))
+               
                 <div class="demo-section wide">
                     @(Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
                         .Name(listName)

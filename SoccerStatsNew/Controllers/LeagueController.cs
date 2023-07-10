@@ -39,17 +39,5 @@ namespace SoccerStatsNew.Controllers
             }
             return Json(await teams.ToDataSourceResultAsync(request));
         }
-
-        public async Task<JsonResult> Season_Read(int? LeagueId)
-        {
-            if (LeagueId == null) 
-            { 
-                return Json(null);
-            }
-            var leagues = await _leagueService.GetLeagueAvailableSeasons((int)LeagueId);
-
-            return Json(leagues);
-
-        }
     }
 }
