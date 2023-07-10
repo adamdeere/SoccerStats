@@ -1,13 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsData;
 using SoccerStatsNew.Data;
-
+using SoccerStatsNew.DbServices;
 
 namespace SoccerStatsNew.Services
 {
     public class LeagueDbService
     {
         private readonly SoccerStatsDbContext _context;
+        private readonly SeasonDbService _seasonService;   
         public async Task SaveLeagueAndSeason(LeagueRoot root)
         {
             if (_context.LeagueModel != null && _context.SeasonModel != null)
@@ -56,8 +57,9 @@ namespace SoccerStatsNew.Services
                 }
             }
         }
-        public LeagueDbService(SoccerStatsDbContext context)
+        public LeagueDbService(SoccerStatsDbContext context, SeasonDbService season)
         {
+            _seasonService = season;
             _context = context;
         }
         public async Task<ICollection<LeagueModel>?> GetLeagues()
@@ -67,7 +69,7 @@ namespace SoccerStatsNew.Services
                   await soccerStatsDbContext.ToListAsync()
             : null;
         }
-        public async Task<ICollection<LeagueModel>?> GetLeagueDetails(string country)
+        public async Task<IEnumerable<LeagueModel>?> GetLeagueDetails(string country)
         {
             var leagueModel = await _context.LeagueModel
                  .Where(m => m.CountryName == country).ToListAsync();
@@ -90,6 +92,18 @@ namespace SoccerStatsNew.Services
                     .ToListAsync();
             }
             return leagueModel ?? null;
+        }
+
+        public async Task<IEnumerable<CountryModel>?> GetCountriesTemp()
+        {
+            return _context.CountryModel != null
+               ? await _context.CountryModel.ToListAsync()
+               : null;
+        }
+
+        public async Task<ICollection<SeasonModel>?> GetLeagueAvailableSeasons(int id)
+        {
+           return await _seasonService.GetLeagueAvailableSeasons(id);
         }
     }
 }

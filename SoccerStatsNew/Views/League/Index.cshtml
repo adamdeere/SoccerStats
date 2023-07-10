@@ -5,17 +5,6 @@
 
 <h3>League details</h3>
 
-@(Html.Kendo().ListView<SoccerStatsData.TeamRoot>()
-                        .Name("listView")
-                        .TagName("div")
-                        .ClientTemplateId("template")
-                        .DataSource(dataSource => dataSource
-                            .Ajax()
-                            .Read(read => read.Action("Team_Read", "League"))
-                            .PageSize(21))
-                        .Pageable(pageable => pageable
-                        .ButtonCount(5)
-                        .PageSizes(new[] { 5, 15, 21 })))
 
 
 @foreach (var item in Model)
@@ -27,28 +16,79 @@
         <div class="k-vbox k-column">
             <div class="k-card-header">
                 <h5 class="k-card-title">@item.Name</h5>
+                <h6 class="k-card-subtitle">@item.Type</h6>
                 <h6 class="k-card-subtitle">@item.CountryName</h6>
             </div>
             <div class="k-card-body">
+                @{
+                    var name = $"combobox{item.LeagueId}";
+                    var listName = $"listView_{UtilityLibraries.StringStripper.StripPunctuation(item.Name)}";
+                   
+                }
+                @(Html.Kendo().ComboBox()
+                    .Name(name)
+                    .Label(label => label.Content("Select a season"))
+                    .Filter(FilterType.Contains)
+                    .DataTextField("Year")
+                    .DataValueField("LeagueId")
+                    .DataSource(dataSource =>
+                    {
+                        dataSource.Read(read => read.Action("Season_Read", "League", new { LeagueId = item.LeagueId }));
+                    })
+                    .SelectedIndex(0)
+                    .Suggest(true))
                 <div class="demo-section wide">
-                    
+                    @(Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
+                        .Name(listName)
+                        .TagName("div")
+                        .ClientTemplateId("teams")
+                        .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Read(read => read.Action("Team_Read", "League", new
+                        {
+                            league = 39,
+                            year = "2022"
+                        }))
+                        .PageSize(26))
+                        .Selectable(ListViewSelectionMode.Single)
+                        .Events(events => events.Change("onChange")))
                 </div>
+
             </div>
             <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
-                <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">Action 1</button>
+                <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">
+                    Click here to view teams
+                    </button>
             </div>
             <div class="k-card-footer">
-                <span>Click here to view teams</span>
+                <span>All things</span>
             </div>
         </div>
     </div>
 }
 
-<script type="text/x-kendo-tmpl" id="template">
+<script>
+
+    function onChange(arg) {
+        var selected = $.map(this.select(), function (item) {
+            return $(item).text();
+        });
+
+        console.log("Selected: " + selected.length + " item(s), [" + selected + "]");
+    }
+
+    function Id(e) {
+        var dataItem = this.dataItem(e.item);
+        var countryCode = dataItem.LeagueId;
+        alert(dataItem);
+    }
+</script>
+
+<script type="text/x-kendo-tmpl" id="teams">
     <div class="product">
-        <img src="#:data.Team.Logo#" alt="image" />
-        <h3>#:data.Team.Name#</h3>
-        <p>testing</p>
+        <img src="#:Logo#" alt="#:Name# image" />
+        <h3>#:Name#</h3>
+
     </div>
 </script>
 

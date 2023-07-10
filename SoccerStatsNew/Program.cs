@@ -12,9 +12,10 @@ builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
 
 string Address = "https://v3.football.api-sports.io/";
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-    
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+                options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
 
 builder.Services.AddKendo();
 

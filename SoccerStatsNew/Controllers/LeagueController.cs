@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData;
-using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Services;
 using UtilityLibraries;
 
@@ -24,14 +25,33 @@ namespace SoccerStatsNew.Controllers
                 : NotFound();
         }
 
-        public async Task<JsonResult> Team_Read()
+        public async Task<ActionResult> Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
         {
+            string endPoint = $"teams?league={league}&season={year}";
+            var teamResponse = JsonHelper.GetObjectFromJsonFile<TeamRoot>("Test/teamsByLeague.json");
+            List<TeamsPage> teams = new();
+            if (teamResponse != null)
+            {
+                foreach (var item in teamResponse.Response)
+                {
+                    teams.Add(item.Team);
+                }
+            }
 
-            var teams = await _teamService.GetObjectRequest<TeamRoot>("teams?league=39&season=2023");
+            return Json(await teams.ToDataSourceResultAsync(request));
+                
+        }
 
-            return teams != null
-                ? Json(teams)
-                : Json("");
+        public async Task<JsonResult> Season_Read(int? LeagueId)
+        {
+            if (LeagueId == null) 
+            { 
+                return Json(null);
+            }
+            var leagues = await _leagueService.GetLeagueAvailableSeasons((int)LeagueId);
+
+            return Json(leagues);
+
         }
     }
 }

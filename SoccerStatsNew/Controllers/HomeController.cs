@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData;
 using SoccerStatsNew.Models;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
+
 
 
 namespace SoccerStatsNew.Controllers
@@ -36,6 +39,18 @@ namespace SoccerStatsNew.Controllers
                 }
             }
             return NotFound();
+        }
+
+        public async Task<ActionResult> Team_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            var countries = await _countryService.GetAllCountriesToList();
+            if (countries != null)
+            {
+                return Json(countries.ToDataSourceResult(request));
+            }
+
+           return Json(null);
+
         }
 
 
