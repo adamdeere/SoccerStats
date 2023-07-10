@@ -8,10 +8,23 @@ namespace SoccerStatsNew.Controllers
     {
        
         private readonly SeasonDbService _seasonDbService;
-        public TeamController(SeasonDbService seasonDbService)
+        private readonly TeamDbService _teamDbService;
+        public TeamController(SeasonDbService seasonDbService, TeamDbService service)
         {
+            _teamDbService = service;
             _seasonDbService = seasonDbService;
         }
+
+        public async Task<IActionResult> Display(string team)
+        {
+            string g = team.Trim();
+            string[] split = g.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var individualTeam = await _teamDbService.GetTeam(split[0]);
+            return individualTeam != null
+                ? View(individualTeam)
+                : NotFound();
+        }
+
         public async Task<IActionResult> Index(int? league, string season)
         {
             TeamPageDisplay? team = null;

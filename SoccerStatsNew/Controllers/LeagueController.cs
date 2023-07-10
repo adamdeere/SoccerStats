@@ -37,9 +37,7 @@ namespace SoccerStatsNew.Controllers
                     teams.Add(item.Team);
                 }
             }
-
             return Json(await teams.ToDataSourceResultAsync(request));
-                
         }
 
         public async Task<JsonResult> Season_Read(int? LeagueId)

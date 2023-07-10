@@ -69,28 +69,21 @@
 
 <script>
 
-    function onChange(arg) {
-        var selected = $.map(this.select(), function (item) {
-            return $(item).text();
-        });
-
-        console.log("Selected: " + selected.length + " item(s), [" + selected + "]");
-    }
-
-    function Id(e) {
-        var dataItem = this.dataItem(e.item);
-        var countryCode = dataItem.LeagueId;
-        alert(dataItem);
-    }
+    
+    
 </script>
 
 <script type="text/x-kendo-tmpl" id="teams">
     <div class="product">
         <img src="#:Logo#" alt="#:Name# image" />
         <h3>#:Name#</h3>
-
+        <p>Founded: #:Founded#</p>
     </div>
 </script>
+
+@section scripts {
+    <script src="~/js/leagues.js"> </script>
+}
 
 @section styles {
     <link rel="stylesheet" href="~/css/leagues.css" />

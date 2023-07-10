@@ -46,5 +46,12 @@ namespace SoccerStatsNew.DbServices
                 await _dbContext.SaveChangesAsync();
             }
         }
+        public async Task<TeamModel?> GetTeam(string team)
+        {
+            return _dbContext.TeamModel != null
+                ? await _dbContext.TeamModel
+                .FirstOrDefaultAsync(i => i.Name.Contains(team))
+                : null;
+        }
     }
 }
