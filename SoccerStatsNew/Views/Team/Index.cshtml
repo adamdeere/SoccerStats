@@ -25,3 +25,30 @@
     </items>
 </kendo-tabstrip>
 
+<div class="button-section">
+
+    @(Html.Kendo().Button()
+        .Name("imageButton")
+        .HtmlAttributes(new { type = "button" })
+        .ImageUrl(Url.Content("~/images/placeholder.png"))
+        .Content("Image icon"))
+
+    @(Html.Kendo().Button()
+        .Name("#btnFixtures")
+        .Icon("k-icon k-i-calendar")
+        .Content("Fixtures")
+        .HtmlAttributes(new { type = "button", param = @Model.Name })
+        .Events(ev => ev.Click("onClick")))
+</div>
+
+
+
+
+
+@section scripts {
+    <script src="~/js/teams.js"> </script>
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/css/teams.css" />
+}

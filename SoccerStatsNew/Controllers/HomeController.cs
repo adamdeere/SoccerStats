@@ -65,7 +65,7 @@ namespace SoccerStatsNew.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<JsonResult> ServerFiltering_GetProducts(string text)
+        public async Task<JsonResult> ServerFiltering_Countries(string text)
         {
             var countries = await _countryService.GetCountrys(text);
             

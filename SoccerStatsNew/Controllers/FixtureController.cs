@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData.RequestModels;
 using SoccerStatsData.RequestModels.PredictionRequestFiles;
+using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Models;
 using UtilityLibraries;
 
@@ -9,36 +10,17 @@ namespace SoccerStatsNew.Controllers
 {
     public class FixtureController : Controller
     {
-        private readonly WebService _Service;
+        private readonly FixtureService _Service;
 
-        public FixtureController(WebService service)
+        public FixtureController(FixtureService service)
         {
                 _Service = service;
         }
-        public IActionResult Index()
+        public IActionResult Index(string team)
         {
-            var fixture = JsonHelper.GetObjectFromJsonFile<FixtureRoot>("Test/individualTeamFixtures.json");
-            List<FixturePageData> list = new();
-            if (fixture != null)
-            {
-                foreach (var item in fixture.Response)
-                {
-                    FixturePageData page = new()
-                    {
-                        Date = item.Fixture.Date,
-                        FixtureId = item.Fixture.Id,
-                        League = item.League.Name,
-                        LeagueLogo = item.League.Logo,
-                        HomeTeam = item.Teams.Home.Name,
-                        HomeTeamLogo = item.Teams.Home.Logo,
-                        AwayTeam = item.Teams.Away.Name,
-                        AwayTeamLogo = item.Teams.Away.Logo,
-                    };
-                    list.Add(page);
-                }
-            }
+            var fixture = _Service.GetFixtureData(team);
             return fixture != null 
-                ? View(list) 
+                ? View(fixture) 
                 : NotFound();
 
            

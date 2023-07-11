@@ -1,0 +1,11 @@
+﻿.button-section {
+    line-height: 4em;
+}
+
+    .button-section .k-button {
+        margin-right: 10px;
+    }
+
+.k-button .k-image {
+    height: 16px;
+}
