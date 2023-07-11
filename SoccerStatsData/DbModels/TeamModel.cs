@@ -17,5 +17,8 @@ namespace SoccerStatsData
         public int? Founded { get; set; }
         public bool? National { get; set; }
         public string? Logo { get; set; }
+        public int? LeagueId { get; set; }
+
+        //can use league Id as a foreign key for league data
     }
 }

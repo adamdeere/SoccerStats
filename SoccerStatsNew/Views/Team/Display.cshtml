@@ -1,55 +1,16 @@
 ﻿@model SoccerStatsData.TeamModel
-@{
-}
-
-<h1> This is the display for @Model.Name</h1>
-
-<script>
-    function onShow(e) {
-        console.log("Shown: " + $(e.item).find("> .k-link").text());
-    }
-
-    function onSelect(e) {
-        console.log("Selected: " + $(e.item).find("> .k-link").text());
-    }
-
-    function onActivate(e) {
-        console.log("Activated: " + $(e.item).find("> .k-link").text());
-    }
-
-    function onContentLoad(e) {
-        console.log("Content loaded in <b>" + $(e.item).find("> .k-link").text() + "</b> and starts with <b>" + $(e.contentElement).text().substr(0, 20) + "...</b>");
-    }
-
-    function onError(e) {
-        console.error("Loading failed with " + e.xhr.statusText + " " + e.xhr.status);
-    }
-</script>
 
 
-<div class="demo-section">
-    @(Html.Kendo().TabStrip()
-            .Name("tabstrip")
-            .Events(events => events
-            .Show("onShow")
-            .Select("onSelect")
-            .Activate("onActivate")
-            .ContentLoad("onContentLoad")
-            .Error("onError")
-            )
-            .Items(tabstrip =>
-            {
-                tabstrip.Add().Text("First Tab")
-            .Selected(true)
-            .Content(@<text>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer felis libero, lobortis ac rutrum quis, varius a velit. Donec lacus erat, cursus sed porta quis, adipiscing et ligula. Duis volutpat, sem pharetra accumsan pharetra, mi ligula cursus felis, ac aliquet leo diam eget risus. Integer facilisis, justo cursus venenatis vehicula, massa nisl tempor sem, in ullamcorper neque mauris in orci. Proin sagittis elementum odio, eu vestibulum arcu rhoncus eu. Pellentesque lorem arcu, tempus at dapibus nec, tincidunt a ante. Cras eget arcu id augue sollicitudin fermentum. Quisque ullamcorper ultrices ante, ut mollis neque tincidunt nec. Aenean sollicitudin lobortis nibh, vitae sagittis justo placerat et. Fusce laoreet consequat arcu, quis placerat massa lacinia vel. Etiam fringilla purus ac ipsum euismod nec aliquet lorem aliquet. Aliquam a nunc ac lorem lobortis pulvinar. Integer eleifend lobortis risus vel commodo. Integer nisl turpis, facilisis a porttitor nec, tempus ac enim. Proin pulvinar vestibulum ligula id mattis. Integer posuere faucibus accumsan.</p>
-            </text>);
+<h1 class="h2" id="itemTitle">This is the display for @Model.Name</h1>
 
-                tabstrip.Add().Text("Ajax Tab")
-    .LoadContentFrom(Url.Content("~/Views/Team/_Team.cshtml"));
 
-                tabstrip.Add().Text("Error Tab")
-    .LoadContentFrom("error.html");
-            })
-        )
-</div>
+<kendo-tabstrip name="ajax-tabstrip">
+    <items>
+        <tabstrip-item text="Team" selected="true">
+            <content>
+                <partial name="_Team" model="@Model" />
+            </content>
+        </tabstrip-item>
+    </items>
+</kendo-tabstrip>
+

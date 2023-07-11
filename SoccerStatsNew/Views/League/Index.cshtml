@@ -30,7 +30,7 @@
                         .Ajax()
                         .Read(read => read.Action("Team_Read", "League", new
                         {
-                            league = 39,
+                            league = item.LeagueId,
                             year = "2022"
                         }))
                         .PageSize(26))

@@ -27,17 +27,10 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<ActionResult> Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
         {
-            string endPoint = $"teams?league={league}&season={year}";
-            var teamResponse = JsonHelper.GetObjectFromJsonFile<TeamRoot>("Test/teamsByLeague.json");
-            List<TeamsPage> teams = new();
-            if (teamResponse != null)
-            {
-                foreach (var item in teamResponse.Response)
-                {
-                    teams.Add(item.Team);
-                }
-            }
-            return Json(await teams.ToDataSourceResultAsync(request));
+
+            var teamResponse = await _leagueService.GetTeamModels(39);
+            
+            return Json(await teamResponse.ToDataSourceResultAsync(request));
         }
     }
 }
