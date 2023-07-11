@@ -15,25 +15,12 @@ namespace SoccerStatsNew.Controllers
             _seasonDbService = seasonDbService;
         }
 
-        public async Task<IActionResult> Display(string team)
+        public async Task<IActionResult> Index(string team)
         {
-            string g = team.Trim();
-            string[] split = g.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            var individualTeam = await _teamDbService.GetTeam(split[0]);
+            
+            var individualTeam = await _teamDbService.GetTeam(team);
             return individualTeam != null
                 ? View(individualTeam)
-                : NotFound();
-        }
-
-        public async Task<IActionResult> Index(int? league, string season)
-        {
-            TeamPageDisplay? team = null;
-            if (league != null) 
-            {
-                team = await _seasonDbService.GetTeamsDisplayPage((int)league, season);
-            }
-            return team != null 
-                ? View(team) 
                 : NotFound();
         }
     }

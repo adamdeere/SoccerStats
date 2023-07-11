@@ -1,59 +1,27 @@
-﻿@model SoccerStatsNew.Models.TeamPageDisplay
+﻿@model SoccerStatsData.TeamModel
 
-@{
-}
 
-<h5>This is the teams page</h5>
+<h1 class="h2" id="itemTitle">This is the display for @Model.Name</h1>
 
-@(Html.Kendo().DropDownList()
-      .Name("seasons")
-      .Label(label => label.Content("Select a season"))
-      .DataTextField("Year")
-      .DataValueField("LeagueId")
-      .BindTo(Model.SeasonModelList)
-      .Events(e =>
-      {
-          e.Change("OnSelect");
-      })
-)
 
-<div class="demo-section">
+<kendo-tabstrip name="ajax-tabstrip">
+    <items>
+        <tabstrip-item text="Team" selected="true">
+            <content>
+                <partial name="_Team" model="@Model" />
+            </content>
+        </tabstrip-item>
 
-    <kendo-tabstrip name="tabstrip">
+        <tabstrip-item text="League" selected="true">
+            <content>
+                <partial name="_League" model="@Model" />
+            </content>
+        </tabstrip-item>
+        <tabstrip-item text="Stadium" selected="true">
+            <content>
+                <partial name="_Stadium" model="@Model" />
+            </content>
+        </tabstrip-item>
+    </items>
+</kendo-tabstrip>
 
-        <items>
-            <tabstrip-item text="Teams">
-                <content>
-                    <partial name="_teams" model="@Model.TeamsModelList" />
-                </content>
-            </tabstrip-item>
-            <tabstrip-item text="Stadiums">
-                <content>
-                    <partial name="_stadiums" model="@Model.VenueModelList" />
-                </content>
-            </tabstrip-item>
-        </items>
-
-    </kendo-tabstrip>
-</div>
-@section scripts {
-    <script src="~/js/leagues.js"></script>
-}
-
-<style>
-
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .k-card {
-        width: 285px;
-        margin: 5%;
-    }
-
-    .k-card-footer {
-        text-align: center;
-    }
-</style>
