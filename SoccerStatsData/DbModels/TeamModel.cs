@@ -19,6 +19,10 @@ namespace SoccerStatsData
         public string? Logo { get; set; }
         public int? LeagueId { get; set; }
 
-        //can use league Id as a foreign key for league data
+        [ForeignKey("LeagueId")]
+        public LeagueModel League { get; set; }
+
+        [ForeignKey("StadiumId")]
+        public VenuesModel Venue { get; set; }
     }
 }
