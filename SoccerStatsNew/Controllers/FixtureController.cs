@@ -14,7 +14,7 @@ namespace SoccerStatsNew.Controllers
 
         public FixtureController(FixtureService service)
         {
-                _Service = service;
+           _Service = service;
         }
         public IActionResult Index(string team)
         {
