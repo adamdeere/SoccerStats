@@ -96,16 +96,17 @@ namespace SoccerStatsNew.Services
         {
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel
-                .Where(c => c.Name.StartsWith(id))
+                .Where(c => c.Name.ToLower().Contains(id.ToLower()))
                 .ToListAsync()
                 : null;
         }
 
-        public async Task<CountryModel?> GetCountryDetails(string id)
+        public async Task<ICollection<CountryModel>?> GetCountryDetails(string id)
         {
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel
-                      .FirstOrDefaultAsync(m => m.CountryCode == id)
+                      .Where(c => c.CountryCode == id)
+                .ToListAsync()
                : null;
         }
     }

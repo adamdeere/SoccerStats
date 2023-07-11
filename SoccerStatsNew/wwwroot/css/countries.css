@@ -1,0 +1,21 @@
+﻿.container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.text {
+    font-size: 5px;
+}
+
+.k-card {
+    width: 285px;
+    margin: 5%;
+}
+

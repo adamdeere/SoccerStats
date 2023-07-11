@@ -1,0 +1,17 @@
+﻿@model SoccerStatsData.TeamModel
+
+<div>
+    <div class="image custom-image">
+        <img src="@Model.League.LogoURL" />
+    </div>
+    <div>
+        <p>League: <span><b>@Model.League.Name</b></span></p>
+        <p>Founded: <span><b>@Model.League.CountryName</b></span></p>
+    </div>
+</div>
+
+<style>
+    .custom-image {
+        float: left;
+    }
+</style>

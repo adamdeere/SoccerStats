@@ -1,42 +1,78 @@
-@model SoccerStatsNew.Models.HomeDisplay
-<div class="btn-group mr-2">
-
-    <kendo-combobox name="CountrySelectBox"
-                    bind-to="Model.CountryList"
-                    datatextfield="Name"
-                    datavaluefield="CountryCode"
-                    placeholder="Select Country"
-                    template-id="TemplateCountry"
-                    height="300"
-                    on-change="OnCountrySelect"
-                    style="width:100%">
-
-    </kendo-combobox>
-</div>
-
-<div class="row cards-container">
-    @await Html.PartialAsync("_RenderLeaguesPartial.cshtml", Model)
-</div>
+@model IEnumerable<SoccerStatsData.CountryModel>
 
 
-
-
-<script id="TemplateCountry" type="text/x-kendo-template">
-
-    <div class="container">
-        <div class="image">
-            <img src="#:data.FlagURL#">
-        </div>
-        <span style="margin-left: 5px">#:data.Name#</span>
+<div class="k-d-flex k-justify-content-center" style="padding-top: 54px;">
+    <div class="k-w-300">
+        <label for="countries">Choose a country to view leagues:</label>
+        @(Html.Kendo().AutoComplete()
+                      .Name("countries")
+                      .DataTextField("Name")
+                      .FooterTemplate("Total <strong>#: instance.dataSource.total() #</strong> items found")
+                      .Template("<div class=\"container\"> " 
+                              + "<div> "
+                              + " <img src=\"#:data.FlagURL#\">"
+                              + " </div>  <span class=\"k-state-default\"><h3>#: data.Name #</h3><p>#: data.CountryCode #</p></span> </div>")
+                      .Filter("contains")
+                      .DataSource(source =>
+                      {
+                            source.Read(read =>
+                            {
+                                read.Action("ServerFiltering_GetProducts", "Home")
+                                .Data("onAdditionalData");
+                            })
+                        .ServerFiltering(true);
+                      })
+                      .HtmlAttributes(new { style = "width: 100%;" })
+                      .Placeholder("Search for a country...")
+                      .Events(e =>
+                      {
+                         e.Select("onSelect");
+                      })
+        )
+        <div class="demo-hint">Start typing the name of a country</div>
     </div>
-</script>
+</div>
+
+<div id="countries">
+    <div class="row container">
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="k-card k-card-horizontal k-text-center">
+                    <div class="k-card-header">
+                        <h5 class="k-card-title">@item.Name</h5>
+                        <img src="@item.FlagURL" alt="undefined" class="k-card-image">
+                    </div>
+                    <div class="k-card-actions k-card-actions-vertical k-card-actions-stretched">
+
+                        <form method="post">
+                            <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md"
+                                    asp-action="Index"
+                                    asp-controller="League"
+                                    asp-route-country="@item.Name">
+                                View Leagues
+                            </button>
+                        </form>
+                        <span class="k-card-action">
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
 
 @section styles {
-    <link rel="stylesheet" href="~/css/leagues.css" />
+    <link rel="stylesheet" href="~/css/countries.css" />
 }
 
 @section scripts {
-    <script src="~/js/leagues.js"></script>
+    <script src="~/js/countries.js"> </script>
 }
+
 
 

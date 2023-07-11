@@ -1,0 +1,25 @@
+﻿@model SoccerStatsData.TeamModel
+
+<div>
+    <div class="image custom-image">
+        <img src="@Model.Venue.Image" />
+    </div>
+    <div>
+        <p>Stadium: <span><b>@Model.Venue.Name</b></span></p>
+        <p>Surface: <span><b>@Model.Venue.Surface</b></span></p>
+        <p>Capacity: <span><b>@Model.Venue.Capacity</b></span></p>
+        <p>Address: <span><b>@Model.Venue.Address</b></span></p>
+        <p>City: <span><b>@Model.Venue.City</b></span></p>
+      
+
+    </div>
+</div>
+
+<style>
+    .custom-image {
+        float: left;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    
+</style>

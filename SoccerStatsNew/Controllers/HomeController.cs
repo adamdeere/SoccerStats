@@ -1,45 +1,58 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData;
 using SoccerStatsNew.Models;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
-using UtilityLibraries;
+
 
 
 namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly LeagueDbService _leagueService;
+       
         private readonly CountryDbService _countryService;  
-        public HomeController(LeagueDbService webService, CountryDbService service)
+        public HomeController(CountryDbService service)
         {
-            _leagueService = webService;
+           
             _countryService = service;
         }
 
         public async Task<IActionResult> Index(string code)
         {
-            HomeDisplay? home = null;
+            if (string.IsNullOrEmpty(code))
+            {
+                var countries = await _countryService.GetAllCountriesToList();
+                if (countries != null)
+                {
+                    return View(countries);
+                }
+            }
+            else
+            {
+                var country = await _countryService.GetCountryDetails(code);
+                if (country != null)
+                {
+                    return View(country);
+                }
+            }
+            return NotFound();
+        }
+
+        public async Task<ActionResult> Team_Read([DataSourceRequest] DataSourceRequest request)
+        {
             var countries = await _countryService.GetAllCountriesToList();
             if (countries != null)
             {
-                home = new()
-                {
-                    CountryList = countries
-                };
-
-                if (code != null)
-                {
-                    home.LeagueList = await _leagueService.GetLeagueDetails(code);
-                }
+                return Json(countries.ToDataSourceResult(request));
             }
-            
 
-            return home != null
-                ? View(home)
-                : NotFound();
+           return Json(null);
+
         }
+
 
         public IActionResult Privacy()
         {
@@ -51,5 +64,17 @@ namespace SoccerStatsNew.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<JsonResult> ServerFiltering_GetProducts(string text)
+        {
+            var countries = await _countryService.GetCountrys(text);
+            
+            return countries != null 
+                ? Json(countries)
+                : Json("");
+        }
+
+        
+
     }
 }

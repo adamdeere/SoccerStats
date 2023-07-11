@@ -1,0 +1,27 @@
+﻿@model SoccerStatsData.TeamModel
+
+
+<h1 class="h2" id="itemTitle">This is the display for @Model.Name</h1>
+
+
+<kendo-tabstrip name="ajax-tabstrip">
+    <items>
+        <tabstrip-item text="Team" selected="true">
+            <content>
+                <partial name="_Team" model="@Model" />
+            </content>
+        </tabstrip-item>
+
+        <tabstrip-item text="League" selected="true">
+            <content>
+                <partial name="_League" model="@Model" />
+            </content>
+        </tabstrip-item>
+        <tabstrip-item text="Stadium" selected="true">
+            <content>
+                <partial name="_Stadium" model="@Model" />
+            </content>
+        </tabstrip-item>
+    </items>
+</kendo-tabstrip>
+

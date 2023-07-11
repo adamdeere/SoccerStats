@@ -12,8 +12,11 @@ builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
 
 string Address = "https://v3.football.api-sports.io/";
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+                options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+
 builder.Services.AddKendo();
 
 builder.Services.AddHttpClient<WebService>(_httpClient =>
@@ -55,6 +58,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Prediction}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

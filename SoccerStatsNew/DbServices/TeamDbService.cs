@@ -46,5 +46,36 @@ namespace SoccerStatsNew.DbServices
                 await _dbContext.SaveChangesAsync();
             }
         }
+        public async Task<TeamModel?> GetTeam(string team)
+        {
+            if (_dbContext.TeamModel != null)
+            {
+                var teamModel = await _dbContext.TeamModel
+                .FirstOrDefaultAsync(i => i.Name.Contains(team));
+
+                await _dbContext.LeagueModel
+                 .Join(_dbContext.TeamModel,
+                 league => league.LeagueId,
+                 team => team.LeagueId,
+                 (league, team) => new
+                 {
+                     League = league,
+                     Team = team
+                 }).FirstOrDefaultAsync();
+
+                await _dbContext.VenuesModel
+                 .Join(_dbContext.TeamModel,
+                 venue => venue.VenueId,
+                 team => team.StadiumId,
+                 (venue, team) => new
+                 {
+                     Venue = venue,
+                     Team = team
+                 }).FirstOrDefaultAsync();
+
+                return teamModel ?? null;
+            }
+            return null;
+        }
     }
 }

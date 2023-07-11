@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SoccerStatsData.LeagueModel>
+
+@{
+}
+<h3>League details</h3>
+
+@foreach (var item in Model)
+{
+    <div class="k-card k-card-horizontal">
+        <div class="image">
+            <img alt="League image not found" src="@item.LogoURL" class="k-card-image">
+        </div>
+        <div class="k-vbox k-column">
+            <div class="k-card-header">
+                <h5 class="k-card-title">@item.Name</h5>
+                <h6 class="k-card-subtitle">@item.Type</h6>
+                <h6 class="k-card-subtitle">@item.CountryName</h6>
+            </div>
+            <div class="k-card-body">
+                @{
+                    var listName = $"listView_{UtilityLibraries.StringStripper.StripPunctuation(item.Name)}";
+                }
+               
+                <div class="demo-section wide">
+                    @(Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
+                        .Name(listName)
+                        .TagName("div")
+                        .ClientTemplateId("teams")
+                        .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Read(read => read.Action("Team_Read", "League", new
+                        {
+                            league = item.LeagueId,
+                            year = "2022"
+                        }))
+                        .PageSize(26))
+                        .Selectable(ListViewSelectionMode.Single)
+                        .Events(events => events.Change("onChange")))
+                </div>
+
+            </div>
+            <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
+                <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">
+                    Click here to view teams
+                    </button>
+            </div>
+            <div class="k-card-footer">
+                <span>All things</span>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+
+    
+    
+</script>
+
+<script type="text/x-kendo-tmpl" id="teams">
+    <div class="product">
+        <img src="#:Logo#" alt="#:Name# image" />
+        <h3>#:Name#</h3>
+        <p>Founded: #:Founded#</p>
+    </div>
+</script>
+
+@section scripts {
+    <script src="~/js/leagues.js"> </script>
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/css/leagues.css" />
+}
+
+

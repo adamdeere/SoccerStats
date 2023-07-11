@@ -11,5 +11,8 @@ namespace SoccerStatsData
 
         public string? CountryCode { get; set; }
         public string? FlagURL { get; set; }
+
+        [NotMapped]
+        public List<string> CountryNames { get; set; } = new List<string>();
     }
 }

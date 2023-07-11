@@ -1,3 +1,13 @@
+function onChange(arg) {
+    var selected = $.map(this.select(), function (item) {
+        return $(item).text();
+    });
+    if (selected) {
+        location.href = `Team/Display?team=${selected}`;
+    }
+   
+}
+
 function OnCountrySelect(e) {
 
     var countryName = e.sender.text();
