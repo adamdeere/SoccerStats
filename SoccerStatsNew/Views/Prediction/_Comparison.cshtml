@@ -14,11 +14,9 @@
                          .Text("Attack")
                          .Position(ChartTitlePosition.Bottom))
              .Legend(legend => legend
-                 .Visible(true)
-             )
+                 .Visible(true))
              .ChartArea(chart => chart
-                 .Background("transparent")
-              )
+                 .Background("transparent"))
              .Series(series =>
              {
              series.Pie(new dynamic[] {
@@ -34,10 +32,8 @@
          })
          .Tooltip(tooltip => tooltip
              .Visible(true)
-             .Format("{0}")
-         )
-         .ToClientTemplate()
-     )
+             .Format("{0}"))
+         .ToClientTemplate())
    
 </script>
 
@@ -51,28 +47,24 @@
                               .Text("Defence")
                               .Position(ChartTitlePosition.Bottom))
                   .Legend(legend => legend
-                      .Visible(true)
-                  )
+                      .Visible(true))
                   .ChartArea(chart => chart
-                      .Background("transparent")
-                   )
+                      .Background("transparent"))
                   .Series(series =>
                   {
                       series.Pie(new dynamic[] {
-              new { category = "Home", value = Model.Comparison.Def.Home, color = homeColour },
-              new { category = "Away", value = Model.Comparison.Def.Away, color = awayColour },
+                                new { category = "Home", value = Model.Comparison.Def.Home, color = homeColour },
+                                new { category = "Away", value = Model.Comparison.Def.Away, color = awayColour },
                   })
                       .Labels(labels => labels
                               .Position(labelPosition)
                               .Background("transparent")
-                              .Visible(true)
-                      )
+                              .Visible(true))
                       .StartAngle(150);
                   })
               .Tooltip(tooltip => tooltip
                   .Visible(true)
-                  .Format("{0}")
-              )
+                  .Format("{0}"))
               .ToClientTemplate())
 </script>
 
@@ -84,30 +76,25 @@
                                     .Text("Form")
                                     .Position(ChartTitlePosition.Bottom))
                         .Legend(legend => legend
-                            .Visible(true)
-                        )
+                            .Visible(true))
                         .ChartArea(chart => chart
-                            .Background("transparent")
-                         )
+                            .Background("transparent"))
                         .Series(series =>
                         {
                             series.Pie(new dynamic[] {
-                             new { category = "Home", value = Model.Comparison.Form.Home, color = homeColour },
-                new { category = "Away", value = Model.Comparison.Form.Away, color = awayColour },
+                                       new { category = "Home", value = Model.Comparison.Form.Home, color = homeColour },
+                                       new { category = "Away", value = Model.Comparison.Form.Away, color = awayColour },
                         })
                             .Labels(labels => labels
                                     .Position(labelPosition)
                                     .Background("transparent")
-                                    .Visible(true)
-                            )
+                                    .Visible(true))
                             .StartAngle(150);
                         })
                     .Tooltip(tooltip => tooltip
                         .Visible(true)
-                        .Format("{0}")
-                    )
-                    .ToClientTemplate()
-                )
+                        .Format("{0}"))
+                    .ToClientTemplate())
 </script>
 
 <script id="tmplChartGoals" type="text/html">
@@ -126,22 +113,19 @@
                        .Series(series =>
                        {
                            series.Pie(new dynamic[] {
-               new { category = "Home", value = Model.Comparison.Goals.Home, color = homeColour },
-               new { category = "Away", value = Model.Comparison.Goals.Away, color = awayColour },
+                                      new { category = "Home", value = Model.Comparison.Goals.Home, color = homeColour },
+                                      new { category = "Away", value = Model.Comparison.Goals.Away, color = awayColour },
                        })
                            .Labels(labels => labels
                                    .Position(labelPosition)
                                    .Background("transparent")
-                                   .Visible(true)
-                           )
+                                   .Visible(true))
                            .StartAngle(150);
                        })
                    .Tooltip(tooltip => tooltip
                        .Visible(true)
-                       .Format("{0}")
-                   )
-                   .ToClientTemplate()
-               )
+                       .Format("{0}"))
+                   .ToClientTemplate())
 </script>
 
 <script id="tmplChartH2H" type="text/html">
@@ -152,30 +136,25 @@
                                    .Text("Head to Head")
                                    .Position(ChartTitlePosition.Bottom))
                        .Legend(legend => legend
-                           .Visible(true)
-                       )
+                           .Visible(true))
                        .ChartArea(chart => chart
-                           .Background("transparent")
-                        )
+                           .Background("transparent"))
                        .Series(series =>
                        {
                            series.Pie(new dynamic[] {
-               new { category = "Home", value = Model.Comparison.HeadToHead.Home, color = homeColour },
-               new { category = "Away", value = Model.Comparison.HeadToHead.Away, color = awayColour },
+                                      new { category = "Home", value = Model.Comparison.HeadToHead.Home, color = homeColour },
+                                      new { category = "Away", value = Model.Comparison.HeadToHead.Away, color = awayColour },
                        })
                            .Labels(labels => labels
                                    .Position(labelPosition)
                                    .Background("transparent")
-                                   .Visible(true)
-                           )
+                                   .Visible(true))
                            .StartAngle(150);
                        })
                    .Tooltip(tooltip => tooltip
                        .Visible(true)
-                       .Format("{0}")
-                   )
-                   .ToClientTemplate()
-               )
+                       .Format("{0}"))
+                   .ToClientTemplate())
 </script>
 
 <script id="tmplChartPosDis" type="text/html">
@@ -186,11 +165,9 @@
                                        .Text("Poisson Distribution")
                                    .Position(ChartTitlePosition.Bottom))
                        .Legend(legend => legend
-                           .Visible(true)
-                       )
+                           .Visible(true))
                        .ChartArea(chart => chart
-                           .Background("transparent")
-                        )
+                           .Background("transparent"))
                        .Series(series =>
                        {
                            series.Pie(new dynamic[] {
@@ -206,10 +183,8 @@
                        })
                    .Tooltip(tooltip => tooltip
                        .Visible(true)
-                       .Format("{0}")
-                   )
-                   .ToClientTemplate()
-               )
+                       .Format("{0}"))
+                   .ToClientTemplate())
 </script>
 
 <script id="tmplChartTotal" type="text/html">
@@ -220,30 +195,25 @@
                                            .Text("Total")
                                        .Position(ChartTitlePosition.Bottom))
                            .Legend(legend => legend
-                               .Visible(true)
-                           )
+                               .Visible(true))
                            .ChartArea(chart => chart
-                               .Background("transparent")
-                            )
+                               .Background("transparent"))
                            .Series(series =>
                            {
                                series.Pie(new dynamic[] {
-               new { category = "Home", value = Model.Comparison.Total.Home, color = homeColour },
-               new { category = "Away", value = Model.Comparison.Total.Away, color = awayColour },
+                                          new { category = "Home", value = Model.Comparison.Total.Home, color = homeColour },
+                                          new { category = "Away", value = Model.Comparison.Total.Away, color = awayColour },
                            })
                                .Labels(labels => labels
                                        .Position(labelPosition)
                                        .Background("transparent")
-                                       .Visible(true)
-                               )
+                                       .Visible(true))
                                .StartAngle(150);
                            })
                        .Tooltip(tooltip => tooltip
                            .Visible(true)
-                           .Format("{0}")
-                       )
-                       .ToClientTemplate()
-                   )
+                           .Format("{0}"))
+                       .ToClientTemplate())
 </script>
 
 @(Html.Kendo().TileLayout()
@@ -290,6 +260,5 @@
 
                   })
                   .Reorderable(true)
-                  .Resizable(true)
-                 )
+                  .Resizable(true))
 
