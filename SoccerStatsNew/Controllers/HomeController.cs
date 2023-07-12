@@ -2,6 +2,7 @@
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData;
+using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Models;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
@@ -12,11 +13,11 @@ namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
-       
+        private readonly SeasonDbService _seasonDbService;
         private readonly CountryDbService _countryService;  
-        public HomeController(CountryDbService service)
+        public HomeController(CountryDbService service, SeasonDbService seasonDbService)
         {
-           
+           _seasonDbService = seasonDbService;
             _countryService = service;
         }
 

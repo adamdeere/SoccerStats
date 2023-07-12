@@ -16,6 +16,46 @@ namespace SoccerStatsNew.DbServices
             _dbContext = context;   
         }
 
+        public async Task SaveSeasons()
+        {
+            var root = await _webService.GetObjectRequest<LeagueRoot>("leagues");
+            if (root != null)
+            {
+                foreach (var item in root.Response)
+                {
+                    if (item.Country.Code != null)
+                    {
+
+                        foreach (var seasons in item.Seasons)
+                        {
+                            string g = Guid.NewGuid().ToString();
+
+                            SeasonModel seasonDbModel = new SeasonModel()
+                            {
+                                SeasonId = Guid.NewGuid().ToString(),
+                                LeagueId = item.League.Id,
+                                CountryName = item.Country.Name,
+                                Year = seasons.Year,
+                                StartDate = seasons.Start,
+                                EndDate = seasons.End,
+                                Standings = seasons.Coverage.Standings,
+                                Players = seasons.Coverage.Players,
+                                TopScorers = seasons.Coverage.TopScorers,
+                                TopAssists = seasons.Coverage.TopAssists,
+                                TopCards = seasons.Coverage.TopCards,
+                                Injuries = seasons.Coverage.Injuries,
+                                Predictions = seasons.Coverage.Predictions,
+                                Odds = seasons.Coverage.Odds,
+                            };
+                            _dbContext.SeasonModel.Add(seasonDbModel);
+                            await _dbContext.SaveChangesAsync();
+                        }
+                    }
+                }
+            }
+           
+        }
+        
         public async Task<TeamPageDisplay?> GetTeamsDisplayPage(int league, string season)
         {
             TeamPageDisplay? team = null;
