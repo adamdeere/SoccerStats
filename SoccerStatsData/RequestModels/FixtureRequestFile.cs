@@ -119,7 +119,7 @@ namespace SoccerStatsData.RequestModels
         [JsonProperty("second")]
         public object Second { get; set; }
     }
-    public class Response
+    public class FixtureResponse
     {
         [JsonProperty("fixture")]
         public Fixture Fixture { get; set; }
@@ -147,7 +147,7 @@ namespace SoccerStatsData.RequestModels
     public class FixtureRoot
     {
         [JsonProperty("response")]
-        public List<Response> Response { get; set; }
+        public List<FixtureResponse> Response { get; set; }
     }
     public class Score
     {

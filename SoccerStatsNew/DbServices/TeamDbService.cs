@@ -51,7 +51,7 @@ namespace SoccerStatsNew.DbServices
             if (_dbContext.TeamModel != null)
             {
                 var teamModel = await _dbContext.TeamModel
-                .FirstOrDefaultAsync(i => i.Name.Contains(team));
+                .FirstOrDefaultAsync(i => i.Code == team);
 
                 await _dbContext.LeagueModel
                  .Join(_dbContext.TeamModel,
