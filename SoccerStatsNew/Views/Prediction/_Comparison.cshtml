@@ -6,19 +6,19 @@
     var awayColour = "\\#1AE529";
 }
 
-<script id="tmplChartAtt" type="text/x-kendo-template">
+<script id="tmplChartAtt" type="text/html">
 
+    <partial name="_TeamLogos" model="@Model" />
+    
     @(Html.Kendo().Chart()
              .Name("Attack")
                      .Title(title => title
                          .Text("Attack")
                          .Position(ChartTitlePosition.Bottom))
              .Legend(legend => legend
-                 .Visible(true)
-             )
+                 .Visible(true))
              .ChartArea(chart => chart
-                 .Background("transparent")
-              )
+                 .Background("transparent"))
              .Series(series =>
              {
              series.Pie(new dynamic[] {
@@ -34,14 +34,15 @@
          })
          .Tooltip(tooltip => tooltip
              .Visible(true)
-             .Format("{0}")
-         )
+             .Format("{0}"))
          .ToClientTemplate()
      )
    
 </script>
 
 <script id="tmplChartDef" type="text/html">
+
+     <partial name="_TeamLogos" model="@Model" />
     @(Html.Kendo().Chart()
                   .Name("Def")
                           .Title(title => title
@@ -75,6 +76,8 @@
 </script>
 
 <script id="tmplChartForm" type="text/html">
+
+     <partial name="_TeamLogos" model="@Model" />
     @(Html.Kendo().Chart()
                         .Name("Form")
                                 .Title(title => title
@@ -108,6 +111,8 @@
 </script>
 
 <script id="tmplChartGoals" type="text/html">
+
+     <partial name="_TeamLogos" model="@Model" />
     @(Html.Kendo().Chart()
                        .Name("Goals")
                                .Title(title => title
@@ -141,6 +146,7 @@
 </script>
 
 <script id="tmplChartH2H" type="text/html">
+     <partial name="_TeamLogos" model="@Model" />
     @(Html.Kendo().Chart()
                        .Name("H2H")
                                .Title(title => title
@@ -174,6 +180,7 @@
 </script>
 
 <script id="tmplChartPosDis" type="text/html">
+     <partial name="_TeamLogos" model="@Model" />
     @(Html.Kendo().Chart()
                        .Name("PosDis")
                                .Title(title => title
@@ -207,6 +214,7 @@
 </script>
 
 <script id="tmplChartTotal" type="text/html">
+     <partial name="_TeamLogos" model="@Model" />
     @(Html.Kendo().Chart()
                            .Name("Total")
                                    .Title(title => title
@@ -274,6 +282,11 @@
                              .ColSpan(1)
                              .RowSpan(1)
                              .BodyTemplateId("tmplChartTotal");
+
+                      c.Add().Header(h => h.Text("Goals"))
+                      .ColSpan(1)
+                      .RowSpan(1)
+                      .BodyTemplateId("tmplChartGoals");
 
                   })
                   .Reorderable(true)

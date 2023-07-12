@@ -1,20 +1,6 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
-@if (Model.Teams.Home != null && Model.Teams.Away != null)
-{
-   <h5>These are the predictions for @Model.Teams.Home.Name vs @Model.Teams.Away.Name</h5>
-    <div class="image">
-
-        <img src="@Model.Teams.Home.Logo">
-        <span style="margin-left: 5px"><i>home</i> <b>@Model.Teams.Home.Name</b> </span>
-    </div>
-
-    <div class="image">
-        <img src="@Model.Teams.Away.Logo">
-        <span style="margin-left: 5px"> <i>away</i> <b>@Model.Teams.Away.Name</b></span>
-    </div>
-
-}
+<partial name="_TeamLogos" model="@Model" />
 
 <kendo-tabstrip name="tabstrip">
 
@@ -28,14 +14,10 @@
 
 </kendo-tabstrip>
 
-
+<!-- styles placed here as they are being accessed by partial scripts
+that do not react will with style sheets being brought in via a link
+(I preseume becasue of render and fetching order. Answers on a postcard please)-->
 <style>
-
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 
     .k-card {
         width: 285px;
@@ -54,8 +36,36 @@
         border-width: 0;
     }
 
-</style>
+    .photo-badge {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        float: right;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-right: 5px;
+    }
 
+    .home-badge {
+        float: left;
+    }
+
+    .away-badge {
+        float: right;
+    }
+
+    .product-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+
+</style>
 
 @section styles {
     <link rel="stylesheet" href="~/css/leagues.css" />

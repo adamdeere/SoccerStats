@@ -8,7 +8,7 @@ namespace SoccerStatsNew.Controllers
     {
         public IActionResult Index(int? fixture)
         {
-            string urlParams = "predictions?fixture=881252";
+            string urlParams = $"predictions?fixture={fixture}";
 
             var predictions = JsonHelper.GetObjectFromJsonFile<PredictionRoot>("Test/predictions.json");
 
