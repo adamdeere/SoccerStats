@@ -50,8 +50,7 @@ namespace SoccerStatsNew.Services
                             Name = item.League.Name,
                             Type = item.League.Type,
                             LogoURL = item.League.Logo,
-                            CountryName = item.Country.Name,
-                            CountryCode = item.Country.Code
+                            CountryName = item.Country.Name
                         };
 
                         _context.LeagueModel.Add(model);
@@ -68,15 +67,33 @@ namespace SoccerStatsNew.Services
             _context = context;
         }
 
-        public async Task SaveTeamsAndVenues(int id)
+        public async Task<IEnumerable<SeasonModel>?> GetSeasons(int leagueId)
         {
-            var teamRoot = JsonHelper.GetObjectFromJsonFile<TeamRoot>("Test/teamsByLeague.json");
+            if (_context.SeasonModel != null)
+            {
+                var seasons = await _context.SeasonModel
+                    .Where(id => id.LeagueId == leagueId)
+                    .OrderByDescending(id => id.Year)
+                    .ToListAsync();
+
+                return seasons ?? null;
+            }
+            return null;
+        }
+
+        public async Task SaveTeamsAndVenues(int id, string year)
+        {
+            string url = $"teams?league={id}&season={year}";
+            var teamRoot = await _webService.GetObjectRequest<TeamRoot>(url);
             if (teamRoot != null)
             {
                 foreach (var item in teamRoot.Response)
                 {
                     if (item.Venue.Id != null)
                     {
+                        
+                        
+
                         VenuesModel venue = new()
                         {
                             VenueId = (int)item.Venue.Id,
@@ -88,24 +105,36 @@ namespace SoccerStatsNew.Services
                             Surface = item.Venue.Surface,
                             Image = item.Venue.Image,
                         };
-                        _context.VenuesModel.Add(venue);
-                        await _context.SaveChangesAsync();
+                        if (!VenueModelExists(venue))
+                        {
+                            _context.VenuesModel.Add(venue);
+                            await _context.SaveChangesAsync();
+                        }
                     }
-
-                    TeamModel teamModel = new()
+                    if (item.Team.Id != null)
                     {
-                        TeamId = item.Team.Id,
-                        StadiumId = item.Venue.Id,
-                        Name = item.Team.Name,
-                        Code = item.Team.Code,
-                        Country = item.Team.Country,
-                        Founded = item.Team.Founded,
-                        National = item.Team.National,
-                        Logo = item.Team.Logo,
-                        LeagueId = id,
-                    };
-                    _context.TeamModel.Add(teamModel);
-                    await _context.SaveChangesAsync();
+
+                        TeamModel teamModel = new()
+                        {
+                            TeamId = item.Team.Id,
+                            StadiumId = item.Venue.Id,
+                            Name = item.Team.Name,
+                            Code = item.Team.Code,
+                            Country = item.Team.Country,
+                            Founded = item.Team.Founded,
+                            National = item.Team.National,
+                            Logo = item.Team.Logo,
+                            LeagueId = id,
+                        };
+
+                        if (!TeamModelExists(teamModel))
+                        {
+                            _context.TeamModel.Add(teamModel);
+                            await _context.SaveChangesAsync();
+                        }
+
+
+                    }
                 }
             }
         }
@@ -117,10 +146,13 @@ namespace SoccerStatsNew.Services
 
             return teamModel ?? null;
         }
-
-        private bool TeamModelExists(int id)
+        private bool VenueModelExists(VenuesModel id)
         {
-            return (_context.TeamModel?.Any(e => e.LeagueId == id)).GetValueOrDefault();
+            return (_context.VenuesModel?.Any(e => e == id)).GetValueOrDefault();
+        }
+        private bool TeamModelExists(TeamModel id)
+        {
+            return (_context.TeamModel?.Any(e => e == id)).GetValueOrDefault();
         }
 
         public async Task<ICollection<LeagueModel>?> GetLeagues()

@@ -51,8 +51,8 @@ namespace SoccerStatsNew.Services
                             Name = item.League.Name,
                             Type = item.League.Type,
                             LogoURL = item.League.Logo,
-                            CountryName = item.Country.Name,
-                            CountryCode = item.Country.Code
+                            CountryName = item.Country.Name
+                          
                         };
 
                         _dbContext.LeagueModel.Add(model);

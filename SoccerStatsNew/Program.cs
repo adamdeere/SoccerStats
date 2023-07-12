@@ -7,7 +7,7 @@ using UtilityLibraries;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("WorkDbContext")
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HomeDbContext")
     ?? throw new InvalidOperationException("Connection string 'SoccerStatsDbContext' not found.")));
 
 string Address = "https://v3.football.api-sports.io/";
@@ -28,7 +28,7 @@ builder.Services.AddHttpClient<WebService>(_httpClient =>
         HeaderNames.UserAgent, "HttpRequestsSample");
 
     _httpClient.DefaultRequestHeaders.Add(
-              "x-rapidapi-key", "60553e4650d7942cb159d23481c9cbba");
+              "x-rapidapi-key", "3f9914c1b38c709f55114e30991a308b");
 });
 
 builder.Services.AddKendo();
