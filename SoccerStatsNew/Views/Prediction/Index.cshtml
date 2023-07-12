@@ -1,6 +1,19 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
-<partial name="_TeamLogos" model="@Model" />
+@if(Model.League != null){
+    <div class="photo-badge home-badge">
+        <img src="@Model.League.Flag" class="rounded">
+    </div>
+    <div class="product-name">
+        <span>@Model.League.Country</span>
+    </div>
+    <div class="product-name">
+        <div class="photo-badge home-badge">
+            <img src="@Model.League.Logo" class="rounded">
+        </div>
+        <span>@Model.League.Name Season: @Model.League.Season</span>
+    </div>
+}
 
 <kendo-tabstrip name="tabstrip">
 

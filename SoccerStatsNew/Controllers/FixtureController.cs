@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoccerStatsData.RequestModels;
-using SoccerStatsData.RequestModels.PredictionRequestFiles;
 using SoccerStatsNew.DbServices;
-using SoccerStatsNew.Models;
-using UtilityLibraries;
 
 
 namespace SoccerStatsNew.Controllers
@@ -22,11 +18,6 @@ namespace SoccerStatsNew.Controllers
             return fixture != null 
                 ? View(fixture) 
                 : NotFound();
-        }
-
-        public IActionResult Details(int? fixture)
-        { 
-            return View();
         }
     }
 }

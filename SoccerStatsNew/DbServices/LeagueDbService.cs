@@ -75,7 +75,7 @@ namespace SoccerStatsNew.Services
                 {
                     if (item.Venue.Id != null)
                     {
-                        VenuesModel venue = new VenuesModel()
+                        VenuesModel venue = new()
                         {
                             VenueId = (int)item.Venue.Id,
                             Name = item.Venue.Name,
@@ -90,7 +90,7 @@ namespace SoccerStatsNew.Services
                         await _context.SaveChangesAsync();
                     }
 
-                    TeamModel teamModel = new TeamModel()
+                    TeamModel teamModel = new()
                     {
                         TeamId = item.Team.Id,
                         StadiumId = item.Venue.Id,
