@@ -11,6 +11,7 @@ namespace SoccerStatsNew.Services
         private readonly SoccerStatsDbContext _context;
         private readonly SeasonDbService _seasonService;
         private readonly WebService _webService;
+
         public async Task SaveLeagueAndSeason(LeagueRoot root)
         {
             if (_context.LeagueModel != null && _context.SeasonModel != null)
@@ -59,15 +60,16 @@ namespace SoccerStatsNew.Services
                 }
             }
         }
+
         public LeagueDbService(SoccerStatsDbContext context, SeasonDbService season, WebService service)
         {
             _webService = service;
             _seasonService = season;
             _context = context;
         }
+
         public async Task SaveTeamsAndVenues(int id)
         {
-
             var teamRoot = JsonHelper.GetObjectFromJsonFile<TeamRoot>("Test/teamsByLeague.json");
             if (teamRoot != null)
             {
@@ -83,7 +85,7 @@ namespace SoccerStatsNew.Services
                             City = item.Venue.City,
                             Country = item.Team.Country,
                             Capacity = item.Venue.Capacity,
-                            Surface = item.Venue.Surface,   
+                            Surface = item.Venue.Surface,
                             Image = item.Venue.Image,
                         };
                         _context.VenuesModel.Add(venue);
@@ -104,10 +106,10 @@ namespace SoccerStatsNew.Services
                     };
                     _context.TeamModel.Add(teamModel);
                     await _context.SaveChangesAsync();
-
                 }
             }
         }
+
         public async Task<IEnumerable<TeamModel>?> GetTeamModels(int id)
         {
             var teamModel = await _context.TeamModel
@@ -115,6 +117,7 @@ namespace SoccerStatsNew.Services
 
             return teamModel ?? null;
         }
+
         private bool TeamModelExists(int id)
         {
             return (_context.TeamModel?.Any(e => e.LeagueId == id)).GetValueOrDefault();
@@ -127,6 +130,7 @@ namespace SoccerStatsNew.Services
                   await soccerStatsDbContext.ToListAsync()
             : null;
         }
+
         public async Task<IEnumerable<LeagueModel>?> GetLeagueDetails(string country)
         {
             var leagueModel = await _context.LeagueModel
@@ -161,7 +165,7 @@ namespace SoccerStatsNew.Services
 
         public async Task<ICollection<SeasonModel>?> GetLeagueAvailableSeasons(int id)
         {
-           return await _seasonService.GetLeagueAvailableSeasons(id);
+            return await _seasonService.GetLeagueAvailableSeasons(id);
         }
     }
 }

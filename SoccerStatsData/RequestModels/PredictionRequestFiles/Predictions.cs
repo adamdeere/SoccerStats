@@ -31,7 +31,8 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("comment")]
         public string Comment { get; set; }
     }
-    public class PredictionGoals 
+
+    public class PredictionGoals
     {
         [JsonProperty("home")]
         public string? Home { get; set; }
@@ -39,6 +40,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("away")]
         public string? Away { get; set; }
     }
+
     public class Percent
     {
         [JsonProperty("home")]
@@ -50,6 +52,4 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("away")]
         public string Away { get; set; }
     }
-
-   
 }

@@ -21,7 +21,6 @@ namespace SoccerStatsNew.Services
                 {
                     if (item.Country.Code != null)
                     {
-
                         foreach (var seasons in item.Seasons)
                         {
                             string g = Guid.NewGuid().ToString();
@@ -44,7 +43,7 @@ namespace SoccerStatsNew.Services
                                 Odds = seasons.Coverage.Odds,
                             };
                             _dbContext.SeasonModel.Add(seasonDbModel);
-                            await _dbContext.SaveChangesAsync();    
+                            await _dbContext.SaveChangesAsync();
                         }
                         LeagueModel model = new()
                         {
@@ -78,17 +77,17 @@ namespace SoccerStatsNew.Services
                             FlagURL = country.Flag
                         };
 
-                       _dbContext.CountryModel.Add(countryModel);
+                        _dbContext.CountryModel.Add(countryModel);
                         await _dbContext.SaveChangesAsync();
                     }
                 }
             }
-            
         }
+
         public async Task<ICollection<CountryModel>?> GetAllCountriesToList()
         {
-            return _dbContext.CountryModel != null 
-                ? await _dbContext.CountryModel.ToListAsync() 
+            return _dbContext.CountryModel != null
+                ? await _dbContext.CountryModel.ToListAsync()
                 : null;
         }
 

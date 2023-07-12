@@ -7,10 +7,12 @@ namespace SoccerStatsNew.DbServices
     public class TeamDbService
     {
         private readonly SoccerStatsDbContext _dbContext;
+
         public TeamDbService(SoccerStatsDbContext context)
         {
             _dbContext = context;
         }
+
         public async Task SaveTeamsAndVenues(TeamRoot roo)
         {
             foreach (var item in roo.Response)
@@ -26,7 +28,6 @@ namespace SoccerStatsNew.DbServices
                     Image = item.Venue.Image,
                     Country = item.Team.Country,
                 };
-
 
                 TeamModel vTeam = new()
                 {
@@ -46,6 +47,7 @@ namespace SoccerStatsNew.DbServices
                 await _dbContext.SaveChangesAsync();
             }
         }
+
         public async Task<TeamModel?> GetTeam(string team)
         {
             if (_dbContext.TeamModel != null)

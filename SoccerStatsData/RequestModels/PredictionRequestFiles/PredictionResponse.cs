@@ -7,6 +7,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("response")]
         public List<PredictionResponse> Response { get; set; }
     }
+
     public class PredictionResponse
     {
         [JsonProperty("predictions")]

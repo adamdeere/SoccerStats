@@ -6,76 +6,101 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
     {
         [JsonProperty("form")]
         public string? Form { get; set; }
+
         [JsonProperty("fixtures")]
         public FixturesForm Fixtures { get; set; }
+
         [JsonProperty("goals")]
         public FixturesFormGoals Goals { get; set; }
+
         [JsonProperty("biggest")]
         public Biggest Biggest { get; set; }
+
         [JsonProperty("clean_sheet")]
         public CleanSheetStats CleanSheet { get; set; }
+
         [JsonProperty("failed_to_score")]
         public CleanSheetStats FailedToScore { get; set; }
+
         [JsonProperty("lineups")]
         public List<Lineup> LineUps { get; set; }
+
         [JsonProperty("cards")]
         public Cards Cards { get; set; }
+
         [JsonProperty("penalty")]
         public Penalty Penalty { get; set; }
-
     }
+
     public class FixturesForm
     {
         [JsonProperty("played")]
         public FixturesFormData Played { get; set; }
+
         [JsonProperty("wins")]
         public FixturesFormData Wins { get; set; }
+
         [JsonProperty("draws")]
         public FixturesFormData Draws { get; set; }
+
         [JsonProperty("loses")]
         public FixturesFormData Loses { get; set; }
     }
+
     public class FixturesFormData
     {
         [JsonProperty("home")]
         public int? Home { get; set; }
+
         [JsonProperty("away")]
         public int? Away { get; set; }
+
         [JsonProperty("total")]
         public int? Total { get; set; }
     }
+
     public class FixturesFormGoals
     {
         [JsonProperty("for")]
         public FixturesFormGoalsData For { get; set; }
+
         [JsonProperty("against")]
         public FixturesFormGoalsData Against { get; set; }
     }
+
     public class FixturesFormGoalsData
     {
         [JsonProperty("total")]
         public GoalsForm Total { get; set; }
+
         [JsonProperty("average")]
         public GoalsFormAverage Average { get; set; }
     }
+
     public class GoalsForm
     {
         [JsonProperty("home")]
         public int? Home { get; set; }
+
         [JsonProperty("away")]
         public int? Away { get; set; }
+
         [JsonProperty("total")]
         public int? Total { get; set; }
     }
+
     public class GoalsFormAverage
     {
         [JsonProperty("home")]
         public string? Home { get; set; }
+
         [JsonProperty("away")]
         public string? Away { get; set; }
+
         [JsonProperty("total")]
         public string? Total { get; set; }
     }
+
     public class Minute
     {
         [JsonProperty("0-15")]
@@ -99,7 +124,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("91-105")]
         public MinuteRange _91105 { get; set; }
     }
-   
+
     public class MinuteRange
     {
         [JsonProperty("total")]

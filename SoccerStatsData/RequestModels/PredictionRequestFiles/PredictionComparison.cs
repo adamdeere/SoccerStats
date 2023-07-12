@@ -21,6 +21,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
 
         [JsonProperty("goals")]
         public ComparisonStats Goals { get; set; }
+
         [JsonProperty("total")]
         public ComparisonStats Total { get; set; }
     }

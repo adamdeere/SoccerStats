@@ -1,5 +1,4 @@
 function onChange(arg) {
-    
     var rows = arg.sender.select();
     var itemId = rows[0].dataset['id'];
 

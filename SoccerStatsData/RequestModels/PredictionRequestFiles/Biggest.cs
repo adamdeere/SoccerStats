@@ -21,6 +21,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
     {
         [JsonProperty("for")]
         public GoalNumbers For { get; set; }
+
         [JsonProperty("against")]
         public GoalNumbers Againsr { get; set; }
     }

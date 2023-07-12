@@ -1,4 +1,5 @@
 ﻿using SoccerStatsData;
+
 //
 namespace SoccerStatsNew.Models
 {/// <summary>

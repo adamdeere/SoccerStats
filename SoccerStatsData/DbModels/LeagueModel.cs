@@ -19,7 +19,5 @@ namespace SoccerStatsData
         public CountryModel Country { get; set; }
 
         public List<SeasonModel> Seasons { get; set; } = new List<SeasonModel>();
-
-
     }
 }

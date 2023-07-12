@@ -4,7 +4,7 @@ namespace UtilityLibraries
 {
     public static class JsonHelper
     {
-        public static void ToJsonFile(string obj, string filePath) 
+        public static void ToJsonFile(string obj, string filePath)
         {
             using StreamWriter sw = new StreamWriter(filePath);
             if (!string.IsNullOrEmpty(obj))
@@ -22,12 +22,14 @@ namespace UtilityLibraries
         {
             return JsonConvert.SerializeObject(jsonObject);
         }
+
         public static void WriteObjectToJson(object jsonObject, string filePath)
         {
             using StreamWriter sw = new(filePath);
 
             sw.WriteLine(JsonConvert.SerializeObject(jsonObject));
         }
+
         public static T? GetObjectFromJsonFile<T>(string file)
         {
             using StreamReader sr = new(file);

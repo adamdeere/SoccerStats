@@ -9,6 +9,7 @@ namespace SoccerStatsData
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string SeasonId { get; set; }
+
         public int LeagueId { get; set; }
         public string CountryName { get; set; }
         public int Year { get; set; }

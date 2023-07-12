@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using SoccerStatsNew.Data;
-using UtilityLibraries;
-using SoccerStatsNew.Services;
 using SoccerStatsNew.DbServices;
+using SoccerStatsNew.Services;
+using UtilityLibraries;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("WorkDbContext") 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WorkDbContext")
     ?? throw new InvalidOperationException("Connection string 'SoccerStatsDbContext' not found.")));
 
 string Address = "https://v3.football.api-sports.io/";
@@ -15,7 +15,6 @@ string Address = "https://v3.football.api-sports.io/";
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
                 options.JsonSerializerOptions.PropertyNamingPolicy = null);
-
 
 builder.Services.AddKendo();
 
@@ -32,7 +31,7 @@ builder.Services.AddHttpClient<WebService>(_httpClient =>
               "x-rapidapi-key", "60553e4650d7942cb159d23481c9cbba");
 });
 
-builder.Services.AddKendo(); 
+builder.Services.AddKendo();
 builder.Services.AddScoped<CountryDbService>();
 builder.Services.AddScoped<LeagueDbService>();
 builder.Services.AddScoped<TeamDbService>();
@@ -59,6 +58,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Prediction}/{action=Index}/{id?}");
 
 app.Run();

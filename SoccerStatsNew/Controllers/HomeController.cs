@@ -3,21 +3,19 @@ using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData;
 using SoccerStatsNew.DbServices;
-using SoccerStatsNew.Models;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
-
-
 
 namespace SoccerStatsNew.Controllers
 {
     public class HomeController : Controller
     {
         private readonly SeasonDbService _seasonDbService;
-        private readonly CountryDbService _countryService;  
+        private readonly CountryDbService _countryService;
+
         public HomeController(CountryDbService service, SeasonDbService seasonDbService)
         {
-           _seasonDbService = seasonDbService;
+            _seasonDbService = seasonDbService;
             _countryService = service;
         }
 
@@ -50,10 +48,8 @@ namespace SoccerStatsNew.Controllers
                 return Json(countries.ToDataSourceResult(request));
             }
 
-           return Json(null);
-
+            return Json(null);
         }
-
 
         public IActionResult Privacy()
         {
@@ -69,13 +65,10 @@ namespace SoccerStatsNew.Controllers
         public async Task<JsonResult> ServerFiltering_Countries(string text)
         {
             var countries = await _countryService.GetCountrys(text);
-            
-            return countries != null 
+
+            return countries != null
                 ? Json(countries)
                 : Json("");
         }
-
-        
-
     }
 }

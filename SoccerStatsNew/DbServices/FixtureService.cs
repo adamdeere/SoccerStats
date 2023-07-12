@@ -7,8 +7,9 @@ namespace SoccerStatsNew.DbServices
     public class FixtureService
     {
         private readonly WebService _WebService;
-        public FixtureService(WebService service) 
-        { 
+
+        public FixtureService(WebService service)
+        {
             _WebService = service;
         }
 
@@ -34,8 +35,6 @@ namespace SoccerStatsNew.DbServices
                     };
                     list.Add(page);
                 }
-
-               
             }
             return list;
         }
