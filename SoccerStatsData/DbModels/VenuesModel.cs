@@ -7,7 +7,7 @@ namespace SoccerStatsData
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int? VenueId { get; set; }
+        public int VenueId { get; set; }
         public string? Name { get; set; }
         public string? Address { get; set; }
         public string? City { get; set; }

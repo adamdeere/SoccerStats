@@ -17,7 +17,7 @@ namespace SoccerStatsNew.DbServices
             {
                 VenuesModel vMod = new()
                 {
-                    VenueId = item.Venue.Id,
+                    VenueId = (int)item.Venue.Id,
                     Name = item.Venue.Name,
                     Address = item.Venue.Address,
                     City = item.Venue.City,
@@ -61,7 +61,7 @@ namespace SoccerStatsNew.DbServices
                  {
                      League = league,
                      Team = team
-                 }).FirstOrDefaultAsync();
+                 }).ToListAsync();
 
                 await _dbContext.VenuesModel
                  .Join(_dbContext.TeamModel,
@@ -71,7 +71,7 @@ namespace SoccerStatsNew.DbServices
                  {
                      Venue = venue,
                      Team = team
-                 }).FirstOrDefaultAsync();
+                 }).ToListAsync();
 
                 return teamModel ?? null;
             }

@@ -16,19 +16,19 @@
                 {
                     columns.Bound(p => p.Date)
                            .Title("Fixture date")
-                           .Width(130);
+                           .Width(70);
 
                     columns.Bound(p => p.League)
                            .Title("League")
-                           .Width(250);
+                           .Width(70);
 
                     columns.Bound(p => p.HomeTeam)
                            .Title("Home Team")
-                           .Width(250);
+                           .Width(70);
 
                     columns.Bound(p => p.AwayTeam)
                            .Title("Away Team")
-                           .Width(250);
+                           .Width(70);
 
                 })
                 .ClientRowTemplate(@line)
@@ -50,3 +50,28 @@
 @section scripts {
     <script src="~/js/fixtures.js"></script>
 }
+
+<style>
+    
+
+    .photo-badge {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-right: 5px;
+    }
+
+    .product-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+   
+</style>

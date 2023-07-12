@@ -77,7 +77,7 @@ namespace SoccerStatsNew.Services
                     {
                         VenuesModel venue = new VenuesModel()
                         {
-                            VenueId = item.Venue.Id,
+                            VenueId = (int)item.Venue.Id,
                             Name = item.Venue.Name,
                             Address = item.Venue.Address,
                             City = item.Venue.City,

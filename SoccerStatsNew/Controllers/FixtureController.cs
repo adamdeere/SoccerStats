@@ -22,8 +22,6 @@ namespace SoccerStatsNew.Controllers
             return fixture != null 
                 ? View(fixture) 
                 : NotFound();
-
-           
         }
 
         public IActionResult Details(int? fixture)

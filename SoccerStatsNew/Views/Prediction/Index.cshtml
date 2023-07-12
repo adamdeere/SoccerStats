@@ -1,9 +1,21 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
-@{
+@if (Model.Teams.Home != null && Model.Teams.Away != null)
+{
+   <h5>These are the predictions for @Model.Teams.Home.Name vs @Model.Teams.Away.Name</h5>
+    <div class="image">
+
+        <img src="@Model.Teams.Home.Logo">
+        <span style="margin-left: 5px"><i>home</i> <b>@Model.Teams.Home.Name</b> </span>
+    </div>
+
+    <div class="image">
+        <img src="@Model.Teams.Away.Logo">
+        <span style="margin-left: 5px"> <i>away</i> <b>@Model.Teams.Away.Name</b></span>
+    </div>
+
 }
 
-<h5>These are the predictions</h5>
 <kendo-tabstrip name="tabstrip">
 
     <items>

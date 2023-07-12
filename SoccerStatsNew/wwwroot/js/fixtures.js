@@ -5,7 +5,7 @@ function OnGridSelect(arg) {
 
     console.log(rows);
     if (itemId) {
-        window.location.href = `Fixture/Details?fixture=${itemId}`;
+        window.location.href = `Prediction?fixture=${itemId}`;
     }
    
 }
