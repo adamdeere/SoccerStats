@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsData;
-using SoccerStatsData.RequestModels;
 using SoccerStatsNew.Data;
 using UtilityLibraries;
 
@@ -57,7 +56,7 @@ namespace SoccerStatsNew.DbServices
             if (_dbContext.TeamModel != null)
             {
                 var teamModel = await _dbContext.TeamModel
-                .FirstOrDefaultAsync(i => i.Code == team);
+                .FirstOrDefaultAsync(i => i.Name == team);
 
                 await _dbContext.LeagueModel
                  .Join(_dbContext.TeamModel,
@@ -80,6 +79,20 @@ namespace SoccerStatsNew.DbServices
                  }).ToListAsync();
                 return teamModel ?? null;
             }
+            return null;
+        }
+
+        public async Task<CountryModel?> GetCountry(string country)
+        {
+            if (_dbContext.CountryModel != null)
+            {
+                var countryModel = await _dbContext.CountryModel
+                    .Where(id => id.Name == country)
+                    .FirstOrDefaultAsync();
+
+                return countryModel ?? null;
+            }
+
             return null;
         }
     }

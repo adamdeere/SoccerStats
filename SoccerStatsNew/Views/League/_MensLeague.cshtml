@@ -12,26 +12,28 @@
         </div>
         <div class="k-card-body">
             @{
+                // gives a unique name for each listview inside the league cards
                 var listName = $"listView_{UtilityLibraries.StringStripper.StripPunctuation(Model.Name)}";
             }
 
             <div class="demo-section wide">
-                @(Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
-                    .Name(listName)
-                    .TagName("div")
-                    .ClientTemplateId("teams")
-                    .DataSource(dataSource => dataSource
-                    .Ajax()
-                    .Read(read => read.Action("League_Team_Read", "League", new
-                    {
-                        league = Model.LeagueId,
-                        year = "2022",
-                        type = "league"
+                @(
+                    Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
+                        .Name(listName)
+                        .TagName("div")
+                        .ClientTemplateId("teams")
+                        .DataSource(dataSource => dataSource
+                        .Ajax()
+                        .Read(read => read.Action("League_Team_Read", "League", new
+                        {
+                            league = Model.LeagueId,
+                            year = "2022",
+                            type = "league"
 
-                    }))
-                    .PageSize(26))
-                    .Selectable(ListViewSelectionMode.Single)
-                    .Events(events => events.Change("onChange")))
+                        }))
+                        .PageSize(26))
+                        .Selectable(ListViewSelectionMode.Single)
+                        .Events(events => events.Change("onChange")))
             </div>
 
         </div>
@@ -47,7 +49,7 @@
 </div>
 
 <script type="text/x-kendo-tmpl" id="teams">
-    <div class="product" data-id="#:Code#">
+    <div class="product" data-id="#:Name#">
         <img src="#:Logo#" alt="#:Name# image" />
         <h3>#:Name#</h3>
         <p>Founded: #:Founded#</p>

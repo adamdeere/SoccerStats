@@ -2,7 +2,6 @@
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData;
-using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Services;
 using System.Diagnostics;
 
@@ -21,7 +20,6 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index(string code)
         {
-            
             if (string.IsNullOrEmpty(code))
             {
                 var countries = await _countryService.GetAllCountriesToList();

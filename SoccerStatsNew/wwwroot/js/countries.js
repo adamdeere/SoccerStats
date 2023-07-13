@@ -11,7 +11,3 @@ function onSelect(e) {
         location.href = `/?code=${countryName}`;
     }
 }
-
-function onClick(e) {
-    console.log("event :: click (" + $(e.event.target).closest(".k-button").attr("id") + ")");
-}

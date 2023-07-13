@@ -9,22 +9,66 @@
 }
 <h6>this is the players tab</h6>
 
-@(Html.Kendo().Grid<SoccerStatsData.RequestModels.Player>()
+@(
+Html.Kendo().Grid<SoccerStatsData.RequestModels.PlayerRequestFile>()
                 .Name("player-grid")
                 .Columns(columns =>
                 {
-                    columns.Bound(p => p.Name)
-                           .Title("Profile picture")
-                           .Width(70);
-                          
+                    columns.Bound(p => p.Player.Photo)
+                           .Title("Photo")
+                           .Width(5);
+
+                    columns.Bound(p => p.Player.Name)
+                    .Title("Name")
+                    .Width(10);
+
+                     columns.Bound(p => p.Player.Birth.Date)
+                    .Title("Born")
+                    .Width(10);
+
+                    columns.Bound(p => p.Player.Age)
+                   .Title("Age")
+                   .Width(5);
+
+                    columns.Bound(p => p.Player.Birth.Place)
+                   .Title("Birth town")
+                   .Width(5);
+
+                    columns.Bound(p => p.Player.Nationality)
+                   .Title("Nationality")
+                   .Width(5);
+
                 })
                 .ClientRowTemplate(@line)
                 .DataSource(dataSource => dataSource
                             .Ajax()
                             .PageSize(20)
-                            .Read(read => read.Action("Players_Read", "Team"))
+                            .Read(read => read.Action("Players_Read", "Team", new { id = Model.TeamId}))
                             )
                 .Pageable()
                 .Sortable()
                 .Scrollable(scr => scr.Height(430))
                 .Selectable())
+<style>
+    .photo-badge {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-right: 5px;
+    }
+
+    .product-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+</style>
+
+

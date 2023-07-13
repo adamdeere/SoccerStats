@@ -1,10 +1,9 @@
-﻿using Kendo.Mvc.UI;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData.RequestModels;
-using SoccerStatsData;
 using SoccerStatsNew.DbServices;
 using UtilityLibraries;
-using Kendo.Mvc.Extensions;
 
 namespace SoccerStatsNew.Controllers
 {
@@ -29,22 +28,16 @@ namespace SoccerStatsNew.Controllers
                 : NotFound();
         }
 
-        public async Task<ActionResult> Players_Read([DataSourceRequest] DataSourceRequest request, int league)
+        public async Task<ActionResult> Players_Read([DataSourceRequest] DataSourceRequest request, int id)
         {
-            var teamId = 57;
             var year = "2023";
-            string url = $"players?season={year}&team={teamId}";
+            string url = $"players?season={year}&team={id}";
             var players = await _webService.GetObjectRequest<PlayerRoot>(url);
-            List<Player> list = new();
             if (players != null)
             {
-                foreach (var player in players.Response) 
-                {
-                    list.Add(player.Player);
-                }
-               
+                return Json(await players.Response.ToDataSourceResultAsync(request));
             }
-            return Json(await list.ToDataSourceResultAsync(request));
+            return Json(null);
         }
     }
 }

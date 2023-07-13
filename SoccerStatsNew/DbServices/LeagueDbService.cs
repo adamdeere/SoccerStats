@@ -88,7 +88,7 @@ namespace SoccerStatsNew.Services
             if (teamRoot != null)
             {
                 foreach (var item in teamRoot.Response)
-                { 
+                {
                     /*
                     if (item.Venue.Id != null)
                     {
@@ -107,19 +107,16 @@ namespace SoccerStatsNew.Services
                         {
                             _context.VenuesModel.Add(venue);
                             await _context.SaveChangesAsync();
-
                         }
                         else
                         {
                             _context.VenuesModel.Update(venue);
                             await _context.SaveChangesAsync();
                         }
-                       
                     }
                     */
                     if (item.Team.Id != null)
                     {
-
                         TeamModel teamModel = new()
                         {
                             TeamId = item.Team.Id,
@@ -156,10 +153,12 @@ namespace SoccerStatsNew.Services
 
             return teamModel ?? null;
         }
+
         private bool VenueModelExists(VenuesModel id)
         {
             return (_context.VenuesModel?.Any(e => e == id)).GetValueOrDefault();
         }
+
         private bool TeamModelExists(TeamModel id)
         {
             return (_context.TeamModel?.Any(e => e == id)).GetValueOrDefault();

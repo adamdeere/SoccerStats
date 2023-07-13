@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SoccerStatsData;
 
 namespace SoccerStatsData.RequestModels
 {
@@ -116,10 +117,6 @@ namespace SoccerStatsData.RequestModels
         public int Season { get; set; }
     }
 
-  
-
-   
-
     public class PlayerPasses
     {
         [JsonProperty("total")]
@@ -184,6 +181,8 @@ namespace SoccerStatsData.RequestModels
 
         [JsonProperty("photo")]
         public string Photo { get; set; }
+
+        public CountryModel Country { get; set; }
     }
 
     public class PlayerRequestFile

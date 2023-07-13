@@ -1,8 +1,6 @@
 ﻿@model SoccerStatsData.TeamModel
 
-
 <h1 class="h2" id="itemTitle">This is the display for @Model.Name</h1>
-
 
 <kendo-tabstrip name="ajax-tabstrip">
     <items>
@@ -25,6 +23,7 @@
         <tabstrip-item text="Players" selected="true">
             <content>
                 <partial name="_Players" model="@Model" />
+
             </content>
         </tabstrip-item>
     </items>
@@ -33,22 +32,12 @@
 <div class="button-section">
 
     @(Html.Kendo().Button()
-        .Name("imageButton")
-        .HtmlAttributes(new { type = "button" })
-        .ImageUrl(Url.Content("~/images/placeholder.png"))
-        .Content("Image icon"))
-
-    @(Html.Kendo().Button()
         .Name("#btnFixtures")
         .Icon("k-icon k-i-calendar")
         .Content("Fixtures")
         .HtmlAttributes(new { type = "button", param = @Model.Name })
         .Events(ev => ev.Click("onClick")))
 </div>
-
-
-
-
 
 @section scripts {
     <script src="~/js/teams.js"> </script>
