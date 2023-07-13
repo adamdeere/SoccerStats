@@ -1,3 +1,30 @@
-﻿@{
+﻿@model SoccerStatsData.TeamModel
+
+@{
+    var line = string.Empty;
+    using (StreamReader sr = new StreamReader("Views/Shared/_PlayerGrid.cshtml"))
+    {
+        line = sr.ReadToEnd();
+    }
 }
 <h6>this is the players tab</h6>
+
+@(Html.Kendo().Grid<SoccerStatsData.RequestModels.Player>()
+                .Name("player-grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(p => p.Name)
+                           .Title("Profile picture")
+                           .Width(70);
+                          
+                })
+                .ClientRowTemplate(@line)
+                .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .PageSize(20)
+                            .Read(read => read.Action("Players_Read", "Team"))
+                            )
+                .Pageable()
+                .Sortable()
+                .Scrollable(scr => scr.Height(430))
+                .Selectable())

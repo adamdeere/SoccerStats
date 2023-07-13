@@ -13,6 +13,7 @@ namespace SoccerStatsData
         public string Type { get; set; }
         public string LogoURL { get; set; }
         public string CountryName { get; set; }
+        public string CountryCode { get; set; }
 
         [ForeignKey("CountryName")]
         public CountryModel Country { get; set; }

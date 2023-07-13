@@ -21,34 +21,6 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Index(string code)
         {
-           var leagues = await _leagueDbService.GetLeagues();
-            if (leagues != null)
-            {
-                foreach (var item in leagues)
-                {
-
-                    item.Seasons = await _leagueDbService.GetSeasons(item.LeagueId);
-                }
-                foreach (var item in leagues)
-                {
-                    int year = 0;// item.Seasons.First().Year;
-                    int leagueId = item.LeagueId;
-                    if (item.Seasons != null)
-                    {
-                        year = item.Seasons.First().Year;
-                    }
-                    else
-                    {
-                        year = 2022;
-                    }
-
-                    await _leagueDbService.SaveTeamsAndVenues(leagueId, year.ToString());
-                    
-                  
-                }
-            }
-
-            
             
             if (string.IsNullOrEmpty(code))
             {

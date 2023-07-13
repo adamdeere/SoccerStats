@@ -2,7 +2,6 @@
 
 namespace SoccerStatsData.RequestModels
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class PlayerBirth
     {
         [JsonProperty("date")]
@@ -117,26 +116,9 @@ namespace SoccerStatsData.RequestModels
         public int Season { get; set; }
     }
 
-    public class PlayerPaging
-    {
-        [JsonProperty("current")]
-        public int Current { get; set; }
+  
 
-        [JsonProperty("total")]
-        public int Total { get; set; }
-    }
-
-    public class PlayerParameters
-    {
-        [JsonProperty("league")]
-        public string League { get; set; }
-
-        [JsonProperty("season")]
-        public string Season { get; set; }
-
-        [JsonProperty("page")]
-        public string Page { get; set; }
-    }
+   
 
     public class PlayerPasses
     {
@@ -215,21 +197,6 @@ namespace SoccerStatsData.RequestModels
 
     public class PlayerRoot
     {
-        [JsonProperty("get")]
-        public string Get { get; set; }
-
-        [JsonProperty("parameters")]
-        public PlayerParameters Parameters { get; set; }
-
-        [JsonProperty("errors")]
-        public List<object> Errors { get; set; }
-
-        [JsonProperty("results")]
-        public int Results { get; set; }
-
-        [JsonProperty("paging")]
-        public PlayerPaging Paging { get; set; }
-
         [JsonProperty("response")]
         public List<PlayerRequestFile> Response { get; set; }
     }

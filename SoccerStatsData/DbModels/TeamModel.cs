@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SoccerStatsData.RequestModels;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SoccerStatsData
@@ -24,5 +25,6 @@ namespace SoccerStatsData
 
         [ForeignKey("StadiumId")]
         public VenuesModel Venue { get; set; }
+        
     }
 }

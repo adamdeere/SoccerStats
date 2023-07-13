@@ -4,67 +4,119 @@
 }
 <h3>League details</h3>
 
-@foreach (var item in Model)
-{
-    <div class="k-card k-card-horizontal">
-        <div class="image">
-            <img alt="League image not found" src="@item.LogoURL" class="k-card-image">
-        </div>
-        <div class="k-vbox k-column">
-            <div class="k-card-header">
-                <h5 class="k-card-title">@item.Name</h5>
-                <h6 class="k-card-subtitle">@item.Type</h6>
-                <h6 class="k-card-subtitle">@item.CountryName</h6>
-            </div>
-            <div class="k-card-body">
-                @{
-                    var listName = $"listView_{UtilityLibraries.StringStripper.StripPunctuation(item.Name)}";
+<kendo-tabstrip name="leagues">
+
+    <items>
+        <tabstrip-item text="League">
+            <content>
+                @foreach (var item in Model)
+                {
+                    @if (item.Type == "League")
+                    {
+                       <partial name="_MensLeague" model="@item" />
+                    }
                 }
-               
-                <div class="demo-section wide">
-                    @(Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
-                        .Name(listName)
-                        .TagName("div")
-                        .ClientTemplateId("teams")
-                        .DataSource(dataSource => dataSource
-                        .Ajax()
-                        .Read(read => read.Action("Team_Read", "League", new
-                        {
-                            league = item.LeagueId,
-                            year = "2022"
-                        }))
-                        .PageSize(26))
-                        .Selectable(ListViewSelectionMode.Single)
-                        .Events(events => events.Change("onChange")))
-                </div>
+            </content>
+        </tabstrip-item>
+        <tabstrip-item text="Cup">
+            <content>
+                @foreach (var item in Model)
+                {
+                    @if (item.Type == "Cup")
+                    {
+                        <partial name="_MensLeague" model="@item" />
+                    }
+                }
+            </content>
+        </tabstrip-item>
+    </items>
 
-            </div>
-            <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
-                <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">
-                    Click here to view teams
-                    </button>
-            </div>
-            <div class="k-card-footer">
-                <span>All things</span>
-            </div>
-        </div>
-    </div>
-}
-
-<script type="text/x-kendo-tmpl" id="teams">
-    <div class="product" data-id="#:Code#">
-        <img src="#:Logo#" alt="#:Name# image" />
-        <h3>#:Name#</h3>
-        <p>Founded: #:Founded#</p>
-    </div>
-</script>
+</kendo-tabstrip>
 
 @section scripts {
     <script src="~/js/leagues.js"> </script>
 }
+<style>
 
-@section styles {
-    <link rel="stylesheet" href="~/css/leagues.css" />
+.k-card-image {
+    width: 285px;
+    margin: 5%;
 }
+
+.demo-section {
+    overflow: auto;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#listView {
+    padding: 10px 5px;
+    margin-bottom: -1px;
+    min-height: 510px;
+    /* Avoid cutout if font or line is bigger */
+    font: inherit;
+}
+
+.product {
+    float: left;
+    position: relative;
+    width: 111px;
+    height: 170px;
+    margin: 0 5px;
+    padding: 0;
+}
+
+    .product img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .product h3 {
+        margin: 0;
+        padding: 3px 5px 0 0;
+        max-width: 96px;
+        overflow: hidden;
+        line-height: 1.1em;
+        font-size: .9em;
+        font-weight: normal;
+        text-transform: uppercase;
+        color: #999;
+    }
+
+    .product p {
+        visibility: hidden;
+    }
+
+    .product:hover p {
+        visibility: visible;
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        line-height: 110px;
+        vertical-align: middle;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0,0,0,0.75);
+        transition: background .2s linear, color .2s linear;
+        -moz-transition: background .2s linear, color .2s linear;
+        -webkit-transition: background .2s linear, color .2s linear;
+        -o-transition: background .2s linear, color .2s linear;
+    }
+
+.k-listview:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+</style>
 
 

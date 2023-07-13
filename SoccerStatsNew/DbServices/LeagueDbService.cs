@@ -88,12 +88,10 @@ namespace SoccerStatsNew.Services
             if (teamRoot != null)
             {
                 foreach (var item in teamRoot.Response)
-                {
+                { 
+                    /*
                     if (item.Venue.Id != null)
                     {
-                        
-                        
-
                         VenuesModel venue = new()
                         {
                             VenueId = (int)item.Venue.Id,
@@ -109,8 +107,16 @@ namespace SoccerStatsNew.Services
                         {
                             _context.VenuesModel.Add(venue);
                             await _context.SaveChangesAsync();
+
                         }
+                        else
+                        {
+                            _context.VenuesModel.Update(venue);
+                            await _context.SaveChangesAsync();
+                        }
+                       
                     }
+                    */
                     if (item.Team.Id != null)
                     {
 
@@ -132,8 +138,11 @@ namespace SoccerStatsNew.Services
                             _context.TeamModel.Add(teamModel);
                             await _context.SaveChangesAsync();
                         }
-
-
+                        else
+                        {
+                            _context.TeamModel.Update(teamModel);
+                            await _context.SaveChangesAsync();
+                        }
                     }
                 }
             }
@@ -142,7 +151,8 @@ namespace SoccerStatsNew.Services
         public async Task<IEnumerable<TeamModel>?> GetTeamModels(int id)
         {
             var teamModel = await _context.TeamModel
-                .Where(m => m.LeagueId == id).ToListAsync();
+                .Where(m => m.LeagueId == id)
+                .ToListAsync();
 
             return teamModel ?? null;
         }

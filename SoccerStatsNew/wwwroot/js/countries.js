@@ -6,10 +6,9 @@ function onAdditionalData() {
 
 function onSelect(e) {
     var dataItem = this.dataItem(e.item.index());
-    var countryCode = dataItem.countryCode;
-    if (countryCode) {
-        console.log(countryCode);
-        location.href = `/?code=${countryCode}`;
+    var countryName = dataItem.Name;
+    if (countryName) {
+        location.href = `/?code=${countryName}`;
     }
 }
 

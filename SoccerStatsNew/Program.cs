@@ -7,7 +7,7 @@ using UtilityLibraries;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SoccerStatsDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("HomeDbContext")
+    options.UseSqlServer(builder.Configuration.GetConnectionString("WorkDbContext")
     ?? throw new InvalidOperationException("Connection string 'SoccerStatsDbContext' not found.")));
 
 string Address = "https://v3.football.api-sports.io/";

@@ -1,16 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsData;
+using SoccerStatsData.RequestModels;
 using SoccerStatsNew.Data;
+using UtilityLibraries;
 
 namespace SoccerStatsNew.DbServices
 {
     public class TeamDbService
     {
         private readonly SoccerStatsDbContext _dbContext;
+        private readonly WebService _webService;
 
-        public TeamDbService(SoccerStatsDbContext context)
+        public TeamDbService(SoccerStatsDbContext context, WebService service)
         {
             _dbContext = context;
+            _webService = service;
         }
 
         public async Task SaveTeamsAndVenues(TeamRoot roo)
@@ -74,7 +78,6 @@ namespace SoccerStatsNew.DbServices
                      Venue = venue,
                      Team = team
                  }).ToListAsync();
-
                 return teamModel ?? null;
             }
             return null;

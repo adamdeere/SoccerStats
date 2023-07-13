@@ -104,7 +104,7 @@ namespace SoccerStatsNew.Services
         {
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel
-                      .Where(c => c.CountryCode == id)
+                      .Where(c => c.Name == id)
                 .ToListAsync()
                : null;
         }

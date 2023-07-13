@@ -26,9 +26,9 @@ namespace SoccerStatsNew.Controllers
                 : NotFound();
         }
 
-        public async Task<ActionResult> Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
+        public async Task<ActionResult> League_Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
         {
-            var teamResponse = await _leagueService.GetTeamModels(39);
+            var teamResponse = await _leagueService.GetTeamModels(league);
 
             return Json(await teamResponse.ToDataSourceResultAsync(request));
         }

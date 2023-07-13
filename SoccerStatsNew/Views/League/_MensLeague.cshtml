@@ -1,0 +1,56 @@
+﻿@model SoccerStatsData.LeagueModel
+
+<div class="k-card k-card-horizontal">
+    <div class="image">
+        <img alt="League image not found" src="@Model.LogoURL" class="k-card-image">
+    </div>
+    <div class="k-vbox k-column">
+        <div class="k-card-header">
+            <h5 class="k-card-title">@Model.Name</h5>
+            <h6 class="k-card-subtitle">@Model.Type</h6>
+            <h6 class="k-card-subtitle">@Model.CountryName</h6>
+        </div>
+        <div class="k-card-body">
+            @{
+                var listName = $"listView_{UtilityLibraries.StringStripper.StripPunctuation(Model.Name)}";
+            }
+
+            <div class="demo-section wide">
+                @(Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
+                    .Name(listName)
+                    .TagName("div")
+                    .ClientTemplateId("teams")
+                    .DataSource(dataSource => dataSource
+                    .Ajax()
+                    .Read(read => read.Action("League_Team_Read", "League", new
+                    {
+                        league = Model.LeagueId,
+                        year = "2022",
+                        type = "league"
+
+                    }))
+                    .PageSize(26))
+                    .Selectable(ListViewSelectionMode.Single)
+                    .Events(events => events.Change("onChange")))
+            </div>
+
+        </div>
+        <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
+            <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">
+                Click here to view teams
+            </button>
+        </div>
+        <div class="k-card-footer">
+            <span>All things</span>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-kendo-tmpl" id="teams">
+    <div class="product" data-id="#:Code#">
+        <img src="#:Logo#" alt="#:Name# image" />
+        <h3>#:Name#</h3>
+        <p>Founded: #:Founded#</p>
+    </div>
+</script>
+
