@@ -104,25 +104,25 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
     public class Minute
     {
         [JsonProperty("0-15")]
-        public MinuteRange _015 { get; set; }
+        public MinuteRange FirstHalfFirst { get; set; }
 
         [JsonProperty("16-30")]
-        public MinuteRange _1630 { get; set; }
+        public MinuteRange FirstHalfSecond { get; set; }
 
         [JsonProperty("31-45")]
-        public MinuteRange _3145 { get; set; }
+        public MinuteRange FirstHalfThird { get; set; }
 
         [JsonProperty("46-60")]
-        public MinuteRange _4660 { get; set; }
+        public MinuteRange SecondHalfFirst { get; set; }
 
         [JsonProperty("61-75")]
-        public MinuteRange _6175 { get; set; }
+        public MinuteRange SecondHalfSecond { get; set; }
 
         [JsonProperty("76-90")]
-        public MinuteRange _7690 { get; set; }
+        public MinuteRange SecondHalfThird { get; set; }
 
         [JsonProperty("91-105")]
-        public MinuteRange _91105 { get; set; }
+        public MinuteRange StoppageTime { get; set; }
     }
 
     public class MinuteRange
@@ -167,25 +167,25 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
     public class CardColour
     {
         [JsonProperty("0-15")]
-        public MinuteRange _015 { get; set; }
+        public MinuteRange FirtHalfFirst { get; set; }
 
         [JsonProperty("16-30")]
-        public MinuteRange _1630 { get; set; }
+        public MinuteRange FirstHalfSecond { get; set; }
 
         [JsonProperty("31-45")]
-        public MinuteRange _3145 { get; set; }
+        public MinuteRange FirstHalfThird { get; set; }
 
         [JsonProperty("46-60")]
-        public MinuteRange _4660 { get; set; }
+        public MinuteRange SecondHalfFirst { get; set; }
 
         [JsonProperty("61-75")]
-        public MinuteRange _6175 { get; set; }
+        public MinuteRange SecondHalfSecond { get; set; }
 
         [JsonProperty("76-90")]
-        public MinuteRange _7690 { get; set; }
+        public MinuteRange SecondHalfThird { get; set; }
 
         [JsonProperty("91-105")]
-        public MinuteRange _91105 { get; set; }
+        public MinuteRange StoppageTime { get; set; }
     }
 
     public class Penalty
