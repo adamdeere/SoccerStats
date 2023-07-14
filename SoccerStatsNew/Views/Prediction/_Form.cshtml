@@ -1,0 +1,122 @@
+﻿<!-- container text templates -->
+<script id="conversion-rate" type="text/x-kendo-template">
+    <h3>9%</h3>
+    <div>Visitor to Customer</div>
+</script>
+<script id="current" type="text/x-kendo-template">
+    <h3>2, 399</h3>
+    <div>Active users right now</div>
+</script>
+<script id="bounce-rate" type="text/x-kendo-template">
+    <h1>55 %</h1>
+    <div>The percentage of all sessions on your site in which users viewed only a single page.</div>
+</script>
+
+<!-- container chart templates -->
+<script id="pages-chart-template" type="text/x-kendo-template">
+    @(Html.Kendo().Chart()
+                    .Name("pages-chart")
+                    .Legend(l => l.Visible(false))
+                    .Series(s => s.Column(new double[] { 90000, 60000, 40000, 30000, 10000 }))
+                    .ValueAxis(v => v.Numeric().Color("transparent")
+                        .Labels(l => l.Step(5)
+                        .Color("grey")
+                       )
+                       .MajorUnit(10000)
+                       .Min(0)
+                       .Max(100000)
+                    )
+                    .CategoryAxis(c =>
+                        c.Categories(new string[] { "Home", "Price", "Sign-up", "Product", "Blog" })
+                        .Labels(l => l.Rotation("auto"))
+                        .MajorGridLines(mg => mg.Visible(false))
+                        .MajorTicks(mt => mt.Visible(false))
+                    )
+                    .HtmlAttributes(new { style = "height:100%;width:100%;" })
+                    .ToClientTemplate()
+                )
+</script>
+<script id="views-chart-template" type="text/x-kendo-template">
+    @(Html.Kendo().Chart()
+                    .Name("views-chart")
+                    .Legend(l => l.Visible(false))
+                    .Series(s => s.Line(new dynamic[] {
+                    new { Date = new DateTime(2020, 3, 30), Views = 2000 },
+                    new { Date = new DateTime(2020, 4, 5), Views = 80000 },
+                    new { Date = new DateTime(2020, 4, 10), Views = 130000 },
+                    new { Date = new DateTime(2020, 4, 15), Views = 170000 },
+                    new { Date = new DateTime(2020, 4, 20), Views = 190000 },
+                    new { Date = new DateTime(2020, 4, 25), Views = 150000 },
+                    new { Date = new DateTime(2020, 4, 30), Views = 160000 }
+                        })
+                        .CategoryField("Date").Field("Views")
+                        .Style(ChartLineStyle.Smooth)
+                        .Markers(m => m.Visible(false))
+                    )
+                    .ValueAxis(v => v.Numeric()
+                        .Line(l => l.Width(0))
+                        .Labels(l => l.Step(2)
+                       )
+                       .Min(0)
+                       .Max(200000)
+                    )
+                    .CategoryAxis(c => c.Date()
+                        .BaseUnit(ChartAxisBaseUnit.Fit)
+                        .Labels(l => l.Format("{0:d MMMM}").Rotation("auto"))
+                        .MajorGridLines(mg => mg.Visible(false))
+                        .MajorTicks(mt => mt.Visible(false))
+                    )
+                    .HtmlAttributes(new { style = "height:100%;width:100%;" })
+                    .ToClientTemplate()
+                )
+</script>
+<script id="visitors-chart-template" type="text/x-kendo-template">
+    @(Html.Kendo().Chart()
+                    .Name("visitors-chart")
+                    .Series(series =>
+                    {
+                        series.Donut(new dynamic[] {
+                    new {value = 70, type = "New"},
+                    new {value = 30, type = "Returning"},
+                        }).StartAngle(70).CategoryField("type");
+                    })
+                    .Legend(l => l.Position(ChartLegendPosition.Bottom).Visible(true))
+
+                    .ToClientTemplate()
+                )
+</script>
+
+
+@(Html.Kendo().TileLayout()
+        .Name("tilelayout")
+        .Columns(5)
+        .RowsHeight("500px")
+        .Containers(c =>
+        {
+            c.Add().Header(h => h.Text("Page Views"))
+            .BodyTemplateId("views-chart-template")
+            .ColSpan(3).RowSpan(1);
+
+        })
+        .Reorderable(true)
+        .Resizable(true)
+        .Events(e => e.Resize("onTileResize"))
+        .Deferred(true)
+    )
+
+@section styles {
+    <link rel="stylesheet" href="~/css/prediction.css" />
+}
+
+@section scripts {
+    <script src="~/js/prediction.js"></script>
+}
+
+<script>
+    function onTileResize(e) {
+        if (e.container) {
+            kendo.resize(e.container, true);
+        }
+    }
+</script>
+

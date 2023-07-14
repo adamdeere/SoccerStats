@@ -1,0 +1,16 @@
+﻿.k-card-header {
+    flex: 0 0 auto;
+}
+
+.k-card-body {
+    overflow: hidden;
+}
+
+.right {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
