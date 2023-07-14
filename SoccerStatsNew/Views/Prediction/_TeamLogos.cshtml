@@ -1,18 +1,10 @@
-﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.Teams
 
 
-@if (Model.Teams.Home != null && Model.Teams.Away != null)
+@if (Model.Home != null && Model.Away != null)
 {
-    <div class="badge-name">
-        <img src="@Model.Teams.Home.Logo" class="rounded photo-badge home-badge">
-        <span>@Model.Teams.Home.Name</span>
-    </div>
+    <partial name="_IndividualTeam" model="@Model.Home" />
     <span><b>vs</b></span>
-    <div class="badge-name">
-
-        <img src="@Model.Teams.Away.Logo" class="rounded photo-badge away-badge">
-        <span>@Model.Teams.Away.Name</span>
-      
-    </div>
+    <partial name="_IndividualTeam" model="@Model.Away" />
 
 }
