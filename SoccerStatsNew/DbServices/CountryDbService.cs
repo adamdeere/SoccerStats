@@ -21,7 +21,6 @@ namespace SoccerStatsNew.Services
                 {
                     if (item.Country.Code != null)
                     {
-
                         foreach (var seasons in item.Seasons)
                         {
                             string g = Guid.NewGuid().ToString();
@@ -44,7 +43,7 @@ namespace SoccerStatsNew.Services
                                 Odds = seasons.Coverage.Odds,
                             };
                             _dbContext.SeasonModel.Add(seasonDbModel);
-                            await _dbContext.SaveChangesAsync();    
+                            await _dbContext.SaveChangesAsync();
                         }
                         LeagueModel model = new()
                         {
@@ -52,8 +51,7 @@ namespace SoccerStatsNew.Services
                             Name = item.League.Name,
                             Type = item.League.Type,
                             LogoURL = item.League.Logo,
-                            CountryName = item.Country.Name,
-                            CountryCode = item.Country.Code
+                            CountryName = item.Country.Name
                         };
 
                         _dbContext.LeagueModel.Add(model);
@@ -78,17 +76,17 @@ namespace SoccerStatsNew.Services
                             FlagURL = country.Flag
                         };
 
-                       _dbContext.CountryModel.Add(countryModel);
+                        _dbContext.CountryModel.Add(countryModel);
                         await _dbContext.SaveChangesAsync();
                     }
                 }
             }
-            
         }
+
         public async Task<ICollection<CountryModel>?> GetAllCountriesToList()
         {
-            return _dbContext.CountryModel != null 
-                ? await _dbContext.CountryModel.ToListAsync() 
+            return _dbContext.CountryModel != null
+                ? await _dbContext.CountryModel.ToListAsync()
                 : null;
         }
 
@@ -105,7 +103,7 @@ namespace SoccerStatsNew.Services
         {
             return _dbContext.CountryModel != null ?
                 await _dbContext.CountryModel
-                      .Where(c => c.CountryCode == id)
+                      .Where(c => c.Name == id)
                 .ToListAsync()
                : null;
         }

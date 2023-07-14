@@ -1,6 +1,5 @@
 @model IEnumerable<SoccerStatsData.CountryModel>
 
-
 <div class="k-d-flex k-justify-content-center" style="padding-top: 54px;">
     <div class="k-w-300">
         <label for="countries">Choose a country to view leagues:</label>
@@ -17,7 +16,7 @@
                       {
                             source.Read(read =>
                             {
-                                read.Action("ServerFiltering_GetProducts", "Home")
+                                read.Action("ServerFiltering_Countries", "Home")
                                 .Data("onAdditionalData");
                             })
                         .ServerFiltering(true);
@@ -73,6 +72,7 @@
 @section scripts {
     <script src="~/js/countries.js"> </script>
 }
+
 
 
 

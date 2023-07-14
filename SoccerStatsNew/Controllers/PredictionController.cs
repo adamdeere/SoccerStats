@@ -12,8 +12,8 @@ namespace SoccerStatsNew.Controllers
 
             var predictions = JsonHelper.GetObjectFromJsonFile<PredictionRoot>("Test/predictions.json");
 
-            return predictions != null 
-                ? View(predictions.Response[0]) 
+            return predictions != null
+                ? View(predictions.Response[0])
                 : NotFound();
         }
     }

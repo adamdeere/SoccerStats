@@ -77,4 +77,22 @@ img {
     visibility: hidden;
 }
 
+.k-card {
+    width: 285px;
+    margin: 5%;
+}
+
+.k-card-footer {
+    text-align: center;
+}
+
+#tabstrip-parent,
+#tabstrip {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+}
+
+
 

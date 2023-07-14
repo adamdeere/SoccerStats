@@ -10,10 +10,49 @@ namespace SoccerStatsNew.DbServices
     {
         private readonly SoccerStatsDbContext _dbContext;
         private readonly WebService _webService;
+
         public SeasonDbService(WebService webService, SoccerStatsDbContext context)
         {
             _webService = webService;
-            _dbContext = context;   
+            _dbContext = context;
+        }
+
+        public async Task SaveSeasons()
+        {
+            var root = await _webService.GetObjectRequest<LeagueRoot>("leagues");
+            if (root != null)
+            {
+                foreach (var item in root.Response)
+                {
+                    if (item.Country.Code != null)
+                    {
+                        foreach (var seasons in item.Seasons)
+                        {
+                            string g = Guid.NewGuid().ToString();
+
+                            SeasonModel seasonDbModel = new SeasonModel()
+                            {
+                                SeasonId = Guid.NewGuid().ToString(),
+                                LeagueId = item.League.Id,
+                                CountryName = item.Country.Name,
+                                Year = seasons.Year,
+                                StartDate = seasons.Start,
+                                EndDate = seasons.End,
+                                Standings = seasons.Coverage.Standings,
+                                Players = seasons.Coverage.Players,
+                                TopScorers = seasons.Coverage.TopScorers,
+                                TopAssists = seasons.Coverage.TopAssists,
+                                TopCards = seasons.Coverage.TopCards,
+                                Injuries = seasons.Coverage.Injuries,
+                                Predictions = seasons.Coverage.Predictions,
+                                Odds = seasons.Coverage.Odds,
+                            };
+                            _dbContext.SeasonModel.Add(seasonDbModel);
+                            await _dbContext.SaveChangesAsync();
+                        }
+                    }
+                }
+            }
         }
 
         public async Task<TeamPageDisplay?> GetTeamsDisplayPage(int league, string season)
@@ -33,7 +72,7 @@ namespace SoccerStatsNew.DbServices
                 {
                     year = season;
                 }
-               
+
                 string endPoint = $"teams?league={league}&season={year}";
                 var teamResponse = await _webService.GetObjectRequest<TeamRoot>(endPoint);
 
@@ -58,15 +97,15 @@ namespace SoccerStatsNew.DbServices
             }
             return team;
         }
+
         public async Task<ICollection<SeasonModel>?> GetLeagueAvailableSeasons(int id)
         {
             return _dbContext.SeasonModel != null
                 ? await _dbContext.SeasonModel
                 .Where(i => i.LeagueId == id)
                 .OrderBy(i => i.Year)
-                .ToListAsync() 
+                .ToListAsync()
                 : null;
         }
-
     }
 }

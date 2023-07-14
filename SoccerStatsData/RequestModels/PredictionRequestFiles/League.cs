@@ -22,6 +22,4 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("season")]
         public int? Season { get; set; }
     }
-
-   
 }

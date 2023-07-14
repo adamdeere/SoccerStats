@@ -19,6 +19,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("score")]
         public HeadToHeadScore Scores { get; set; }
     }
+
     public class Fixture
     {
         [JsonProperty("id")]
@@ -45,6 +46,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("status")]
         public PredictionStatus Status { get; set; }
     }
+
     public class PredictionVenue
     {
         [JsonProperty("id")]
@@ -56,6 +58,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("city")]
         public string City { get; set; }
     }
+
     public class PredictionStatus
     {
         [JsonProperty("long")]
@@ -67,6 +70,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("elapsed")]
         public int? Elapsed { get; set; }
     }
+
     public class Periods
     {
         [JsonProperty("first")]
@@ -98,7 +102,6 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
 
         [JsonProperty("winner")]
         public bool? Winnder { get; set; }
-       
     }
 
     public class HeadToHeadGoals

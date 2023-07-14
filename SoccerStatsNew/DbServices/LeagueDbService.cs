@@ -11,6 +11,7 @@ namespace SoccerStatsNew.Services
         private readonly SoccerStatsDbContext _context;
         private readonly SeasonDbService _seasonService;
         private readonly WebService _webService;
+
         public async Task SaveLeagueAndSeason(LeagueRoot root)
         {
             if (_context.LeagueModel != null && _context.SeasonModel != null)
@@ -49,8 +50,7 @@ namespace SoccerStatsNew.Services
                             Name = item.League.Name,
                             Type = item.League.Type,
                             LogoURL = item.League.Logo,
-                            CountryName = item.Country.Name,
-                            CountryCode = item.Country.Code
+                            CountryName = item.Country.Name
                         };
 
                         _context.LeagueModel.Add(model);
@@ -59,65 +59,109 @@ namespace SoccerStatsNew.Services
                 }
             }
         }
+
         public LeagueDbService(SoccerStatsDbContext context, SeasonDbService season, WebService service)
         {
             _webService = service;
             _seasonService = season;
             _context = context;
         }
-        public async Task SaveTeamsAndVenues(int id)
-        {
 
-            var teamRoot = JsonHelper.GetObjectFromJsonFile<TeamRoot>("Test/teamsByLeague.json");
+        public async Task<IEnumerable<SeasonModel>?> GetSeasons(int leagueId)
+        {
+            if (_context.SeasonModel != null)
+            {
+                var seasons = await _context.SeasonModel
+                    .Where(id => id.LeagueId == leagueId)
+                    .OrderByDescending(id => id.Year)
+                    .ToListAsync();
+
+                return seasons ?? null;
+            }
+            return null;
+        }
+
+        public async Task SaveTeamsAndVenues(int id, string year)
+        {
+            string url = $"teams?league={id}&season={year}";
+            var teamRoot = await _webService.GetObjectRequest<TeamRoot>(url);
             if (teamRoot != null)
             {
                 foreach (var item in teamRoot.Response)
                 {
+                    /*
                     if (item.Venue.Id != null)
                     {
-                        VenuesModel venue = new VenuesModel()
+                        VenuesModel venue = new()
                         {
-                            VenueId = item.Venue.Id,
+                            VenueId = (int)item.Venue.Id,
                             Name = item.Venue.Name,
                             Address = item.Venue.Address,
                             City = item.Venue.City,
                             Country = item.Team.Country,
                             Capacity = item.Venue.Capacity,
-                            Surface = item.Venue.Surface,   
+                            Surface = item.Venue.Surface,
                             Image = item.Venue.Image,
                         };
-                        _context.VenuesModel.Add(venue);
-                        await _context.SaveChangesAsync();
+                        if (!VenueModelExists(venue))
+                        {
+                            _context.VenuesModel.Add(venue);
+                            await _context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            _context.VenuesModel.Update(venue);
+                            await _context.SaveChangesAsync();
+                        }
                     }
-
-                    TeamModel teamModel = new TeamModel()
+                    */
+                    if (item.Team.Id != null)
                     {
-                        TeamId = item.Team.Id,
-                        StadiumId = item.Venue.Id,
-                        Name = item.Team.Name,
-                        Code = item.Team.Code,
-                        Country = item.Team.Country,
-                        Founded = item.Team.Founded,
-                        National = item.Team.National,
-                        Logo = item.Team.Logo,
-                        LeagueId = id,
-                    };
-                    _context.TeamModel.Add(teamModel);
-                    await _context.SaveChangesAsync();
+                        TeamModel teamModel = new()
+                        {
+                            TeamId = item.Team.Id,
+                            StadiumId = item.Venue.Id,
+                            Name = item.Team.Name,
+                            Code = item.Team.Code,
+                            Country = item.Team.Country,
+                            Founded = item.Team.Founded,
+                            National = item.Team.National,
+                            Logo = item.Team.Logo,
+                            LeagueId = id,
+                        };
 
+                        if (!TeamModelExists(teamModel))
+                        {
+                            _context.TeamModel.Add(teamModel);
+                            await _context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            _context.TeamModel.Update(teamModel);
+                            await _context.SaveChangesAsync();
+                        }
+                    }
                 }
             }
         }
+
         public async Task<IEnumerable<TeamModel>?> GetTeamModels(int id)
         {
             var teamModel = await _context.TeamModel
-                .Where(m => m.LeagueId == id).ToListAsync();
+                .Where(m => m.LeagueId == id)
+                .ToListAsync();
 
             return teamModel ?? null;
         }
-        private bool TeamModelExists(int id)
+
+        private bool VenueModelExists(VenuesModel id)
         {
-            return (_context.TeamModel?.Any(e => e.LeagueId == id)).GetValueOrDefault();
+            return (_context.VenuesModel?.Any(e => e == id)).GetValueOrDefault();
+        }
+
+        private bool TeamModelExists(TeamModel id)
+        {
+            return (_context.TeamModel?.Any(e => e == id)).GetValueOrDefault();
         }
 
         public async Task<ICollection<LeagueModel>?> GetLeagues()
@@ -127,6 +171,7 @@ namespace SoccerStatsNew.Services
                   await soccerStatsDbContext.ToListAsync()
             : null;
         }
+
         public async Task<IEnumerable<LeagueModel>?> GetLeagueDetails(string country)
         {
             var leagueModel = await _context.LeagueModel
@@ -161,7 +206,7 @@ namespace SoccerStatsNew.Services
 
         public async Task<ICollection<SeasonModel>?> GetLeagueAvailableSeasons(int id)
         {
-           return await _seasonService.GetLeagueAvailableSeasons(id);
+            return await _seasonService.GetLeagueAvailableSeasons(id);
         }
     }
 }

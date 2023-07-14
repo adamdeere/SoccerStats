@@ -18,8 +18,6 @@ namespace SoccerStatsData
         [ForeignKey("CountryName")]
         public CountryModel Country { get; set; }
 
-        public List<SeasonModel> Seasons { get; set; } = new List<SeasonModel>();
-
-
+        public IEnumerable<SeasonModel>? Seasons { get; set; }// = new List<SeasonModel>();
     }
 }

@@ -1,20 +1,19 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
-<div class="container">
 
-    @if (Model.Teams.Home != null && Model.Teams.Away != null)
-    {
-        
-        <div class="image">
-            
-            <img src="@Model.Teams.Home.Logo">
-            <span style="margin-left: 5px"><i>home</i> <b>@Model.Teams.Home.Name</b> </span>
-        </div>
+@if (Model.Teams.Home != null && Model.Teams.Away != null)
+{
 
-        <div class="image">
-            <img src="@Model.Teams.Away.Logo">
-            <span style="margin-left: 5px"> <i>away</i> <b>@Model.Teams.Away.Name</b></span>
+    <div class="photo-badge home-badge">
+        <img src="@Model.Teams.Home.Logo" class="rounded">
+    </div>
+    <div class="product-name">
+        <span>@Model.Teams.Home.Name</span>
+        <span><b>vs</b></span>
+        <div class="photo-badge away-badge">
+            <img src="@Model.Teams.Away.Logo" class="rounded">
         </div>
-       
-    }
-</div>
+        <span>@Model.Teams.Away.Name</span>
+    </div>
+
+}

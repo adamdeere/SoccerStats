@@ -2,10 +2,11 @@
 {
     public class WebService : BaseHttpService
     {
-        public WebService(HttpClient httpClient) 
+        public WebService(HttpClient httpClient)
             : base(httpClient)
         {
         }
+
         public async Task<string> GetJsonString(string parameters)
         {
             if (ClientStatus())
@@ -26,6 +27,7 @@
             }
             return default;
         }
+
         public async Task<T?> GetObjectRequest<T>(string parameters)
         {
             if (ClientStatus())
@@ -46,6 +48,7 @@
             }
             return default;
         }
+
         public override void Dispose()
         {
             base.Dispose();

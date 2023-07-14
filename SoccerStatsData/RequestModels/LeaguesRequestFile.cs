@@ -2,7 +2,6 @@
 
 namespace SoccerStatsData
 {
-  
     public class LeagueCountry
     {
         [JsonProperty("name")]
@@ -74,8 +73,6 @@ namespace SoccerStatsData
         [JsonProperty("logo")]
         public string Logo { get; set; }
     }
-
-    
 
     public class LeagueResponse
     {

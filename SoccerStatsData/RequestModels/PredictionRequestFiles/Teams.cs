@@ -15,12 +15,16 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
     {
         [JsonProperty("id")]
         public int? Id { get; set; }
+
         [JsonProperty("name")]
         public string? Name { get; set; }
+
         [JsonProperty("logo")]
         public string? Logo { get; set; }
+
         [JsonProperty("last_5")]
         public Last5 Last_Five { get; set; }
+
         [JsonProperty("league")]
         public LeagueForm League { get; set; }
     }
@@ -49,7 +53,7 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         public LastFiveGoalStats GoalsAgainst { get; set; }
     }
 
-    public class LastFiveGoalStats 
+    public class LastFiveGoalStats
     {
         [JsonProperty("total")]
         public int Total { get; set; }
@@ -57,6 +61,4 @@ namespace SoccerStatsData.RequestModels.PredictionRequestFiles
         [JsonProperty("average")]
         public string? Average { get; set; }
     }
-
-    
 }

@@ -1,4 +1,4 @@
-﻿@model List<SoccerStatsNew.Models.FixturePageData>
+﻿@model IEnumerable<SoccerStatsNew.Models.FixturePageData>
 
 @{
     var line = string.Empty;
@@ -16,19 +16,19 @@
                 {
                     columns.Bound(p => p.Date)
                            .Title("Fixture date")
-                           .Width(130);
+                           .Width(70);
 
                     columns.Bound(p => p.League)
                            .Title("League")
-                           .Width(250);
+                           .Width(70);
 
                     columns.Bound(p => p.HomeTeam)
                            .Title("Home Team")
-                           .Width(250);
+                           .Width(70);
 
                     columns.Bound(p => p.AwayTeam)
                            .Title("Away Team")
-                           .Width(250);
+                           .Width(70);
 
                 })
                 .ClientRowTemplate(@line)
@@ -40,13 +40,13 @@
                 .Events(events =>
                 {
                     events.Change("OnGridSelect");
-                })
-)
+                }))
 
 @section styles {
-    <link rel="stylesheet" href="~/css/leagues.css" />
+    <link rel="stylesheet" href="~/css/fixtures.css" />
 }
 
 @section scripts {
     <script src="~/js/fixtures.js"></script>
 }
+
