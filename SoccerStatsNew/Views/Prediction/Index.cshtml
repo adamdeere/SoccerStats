@@ -1,18 +1,23 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
 @if(Model.League != null){
-    <div class="photo-badge home-badge">
-        <img src="@Model.League.Flag" class="rounded">
-    </div>
-    <div class="product-name">
-        <span>@Model.League.Country</span>
-    </div>
+    <img src="@Model.League.Flag" class="rounded photo-badge home-badge">
+    <span class="product-name">@Model.League.Country</span>
+    
     <div class="product-name">
         <div class="photo-badge home-badge">
             <img src="@Model.League.Logo" class="rounded">
         </div>
         <span>@Model.League.Name Season: @Model.League.Season</span>
     </div>
+    @if (Model.Teams.Home != null)
+    {
+        <partial name="_IndividualTeam" model="@Model.Teams.Home" />
+    }
+    @if (Model.Teams.Away != null)
+    {
+        <partial name="_IndividualTeam" model="@Model.Teams.Away" />
+    }
 }
 
 <kendo-tabstrip name="tabstrip">
