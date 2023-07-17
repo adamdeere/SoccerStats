@@ -10,16 +10,29 @@
     @(Html.Kendo().TileLayout()
             .Name(tileLayoutTitle)
             .Columns(6)
-            .RowsHeight("500px")
+            .RowsHeight("235px")
+            .ColumnsWidth("300px")
             .Containers(c =>
             {
+                    c.Add().Header(h => h.Text("Chance"))
+                       .BodyTemplateId("chance-percentage")
+                   .ColSpan(5).RowSpan(3);
+
                 c.Add().Header(h => h.Text("Winner"))
                     .BodyTemplateId("winner")
                 .ColSpan(1).RowSpan(1);
 
-                    c.Add().Header(h => h.Text("Chance"))
-                        .BodyTemplateId("chance-percentage")
-                    .ColSpan(4).RowSpan(1);
+                c.Add().Header(h => h.Text("Goals"))
+                     .BodyTemplateId("goals")
+                .ColSpan(1).RowSpan(1);
+
+                    c.Add().Header(h => h.Text("Advice"))
+                         .BodyTemplateId("advice")
+                    .ColSpan(1).RowSpan(1);
+
+               
+
+                   
 
             })
             .Reorderable(true)
@@ -133,7 +146,6 @@
                     )
                     .ToClientTemplate())
     }
-    
 
 </script>
 
@@ -141,11 +153,38 @@
     
     @if (Model.Predictions.Winner != null)
     {
-        <h3>Winner</h3>
-        <div>@Model.Predictions.Winner.Name</div>
-
-         <h3>Comment</h3>
-        <div>@Model.Predictions.Winner.Comment</div>
+        var winner = @Model.Predictions.Winner;
+        <span>
+            <b>@winner.Name</b>
+        </span>
+        <div>
+            <span><i>@winner.Comment</i></span>
+        </div>
+       
     }
     
+</script>
+
+<script id="goals" type="text/html">
+
+    @if (Model.Predictions.Goals != null)
+    {
+        var goals = Model.Predictions.Goals;
+        <h6>Home</h6>
+        <div>@goals.Home</div>
+            
+        <h6>Away</h6>
+        <div>@goals.Away</div>
+    }
+
+</script>
+
+<script id="advice" type="text/html">
+
+    @if (Model.Predictions != null)
+    {
+        var prediction = Model.Predictions;
+        <span><i>@prediction.Advice</i></span>
+    }
+
 </script>
