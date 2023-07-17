@@ -15,7 +15,6 @@ namespace SoccerStatsNew.DbServices
 
         public IEnumerable<FixturePageData> GetFixtureData(string id)
         {
-            Console.WriteLine(id);
             var fixture = JsonHelper.GetObjectFromJsonFile<FixtureRoot>("Test/individualTeamFixtures.json");
             List<FixturePageData> list = new();
             if (fixture != null)
