@@ -1,101 +1,35 @@
-﻿<!-- container text templates -->
-<script id="conversion-rate" type="text/x-kendo-template">
-    <h3>9%</h3>
-    <div>Visitor to Customer</div>
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.Teams
+
+
+
+@{
+    var graphHeaderText = "Cards over the season";
+    var tileLayoutTitle = "tilelayout";
+}
+
+<!-- container text templates -->
+<script id="home-cards" type="text/html">
+    <partial name="_CardsGraph" model="@Model.Home" />
 </script>
-<script id="current" type="text/x-kendo-template">
-    <h3>2, 399</h3>
-    <div>Active users right now</div>
-</script>
-<script id="bounce-rate" type="text/x-kendo-template">
-    <h1>55 %</h1>
-    <div>The percentage of all sessions on your site in which users viewed only a single page.</div>
+<script id="away-cards" type="text/html">
+    <partial name="_CardsGraph" model="@Model.Away" />
 </script>
 
-<!-- container chart templates -->
-<script id="pages-chart-template" type="text/x-kendo-template">
-    @(Html.Kendo().Chart()
-                    .Name("pages-chart")
-                    .Legend(l => l.Visible(false))
-                    .Series(s => s.Column(new double[] { 90000, 60000, 40000, 30000, 10000 }))
-                    .ValueAxis(v => v.Numeric().Color("transparent")
-                        .Labels(l => l.Step(5)
-                        .Color("grey")
-                       )
-                       .MajorUnit(10000)
-                       .Min(0)
-                       .Max(100000)
-                    )
-                    .CategoryAxis(c =>
-                        c.Categories(new string[] { "Home", "Price", "Sign-up", "Product", "Blog" })
-                        .Labels(l => l.Rotation("auto"))
-                        .MajorGridLines(mg => mg.Visible(false))
-                        .MajorTicks(mt => mt.Visible(false))
-                    )
-                    .HtmlAttributes(new { style = "height:100%;width:100%;" })
-                    .ToClientTemplate()
-                )
-</script>
-<script id="views-chart-template" type="text/x-kendo-template">
-    @(Html.Kendo().Chart()
-                    .Name("views-chart")
-                    .Legend(l => l.Visible(false))
-                    .Series(s => s.Line(new dynamic[] {
-                    new { Date = new DateTime(2020, 3, 30), Views = 2000 },
-                    new { Date = new DateTime(2020, 4, 5), Views = 80000 },
-                    new { Date = new DateTime(2020, 4, 10), Views = 130000 },
-                    new { Date = new DateTime(2020, 4, 15), Views = 170000 },
-                    new { Date = new DateTime(2020, 4, 20), Views = 190000 },
-                    new { Date = new DateTime(2020, 4, 25), Views = 150000 },
-                    new { Date = new DateTime(2020, 4, 30), Views = 160000 }
-                        })
-                        .CategoryField("Date").Field("Views")
-                        .Style(ChartLineStyle.Smooth)
-                        .Markers(m => m.Visible(false))
-                    )
-                    .ValueAxis(v => v.Numeric()
-                        .Line(l => l.Width(0))
-                        .Labels(l => l.Step(2)
-                       )
-                       .Min(0)
-                       .Max(200000)
-                    )
-                    .CategoryAxis(c => c.Date()
-                        .BaseUnit(ChartAxisBaseUnit.Fit)
-                        .Labels(l => l.Format("{0:d MMMM}").Rotation("auto"))
-                        .MajorGridLines(mg => mg.Visible(false))
-                        .MajorTicks(mt => mt.Visible(false))
-                    )
-                    .HtmlAttributes(new { style = "height:100%;width:100%;" })
-                    .ToClientTemplate()
-                )
-</script>
-<script id="visitors-chart-template" type="text/x-kendo-template">
-    @(Html.Kendo().Chart()
-                    .Name("visitors-chart")
-                    .Series(series =>
-                    {
-                        series.Donut(new dynamic[] {
-                    new {value = 70, type = "New"},
-                    new {value = 30, type = "Returning"},
-                        }).StartAngle(70).CategoryField("type");
-                    })
-                    .Legend(l => l.Position(ChartLegendPosition.Bottom).Visible(true))
-
-                    .ToClientTemplate()
-                )
-</script>
 
 
 @(Html.Kendo().TileLayout()
-        .Name("tilelayout")
-        .Columns(5)
+        .Name(tileLayoutTitle)
+        .Columns(6)
         .RowsHeight("500px")
         .Containers(c =>
         {
-            c.Add().Header(h => h.Text("Page Views"))
-            .BodyTemplateId("views-chart-template")
+            c.Add().Header(h => h.Text(graphHeaderText))
+            .BodyTemplateId("home-cards")
             .ColSpan(3).RowSpan(1);
+
+            c.Add().Header(h => h.Text(graphHeaderText))
+           .BodyTemplateId("away-cards")
+           .ColSpan(3).RowSpan(1);
 
         })
         .Reorderable(true)
@@ -115,8 +49,33 @@
 <script>
     function onTileResize(e) {
         if (e.container) {
+            // for widgets that do not auto resize
+            // https://docs.telerik.com/kendo-ui/styles-and-layout/using-kendo-in-responsive-web-pages
             kendo.resize(e.container, true);
         }
     }
-</script>
+
+    $(window).on("resize", () => {
+        console.log("lol");
+        kendo.resize($(".k-chart, .k-grid"));
+    });
+
+    $(document).ready( () => {
+        console.log("doc ready");
+        kendo.resize($("#tilelayout"));
+        $(document).bind("kendo:skinChange", updateTheme);
+    });
+
+    function updateTheme() {
+        var charts = $(".k-chart");
+        $.each(charts, function (i, elem) {
+            var theme = kendoTheme;
+
+            if (/(default-|bootstrap-|material-|classic-|fluent-)/.test(kendoTheme)) {
+                theme = "sass";
+            }
+            $(elem).getKendoChart().setOptions({ theme: theme });
+        });
+    }
+</script> 
 
