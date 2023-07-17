@@ -1,6 +1,151 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
+@{
+    var tileLayoutTitle = "predictionlayout";
+}
 @if (Model.Teams.Home != null && Model.Teams.Away != null)
 {
   <h6>predictions tab @Model.Teams.Home.Name vs @Model.Teams.Away.Name</h6>
+
+    @(Html.Kendo().TileLayout()
+            .Name(tileLayoutTitle)
+            .Columns(6)
+            .RowsHeight("500px")
+            .Containers(c =>
+            {
+                c.Add().Header(h => h.Text("Winner"))
+                    .BodyTemplateId("winner")
+                .ColSpan(1).RowSpan(1);
+
+                    c.Add().Header(h => h.Text("Chance"))
+                        .BodyTemplateId("chance-percentage")
+                    .ColSpan(4).RowSpan(1);
+
+            })
+            .Reorderable(true)
+            .Resizable(true)
+            .Events(e => e.Resize("onTileResize"))
+            .Deferred(true))
+
 }
+<!-- tile resize script -->
+<script>
+    function onTileResize(e) {
+        if (e.container) {
+            // for widgets that do not auto resize
+            // https://docs.telerik.com/kendo-ui/styles-and-layout/using-kendo-in-responsive-web-pages
+            kendo.resize(e.container, true);
+        }
+    }
+
+    $(window).on("resize", () => {
+        kendo.resize($(".k-chart, .k-grid"));
+    });
+
+    $(document).ready(() => {
+        kendo.resize($("#tilelayout"));
+        $(document).bind("kendo:skinChange", updateTheme);
+
+        $(".box-col").bind("change", refresh);
+
+    });
+    function refresh() {
+        var chart = $("#chart").data("kendoChart"),
+            pieSeries = chart.options.series[0],
+            labels = $("#labels").prop("checked"),
+            alignInputs = $("input[name='alignType']"),
+            alignLabels = alignInputs.filter(":checked").val();
+
+        chart.options.transitions = false;
+        pieSeries.labels.visible = labels;
+        pieSeries.labels.align = alignLabels;
+
+        alignInputs.attr("disabled", !labels);
+
+        chart.refresh();
+    }
+    function updateTheme() {
+        var charts = $(".k-chart");
+        $.each(charts, function (i, elem) {
+            var theme = kendoTheme;
+
+            if (/(default-|bootstrap-|material-|classic-|fluent-)/.test(kendoTheme)) {
+                theme = "sass";
+            }
+            $(elem).getKendoChart().setOptions({ theme: theme });
+        });
+    }
+</script>
+
+<!-- container text templates -->
+<script id="chance-percentage" type="text/html">
+
+    @if (Model.Predictions.Percent != null)
+    {
+        var predictions = Model.Predictions.Percent;
+        var homeColour = "\\#9de219";
+        var awayColour = "\\#90cc38";
+        var drawColour = "\\#068c35";
+
+
+        <div class="configurator">
+           
+            <div class="box-col">
+                <ul class="options">
+                    <li>
+                        <input id="labels" checked="checked" type="checkbox" autocomplete="off" />
+                        <label for="labels">Show labels</label>
+                    </li>
+                    <li>
+                        <input id="alignCircle" name="alignType" type="radio"
+                               value="circle" checked="checked" autocomplete="off" />
+                        <label for="alignCircle">Aligned in circle</label>
+                    </li>
+                    <li>
+                        <input id="alignColumn" name="alignType" type="radio"
+                               value="column" autocomplete="off" />
+                        <label for="alignColumn">Aligned in columns</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        @(Html.Kendo().Chart()
+                      .Name("chart")
+                      .Title("Win/Draw chance")
+                        .Legend(legend => legend
+                            .Position(ChartLegendPosition.Top))
+                        .Series(series =>
+                        {
+                            series.Pie(new dynamic[] {
+                            new {category = "Home win",value = predictions.Home, color=homeColour},
+                            new {category = "Away win",value = predictions.Away, color=awayColour },
+                            new {category = "Draw",value = predictions.Draw, color = drawColour},
+                        })
+                        .Labels(labels => labels
+                            .Visible(true)
+                            .Template("\\#= category \\# - \\#= kendo.format('{0:P}', percentage)\\#")
+                        );
+                    })
+                    .Tooltip(tooltip => tooltip
+                        .Visible(true)
+                                .Template("\\#= category \\# - \\#= kendo.format('{0:P}', percentage)\\#")
+                    )
+                    .ToClientTemplate())
+    }
+    
+
+</script>
+
+<script id="winner" type="text/html">
+    
+    @if (Model.Predictions.Winner != null)
+    {
+        <h3>Winner</h3>
+        <div>@Model.Predictions.Winner.Name</div>
+
+         <h3>Comment</h3>
+        <div>@Model.Predictions.Winner.Comment</div>
+    }
+    
+</script>
