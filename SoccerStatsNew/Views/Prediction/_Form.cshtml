@@ -1,7 +1,4 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.Teams
-
-
-
 @{
     var graphHeaderText = "Cards over the season";
     var tileLayoutTitle = "tilelayout";
@@ -42,10 +39,6 @@
     <link rel="stylesheet" href="~/css/prediction.css" />
 }
 
-@section scripts {
-    <script src="~/js/prediction.js"></script>
-}
-
 <script>
     function onTileResize(e) {
         if (e.container) {
@@ -56,12 +49,10 @@
     }
 
     $(window).on("resize", () => {
-        console.log("lol");
         kendo.resize($(".k-chart, .k-grid"));
     });
 
     $(document).ready( () => {
-        console.log("doc ready");
         kendo.resize($("#tilelayout"));
         $(document).bind("kendo:skinChange", updateTheme);
     });

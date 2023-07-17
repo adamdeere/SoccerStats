@@ -18,12 +18,7 @@
     {
         <partial name="_IndividualTeam" model="@Model.Teams.Away" />
     }
-
-    
 }
-
-
-
 <div class="right">
     <kendo-tabstrip name="tabstrip">
 
@@ -41,6 +36,14 @@
                 </content>
 
             </tabstrip-item>
+
+            <tabstrip-item text="Prediction">
+                <content>
+                    <partial name="_Predictions" model="@Model" />
+                </content>
+
+            </tabstrip-item>
+
         </items>
 
     </kendo-tabstrip>
