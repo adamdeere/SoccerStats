@@ -1,0 +1,53 @@
+﻿@model IEnumerable<SoccerStatsData.RequestModels.PredictionRequestFiles.HeadToHeadStats>
+
+@{
+    var gridString = string.Empty;
+    using (StreamReader sr = new StreamReader("Views/Shared/_LastFiveGrid.cshtml"))
+    {
+        gridString = sr.ReadToEnd();
+    }
+}
+
+     
+@(
+Html.Kendo().Grid<SoccerStatsData.RequestModels.PredictionRequestFiles.HeadToHeadStats>()
+                .Name("Grid")
+                .Columns(columns =>
+                {
+                    columns.Bound(p => p.League.Name)
+                    .Title("League")
+                    .Width(5);
+
+                    columns.Bound(p => p.Fixture.Date)
+                    .Title("Fixture date")
+                    .Width(5);
+
+                    columns.Bound(p => p.Fixture.Date)
+                   .Title("Kick off")
+                   .Width(3);
+                   
+
+                    columns.Bound(p => p.Fixture.Venue.Name)
+                    .Title("Venue")
+                    .Width(5);
+
+                    columns.Bound(p => p.Fixture.Referee)
+                    .Title("Referee")
+                    .Width(5);
+
+                    columns.Bound(p => p.Goals)
+                    .Title("Score")
+                    .Width(10);
+                })
+    .ClientRowTemplate(gridString)
+    .Pageable()
+    .Navigatable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Batch(true)
+        .PageSize(20)
+        .ServerOperation(false)
+        .Read("Last_Five_Read", "Prediction")
+    )
+)

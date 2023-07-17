@@ -7,7 +7,7 @@
 }
 
 <script id="tmplChartAtt" type="text/html">
-    <partial name="_TeamLogos" model="@Model" />
+    <partial name="_TeamLogos" model="@Model.Teams" />
     @(Html.Kendo().Chart()
              .Name("Attack")
                      .Title(title => title
@@ -38,11 +38,10 @@
 </script>
 
 <script id="tmplChartDef" type="text/html">
-
-    <partial name="_TeamLogos" model="@Model" />
     
+    <partial name="_TeamLogos" model="@Model.Teams" />
     @(Html.Kendo().Chart()
-                  .Name("Def")
+                  .Name("def")
                           .Title(title => title
                               .Text("Defence")
                               .Position(ChartTitlePosition.Bottom))
@@ -69,7 +68,7 @@
 </script>
 
 <script id="tmplChartForm" type="text/html">
-     <partial name="_TeamLogos" model="@Model" />
+     <partial name="_TeamLogos" model="@Model.Teams" />
     @(Html.Kendo().Chart()
                         .Name("Form")
                                 .Title(title => title
@@ -98,7 +97,7 @@
 </script>
 
 <script id="tmplChartGoals" type="text/html">
-     <partial name="_TeamLogos" model="@Model" />
+    <partial name="_TeamLogos" model="@Model.Teams" />
     @(Html.Kendo().Chart()
                        .Name("Goals")
                                .Title(title => title
@@ -129,7 +128,7 @@
 </script>
 
 <script id="tmplChartH2H" type="text/html">
-     <partial name="_TeamLogos" model="@Model" />
+     <partial name="_TeamLogos" model="@Model.Teams" />
     @(Html.Kendo().Chart()
                        .Name("H2H")
                                .Title(title => title
@@ -158,7 +157,7 @@
 </script>
 
 <script id="tmplChartPosDis" type="text/html">
-     <partial name="_TeamLogos" model="@Model" />
+     <partial name="_TeamLogos" model="@Model.Teams" />
     @(Html.Kendo().Chart()
                        .Name("PosDis")
                                .Title(title => title
@@ -188,7 +187,7 @@
 </script>
 
 <script id="tmplChartTotal" type="text/html">
-     <partial name="_TeamLogos" model="@Model" />
+     <partial name="_TeamLogos" model="@Model.Teams" />
     @(Html.Kendo().Chart()
                            .Name("Total")
                                    .Title(title => title

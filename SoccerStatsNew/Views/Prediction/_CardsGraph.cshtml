@@ -1,0 +1,70 @@
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.Team
+
+@{
+    var hYellow1 = Model.League.Cards.Yellow.FirtHalfFirst.Total;
+    var hYellow2 = Model.League.Cards.Yellow.FirstHalfSecond.Total;
+    var hYellow3 = Model.League.Cards.Yellow.FirstHalfThird.Total;
+
+    var hYellow4 = Model.League.Cards.Yellow.SecondHalfFirst.Total;
+    var hYellow5 = Model.League.Cards.Yellow.SecondHalfSecond.Total;
+    var hYellow6 = Model.League.Cards.Yellow.SecondHalfThird.Total;
+
+    var hRed1 = Model.League.Cards.Red.FirtHalfFirst.Total;
+    var hRed2 = Model.League.Cards.Red.FirstHalfSecond.Total;
+    var hRed3 = Model.League.Cards.Red.FirstHalfThird.Total;
+
+    var hRed4 = Model.League.Cards.Red.SecondHalfFirst.Total;
+    var hRed5 = Model.League.Cards.Red.SecondHalfSecond.Total;
+    var hRed6 = Model.League.Cards.Red.SecondHalfThird.Total;
+
+    var yellowData = new int?[] { hYellow1, hYellow2, hYellow3, hYellow4, hYellow5, hYellow6 };
+    var redData = new int?[] { hRed1, hRed2, hRed3, hRed4, hRed5, hRed6 };
+    var categories = new string[] { "0-15", "16-30", "31-45", "46-60", "61-75", "76-90", "91-105" };
+
+    var id = $"chart_{@Model.Id}";
+}
+<div>
+    <partial name="_IndividualTeam" model="@Model" />
+</div>
+
+<kendo-chart name="@id" theme="sass" is-in-client-template="true">
+    <series-defaults gap=0.06 type="ChartSeriesType.Column">
+        <stack enabled=false />
+    </series-defaults>
+    
+    <series>
+        <series-item 
+                     name="Yellow cards"
+                     data="yellowData"
+                     color=\\#e4eb0c
+                     opacity="0.7">
+        </series-item>
+        <series-item 
+                     name="Red cards"
+                     data="redData"
+                     color=\\#eb0c0c
+                     opacity="0.7">
+        </series-item>
+    </series>
+    <category-axis>
+        <category-axis-item categories="categories">
+            <major-grid-lines visible=true />
+        </category-axis-item>
+    </category-axis>
+    <value-axis>
+        <value-axis-item name="" type="numeric">
+            <labels format="{0}">
+            </labels>
+        </value-axis-item>
+    </value-axis>
+    <chart-legend position="ChartLegendPosition.Bottom">
+    </chart-legend>
+    <chart-title text="Cards per minute">
+    </chart-title>
+
+    <tooltip format="{0}" visible="true">
+    </tooltip>
+</kendo-chart>
+
+
+

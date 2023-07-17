@@ -7,7 +7,7 @@
         {
         }
 
-        public async Task<string> GetJsonString(string parameters)
+        public async Task<string?> GetJsonString(string parameters)
         {
             if (ClientStatus())
             {
