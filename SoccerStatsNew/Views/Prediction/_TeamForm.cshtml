@@ -1,0 +1,269 @@
+﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.Team
+@{
+    var tileLayoutTitle = $"tilelayout_{Model.Id}";
+    var id = Model.Id + "_cards";
+    var form_id = Model.Id + "_form";
+    var formation_id = Model.Id + "_formation";
+    var clean_sheet_id = Model.Id + "_clean_sheet";
+    var failed_to_score_id = Model.Id + "_failed_to_score";
+    var peno_conversion_id = Model.Id + "_peno_conversion";
+    var last_five_id = Model.Id + "_last_five";
+    var last_five_chart = Model.Id + "_last_five_chart";
+    var biggest_id = Model.Id + "_biggest";
+}
+
+<!-- container text templates -->
+<script id="@id" type="text/html">
+    <partial name="_CardsGraph" model="@Model" />
+</script>
+
+<script id="@form_id" type="text/html">
+    @if (Model.League.Form != null)
+    {
+        var formChars = Model.League.Form.ToCharArray();
+        @foreach (var item in formChars)
+        {
+            @if (item == 'W')
+            {
+                <span class="wg_form wg_form_win">W</span>
+                
+            }
+            @if (item == 'D')
+            {
+               <span class="wg_form wg_form_draw">D</span>
+            }
+            @if (item == 'L')
+            {
+               <span class="wg_form wg_form_lose">L</span>
+            }
+        }
+    }    
+
+    
+    
+    
+    
+</script>
+
+<script id="@formation_id" type="text/html">
+    @if (Model.League != null)
+    {
+        @foreach (var item in Model.League.LineUps)
+        {
+            <div>
+                <p>Formation: @item.Formation</p>
+                <p>Played: @item.Played times</p>
+            </div>
+        }
+        
+    }
+</script>
+
+<script id="@clean_sheet_id" type="text/html">
+    @if (Model.League != null)
+    {
+        var cleanSheet = Model.League.CleanSheet;
+        <div>
+            <p>Home: @cleanSheet.Home</p>
+        </div>
+            <div>
+                <p>Away: @cleanSheet.Away</p>
+            </div>
+                <div>
+                <p>Total: @cleanSheet.Total</p>
+            </div>
+
+    }
+</script>
+
+<script id="@failed_to_score_id" type="text/html">
+    @if (Model.League != null)
+    {
+        var failedToScore = Model.League.FailedToScore;
+            <div>
+                <p>Home: @failedToScore.Home</p>
+            </div>
+                <div>
+                    <p>Away: @failedToScore.Away</p>
+                </div>
+                    <div>
+                    <p>Total: @failedToScore.Total</p>
+                </div>
+
+    }
+</script>
+
+<script id="@peno_conversion_id" type="text/html">
+    @if (Model.League != null)
+    {
+        var penoConversion = Model.League.Penalty;
+        <div>
+            <p>Total peneltys awarded: @penoConversion.Total</p>
+        </div>
+
+        <div>
+            <p>Scored: @penoConversion.Scored.Total</p>
+            <span><b>@penoConversion.Scored.Percentage</b> conversion rate</span>
+        </div>
+        <div>
+            <p>Missed: @penoConversion.Missed.Total</p>
+            <span><b>@penoConversion.Missed.Percentage</b> missed</span>
+        </div>
+    }
+</script>
+
+<script id="@last_five_id" type="text/html">
+    @if (Model.Last_Five != null)
+    {
+        var lastFive = Model.Last_Five;
+             @(Html.Kendo().Chart()
+      .Name(last_five_chart)
+                .Title(title => title
+                    .Text("last five form")
+                    .Position(ChartTitlePosition.Top))
+        .Legend(legend => legend
+            .Visible(true)
+        )
+        .ChartArea(chart => chart
+            .Background("transparent")
+         )
+        .Series(series => {
+            series.Pie(new dynamic[] {
+                new {category="Attck",value=lastFive.Att,color="\\#9de219"},
+                new {category="Defense",value=lastFive.Def,color="\\#90cc38"},
+                
+            })
+            .Labels(labels => labels
+                .Background("transparent")
+                .Visible(true)
+            )
+            .StartAngle(150);
+        })
+        .Tooltip(tooltip => tooltip
+            .Visible(true)
+            .Format("{0}%")
+        )
+        .ToClientTemplate())
+
+        <div>
+             <p>Form: @lastFive.Form</p>
+        </div>
+        <div>
+            <div>
+                    <span>Goals for: <b>@lastFive.Goals.GoalsFor.Total</b> </span>
+                    <span>Average: <b>@lastFive.Goals.GoalsFor.Average</b></span>
+            </div>
+
+            <div>
+                    <span>Goals against: <b>@lastFive.Goals.GoalsAgainst.Total</b></span>
+                    <span>Average: <b>@lastFive.Goals.GoalsAgainst.Average</b></span>
+            </div>
+           
+        </div>
+    }
+</script>
+
+<script id="@biggest_id" type="text/html">
+  @if (Model.League != null)
+  {
+    var biggest = Model.League.Biggest;
+
+    <div>
+        <p>streak win: @biggest.Streak.Wins</p>
+        <p>streak loss: @biggest.Streak.Loses</p>
+        <p>streak draw: @biggest.Streak.Draws</p>
+    </div>
+
+          <div>
+              <p>Wins home: @biggest.Wins.Home</p>
+              <p>Loses home: @biggest.Loses.Home</p>
+              <p>Goals for: @biggest.Goals.For.Home</p>
+              <p>Goals against: @biggest.Goals.Againsr.Home</p>
+          </div>
+  }
+</script>
+
+
+@(Html.Kendo().TileLayout()
+        .Name(tileLayoutTitle)
+        .Columns(6)
+        .RowsHeight("100px")
+        .Containers(c =>
+        {
+            c.Add().Header(h => h.Text("Form guide"))
+            .BodyTemplateId(form_id)
+            .ColSpan(6).RowSpan(.5);
+
+            c.Add().Header(h => h.Text("Cards over the season"))
+            .BodyTemplateId(id)
+            .ColSpan(6).RowSpan(5);
+
+            c.Add().Header(h => h.Text("Formations used"))
+            .BodyTemplateId(formation_id)
+            .ColSpan(1).RowSpan(3);
+
+            c.Add().Header(h => h.Text("Clean sheets"))
+            .BodyTemplateId(clean_sheet_id)
+            .ColSpan(1).RowSpan(3);
+
+            c.Add().Header(h => h.Text("failed to score"))
+           .BodyTemplateId(failed_to_score_id)
+           .ColSpan(1).RowSpan(3);
+
+            c.Add().Header(h => h.Text("Penelty conversion rate"))
+           .BodyTemplateId(peno_conversion_id)
+           .ColSpan(1).RowSpan(3);
+
+            c.Add().Header(h => h.Text("Form percentages"))
+           .BodyTemplateId(last_five_id)
+           .ColSpan(3).RowSpan(5);
+
+            c.Add().Header(h => h.Text("Biggest"))
+           .BodyTemplateId(biggest_id)
+           .ColSpan(3).RowSpan(5);
+
+            
+
+        })
+        .Reorderable(true)
+        .Resizable(true)
+        .Events(e => e.Resize("onTileResize"))
+        .Deferred(true)
+    )
+
+@section styles {
+    <link rel="stylesheet" href="~/css/prediction.css" />
+}
+
+<script>
+    function onTileResize(e) {
+        if (e.container) {
+            // for widgets that do not auto resize
+            // https://docs.telerik.com/kendo-ui/styles-and-layout/using-kendo-in-responsive-web-pages
+            kendo.resize(e.container, true);
+        }
+    }
+
+    $(window).on("resize", () => {
+        kendo.resize($(".k-chart, .k-grid"));
+    });
+
+    $(document).ready( () => {
+        var lol = "#tilelayout_" + @Model.Id;
+        kendo.resize($(lol));
+        $(document).bind("kendo:skinChange", updateTheme);
+    });
+
+    function updateTheme() {
+        var charts = $(".k-chart");
+        $.each(charts, function (i, elem) {
+            var theme = kendoTheme;
+
+            if (/(default-|bootstrap-|material-|classic-|fluent-)/.test(kendoTheme)) {
+                theme = "sass";
+            }
+            $(elem).getKendoChart().setOptions({ theme: theme });
+        });
+    }
+</script> 
+

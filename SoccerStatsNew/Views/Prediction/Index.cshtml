@@ -1,13 +1,13 @@
 ﻿@model SoccerStatsData.RequestModels.PredictionRequestFiles.PredictionResponse
 
 @if(Model.League != null){
-    <img src="@Model.League.Flag" class="rounded photo-badge home-badge">
-    <span class="product-name">@Model.League.Country</span>
-    
-    <div class="product-name">
-        <div class="photo-badge home-badge">
-            <img src="@Model.League.Logo" class="rounded">
-        </div>
+
+    <div class="badge-name">
+        <img src="@Model.League.Flag" class="rounded photo-badge home-badge ">
+        <span>@Model.League.Country</span>
+    </div>
+    <div class="badge-name">
+        <img src="@Model.League.Logo" class="rounded photo-badge home-badge">
         <span>@Model.League.Name Season: @Model.League.Season</span>
     </div>
     @if (Model.Teams.Home != null)
@@ -19,7 +19,6 @@
         <partial name="_IndividualTeam" model="@Model.Teams.Away" />
     }
 }
-
 <kendo-tabstrip name="tabstrip">
 
     <items>
@@ -27,21 +26,42 @@
             <content>
                 <partial name="_Comparison" model="@Model" />
             </content>
-             
+
         </tabstrip-item>
 
-         <tabstrip-item text="League form">
+        <tabstrip-item text="Home team form">
             <content>
-               <partial name="_LeagueForm" model="@Model" />
+                <partial name="_TeamForm" model="@Model.Teams.Home" />
             </content>
 
         </tabstrip-item>
+
+        <tabstrip-item text="Away team form">
+            <content>
+                <partial name="_TeamForm" model="@Model.Teams.Away" />
+            </content>
+
+        </tabstrip-item>
+
+        <tabstrip-item text="Prediction">
+            <content>
+                <partial name="_Predictions" model="@Model" />
+            </content>
+        </tabstrip-item>
+
+        <tabstrip-item text="Head to Head">
+            <content>
+                <partial name="_HeadToHead" model="@Model.HeadToHeadStats" />
+            </content>
+        </tabstrip-item>
+
     </items>
 
 </kendo-tabstrip>
 
+
 @section styles {
-    <link rel="stylesheet" href="~/css/leagues.css" />
+    <link rel="stylesheet" href="~/css/prediction.css" />
 }
 
 

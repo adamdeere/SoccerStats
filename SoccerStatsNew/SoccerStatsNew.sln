@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerStatsNew", "SoccerStatsNew.csproj", "{1EF8AD10-69D9-4272-B405-3204A722E9B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityLibraries", "..\UtilityLibraries\UtilityLibraries.csproj", "{3B8F580A-E60C-4327-ABE8-1DE1996A9DEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityLibraries", "..\UtilityLibraries\UtilityLibraries.csproj", "{3B8F580A-E60C-4327-ABE8-1DE1996A9DEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoccerStatsData", "..\SoccerStatsData\SoccerStatsData.csproj", "{DD9BB890-E00B-467B-B164-954C03601138}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoccerStatsData", "..\SoccerStatsData\SoccerStatsData.csproj", "{DD9BB890-E00B-467B-B164-954C03601138}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
