@@ -5,3 +5,25 @@
 .k-card-body {
     overflow: hidden;
 }
+
+.wg_form_win {
+    background: #01d099;
+}
+.wg_form_draw {
+    background: #ffa800;
+}
+.wg_form_lose {
+    background: #ff0000;
+}
+
+.wg_form {
+    display: inline-block;
+    margin: 1px;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 9px;
+    position: relative;
+    color: #fff;
+}

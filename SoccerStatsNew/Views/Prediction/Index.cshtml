@@ -19,35 +19,45 @@
         <partial name="_IndividualTeam" model="@Model.Teams.Away" />
     }
 }
-<div class="right">
-    <kendo-tabstrip name="tabstrip">
+<kendo-tabstrip name="tabstrip">
 
-        <items>
-            <tabstrip-item text="Comparison">
-                <content>
-                    <partial name="_Comparison" model="@Model" />
-                </content>
+    <items>
+        <tabstrip-item text="Comparison">
+            <content>
+                <partial name="_Comparison" model="@Model" />
+            </content>
 
-            </tabstrip-item>
+        </tabstrip-item>
 
-            <tabstrip-item text="League form">
-                <content>
-                    <partial name="_Form" model="@Model.Teams" />
-                </content>
+        <tabstrip-item text="Home team form">
+            <content>
+                <partial name="_TeamForm" model="@Model.Teams.Home" />
+            </content>
 
-            </tabstrip-item>
+        </tabstrip-item>
 
-            <tabstrip-item text="Prediction">
-                <content>
-                    <partial name="_Predictions" model="@Model" />
-                </content>
+        <tabstrip-item text="Away team form">
+            <content>
+                <partial name="_TeamForm" model="@Model.Teams.Away" />
+            </content>
 
-            </tabstrip-item>
+        </tabstrip-item>
 
-        </items>
+        <tabstrip-item text="Prediction">
+            <content>
+                <partial name="_Predictions" model="@Model" />
+            </content>
+        </tabstrip-item>
 
-    </kendo-tabstrip>
-</div>
+        <tabstrip-item text="Head to Head">
+            <content>
+                <partial name="_HeadToHead" model="@Model.HeadToHeadStats" />
+            </content>
+        </tabstrip-item>
+
+    </items>
+
+</kendo-tabstrip>
 
 
 @section styles {
