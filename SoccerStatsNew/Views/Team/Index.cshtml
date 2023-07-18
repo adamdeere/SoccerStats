@@ -20,12 +20,6 @@
                 <partial name="_Stadium" model="@Model" />
             </content>
         </tabstrip-item>
-        <tabstrip-item text="Players" selected="false">
-            <content>
-                <partial name="_Players" model="@Model" />
-
-            </content>
-        </tabstrip-item>
     </items>
 </kendo-tabstrip>
 
@@ -37,6 +31,20 @@
         .Content("Fixtures")
         .HtmlAttributes(new { type = "button", param = Model.TeamId })
         .Events(ev => ev.Click("onClick")))
+
+    @(Html.Kendo().Button()
+        .Name("#btnTeam")
+        .Icon("k-icon k-i-calendar")
+        .Content("Team")
+        .HtmlAttributes(new { type = "button", param = Model.TeamId })
+        .Events(ev => ev.Click("onTeamClick")))
+
+    @(Html.Kendo().Button()
+        .Name("#btnTable")
+        .Icon("k-icon k-i-calendar")
+        .Content("Team")
+        .HtmlAttributes(new { type = "button", param = Model.TeamId })
+        .Events(ev => ev.Click("onTableClick")))
 </div>
 
 @section scripts {

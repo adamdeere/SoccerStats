@@ -1,4 +1,5 @@
-﻿using Kendo.Mvc.Extensions;
+﻿using Azure.Core;
+using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData.RequestModels;
@@ -13,6 +14,16 @@ namespace SoccerStatsNew.Controllers
         public PlayerController(PlayerService service)
         {
             _playerService = service;
+        }
+        public async Task<ActionResult> Index(int team)
+        {
+            var year = "2023";
+            string url = $"players?season={year}&team={team}";
+            var players = await _playerService.GetPlayers(team);
+            
+            return players != null 
+                ? View(players) 
+                : NotFound();
         }
         public async Task<ActionResult> Players_Read([DataSourceRequest] DataSourceRequest request, int id)
         {

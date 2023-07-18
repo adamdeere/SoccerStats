@@ -4,7 +4,12 @@ function onClick(e) {
     location.href = `/Fixture?team=${param}`;
 }
 
-function onFixtureClick(e) {
+function onTeamClick(e) {
     var param = this.element.attr("param");
-    console.log(param);
+    location.href = `/Player?team=${param}`;
+}
+
+function onTableClick(e) {
+    var param = this.element.attr("param");
+   
 }
