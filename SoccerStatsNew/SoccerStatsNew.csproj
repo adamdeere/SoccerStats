@@ -27,9 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Shared\_grid.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Update="wwwroot\images\notFound.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
