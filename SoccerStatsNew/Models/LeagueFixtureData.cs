@@ -1,6 +1,4 @@
-﻿using SoccerStatsData.RequestModels;
-
-namespace SoccerStatsNew.Models
+﻿namespace SoccerStatsNew.Models
 {
     public class LeagueFixtureData
     {

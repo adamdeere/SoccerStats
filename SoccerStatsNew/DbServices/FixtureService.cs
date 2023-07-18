@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SoccerStatsData;
-using SoccerStatsData.RequestModels;
+﻿using SoccerStatsData.RequestModels;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.Models;
 using UtilityLibraries;
@@ -52,6 +50,7 @@ namespace SoccerStatsNew.DbServices
 
             return fixtures ?? null;
         }
+
         public async Task<FixtureRoot?> GetLeagueFixtures(int leagueId, string year)
         {
             var url = $"fixtures?league={leagueId}&season={year}";

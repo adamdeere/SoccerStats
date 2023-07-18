@@ -9,9 +9,11 @@
 .wg_form_win {
     background: #01d099;
 }
+
 .wg_form_draw {
     background: #ffa800;
 }
+
 .wg_form_lose {
     background: #ff0000;
 }

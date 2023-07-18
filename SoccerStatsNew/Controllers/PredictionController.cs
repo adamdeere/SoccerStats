@@ -2,7 +2,6 @@
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData.RequestModels.PredictionRequestFiles;
-using System.Drawing.Text;
 using UtilityLibraries;
 
 namespace SoccerStatsNew.Controllers
@@ -10,10 +9,12 @@ namespace SoccerStatsNew.Controllers
     public class PredictionController : Controller
     {
         private readonly WebService _webService;
+
         public PredictionController(WebService webService)
         {
-            _webService = webService;     
+            _webService = webService;
         }
+
         public IActionResult Index(int? fixture)
         {
             string urlParams = $"predictions?fixture={fixture}";

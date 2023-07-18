@@ -35,7 +35,7 @@
         .Name("#btnFixtures")
         .Icon("k-icon k-i-calendar")
         .Content("Fixtures")
-        .HtmlAttributes(new { type = "button", param = @Model.Name })
+        .HtmlAttributes(new { type = "button", param = Model.TeamId })
         .Events(ev => ev.Click("onClick")))
 </div>
 
