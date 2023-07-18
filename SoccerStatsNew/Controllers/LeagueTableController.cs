@@ -19,7 +19,7 @@ namespace SoccerStatsNew.Controllers
                 Console.WriteLine(e.Message);
             }
            
-            return View();
+            return View(lol);
         }
     }
 }
