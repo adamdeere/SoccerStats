@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json.Serialization;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Services;
@@ -14,7 +15,11 @@ string Address = "https://v3.football.api-sports.io/";
 
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
-                options.JsonSerializerOptions.PropertyNamingPolicy = null);
+    {
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    });
+                
 
 builder.Services.AddKendo();
 

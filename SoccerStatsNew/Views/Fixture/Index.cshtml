@@ -1,52 +1,49 @@
-﻿@model IEnumerable<SoccerStatsNew.Models.FixturePageData>
+﻿@model IEnumerable<SoccerStatsData.RequestModels.FixtureResponse>
+
+<h6>this is the fixtures page</h6>
 
 @{
     var line = string.Empty;
-    using (StreamReader sr = new StreamReader("Views/Shared/_grid.cshtml"))
+    using (StreamReader sr = new StreamReader("Views/Shared/_FixtureGrid.cshtml"))
     {
         line = sr.ReadToEnd();
     }
 }
 
-<h5>This is the fixture controller</h5>
-
-@(Html.Kendo().Grid(Model)
-                .Name("Grid")
+@(
+Html.Kendo().Grid(Model)
+                .Name("fixture_grid")
                 .Columns(columns =>
-                {
-                    columns.Bound(p => p.Date)
-                           .Title("Fixture date")
-                           .Width(70);
+                            {
+                                columns.Bound(p => p.League.Logo)
+                                       .Title("League")
+                                       .Width(60);
 
-                    columns.Bound(p => p.League)
-                           .Title("League")
-                           .Width(70);
+                                columns.Bound(p => p.Fixture.Date)
+                                       .Title("Date")
+                                       .Width(50);
 
-                    columns.Bound(p => p.HomeTeam)
-                           .Title("Home Team")
-                           .Width(70);
+                                columns.Bound(p => p.Teams.Home)
+                                .Title("Home team")
+                                .Width(50);
 
-                    columns.Bound(p => p.AwayTeam)
-                           .Title("Away Team")
-                           .Width(70);
+                                columns.Bound(p => p.Teams.Away)
+                               .Title("Away team")
+                               .Width(50);
 
-                })
+                                columns.Bound(p => p.League.Round)
+                                .Title("Matchday")
+                                .Width(30);
+                            })
                 .ClientRowTemplate(@line)
-                .BindTo(Model)
                 .Pageable()
                 .Sortable()
                 .Scrollable(scr => scr.Height(430))
                 .Selectable()
-                .Events(events =>
-                {
-                    events.Change("OnGridSelect");
-                }))
-
-@section styles {
-    <link rel="stylesheet" href="~/css/fixtures.css" />
-}
-
-@section scripts {
-    <script src="~/js/fixtures.js"></script>
-}
-
+                .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .Batch(true)
+                            .PageSize(20)
+                            .ServerOperation(false))
+                .Deferred(true)
+)

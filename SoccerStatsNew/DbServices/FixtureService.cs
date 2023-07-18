@@ -43,13 +43,15 @@ namespace SoccerStatsNew.DbServices
             return list;
         }
 
-        public async Task<ICollection<CountryModel>?> GetAllCountriesToList()
+        public async Task<FixtureRoot?> GetTeamFixtures(int leagueId, string year)
         {
-            return _dbContext.CountryModel != null
-                ? await _dbContext.CountryModel.ToListAsync()
-                : null;
-        }
+            year = "2023";
+            var url = $"fixtures?team={leagueId}&season={year}";
 
+            var fixtures = await _WebService.GetObjectRequest<FixtureRoot>(url);
+
+            return fixtures ?? null;
+        }
         public async Task<FixtureRoot?> GetLeagueFixtures(int leagueId, string year)
         {
             var url = $"fixtures?league={leagueId}&season={year}";

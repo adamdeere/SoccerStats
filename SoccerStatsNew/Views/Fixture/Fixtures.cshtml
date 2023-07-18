@@ -1,4 +1,4 @@
-﻿@model SoccerStatsData.FixtureRoot
+﻿@model IEnumerable<SoccerStatsData.RequestModels.FixtureResponse>
 
 <h6>this is the fixtures page</h6>
 
@@ -11,15 +11,31 @@
 }
 
 @(
-Html.Kendo().Grid(Model.Response)
-    .Name("fixture_grid")
-    .Columns(columns =>
-                {
-                    columns.Bound(p => p.League.Name)
-                           .Title("Home Team")
-                           .ClientTemplate("#:data.League#")
-                           .Width(180);
-                })
+Html.Kendo().Grid(Model)
+                .Name("fixture_grid")
+                .Columns(columns =>
+                            {
+                                columns.Bound(p => p.League.Logo)
+                                       .Title("League")
+                                       .Width(60);
+
+                                columns.Bound(p => p.Fixture.Date)
+                                       .Title("Date")
+                                       .Width(50);
+
+                                columns.Bound(p => p.Teams.Home)
+                                .Title("Home team")
+                                .Width(50);
+
+                                columns.Bound(p => p.Teams.Away)
+                               .Title("Away team")
+                               .Width(50);
+
+                                columns.Bound(p => p.League.Round)
+                                .Title("Matchday")
+                                .Width(30);
+                            })
+                .ClientRowTemplate(@line)
                 .Pageable()
                 .Sortable()
                 .Scrollable(scr => scr.Height(430))
@@ -29,4 +45,5 @@ Html.Kendo().Grid(Model.Response)
                             .Batch(true)
                             .PageSize(20)
                             .ServerOperation(false))
-                .Deferred(true))
+                .Deferred(true)
+)

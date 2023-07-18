@@ -1,6 +1,7 @@
 ﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using SoccerStatsData;
 using SoccerStatsData.RequestModels;
 using SoccerStatsNew.DbServices;
@@ -18,19 +19,21 @@ namespace SoccerStatsNew.Controllers
             _Service = service;
         }
 
-        public IActionResult Index(string team)
+        public async Task<IActionResult> Index(int team, string year)
         {
-            var fixture = _Service.GetFixtureData(team);
+            var fixture = await _Service.GetTeamFixtures(50, year); 
             return fixture != null
-                ? View(fixture)
+                ? View(fixture.Response)
                 : NotFound();
         }
+
         [HttpPost]
         public async Task<IActionResult> Fixtures(int leagueId)
         {
             var fixture = await _Service.GetLeagueFixtures(leagueId, "2023");
+           
             return fixture != null 
-                ? View(fixture) 
+                ? View(fixture.Response) 
                 : NotFound();
         }
 
