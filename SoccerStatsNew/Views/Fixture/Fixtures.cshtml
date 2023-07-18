@@ -1,43 +1,32 @@
-﻿@model int
+﻿@model SoccerStatsData.FixtureRoot
 
 <h6>this is the fixtures page</h6>
 
 @{
     var line = string.Empty;
-    using (StreamReader sr = new StreamReader("Views/Shared/_grid.cshtml"))
+    using (StreamReader sr = new StreamReader("Views/Shared/_FixtureGrid.cshtml"))
     {
         line = sr.ReadToEnd();
     }
 }
 
 @(
-Html.Kendo().Grid<SoccerStatsNew.Models.FixturePageData>()
-                .Name("Grid")
-                .Columns(columns =>
+Html.Kendo().Grid(Model.Response)
+    .Name("fixture_grid")
+    .Columns(columns =>
                 {
-                    columns.Bound(p => p.Date)
-                           .Title("Fixture date")
-                           .Width(70);
-
-                    columns.Bound(p => p.League)
-                           .Title("League")
-                           .Width(70);
-
-                    columns.Bound(p => p.HomeTeam)
+                    columns.Bound(p => p.League.Name)
                            .Title("Home Team")
-                           .Width(70);
-
-                    columns.Bound(p => p.AwayTeam)
-                           .Title("Away Team")
-                           .Width(70);
-
+                           .ClientTemplate("#:data.League#")
+                           .Width(180);
                 })
-                .ClientRowTemplate(@line)
-                .DataSource(dataSource => dataSource
-                           .Ajax()
-                           .PageSize(20)
-                           .Read(read => read.Action("League_Fixtures", "Fixture", new { leagueId = Model })))
                 .Pageable()
                 .Sortable()
                 .Scrollable(scr => scr.Height(430))
-                .Selectable())
+                .Selectable()
+                .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .Batch(true)
+                            .PageSize(20)
+                            .ServerOperation(false))
+                .Deferred(true))
