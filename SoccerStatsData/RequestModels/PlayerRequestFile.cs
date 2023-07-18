@@ -1,7 +1,17 @@
 ﻿using Newtonsoft.Json;
+using System.Net.NetworkInformation;
 
 namespace SoccerStatsData.RequestModels
 {
+    public class PlayerPaging
+    {
+        [JsonProperty("current")]
+        public int Current { get; set; }
+
+        [JsonProperty("total")]
+        public int Total { get; set; }
+    }
+
     public class PlayerBirth
     {
         [JsonProperty("date")]
@@ -195,6 +205,9 @@ namespace SoccerStatsData.RequestModels
 
     public class PlayerRoot
     {
+        [JsonProperty("paging")]
+        public PlayerPaging Paging { get; set; }
+
         [JsonProperty("response")]
         public List<PlayerRequestFile> Response { get; set; }
     }

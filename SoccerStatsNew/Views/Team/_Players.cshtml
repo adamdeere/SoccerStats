@@ -42,7 +42,7 @@
                 .DataSource(dataSource => dataSource
                             .Ajax()
                             .PageSize(20)
-                            .Read(read => read.Action("Players_Read", "Team", new { id = Model.TeamId}))
+                            .Read(read => read.Action("Players_Read", "Player", new { id = Model.TeamId}))
                             )
                 .Pageable()
                 .Sortable()
