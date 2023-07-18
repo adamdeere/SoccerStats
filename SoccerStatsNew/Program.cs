@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
-using Newtonsoft.Json.Serialization;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Services;
