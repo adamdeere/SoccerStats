@@ -31,12 +31,5 @@ namespace SoccerStatsNew.Controllers
                 ? View(fixture.Response)
                 : NotFound();
         }
-
-        public IActionResult League_Fixtures([DataSourceRequest] DataSourceRequest request, int leagueId)
-        {
-            var fixture = _Service.GetFixtureData("");
-
-            return Json(fixture.ToDataSourceResult(request));
-        }
     }
 }

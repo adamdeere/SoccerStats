@@ -1,4 +1,4 @@
-﻿@model SoccerStatsData.TeamModel
+﻿@model SoccerStatsNew.Models.PlayerData
 
 @{
     var line = string.Empty;
@@ -9,25 +9,21 @@
 }
 <h6>this is the players tab</h6>
 
-@(Html.Kendo().Grid<SoccerStatsData.RequestModels.PlayerRequestFile>()
+@(Html.Kendo().Grid(Model.Response)
                 .Name("player-grid")
                 .Columns(columns =>
                 {
                     columns.Bound(p => p.Player.Photo)
-                           .Title("Photo")
-                           .Width(5);
+                           .Title("Player")
+                           .Width(10);
 
-                    columns.Bound(p => p.Player.Name)
-                    .Title("Name")
-                    .Width(10);
-
-                     columns.Bound(p => p.Player.Birth.Date)
-                    .Title("Born")
-                    .Width(10);
+                    columns.Bound(p => p.Player.Birth.Date)
+                   .Title("Born")
+                   .Width(5);
 
                     columns.Bound(p => p.Player.Age)
                    .Title("Age")
-                   .Width(5);
+                   .Width(2);
 
                     columns.Bound(p => p.Player.Birth.Place)
                    .Title("Birth town")
@@ -41,9 +37,9 @@
                 .ClientRowTemplate(@line)
                 .DataSource(dataSource => dataSource
                             .Ajax()
-                            .PageSize(40)
-                            .Read(read => read.Action("Players_Read", "Player", new { id = Model.TeamId}))
-                            )
+                            .Batch(true)
+                            .PageSize(20)
+                            .ServerOperation(false))
                 .Pageable()
                 .Sortable()
                 .Scrollable(scr => scr.Height(430))
