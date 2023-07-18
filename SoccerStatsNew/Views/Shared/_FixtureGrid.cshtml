@@ -1,0 +1,28 @@
+﻿<tr>
+    <td>
+        <img src="#:data.league.logo#" class="photo-badge home-badge">
+        <span class="product-name">#:data.league.name#</span>
+    </td>
+    
+    <td>
+        <div class='pt-indicator' data-id='#:data.FixtureId#'>
+            <span class="li-date">#= kendo.toString(kendo.parseDate(data.fixture.date), 'dd/MM/yyyy HH:mm') # </span>
+        </div>
+    </td>
+
+    <td>
+        <img src="#:data.teams.home.logo#" class="photo-badge home-badge">
+        <span class="product-name">#:data.teams.home.name#</span>
+    </td>
+    <td>
+        <img src="#:data.teams.away.logo#" class="photo-badge home-badge">
+        <span class="product-name">#:data.teams.away.name#</span>
+    </td>
+
+    <td>
+        <span>#:data.league.round# </span>
+      
+    </td>
+
+</tr>
+

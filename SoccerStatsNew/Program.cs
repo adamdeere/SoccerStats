@@ -14,7 +14,10 @@ string Address = "https://v3.football.api-sports.io/";
 
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options =>
-                options.JsonSerializerOptions.PropertyNamingPolicy = null);
+    {
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    });
 
 builder.Services.AddKendo();
 
@@ -58,6 +61,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Prediction}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

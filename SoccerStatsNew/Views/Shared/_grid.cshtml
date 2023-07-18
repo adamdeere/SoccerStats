@@ -1,7 +1,8 @@
 ﻿<tr>
     <td>
         <div class='pt-indicator' data-id='#:data.FixtureId#'>
-            <span class="li-date">#:data.Date.toDateString()# </span>
+            
+            <span class="li-date">#= kendo.toString(kendo.parseDate(data.Date), 'dd/MM/yyyy') # </span>
         </div>
        
     </td>

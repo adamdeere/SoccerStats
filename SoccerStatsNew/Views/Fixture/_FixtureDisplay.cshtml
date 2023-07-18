@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SoccerStatsData.RequestModels.FixtureResponse>
+
+@{
+    var line = string.Empty;
+    using (StreamReader sr = new StreamReader("Views/Shared/_FixtureGrid.cshtml"))
+    {
+        line = sr.ReadToEnd();
+    }
+}
+
+@(
+Html.Kendo().Grid(Model)
+                .Name("fixture_grid")
+                .Columns(columns =>
+                            {
+                                columns.Bound(p => p.League.Logo)
+                                       .Title("League")
+                                       .Width(60);
+
+                                columns.Bound(p => p.Fixture.Date)
+                                       .Title("Date")
+                                       .Width(50);
+
+                                columns.Bound(p => p.Teams.Home)
+                                .Title("Home team")
+                                .Width(50);
+
+                                columns.Bound(p => p.Teams.Away)
+                               .Title("Away team")
+                               .Width(50);
+
+                                columns.Bound(p => p.League.Round)
+                                .Title("Matchday")
+                                .Width(30);
+                            })
+                .ClientRowTemplate(@line)
+                .Pageable()
+                .Sortable()
+                .Scrollable(scr => scr.Height(430))
+                .Selectable()
+                .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .Batch(true)
+                            .PageSize(20)
+                            .ServerOperation(false))
+                .Deferred(true)
+)
