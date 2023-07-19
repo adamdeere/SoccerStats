@@ -1,10 +1,7 @@
-﻿using Azure.Core;
-using Kendo.Mvc.Extensions;
+﻿using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
-using SoccerStatsData.RequestModels;
 using SoccerStatsNew.DbServices;
-using UtilityLibraries;
 
 namespace SoccerStatsNew.Controllers
 {

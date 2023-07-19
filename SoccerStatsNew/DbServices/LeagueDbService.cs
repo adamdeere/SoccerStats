@@ -84,7 +84,7 @@ namespace SoccerStatsNew.Services
         public async Task SaveTeamsAndVenues(int id, string year)
         {
             string url = $"teams?league={id}&season={year}";
-            var teamRoot = await _webService.GetObjectRequest<TeamRoot>(url);
+            var teamRoot = await _webService.ObjectGetRequest<TeamRoot>(url);
             if (teamRoot != null)
             {
                 foreach (var item in teamRoot.Response)
@@ -145,13 +145,23 @@ namespace SoccerStatsNew.Services
             }
         }
 
-        public async Task<IEnumerable<TeamModel>?> GetTeamModels(int id)
+        public async Task<IEnumerable<TeamResponse>?> GetTeamModels(int id)
         {
-            var teamModel = await _context.TeamModel
-                .Where(m => m.LeagueId == id)
-                .ToListAsync();
+            var seasons = await GetSeasons(id);
+            string? year;
+            if (seasons != null)
+            {
+                year = seasons.First().Year.ToString();
+            }
+            else
+            {
+                year = "2022";
+            }
+            var url = $"teams?league={id}&season={year}";
+            var teams = await _webService.ObjectGetRequest<TeamRoot>(url);
+           
 
-            return teamModel ?? null;
+            return teams?.Response;
         }
 
         private bool VenueModelExists(VenuesModel id)

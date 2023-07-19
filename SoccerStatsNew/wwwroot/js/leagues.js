@@ -5,3 +5,7 @@ function onChange(arg) {
         location.href = `Team/?team=${itemId}`;
     }
 }
+
+function onTeamClick(e) {
+
+}

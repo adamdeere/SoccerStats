@@ -17,7 +17,7 @@ namespace SoccerStatsNew.DbServices
             var year = "2023";
             string url = $"players?season={year}&team={id}";
             PlayerData playerData = new();
-            var players = await _webService.GetObjectRequest<PlayerRoot>(url);
+            var players = await _webService.ObjectGetRequest<PlayerRoot>(url);
             if (players != null)
             {
                 FillList(playerData, players);
@@ -28,7 +28,7 @@ namespace SoccerStatsNew.DbServices
                 for (int i = current; i < page; i++)
                 {
                     url = $"players?season={year}&team={id}&page={i + 1}";
-                    players = await _webService.GetObjectRequest<PlayerRoot>(url);
+                    players = await _webService.ObjectGetRequest<PlayerRoot>(url);
                     if (players != null)
                     {
                        FillList(playerData, players);

@@ -1,0 +1,81 @@
+﻿<h6>welcome to the league table page</h6>
+
+@model SoccerStatsData.RequestModels.LeagueTableRoot
+
+@{
+    var line = string.Empty;
+    using (StreamReader sr = new StreamReader("Views/Shared/_LeagueTableGrid.cshtml"))
+    {
+        line = sr.ReadToEnd();
+    }
+}
+
+@foreach (var leagueResponse in Model.Response)
+{
+    <span>@leagueResponse.League.Name :</span>
+    <span>@leagueResponse.League.Season :</span>
+
+    @foreach (var leagueStandings in leagueResponse.League.Standings)
+    {
+        @(Html.Kendo().Grid(leagueStandings)
+                    .Name("table-grid")
+                    .Columns(columns =>
+                    {
+                            columns.Bound(p => p.Rank)
+                                   .Width(1);
+
+                            columns.Bound(p => p.Team)
+                               .Title("Team")
+                               .Width(20);
+
+                            columns.Bound(p => p.All.Played)
+                            .Title("Played")
+                            .Width(1);
+
+                            columns.Bound(p => p.All.Win)
+                            .Title("Won")
+                            .Width(1);
+
+                            columns.Bound(p => p.All.Draw)
+                            .Title("Drawn")
+                            .Width(1);
+
+                            columns.Bound(p => p.All.Lose)
+                            .Title("Lost")
+                            .Width(1);
+
+
+                            columns.Bound(p => p.All.Goals.For)
+                            .Title("For")
+                            .Width(1);
+
+                            columns.Bound(p => p.All.Goals.Against)
+                            .Title("Against")
+                            .Width(1);
+
+                            columns.Bound(p => p.GoalsDiff)
+                            .Title("GD")
+                            .Width(1);
+
+                            columns.Bound(p => p.Points)
+                            .Title("Points")
+                            .Width(1);
+
+                            columns.Bound(p => p.Form)
+                            .Title("Form")
+                            .Width(1);
+                           
+                    })
+                    .ClientRowTemplate(@line)
+                    .DataSource(dataSource => dataSource
+                                .Ajax()
+                                .Batch(true)
+                                .PageSize(24)
+                                .ServerOperation(false))
+                   
+                    .ColumnMenu(col => col.Filterable(false))
+                    )
+    }
+}
+
+

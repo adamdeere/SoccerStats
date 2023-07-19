@@ -8,8 +8,7 @@
     }
 }
 
-@(
-Html.Kendo().Grid(Model)
+@(Html.Kendo().Grid(Model)
                 .Name("fixture_grid")
                 .Columns(columns =>
                             {
@@ -43,5 +42,4 @@ Html.Kendo().Grid(Model)
                             .Batch(true)
                             .PageSize(20)
                             .ServerOperation(false))
-                .Deferred(true)
-)
+                .Deferred(true))

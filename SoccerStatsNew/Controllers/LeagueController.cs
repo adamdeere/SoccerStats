@@ -9,11 +9,10 @@ namespace SoccerStatsNew.Controllers
     public class LeagueController : Controller
     {
         private readonly LeagueDbService _leagueService;
-        private readonly WebService _teamService;
+       
 
-        public LeagueController(LeagueDbService leagueService, WebService teamService)
+        public LeagueController(LeagueDbService leagueService)
         {
-            _teamService = teamService;
             _leagueService = leagueService;
         }
 
@@ -26,11 +25,13 @@ namespace SoccerStatsNew.Controllers
                 : NotFound();
         }
 
-        public async Task<ActionResult> League_Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
+        public async Task<JsonResult> League_Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
         {
             var teamResponse = await _leagueService.GetTeamModels(league);
 
-            return Json(await teamResponse.ToDataSourceResultAsync(request));
+            return teamResponse != null 
+                ? Json(await teamResponse.ToDataSourceResultAsync(request))
+                : Json(null);
         }
     }
 }
