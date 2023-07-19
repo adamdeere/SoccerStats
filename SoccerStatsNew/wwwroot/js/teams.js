@@ -13,3 +13,7 @@ function onTableClick(e) {
     var param = this.element.attr("param");
    
 }
+
+function change(e) {
+    console.log(e);
+}

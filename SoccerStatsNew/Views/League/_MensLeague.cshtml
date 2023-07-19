@@ -25,24 +25,22 @@
             @{
                 // gives a unique name for each listview inside the league cards
                 var listName = $"listView_{Model.LeagueId.ToString()}";
+                @if (Model.Seasons != null)
+                {
+                   
+                }
+                
+               
             }
 
-            @(Html.Kendo().ListView<SoccerStatsData.TeamResponse>()
-                .Name(listName)
-                .TagName("div")
-                .ClientTemplateId("teams")
-                .DataSource(dataSource => dataSource
-                .Ajax()
-                .Read(read => read.Action("League_Team_Read", "League", new
-                {
-                    league = Model.LeagueId.ToString(),
-                    year = "2022",
-                    type = "league"
-
-                }))
-                .PageSize(26))
-                .Selectable(ListViewSelectionMode.Single)
-                .Events(events => events.Change("onChange")))
+            @(Html.Kendo().DropDownList()
+              .Name(listName)
+              .DataTextField("Year")
+              .DataValueField("LeagueId")
+              .Events(e => e.Change("change").Select("onSelect"))
+              .BindTo(Model.Seasons)
+              .Value("1")
+              .HtmlAttributes(new { style = "width: 100%", param = "lol" }))
 
         </div>
         <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
@@ -63,7 +61,20 @@
         <p>Founded: #:Team.Founded#</p>
     </div>
 </script>
-
+<script>
+    function change() {
+        var param = this.element.attr("param");
+        console.log(param);
+    }
+    function onSelect(e){
+        if (e.item) {
+            var dataItem = this.dataItem(e.item);
+            console.log("event :: select (" + dataItem.Year + " : " + dataItem.LeagueId + ")");
+        } else {
+            console.log("event :: select");
+        }
+    }
+</script>
 @section scripts {
     <script src="~/js/teams.js"> </script>
 }
