@@ -1,25 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SoccerStatsData.RequestModels;
+using SoccerStatsNew.DbServices;
 using UtilityLibraries;
 
 namespace SoccerStatsNew.Controllers
 {
     public class LeagueTableController : Controller
     {
-        public IActionResult Index()
+        private readonly LeagueTableService _tableService;
+        public LeagueTableController(LeagueTableService service)
         {
-            LeagueTableRoot? lol = null;
-            try
-            {
-                 lol = JsonHelper.GetObjectFromJsonFile<LeagueTableRoot>("Test/tables.json");
-            }
-            catch (Exception e)
-            {
-
-                Console.WriteLine(e.Message);
-            }
+            _tableService = service;    
+        }
+        public async Task<IActionResult> Index()
+        {
+            var table = await _tableService.GetLeagueTable(41, "2022");
            
-            return View(lol);
+            return table != null 
+                    ? View(table) 
+                    : NotFound();
         }
     }
 }

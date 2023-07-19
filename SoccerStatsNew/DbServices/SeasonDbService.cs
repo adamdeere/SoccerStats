@@ -18,7 +18,7 @@ namespace SoccerStatsNew.DbServices
 
         public async Task SaveSeasons()
         {
-            var root = await _webService.GetObjectRequest<LeagueRoot>("leagues");
+            var root = await _webService.ObjectGetRequest<LeagueRoot>("leagues");
             if (root != null)
             {
                 foreach (var item in root.Response)

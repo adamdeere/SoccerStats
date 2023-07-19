@@ -84,7 +84,7 @@ namespace SoccerStatsNew.Services
         public async Task SaveTeamsAndVenues(int id, string year)
         {
             string url = $"teams?league={id}&season={year}";
-            var teamRoot = await _webService.GetObjectRequest<TeamRoot>(url);
+            var teamRoot = await _webService.ObjectGetRequest<TeamRoot>(url);
             if (teamRoot != null)
             {
                 foreach (var item in teamRoot.Response)

@@ -28,7 +28,7 @@
             return default;
         }
 
-        public async Task<T?> GetObjectRequest<T>(string parameters)
+        public async Task<T?> ObjectGetRequest<T>(string parameters)
         {
             if (ClientStatus())
             {

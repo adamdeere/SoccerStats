@@ -22,7 +22,6 @@
                     .Columns(columns =>
                     {
                             columns.Bound(p => p.Rank)
-                             .Title("R")
                                    .Width(1);
 
                             columns.Bound(p => p.Team)
@@ -74,7 +73,7 @@
                                 .PageSize(24)
                                 .ServerOperation(false))
                    
-                    .ColumnMenu(col => col.Filterable(true))
+                    .ColumnMenu(col => col.Filterable(false))
                     )
     }
 }

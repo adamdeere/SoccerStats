@@ -32,7 +32,7 @@ namespace SoccerStatsNew.Controllers
         {
             var year = "2023";
             string url = $"players?season={year}&team={id}";
-            var players = await _webService.GetObjectRequest<PlayerRoot>(url);
+            var players = await _webService.ObjectGetRequest<PlayerRoot>(url);
             if (players != null)
             {
                 return Json(await players.Response.ToDataSourceResultAsync(request));
