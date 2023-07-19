@@ -1,17 +1,19 @@
 ﻿@model SoccerStatsData.LeagueModel
+@using UtilityLibraries
 
 <div class="k-card k-card-horizontal">
     <div class="image">
-        <form method="post">
-            <input class="k-card-image"
-                   src="@Model.LogoURL"
-                   type="image"
-                   asp-controller="Fixture"
-                   asp-action="Fixtures"
-                   asp-route-leagueId="@Model.LeagueId" />
-        </form>
-        <p><i>click image for league details</i></p>
-       
+
+        <img src="@Model.LogoURL" alt="not found" class="k-card-image" />
+
+        @(Html.Kendo().Button()
+            .Name("#btnTeam")
+            .Icon("k-icon k-i-calendar")
+            .Content("Team")
+            .HtmlAttributes(new { type = "button", id = Model.LeagueId.ToString() })
+            .Events(ev => ev.Click("onTeamClick")))
+      
+
     </div>
     <div class="k-vbox k-column">
         <div class="k-card-header">
@@ -22,28 +24,25 @@
         <div class="k-card-body">
             @{
                 // gives a unique name for each listview inside the league cards
-                var listName = $"listView_{UtilityLibraries.StringStripper.StripPunctuation(Model.Name)}";
+                var listName = $"listView_{Model.LeagueId.ToString()}";
             }
 
-            <div class="demo-section wide">
-                @(
-                    Html.Kendo().ListView<SoccerStatsData.TeamsPage>()
-                        .Name(listName)
-                        .TagName("div")
-                        .ClientTemplateId("teams")
-                        .DataSource(dataSource => dataSource
-                        .Ajax()
-                        .Read(read => read.Action("League_Team_Read", "League", new
-                        {
-                            league = Model.LeagueId,
-                            year = "2022",
-                            type = "league"
+            @(Html.Kendo().ListView<SoccerStatsData.TeamResponse>()
+                .Name(listName)
+                .TagName("div")
+                .ClientTemplateId("teams")
+                .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read(read => read.Action("League_Team_Read", "League", new
+                {
+                    league = Model.LeagueId.ToString(),
+                    year = "2022",
+                    type = "league"
 
-                        }))
-                        .PageSize(26))
-                        .Selectable(ListViewSelectionMode.Single)
-                        .Events(events => events.Change("onChange")))
-            </div>
+                }))
+                .PageSize(26))
+                .Selectable(ListViewSelectionMode.Single)
+                .Events(events => events.Change("onChange")))
 
         </div>
         <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
@@ -58,12 +57,16 @@
 </div>
 
 <script type="text/x-kendo-tmpl" id="teams">
-    <div class="product" data-id="#:Name#">
-        <img src="#:Logo#" alt="#:Name# image" />
-        <h3>#:Name#</h3>
-        <p>Founded: #:Founded#</p>
+    <div class="product" data-id="#:Team.Name#">
+        <img src="#:Team.Logo#" alt="#:Team.Name# image" />
+        <h3>#:Team.Name#</h3>
+        <p>Founded: #:Team.Founded#</p>
     </div>
 </script>
+
+@section scripts {
+    <script src="~/js/teams.js"> </script>
+}
 
 
 

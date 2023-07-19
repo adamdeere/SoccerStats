@@ -20,7 +20,7 @@ namespace SoccerStatsNew.DbServices
             year = "2023";
             var url = $"fixtures?team={leagueId}&season={year}";
 
-            var fixtures = await _WebService.GetObjectRequest<FixtureRoot>(url);
+            var fixtures = await _WebService.ObjectGetRequest<FixtureRoot>(url);
 
             return fixtures ?? null;
         }
@@ -29,7 +29,7 @@ namespace SoccerStatsNew.DbServices
         {
             var url = $"fixtures?league={leagueId}&season={year}";
 
-            var fixtures = await _WebService.GetObjectRequest<FixtureRoot>(url);
+            var fixtures = await _WebService.ObjectGetRequest<FixtureRoot>(url);
 
             return fixtures ?? null;
         }

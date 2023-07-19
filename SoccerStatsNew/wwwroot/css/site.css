@@ -1,3 +1,9 @@
+:root {
+    --color-green: #01d099;
+    --color-red: #f64e60;
+    --color-yellow: #ffa800;
+}
+
 html {
     font-size: 14px;
 }
@@ -55,4 +61,28 @@ body {
     vertical-align: middle;
     line-height: 32px;
     padding-left: 3px;
+}
+
+.wg_form_win {
+    background: var(--color-green);
+}
+
+.wg_form_draw {
+    background: var(--color-yellow);
+}
+
+.wg_form_lose {
+    background: var(--color-red);
+}
+
+.wg_form {
+    display: inline-block;
+    margin: 1px;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    line-height: 16px;
+    font-size: 9px;
+    position: relative;
+    color: #fff;
 }
