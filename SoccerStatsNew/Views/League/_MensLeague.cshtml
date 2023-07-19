@@ -27,25 +27,22 @@
                 var listName = $"listView_{Model.LeagueId.ToString()}";
             }
 
-            <div class="demo-section wide">
-                @(
-                    Html.Kendo().ListView<SoccerStatsData.TeamResponse>()
-                        .Name(listName)
-                        .TagName("div")
-                        .ClientTemplateId("teams")
-                        .DataSource(dataSource => dataSource
-                        .Ajax()
-                        .Read(read => read.Action("League_Team_Read", "League", new
-                        {
-                            league = Model.LeagueId.ToString(),
-                            year = "2022",
-                            type = "league"
+            @(Html.Kendo().ListView<SoccerStatsData.TeamResponse>()
+                .Name(listName)
+                .TagName("div")
+                .ClientTemplateId("teams")
+                .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read(read => read.Action("League_Team_Read", "League", new
+                {
+                    league = Model.LeagueId.ToString(),
+                    year = "2022",
+                    type = "league"
 
-                        }))
-                        .PageSize(26))
-                        .Selectable(ListViewSelectionMode.Single)
-                        .Events(events => events.Change("onChange")))
-            </div>
+                }))
+                .PageSize(26))
+                .Selectable(ListViewSelectionMode.Single)
+                .Events(events => events.Change("onChange")))
 
         </div>
         <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
