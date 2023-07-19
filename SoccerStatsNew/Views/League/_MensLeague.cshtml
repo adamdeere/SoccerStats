@@ -4,13 +4,13 @@
 <div class="k-card k-card-horizontal">
     <div class="image">
 
-        <img src="@Model.LogoURL" alt="not found" />
+        <img src="@Model.LogoURL" alt="not found" class="k-card-image" />
 
         @(Html.Kendo().Button()
             .Name("#btnTeam")
             .Icon("k-icon k-i-calendar")
             .Content("Team")
-            .HtmlAttributes(new { type = "button", id = Model.LeagueId })
+            .HtmlAttributes(new { type = "button", id = Model.LeagueId.ToString() })
             .Events(ev => ev.Click("onTeamClick")))
       
 
@@ -24,7 +24,7 @@
         <div class="k-card-body">
             @{
                 // gives a unique name for each listview inside the league cards
-                var listName = $"listView_{Model.LeagueId}";
+                var listName = $"listView_{Model.LeagueId.ToString()}";
             }
 
             <div class="demo-section wide">
@@ -37,7 +37,7 @@
                         .Ajax()
                         .Read(read => read.Action("League_Team_Read", "League", new
                         {
-                            league = Model.LeagueId,
+                            league = Model.LeagueId.ToString(),
                             year = "2022",
                             type = "league"
 

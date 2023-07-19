@@ -148,7 +148,7 @@ namespace SoccerStatsNew.Services
         public async Task<IEnumerable<TeamResponse>?> GetTeamModels(int id)
         {
             var seasons = await GetSeasons(id);
-            var year = string.Empty;
+            string? year;
             if (seasons != null)
             {
                 year = seasons.First().Year.ToString();
@@ -161,9 +161,7 @@ namespace SoccerStatsNew.Services
             var teams = await _webService.ObjectGetRequest<TeamRoot>(url);
            
 
-            return teams != null 
-                ? teams.Response 
-                : null;
+            return teams?.Response;
         }
 
         private bool VenueModelExists(VenuesModel id)
