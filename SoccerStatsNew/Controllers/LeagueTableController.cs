@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SoccerStatsData.RequestModels;
 using SoccerStatsNew.DbServices;
-using UtilityLibraries;
 
 namespace SoccerStatsNew.Controllers
 {
