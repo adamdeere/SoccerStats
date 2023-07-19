@@ -18,16 +18,16 @@
     @foreach (var leagueStandings in leagueResponse.League.Standings)
     {
         @(Html.Kendo().Grid(leagueStandings)
-                    .Name("player-grid")
+                    .Name("table-grid")
                     .Columns(columns =>
                     {
                             columns.Bound(p => p.Rank)
-                                   .Title("Rank")
+                             .Title("R")
                                    .Width(1);
 
                             columns.Bound(p => p.Team)
                                .Title("Team")
-                               .Width(2);
+                               .Width(20);
 
                             columns.Bound(p => p.All.Played)
                             .Title("Played")
@@ -65,6 +65,7 @@
                             columns.Bound(p => p.Form)
                             .Title("Form")
                             .Width(1);
+                           
                     })
                     .ClientRowTemplate(@line)
                     .DataSource(dataSource => dataSource
@@ -72,8 +73,9 @@
                                 .Batch(true)
                                 .PageSize(24)
                                 .ServerOperation(false))
-                    .Scrollable(scr => scr.Height(430))
-                    .Selectable())
+                   
+                    .ColumnMenu(col => col.Filterable(true))
+                    )
     }
 }
 
