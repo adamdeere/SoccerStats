@@ -23,31 +23,15 @@ namespace SoccerStatsNew.Controllers
             if (string.IsNullOrEmpty(code))
             {
                 var countries = await _countryService.GetAllCountriesToList();
-                if (countries != null)
-                {
-                    return View(countries);
-                }
+                return countries != null
+                       ? View(countries)
+                       : NotFound();
             }
-            else
-            {
-                var country = await _countryService.GetCountryDetails(code);
-                if (country != null)
-                {
-                    return View(country);
-                }
-            }
-            return NotFound();
-        }
-
-        public async Task<ActionResult> Team_Read([DataSourceRequest] DataSourceRequest request)
-        {
-            var countries = await _countryService.GetAllCountriesToList();
-            if (countries != null)
-            {
-                return Json(countries.ToDataSourceResult(request));
-            }
-
-            return Json(null);
+            var country = await _countryService.GetCountryDetails(code);
+            
+            return country != null 
+                ? View(country) 
+                : NotFound();
         }
 
         public IActionResult Privacy()
