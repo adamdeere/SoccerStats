@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Mvc;
 using SoccerStatsNew.DbServices;
 
 namespace SoccerStatsNew.Controllers
@@ -17,6 +19,11 @@ namespace SoccerStatsNew.Controllers
             return table != null 
                     ? View(table) 
                     : NotFound();
+        }
+
+        public IActionResult Table_Read([DataSourceRequest] DataSourceRequest request)
+        {
+            return Json("Rank: 1".ToDataSourceResult(request));
         }
     }
 }

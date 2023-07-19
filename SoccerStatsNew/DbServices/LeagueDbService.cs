@@ -145,13 +145,25 @@ namespace SoccerStatsNew.Services
             }
         }
 
-        public async Task<IEnumerable<TeamModel>?> GetTeamModels(int id)
+        public async Task<IEnumerable<TeamResponse>?> GetTeamModels(int id)
         {
-            var teamModel = await _context.TeamModel
-                .Where(m => m.LeagueId == id)
-                .ToListAsync();
+            var seasons = await GetSeasons(id);
+            var year = string.Empty;
+            if (seasons != null)
+            {
+                year = seasons.First().Year.ToString();
+            }
+            else
+            {
+                year = "2022";
+            }
+            var url = $"teams?league={id}&season={year}";
+            var teams = await _webService.ObjectGetRequest<TeamRoot>(url);
+           
 
-            return teamModel ?? null;
+            return teams != null 
+                ? teams.Response 
+                : null;
         }
 
         private bool VenueModelExists(VenuesModel id)

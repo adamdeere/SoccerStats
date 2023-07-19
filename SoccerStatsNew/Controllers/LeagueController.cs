@@ -9,11 +9,10 @@ namespace SoccerStatsNew.Controllers
     public class LeagueController : Controller
     {
         private readonly LeagueDbService _leagueService;
-        private readonly WebService _teamService;
+       
 
-        public LeagueController(LeagueDbService leagueService, WebService teamService)
+        public LeagueController(LeagueDbService leagueService)
         {
-            _teamService = teamService;
             _leagueService = leagueService;
         }
 
@@ -30,7 +29,9 @@ namespace SoccerStatsNew.Controllers
         {
             var teamResponse = await _leagueService.GetTeamModels(league);
 
-            return Json(await teamResponse.ToDataSourceResultAsync(request));
+            return teamResponse != null 
+                ? Json(await teamResponse.ToDataSourceResultAsync(request))
+                : Json(null);
         }
     }
 }
