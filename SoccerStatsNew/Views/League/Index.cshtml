@@ -4,34 +4,10 @@
 }
 <h3>League details</h3>
 
-<kendo-tabstrip name="leagues">
-
-    <items>
-        <tabstrip-item text="League">
-            <content>
-                @foreach (var item in Model)
-                {
-                    @if (item.Type == "League")
-                    {
-                       <partial name="_MensLeague" model="@item" />
-                    }
-                }
-            </content>
-        </tabstrip-item>
-        <tabstrip-item text="Cup">
-            <content>
-                @foreach (var item in Model)
-                {
-                    @if (item.Type == "Cup")
-                    {
-                        <partial name="_MensLeague" model="@item" />
-                    }
-                }
-            </content>
-        </tabstrip-item>
-    </items>
-
-</kendo-tabstrip>
+@foreach (var item in Model)
+{
+    <partial name="_MensLeague" model="@item" />
+}
 
 @section scripts {
     <script src="~/js/leagues.js"> </script>
