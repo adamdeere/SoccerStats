@@ -2,6 +2,8 @@
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
+using SoccerStatsData.RequestModels.PredictionRequestFiles;
+using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Services;
 using UtilityLibraries;
 
@@ -10,7 +12,6 @@ namespace SoccerStatsNew.Controllers
     public class LeagueController : Controller
     {
         private readonly LeagueDbService _leagueService;
-       
 
         public LeagueController(LeagueDbService leagueService)
         {
@@ -32,6 +33,14 @@ namespace SoccerStatsNew.Controllers
 
             return leagueResponse != null
                 ? View(leagueResponse)
+            : NotFound();
+        }
+
+        public async Task<IActionResult> Team(string team)
+        {
+            var individualTeam = await _leagueService.GetTeam(team);
+            return individualTeam != null
+                ? View(individualTeam)
                 : NotFound();
         }
 
