@@ -1,4 +1,5 @@
-﻿using Kendo.Mvc.Extensions;
+﻿using Azure.Core;
+using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
 using SoccerStatsNew.Services;
@@ -25,13 +26,13 @@ namespace SoccerStatsNew.Controllers
                 : NotFound();
         }
 
-        public async Task<JsonResult> League_Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
+        public async Task<IActionResult> Details(int league, string year)
         {
-            var teamResponse = await _leagueService.GetTeamModels(league);
+            var teamResponse = await _leagueService.GetTeamModels(league, year);
 
-            return teamResponse != null 
-                ? Json(await teamResponse.ToDataSourceResultAsync(request))
-                : Json(null);
+            return teamResponse != null
+                ? View(teamResponse)
+                : NotFound();
         }
     }
 }

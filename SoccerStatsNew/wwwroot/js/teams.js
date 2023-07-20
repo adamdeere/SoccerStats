@@ -8,12 +8,11 @@ function onTeamClick(e) {
     var param = this.element.attr("param");
     location.href = `/Player?team=${param}`;
 }
-
-function onTableClick(e) {
-    var param = this.element.attr("param");
-   
-}
-
-function change(e) {
-    console.log(e);
+function onSelect(e) {
+    if (e.item) {
+        var dataItem = this.dataItem(e.item);
+        location.href = `/League/Details?league=${dataItem.LeagueId}&year=${dataItem.Year}`;
+    } else {
+        console.log(e);
+    }
 }

@@ -6,13 +6,6 @@
 
         <img src="@Model.LogoURL" alt="not found" class="k-card-image" />
 
-        @(Html.Kendo().Button()
-            .Name("#btnTeam")
-            .Icon("k-icon k-i-calendar")
-            .Content("Team")
-            .HtmlAttributes(new { type = "button", id = Model.LeagueId.ToString() })
-            .Events(ev => ev.Click("onTeamClick")))
-      
 
     </div>
     <div class="k-vbox k-column">
@@ -22,35 +15,28 @@
             <h6 class="k-card-subtitle">@Model.CountryName</h6>
         </div>
         <div class="k-card-body">
-            @{
-                // gives a unique name for each listview inside the league cards
-                var listName = $"listView_{Model.LeagueId.ToString()}";
-                @if (Model.Seasons != null)
-                {
-                   
-                }
-                
-               
-            }
-
-            @(Html.Kendo().DropDownList()
-              .Name(listName)
-              .DataTextField("Year")
-              .DataValueField("LeagueId")
-              .Events(e => e.Change("change").Select("onSelect"))
-              .BindTo(Model.Seasons)
-              .Value("1")
-              .HtmlAttributes(new { style = "width: 100%", param = "lol" }))
+            
 
         </div>
         <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
-            <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">
-                Click here to view teams
-            </button>
+            @{
+                // gives a unique name for each listview inside the league cards
+                var listName = $"listView_{Model.LeagueId.ToString()}";
+            }
+            <span><b><i>select a season</i></b>
+                @(Html.Kendo().DropDownList()
+                    .Name(listName)
+                    .DataTextField("Year")
+                    .DataValueField("LeagueId")
+                    .Events(e => e.Select("onSelect"))
+                    .BindTo(Model.Seasons)
+                    .Value("1")
+                    .HtmlAttributes(new { style = "width: 100%" }))
+            
+            </span>
+            
         </div>
-        <div class="k-card-footer">
-            <span>All things</span>
-        </div>
+       
     </div>
 </div>
 
@@ -61,23 +47,8 @@
         <p>Founded: #:Team.Founded#</p>
     </div>
 </script>
-<script>
-    function change() {
-        var param = this.element.attr("param");
-        console.log(param);
-    }
-    function onSelect(e){
-        if (e.item) {
-            var dataItem = this.dataItem(e.item);
-            console.log("event :: select (" + dataItem.Year + " : " + dataItem.LeagueId + ")");
-        } else {
-            console.log("event :: select");
-        }
-    }
-</script>
-@section scripts {
-    <script src="~/js/teams.js"> </script>
-}
+
+
 
 
 

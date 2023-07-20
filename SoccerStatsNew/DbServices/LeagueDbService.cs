@@ -145,21 +145,10 @@ namespace SoccerStatsNew.Services
             }
         }
 
-        public async Task<IEnumerable<TeamResponse>?> GetTeamModels(int id)
+        public async Task<IEnumerable<TeamResponse>?> GetTeamModels(int id, string year)
         {
-            var seasons = await GetSeasons(id);
-            string? year;
-            if (seasons != null)
-            {
-                year = seasons.First().Year.ToString();
-            }
-            else
-            {
-                year = "2022";
-            }
             var url = $"teams?league={id}&season={year}";
             var teams = await _webService.ObjectGetRequest<TeamRoot>(url);
-           
 
             return teams?.Response;
         }
