@@ -1,23 +1,131 @@
-﻿@model SoccerStatsNew.Models.LeagueData
+﻿@model SoccerStatsNew.Models.LeagueDataDto
 
 @{
-    var LeagueModel = Model.Id;
+    var LeagueModel = Model.League;
+    var SeasonModel = Model.Season;
 }
 
-@(Html.Kendo().ListView<SoccerStatsData.TeamResponse>()
-            .Name("listView")
-            .TagName("div")
-            .ClientTemplateId("teams")
-            .DataSource(dataSource => dataSource
-            .Ajax()
-            .Read(read => read.Action("Teams_Read", "League", new { league = LeagueModel.LeagueId, year = Model.Year }))
-            .PageSize(24)
-        )
-        .Pageable(pageable => pageable
-        .Refresh(true)
-        .ButtonCount(5)
-        )
-        )
+<div class="k-card k-card-horizontal">
+    <div class="image">
+
+        <div>
+            <img src="@LeagueModel.Country.FlagURL" alt="not found" class="k-card-image" />
+        </div>
+        <div>
+            <img src="@LeagueModel.LogoURL" alt="not found" class="k-card-image" />
+        </div>
+        
+
+
+    </div>
+    <div class="k-vbox k-column">
+        <div class="k-card-header">
+            <h5 class="k-card-title"><b>@LeagueModel.Name</b></h5>
+            <h6 class="k-card-subtitle">Competion type <b>@LeagueModel.Type</b></h6>
+            <h6 class="k-card-subtitle">Country: <b>@LeagueModel.Country.Name</b></h6>
+            <h6 class="k-card-subtitle">Start date: <b>@SeasonModel.StartDate</b></h6>
+            <h6 class="k-card-subtitle">End date: <b>@SeasonModel.EndDate</b></h6>
+            
+        </div>
+        <div class="k-card-body">
+            @(Html.Kendo().ListView<SoccerStatsData.TeamResponse>()
+                .Name("listView")
+                .TagName("div")
+                .ClientTemplateId("teams")
+                .DataSource(dataSource => dataSource
+                .Ajax()
+                .Read(read => read.Action("Teams_Read", "League", new { league = LeagueModel.LeagueId, year = SeasonModel.Year }))
+                .PageSize(24)
+                )
+                .Pageable(pageable => pageable
+                .Refresh(true)
+                .ButtonCount(5)
+                )
+                .Selectable(ListViewSelectionMode.Single)
+                .Events(events => events.Change("onChange"))
+                )
+
+        </div>
+        <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
+          
+            @if (SeasonModel.Standings)
+            {
+                <kendo-button name="#standings"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    Tables
+                </kendo-button>
+            }
+            @if (SeasonModel.TopScorers)
+            {
+                <kendo-button name="#top-score"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    Top scorerer
+                </kendo-button>
+            }
+            @if (SeasonModel.Players)
+            {
+                <kendo-button name="#players"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    Players
+                </kendo-button>
+            }
+            @if (SeasonModel.TopAssists)
+            {
+                <kendo-button name="#top-assists"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    top assits
+                </kendo-button>
+            }
+            @if (SeasonModel.TopCards)
+            {
+                <kendo-button name="#top-cards"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    top cards
+                </kendo-button>
+              
+            }
+            @if (SeasonModel.Injuries)
+            {
+                <kendo-button name="#injuries"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    injuries
+                </kendo-button>
+            }
+            @if (SeasonModel.Predictions)
+            {
+                <kendo-button name="#predictions"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    Predictions
+                </kendo-button>
+            }
+            @if (SeasonModel.Odds)
+            {
+                <kendo-button name="#odds"
+                              deferred=true
+                              on-click="function(){ location.href = '/LeagueTable?leagueid=@LeagueModel.LeagueId&year=@SeasonModel.Year' }"
+                              icon="k-icon k-i-calendar">
+                    Odds
+                </kendo-button>
+            }
+        </div>
+       
+    </div>
+</div>
+
 
 <script type="text/x-kendo-tmpl" id="teams">
     <div class="team" data-id="#:Team.Name#">
@@ -26,6 +134,10 @@
         <p>Founded: #:Team.Founded#</p>
     </div>
 </script>
+
+@section scripts {
+    <script src="~/js/league-details.js"> </script>
+}
 
 @section styles {
     <link rel="stylesheet" href="~/css/league-details.css" />

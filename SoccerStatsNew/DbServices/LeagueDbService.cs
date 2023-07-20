@@ -13,7 +13,7 @@ namespace SoccerStatsNew.Services
         private readonly SeasonDbService _seasonService;
         private readonly WebService _webService;
 
-        public async Task<LeagueData?> ConstructLeagueData(int leagueId, string year)
+        public async Task<LeagueDataDto?> ConstructLeagueData(int leagueId, string year)
         {
             if (_context != null)
             {
@@ -29,15 +29,17 @@ namespace SoccerStatsNew.Services
                     League = league,
                     Country = country
                 }).ToListAsync();
+                var yearNumber = int.Parse(year);
+                var season = await _context.SeasonModel
+                    .Where(id => id.LeagueId == leagueId)
+                    .Where(yr => yr.Year == yearNumber)
+                    .FirstOrDefaultAsync();
 
-                if (league != null)
+                if (league != null && season != null)
                 {
-                    return new LeagueData(league, year);
+                    return new LeagueDataDto(league, season);
                 }
-              
-
             }
-
             return null;
            
         }

@@ -38,13 +38,6 @@
         .Content("Team")
         .HtmlAttributes(new { type = "button", param = Model.TeamId })
         .Events(ev => ev.Click("onTeamClick")))
-
-    @(Html.Kendo().Button()
-        .Name("#btnTable")
-        .Icon("k-icon k-i-calendar")
-        .Content("Table")
-        .HtmlAttributes(new { type = "button", param = Model.TeamId })
-        .Events(ev => ev.Click("onTableClick")))
 </div>
 
 @section scripts {
