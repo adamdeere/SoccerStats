@@ -12,9 +12,9 @@ namespace SoccerStatsNew.Controllers
         {
             _playerService = service;
         }
-        public async Task<ActionResult> Index(int team, string season)
+        public async Task<ActionResult> Index(int team, string season, int league)
         {
-            var players = await _playerService.GetPlayers(team, season);
+            var players = await _playerService.GetPlayers(team, season, league);
             
             return players != null 
                 ? View(players) 

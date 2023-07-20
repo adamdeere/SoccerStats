@@ -12,7 +12,7 @@ namespace SoccerStatsNew.DbServices
             _webService = service;
         }
 
-        public async Task<PlayerData?> GetPlayers(int id, string year)
+        public async Task<PlayerData?> GetPlayers(int id, string year, int league)
         {
             string url = $"players?season={year}&team={id}";
             PlayerData playerData = new();
