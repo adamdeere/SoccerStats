@@ -28,11 +28,20 @@ namespace SoccerStatsNew.Controllers
 
         public async Task<IActionResult> Details(int league, string year)
         {
+            var leagueResponse = await _leagueService.ConstructLeagueData(league, year);
+
+            return leagueResponse != null
+                ? View(leagueResponse)
+                : NotFound();
+        }
+
+        public async Task<JsonResult> Teams_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
+        {
             var teamResponse = await _leagueService.GetTeamModels(league, year);
 
             return teamResponse != null
-                ? View(teamResponse)
-                : NotFound();
+                ? Json(teamResponse.ToDataSourceResult(request))
+                : Json(null);
         }
     }
 }

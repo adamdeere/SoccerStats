@@ -2,6 +2,7 @@
 using SoccerStatsData;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.DbServices;
+using SoccerStatsNew.Models;
 using UtilityLibraries;
 
 namespace SoccerStatsNew.Services
@@ -11,6 +12,35 @@ namespace SoccerStatsNew.Services
         private readonly SoccerStatsDbContext _context;
         private readonly SeasonDbService _seasonService;
         private readonly WebService _webService;
+
+        public async Task<LeagueData?> ConstructLeagueData(int leagueId, string year)
+        {
+            if (_context != null)
+            {
+                var league = await _context.LeagueModel
+                   .FirstOrDefaultAsync(id => id.LeagueId == leagueId);
+
+                await _context.LeagueModel
+                .Join(_context.CountryModel,
+                league => league.CountryName,
+                country => country.Name,
+                (league, country) => new
+                {
+                    League = league,
+                    Country = country
+                }).ToListAsync();
+
+                if (league != null)
+                {
+                    return new LeagueData(league, year);
+                }
+              
+
+            }
+
+            return null;
+           
+        }
 
         public async Task SaveLeagueAndSeason(LeagueRoot root)
         {
