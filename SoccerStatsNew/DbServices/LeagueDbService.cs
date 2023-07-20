@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsData;
+using SoccerStatsData.DtoModels;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Models;
@@ -15,6 +16,7 @@ namespace SoccerStatsNew.Services
 
         public async Task<LeagueDataDto?> ConstructLeagueData(int leagueId, string year)
         {
+            
             if (_dbContext != null)
             {
                 var league = await _dbContext.LeagueModel
@@ -44,33 +46,15 @@ namespace SoccerStatsNew.Services
            
         }
 
-        public async Task<TeamModel?> GetTeam(string team)
+        
+        public async Task<TeamDto?> GetTeam(int team, int year)
         {
-            if (_dbContext.TeamModel != null)
+            var url = $"teams?id={team}";
+            var teamLol = await _webService.ObjectGetRequest<TeamRoot>(url);
+
+            if (teamLol != null)
             {
-                var teamModel = await _dbContext.TeamModel
-                .FirstOrDefaultAsync(i => i.Name == team);
-
-                await _dbContext.LeagueModel
-                 .Join(_dbContext.TeamModel,
-                 league => league.LeagueId,
-                 team => team.LeagueId,
-                 (league, team) => new
-                 {
-                     League = league,
-                     Team = team
-                 }).ToListAsync();
-
-                await _dbContext.VenuesModel
-                 .Join(_dbContext.TeamModel,
-                 venue => venue.VenueId,
-                 team => team.StadiumId,
-                 (venue, team) => new
-                 {
-                     Venue = venue,
-                     Team = team
-                 }).ToListAsync();
-                return teamModel ?? null;
+                return new TeamDto(teamLol.Response[0], year.ToString());
             }
             return null;
         }

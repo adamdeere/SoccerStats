@@ -1,16 +1,15 @@
-﻿@model SoccerStatsData.TeamModel
+﻿@model SoccerStatsData.TeamVenue
 
 <div>
     <div class="image custom-image">
-        <img src="@Model.Venue.Image" />
+        <img src="@Model.Image" />
     </div>
     <div>
-        <p>Stadium: <span><b>@Model.Venue.Name</b></span></p>
-        <p>Surface: <span><b>@Model.Venue.Surface</b></span></p>
-        <p>Capacity: <span><b>@Model.Venue.Capacity</b></span></p>
-        <p>Address: <span><b>@Model.Venue.Address</b></span></p>
-        <p>City: <span><b>@Model.Venue.City</b></span></p>
-      
+        <p>Stadium: <span><b>@Model.Name</b></span></p>
+        <p>Surface: <span><b>@Model.Surface</b></span></p>
+        <p>Capacity: <span><b>@Model.Capacity</b></span></p>
+        <p>Address: <span><b>@Model.Address</b></span></p>
+        <p>City: <span><b>@Model.City</b></span></p>
 
     </div>
 </div>

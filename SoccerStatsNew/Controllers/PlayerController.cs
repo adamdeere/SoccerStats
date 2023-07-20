@@ -12,26 +12,13 @@ namespace SoccerStatsNew.Controllers
         {
             _playerService = service;
         }
-        public async Task<ActionResult> Index(int team)
+        public async Task<ActionResult> Index(int team, string season)
         {
-            var year = "2023";
-            string url = $"players?season={year}&team={team}";
-            var players = await _playerService.GetPlayers(team);
+            var players = await _playerService.GetPlayers(team, season);
             
             return players != null 
                 ? View(players) 
                 : NotFound();
-        }
-        public async Task<ActionResult> Players_Read([DataSourceRequest] DataSourceRequest request, int id)
-        {
-            var year = "2023";
-            string url = $"players?season={year}&team={id}";
-            var players = await _playerService.GetPlayers(id);  
-            if (players != null)
-            {
-                return Json(await players.Response.ToDataSourceResultAsync(request));
-            }
-            return Json(null);
         }
     }
 }

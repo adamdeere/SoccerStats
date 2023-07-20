@@ -121,9 +121,6 @@ namespace SoccerStatsData.RequestModels
 
         [JsonProperty("flag")]
         public string? Flag { get; set; }
-
-        [JsonProperty("season")]
-        public int? Season { get; set; }
     }
 
     public class PlayerPasses

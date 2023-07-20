@@ -33,15 +33,18 @@ namespace SoccerStatsNew.Controllers
 
             return leagueResponse != null
                 ? View(leagueResponse)
-            : NotFound();
+                : NotFound();
         }
 
-        public async Task<IActionResult> Team(string team)
+        public async Task<IActionResult> Team(int team, string year)
         {
-            var individualTeam = await _leagueService.GetTeam(team);
-            return individualTeam != null
-                ? View(individualTeam)
+            var yearNumber = int.Parse(year);
+            var individualTeam = await _leagueService.GetTeam(team, yearNumber);
+
+            return individualTeam != null 
+                ? View(individualTeam) 
                 : NotFound();
+            
         }
 
         public async Task<JsonResult> Teams_Read([DataSourceRequest] DataSourceRequest request, int league, string year)

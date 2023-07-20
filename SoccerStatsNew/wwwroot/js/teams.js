@@ -5,13 +5,12 @@ function onClick(e) {
 }
 
 function onTeamClick(e) {
-    var param = this.element.attr("param");
+    var param = this.element.attr("id");
     location.href = `/Player?team=${param}`;
 }
 function onSelect(e) {
     if (e.item) {
         var dataItem = this.dataItem(e.item);
-        //console.log(location.href);
         location.href = `/League/Details?league=${dataItem.LeagueId}&year=${dataItem.Year}`;
     } else {
         console.log(e);
