@@ -5,11 +5,14 @@ function onClick(e) {
 }
 
 function onTeamClick(e) {
-    var param = this.element.attr("param");
+    var param = this.element.attr("id");
     location.href = `/Player?team=${param}`;
 }
-
-function onTableClick(e) {
-    var param = this.element.attr("param");
-   
+function onSelect(e) {
+    if (e.item) {
+        var dataItem = this.dataItem(e.item);
+        location.href = `/League/Details?league=${dataItem.LeagueId}&year=${dataItem.Year}`;
+    } else {
+        console.log(e);
+    }
 }

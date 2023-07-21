@@ -12,9 +12,9 @@ namespace SoccerStatsNew.Controllers
         {
             _tableService = service;    
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int leagueid, string year)
         {
-            var table = await _tableService.GetLeagueTable(41, "2022");
+            var table = await _tableService.GetLeagueTable(leagueid, year);
            
             return table != null 
                     ? View(table) 

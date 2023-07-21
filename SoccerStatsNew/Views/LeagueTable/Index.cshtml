@@ -22,43 +22,40 @@
                     .Columns(columns =>
                     {
                             columns.Bound(p => p.Rank)
+                            .Title("Team")
                                    .Width(1);
 
-                            columns.Bound(p => p.Team)
-                               .Title("Team")
-                               .Width(20);
-
                             columns.Bound(p => p.All.Played)
-                            .Title("Played")
+                            .Title("MP")
                             .Width(1);
 
                             columns.Bound(p => p.All.Win)
-                            .Title("Won")
+                            .Title("W")
                             .Width(1);
 
                             columns.Bound(p => p.All.Draw)
-                            .Title("Drawn")
+                            .Title("D")
                             .Width(1);
 
                             columns.Bound(p => p.All.Lose)
-                            .Title("Lost")
+                            .Title("L")
                             .Width(1);
 
 
                             columns.Bound(p => p.All.Goals.For)
-                            .Title("For")
+                            .Title("GF")
                             .Width(1);
 
                             columns.Bound(p => p.All.Goals.Against)
-                            .Title("Against")
+                            .Title("GA")
                             .Width(1);
 
                             columns.Bound(p => p.GoalsDiff)
-                            .Title("GD")
+                            .Title("+/-")
                             .Width(1);
 
                             columns.Bound(p => p.Points)
-                            .Title("Points")
+                            .Title("P")
                             .Width(1);
 
                             columns.Bound(p => p.Form)
@@ -76,6 +73,10 @@
                     .ColumnMenu(col => col.Filterable(false))
                     )
     }
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/css/league-table.css" />
 }
 
 

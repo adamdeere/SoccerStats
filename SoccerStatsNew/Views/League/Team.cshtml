@@ -1,0 +1,40 @@
+﻿@model SoccerStatsData.DtoModels.TeamDto
+@{
+    var TeamModel = Model.TeamModel.Team;
+    var VenueModel = Model.TeamModel.Venue;
+    var season = Model.Season;
+}
+<h1 class="h2" id="itemTitle">This is the display for @TeamModel.Name in @season</h1>
+
+<kendo-tabstrip name="ajax-tabstrip">
+    <items>
+        <tabstrip-item text="Team" selected="true">
+            <content>
+                <partial name="_Team" model="@TeamModel" />
+            </content>
+        </tabstrip-item>
+
+        <tabstrip-item text="Stadium" selected="false">
+            <content>
+                <partial name="_Stadium" model="@VenueModel" />
+            </content>
+        </tabstrip-item>
+    </items>
+</kendo-tabstrip>
+<div class="mt-5">
+    <kendo-button name="#players"
+                  deferred=true
+                  on-click="function(){ location.href = '/Player?team=@TeamModel.Id&season=@season' }"
+                  icon="k-icon k-i-calendar">
+        Team
+    </kendo-button>
+</div>
+
+
+@section scripts {
+    <script src="~/js/teams.js"> </script>
+}
+
+@section styles {
+    <link rel="stylesheet" href="~/css/teams.css" />
+}

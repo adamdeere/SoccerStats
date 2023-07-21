@@ -1,0 +1,13 @@
+﻿.table_logo {
+    width: var(--teams-logo-size);
+    vertical-align: middle;
+}
+
+.table_nowrap {
+    white-space: nowrap;
+}
+
+.table_font_size {
+    font-size: var(--standings-team-form-font-size);
+    line-height: var(--standings-team-form-line-height);
+}

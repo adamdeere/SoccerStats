@@ -1,77 +1,76 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoccerStatsData;
+using SoccerStatsData.DtoModels;
 using SoccerStatsNew.Data;
 using SoccerStatsNew.DbServices;
+using SoccerStatsNew.Models;
 using UtilityLibraries;
 
 namespace SoccerStatsNew.Services
 {
     public class LeagueDbService
     {
-        private readonly SoccerStatsDbContext _context;
+        private readonly SoccerStatsDbContext _dbContext;
         private readonly SeasonDbService _seasonService;
         private readonly WebService _webService;
 
-        public async Task SaveLeagueAndSeason(LeagueRoot root)
+        public async Task<LeagueDataDto?> ConstructLeagueData(int leagueId, string year)
         {
-            if (_context.LeagueModel != null && _context.SeasonModel != null)
+            
+            if (_dbContext != null)
             {
-                foreach (var item in root.Response)
+                var league = await _dbContext.LeagueModel
+                   .FirstOrDefaultAsync(id => id.LeagueId == leagueId);
+
+                await _dbContext.LeagueModel
+                .Join(_dbContext.CountryModel,
+                league => league.CountryName,
+                country => country.Name,
+                (league, country) => new
                 {
-                    if (item.Country.Code != null)
-                    {
-                        foreach (var seasons in item.Seasons)
-                        {
-                            string g = Guid.NewGuid().ToString();
+                    League = league,
+                    Country = country
+                }).ToListAsync();
+                var yearNumber = int.Parse(year);
+                var season = await _dbContext.SeasonModel
+                    .Where(id => id.LeagueId == leagueId)
+                    .Where(yr => yr.Year == yearNumber)
+                    .FirstOrDefaultAsync();
 
-                            SeasonModel seasonDbModel = new SeasonModel()
-                            {
-                                SeasonId = Guid.NewGuid().ToString(),
-                                LeagueId = item.League.Id,
-                                CountryName = item.Country.Name,
-                                Year = seasons.Year,
-                                StartDate = seasons.Start,
-                                EndDate = seasons.End,
-                                Standings = seasons.Coverage.Standings,
-                                Players = seasons.Coverage.Players,
-                                TopScorers = seasons.Coverage.TopScorers,
-                                TopAssists = seasons.Coverage.TopAssists,
-                                TopCards = seasons.Coverage.TopCards,
-                                Injuries = seasons.Coverage.Injuries,
-                                Predictions = seasons.Coverage.Predictions,
-                                Odds = seasons.Coverage.Odds,
-                            };
-                            _context.SeasonModel.Add(seasonDbModel);
-                            await _context.SaveChangesAsync();
-                        }
-                        LeagueModel model = new()
-                        {
-                            LeagueId = item.League.Id,
-                            Name = item.League.Name,
-                            Type = item.League.Type,
-                            LogoURL = item.League.Logo,
-                            CountryName = item.Country.Name
-                        };
-
-                        _context.LeagueModel.Add(model);
-                        await _context.SaveChangesAsync();
-                    }
+                if (league != null && season != null)
+                {
+                    return new LeagueDataDto(league, season);
                 }
             }
+            return null;
+           
+        }
+
+        
+        public async Task<TeamDto?> GetTeam(int team, int year)
+        {
+            var url = $"teams?id={team}";
+            var teamLol = await _webService.ObjectGetRequest<TeamRoot>(url);
+
+            if (teamLol != null)
+            {
+                return new TeamDto(teamLol.Response[0], year.ToString());
+            }
+            return null;
         }
 
         public LeagueDbService(SoccerStatsDbContext context, SeasonDbService season, WebService service)
         {
             _webService = service;
             _seasonService = season;
-            _context = context;
+            _dbContext = context;
         }
 
         public async Task<IEnumerable<SeasonModel>?> GetSeasons(int leagueId)
         {
-            if (_context.SeasonModel != null)
+            if (_dbContext.SeasonModel != null)
             {
-                var seasons = await _context.SeasonModel
+                var seasons = await _dbContext.SeasonModel
                     .Where(id => id.LeagueId == leagueId)
                     .OrderByDescending(id => id.Year)
                     .ToListAsync();
@@ -81,102 +80,19 @@ namespace SoccerStatsNew.Services
             return null;
         }
 
-        public async Task SaveTeamsAndVenues(int id, string year)
-        {
-            string url = $"teams?league={id}&season={year}";
-            var teamRoot = await _webService.ObjectGetRequest<TeamRoot>(url);
-            if (teamRoot != null)
-            {
-                foreach (var item in teamRoot.Response)
-                {
-                    /*
-                    if (item.Venue.Id != null)
-                    {
-                        VenuesModel venue = new()
-                        {
-                            VenueId = (int)item.Venue.Id,
-                            Name = item.Venue.Name,
-                            Address = item.Venue.Address,
-                            City = item.Venue.City,
-                            Country = item.Team.Country,
-                            Capacity = item.Venue.Capacity,
-                            Surface = item.Venue.Surface,
-                            Image = item.Venue.Image,
-                        };
-                        if (!VenueModelExists(venue))
-                        {
-                            _context.VenuesModel.Add(venue);
-                            await _context.SaveChangesAsync();
-                        }
-                        else
-                        {
-                            _context.VenuesModel.Update(venue);
-                            await _context.SaveChangesAsync();
-                        }
-                    }
-                    */
-                    if (item.Team.Id != null)
-                    {
-                        TeamModel teamModel = new()
-                        {
-                            TeamId = item.Team.Id,
-                            StadiumId = item.Venue.Id,
-                            Name = item.Team.Name,
-                            Code = item.Team.Code,
-                            Country = item.Team.Country,
-                            Founded = item.Team.Founded,
-                            National = item.Team.National,
-                            Logo = item.Team.Logo,
-                            LeagueId = id,
-                        };
 
-                        if (!TeamModelExists(teamModel))
-                        {
-                            _context.TeamModel.Add(teamModel);
-                            await _context.SaveChangesAsync();
-                        }
-                        else
-                        {
-                            _context.TeamModel.Update(teamModel);
-                            await _context.SaveChangesAsync();
-                        }
-                    }
-                }
-            }
-        }
-
-        public async Task<IEnumerable<TeamResponse>?> GetTeamModels(int id)
+        public async Task<IEnumerable<TeamResponse>?> GetTeamModels(int id, string year)
         {
-            var seasons = await GetSeasons(id);
-            string? year;
-            if (seasons != null)
-            {
-                year = seasons.First().Year.ToString();
-            }
-            else
-            {
-                year = "2022";
-            }
             var url = $"teams?league={id}&season={year}";
             var teams = await _webService.ObjectGetRequest<TeamRoot>(url);
-           
 
             return teams?.Response;
         }
 
-        private bool VenueModelExists(VenuesModel id)
-        {
-            return (_context.VenuesModel?.Any(e => e == id)).GetValueOrDefault();
-        }
 
-        private bool TeamModelExists(TeamModel id)
+        public async Task<IEnumerable<LeagueModel>?> GetLeagues()
         {
-            return (_context.TeamModel?.Any(e => e == id)).GetValueOrDefault();
-        }
-
-        public async Task<ICollection<LeagueModel>?> GetLeagues()
-        {
-            var soccerStatsDbContext = _context.LeagueModel.Include(l => l.Country);
+            var soccerStatsDbContext = _dbContext.LeagueModel.Include(l => l.Country);
             return soccerStatsDbContext != null ?
                   await soccerStatsDbContext.ToListAsync()
             : null;
@@ -184,11 +100,11 @@ namespace SoccerStatsNew.Services
 
         public async Task<IEnumerable<LeagueModel>?> GetLeagueDetails(string country)
         {
-            var leagueModel = await _context.LeagueModel
+            var leagueModel = await _dbContext.LeagueModel
                  .Where(m => m.CountryName == country).ToListAsync();
 
-            await _context.LeagueModel
-                .Join(_context.CountryModel,
+            await _dbContext.LeagueModel
+                .Join(_dbContext.CountryModel,
                 league => league.CountryName,
                 country => country.Name,
                 (league, country) => new
@@ -199,7 +115,7 @@ namespace SoccerStatsNew.Services
 
             foreach (var item in leagueModel)
             {
-                item.Seasons = await _context.SeasonModel
+                item.Seasons = await _dbContext.SeasonModel
                     .Where(s => s.LeagueId == item.LeagueId)
                     .OrderBy(x => x.Year)
                     .ToListAsync();
@@ -209,12 +125,12 @@ namespace SoccerStatsNew.Services
 
         public async Task<IEnumerable<CountryModel>?> GetCountriesTemp()
         {
-            return _context.CountryModel != null
-               ? await _context.CountryModel.ToListAsync()
+            return _dbContext.CountryModel != null
+               ? await _dbContext.CountryModel.ToListAsync()
                : null;
         }
 
-        public async Task<ICollection<SeasonModel>?> GetLeagueAvailableSeasons(int id)
+        public async Task<IEnumerable<SeasonModel>?> GetLeagueAvailableSeasons(int id)
         {
             return await _seasonService.GetLeagueAvailableSeasons(id);
         }

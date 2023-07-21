@@ -12,7 +12,7 @@ namespace SoccerStatsNew.Services
         {
             _dbContext = context;
         }
-
+        
         public async Task SaveLeagueAndSeason(LeagueRoot root)
         {
             if (_dbContext.LeagueModel != null && _dbContext.SeasonModel != null)

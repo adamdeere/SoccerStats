@@ -6,13 +6,6 @@
 
         <img src="@Model.LogoURL" alt="not found" class="k-card-image" />
 
-        @(Html.Kendo().Button()
-            .Name("#btnTeam")
-            .Icon("k-icon k-i-calendar")
-            .Content("Team")
-            .HtmlAttributes(new { type = "button", id = Model.LeagueId.ToString() })
-            .Events(ev => ev.Click("onTeamClick")))
-      
 
     </div>
     <div class="k-vbox k-column">
@@ -22,51 +15,34 @@
             <h6 class="k-card-subtitle">@Model.CountryName</h6>
         </div>
         <div class="k-card-body">
+            
+
+        </div>
+        <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
             @{
                 // gives a unique name for each listview inside the league cards
                 var listName = $"listView_{Model.LeagueId.ToString()}";
             }
-
-            @(Html.Kendo().ListView<SoccerStatsData.TeamResponse>()
-                .Name(listName)
-                .TagName("div")
-                .ClientTemplateId("teams")
-                .DataSource(dataSource => dataSource
-                .Ajax()
-                .Read(read => read.Action("League_Team_Read", "League", new
-                {
-                    league = Model.LeagueId.ToString(),
-                    year = "2022",
-                    type = "league"
-
-                }))
-                .PageSize(26))
-                .Selectable(ListViewSelectionMode.Single)
-                .Events(events => events.Change("onChange")))
-
+            <span><b><i>select a season</i></b>
+                @(Html.Kendo().DropDownList()
+                    .Name(listName)
+                    .DataTextField("Year")
+                    .DataValueField("LeagueId")
+                    .Events(e => e.Select("onSelect"))
+                    .BindTo(Model.Seasons)
+                    .Value("1")
+                    .HtmlAttributes(new { style = "width: 100%" }))
+            
+            </span>
+            
         </div>
-        <div class="k-card-actions k-card-actions-stretched k-card-actions-horizontal">
-            <button class="k-button k-button-flat-primary k-button-flat k-button-md k-rounded-md">
-                Click here to view teams
-            </button>
-        </div>
-        <div class="k-card-footer">
-            <span>All things</span>
-        </div>
+       
     </div>
 </div>
 
-<script type="text/x-kendo-tmpl" id="teams">
-    <div class="product" data-id="#:Team.Name#">
-        <img src="#:Team.Logo#" alt="#:Team.Name# image" />
-        <h3>#:Team.Name#</h3>
-        <p>Founded: #:Team.Founded#</p>
-    </div>
-</script>
 
-@section scripts {
-    <script src="~/js/teams.js"> </script>
-}
+
+
 
 
 

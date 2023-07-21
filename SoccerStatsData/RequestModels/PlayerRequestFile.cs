@@ -108,22 +108,19 @@ namespace SoccerStatsData.RequestModels
     public class PlayerLeague
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonProperty("country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         [JsonProperty("logo")]
-        public string Logo { get; set; }
+        public string? Logo { get; set; }
 
         [JsonProperty("flag")]
-        public string Flag { get; set; }
-
-        [JsonProperty("season")]
-        public int Season { get; set; }
+        public string? Flag { get; set; }
     }
 
     public class PlayerPasses

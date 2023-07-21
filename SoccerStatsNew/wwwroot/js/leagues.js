@@ -6,6 +6,3 @@ function onChange(arg) {
     }
 }
 
-function onTeamClick(e) {
-
-}

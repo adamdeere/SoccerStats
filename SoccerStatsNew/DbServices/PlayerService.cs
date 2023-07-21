@@ -12,9 +12,8 @@ namespace SoccerStatsNew.DbServices
             _webService = service;
         }
 
-        public async Task<PlayerData?> GetPlayers(int id)
+        public async Task<PlayerData?> GetPlayers(int id, string year, int league)
         {
-            var year = "2023";
             string url = $"players?season={year}&team={id}";
             PlayerData playerData = new();
             var players = await _webService.ObjectGetRequest<PlayerRoot>(url);
@@ -31,7 +30,7 @@ namespace SoccerStatsNew.DbServices
                     players = await _webService.ObjectGetRequest<PlayerRoot>(url);
                     if (players != null)
                     {
-                       FillList(playerData, players);
+                        FillList(playerData, players);
                     }
                    
                 }
@@ -40,7 +39,7 @@ namespace SoccerStatsNew.DbServices
             return playerData ?? null;
         }
 
-        private void FillList(PlayerData data, PlayerRoot root)
+        private static void FillList(PlayerData data, PlayerRoot root)
         {
             foreach (var player in root.Response)
             {

@@ -1,6 +1,9 @@
-﻿using Kendo.Mvc.Extensions;
+﻿using Azure.Core;
+using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Mvc;
+using SoccerStatsData.RequestModels.PredictionRequestFiles;
+using SoccerStatsNew.DbServices;
 using SoccerStatsNew.Services;
 using UtilityLibraries;
 
@@ -9,7 +12,6 @@ namespace SoccerStatsNew.Controllers
     public class LeagueController : Controller
     {
         private readonly LeagueDbService _leagueService;
-       
 
         public LeagueController(LeagueDbService leagueService)
         {
@@ -25,12 +27,32 @@ namespace SoccerStatsNew.Controllers
                 : NotFound();
         }
 
-        public async Task<JsonResult> League_Team_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
+        public async Task<IActionResult> Details(int league, string year)
         {
-            var teamResponse = await _leagueService.GetTeamModels(league);
+            var leagueResponse = await _leagueService.ConstructLeagueData(league, year);
 
-            return teamResponse != null 
-                ? Json(await teamResponse.ToDataSourceResultAsync(request))
+            return leagueResponse != null
+                ? View(leagueResponse)
+                : NotFound();
+        }
+
+        public async Task<IActionResult> Team(int team, string year)
+        {
+            var yearNumber = int.Parse(year);
+            var individualTeam = await _leagueService.GetTeam(team, yearNumber);
+
+            return individualTeam != null 
+                ? View(individualTeam) 
+                : NotFound();
+            
+        }
+
+        public async Task<JsonResult> Teams_Read([DataSourceRequest] DataSourceRequest request, int league, string year)
+        {
+            var teamResponse = await _leagueService.GetTeamModels(league, year);
+
+            return teamResponse != null
+                ? Json(teamResponse.ToDataSourceResult(request))
                 : Json(null);
         }
     }
