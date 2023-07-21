@@ -1,4 +1,5 @@
-﻿<h6>welcome to the league table page</h6>
+﻿@using UtilityLibraries;
+<h6>welcome to the league table page</h6>
 
 @model SoccerStatsData.RequestModels.LeagueTableRoot
 
@@ -17,6 +18,10 @@
 
     @foreach (var leagueStandings in leagueResponse.League.Standings)
     {
+        @foreach (var item in leagueStandings)
+        {
+            item.FormChars = StringHelper.ToCharArray(item.Form);
+        }
         @(Html.Kendo().Grid(leagueStandings)
                     .Name("table-grid")
                     .Columns(columns =>

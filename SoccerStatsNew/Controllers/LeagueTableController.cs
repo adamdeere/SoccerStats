@@ -20,10 +20,6 @@ namespace SoccerStatsNew.Controllers
                     ? View(table) 
                     : NotFound();
         }
-
-        public IActionResult Table_Read([DataSourceRequest] DataSourceRequest request)
-        {
-            return Json("Rank: 1".ToDataSourceResult(request));
-        }
+        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,9 @@ namespace SoccerStatsData.RequestModels
         // needs reversing
         [JsonProperty("form")]
         public string Form { get; set; }
+
+        [NotMapped]
+        public char[] FormChars { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }

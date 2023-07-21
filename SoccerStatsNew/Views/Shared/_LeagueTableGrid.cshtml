@@ -1,6 +1,5 @@
 ﻿<tr class="table_font_size table_nowrap">
     <td>
-        
         <span><b>#:data.rank#</b></span>
         <span><img src="#:data.team.logo#" class="table_logo"></span>
         <span><b>#:data.team.name#</b></span>
@@ -30,7 +29,11 @@
         <span><b>#:data.points#</b></span>
     </td>
     <td>
-        <span><b>#:data.form#</b></span>
+
+        # for (var k = 0; k < data.FormChars.length; k++) { #
+        <span><b></b>#:data.FormChars[k]#</span>
+        # } #
+        
     </td>
 </tr>
 
