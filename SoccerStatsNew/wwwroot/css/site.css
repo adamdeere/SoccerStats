@@ -1,7 +1,20 @@
+/*global varaibles*/
+
 :root {
     --color-green: #01d099;
     --color-red: #f64e60;
     --color-yellow: #ffa800;
+    /* logos*/
+    --flags-size: 16px;
+    --teams-logo-size: 16px;
+    --teams-logo-modal-size: 90%;
+    --teams-logo-block-modal-size: 85px;
+    --teams-logo-block-radius-modal: 5px;
+    --teams-logo-block-background-modal: var(--background-color-header);
+    
+    /* Only for team form and info button */
+    --standings-team-form-font-size: 9px;
+    --standings-team-form-line-height: 16px;
 }
 
 html {
