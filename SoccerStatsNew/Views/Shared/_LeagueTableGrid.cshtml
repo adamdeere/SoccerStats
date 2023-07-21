@@ -30,8 +30,23 @@
     </td>
     <td>
 
-        # for (var k = 0; k < data.FormChars.length; k++) { #
-        <span><b></b>#:data.FormChars[k]#</span>
+        # for (var k = 0; k < data.FormChars.length; k++) 
+        { #
+            # if (data.FormChars[k] == 'W' ) 
+            {#
+                <span class="wg_form wg_form_win">W</span>#
+            }#
+            
+            # if (data.FormChars[k] == 'L' )
+            {#
+                <span class="wg_form wg_form_lose">L</span>#
+            }#
+
+            # if (data.FormChars[k] == 'D' )
+            {#
+                <span class="wg_form wg_form_draw">D</span>#
+            }#
+
         # } #
         
     </td>
