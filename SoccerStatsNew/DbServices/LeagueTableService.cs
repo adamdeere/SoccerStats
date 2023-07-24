@@ -16,7 +16,7 @@ namespace SoccerStatsNew.DbServices
             var url = $"standings?league={id}&season={year}";
 
             var table = await _WebService.ObjectGetRequest<LeagueTableRoot>(url);
-
+             
             return table ?? null;
         }
     }
