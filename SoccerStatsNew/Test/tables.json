@@ -1,8 +1,8 @@
 {
   "get": "standings",
   "parameters": {
-    "league": "41",
-    "season": "2022"
+    "league": "128",
+    "season": "2020"
   },
   "errors": [],
   "results": 1,
@@ -13,1093 +13,2191 @@
   "response": [
     {
       "league": {
-        "id": 41,
-        "name": "League One",
-        "country": "England",
-        "logo": "https://media-1.api-sports.io/football/leagues/41.png",
-        "flag": "https://media-2.api-sports.io/flags/gb.svg",
-        "season": 2022,
+        "id": 128,
+        "name": "Liga Profesional Argentina",
+        "country": "Argentina",
+        "logo": "https://media-3.api-sports.io/football/leagues/128.png",
+        "flag": "https://media-3.api-sports.io/flags/ar.svg",
+        "season": 2020,
         "standings": [
           [
             {
               "rank": 1,
               "team": {
-                "id": 1357,
-                "name": "Plymouth",
-                "logo": "https://media-3.api-sports.io/football/teams/1357.png"
+                "id": 451,
+                "name": "Boca Juniors",
+                "logo": "https://media-2.api-sports.io/football/teams/451.png"
               },
-              "points": 101,
-              "goalsDiff": 35,
-              "group": "League One: Regular Season",
-              "form": "WWWWW",
+              "points": 9,
+              "goalsDiff": 4,
+              "group": "Copa Liga Profesional - Winners Stage: Group A",
+              "form": "DDWWD",
               "status": "same",
-              "description": "Promotion",
+              "description": "Promotion - Copa Diego Maradona (Winners Play Offs)",
               "all": {
-                "played": 46,
-                "win": 31,
-                "draw": 8,
-                "lose": 7,
+                "played": 5,
+                "win": 2,
+                "draw": 3,
+                "lose": 0,
                 "goals": {
-                  "for": 82,
-                  "against": 47
+                  "for": 10,
+                  "against": 6
                 }
               },
               "home": {
-                "played": 23,
-                "win": 20,
-                "draw": 1,
-                "lose": 2,
+                "played": 3,
+                "win": 1,
+                "draw": 2,
+                "lose": 0,
                 "goals": {
-                  "for": 44,
-                  "against": 16
+                  "for": 6,
+                  "against": 3
                 }
               },
               "away": {
-                "played": 23,
-                "win": 11,
-                "draw": 7,
-                "lose": 5,
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
                 "goals": {
-                  "for": 38,
-                  "against": 31
+                  "for": 4,
+                  "against": 3
                 }
               },
-              "update": "2023-05-29T00:00:00+00:00"
+              "update": "2021-01-18T00:00:00+00:00"
             },
             {
               "rank": 2,
               "team": {
-                "id": 57,
-                "name": "Ipswich",
-                "logo": "https://media-3.api-sports.io/football/teams/57.png"
+                "id": 435,
+                "name": "River Plate",
+                "logo": "https://media-1.api-sports.io/football/teams/435.png"
               },
-              "points": 98,
-              "goalsDiff": 66,
-              "group": "League One: Regular Season",
-              "form": "DWWWW",
-              "status": "same",
-              "description": "Promotion",
-              "all": {
-                "played": 46,
-                "win": 28,
-                "draw": 14,
-                "lose": 4,
-                "goals": {
-                  "for": 101,
-                  "against": 35
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 16,
-                "draw": 6,
-                "lose": 1,
-                "goals": {
-                  "for": 60,
-                  "against": 13
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 12,
-                "draw": 8,
-                "lose": 3,
-                "goals": {
-                  "for": 41,
-                  "against": 22
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 3,
-              "team": {
-                "id": 74,
-                "name": "Sheffield Wednesday",
-                "logo": "https://media-2.api-sports.io/football/teams/74.png"
-              },
-              "points": 96,
-              "goalsDiff": 44,
-              "group": "League One: Regular Season",
-              "form": "WWWWL",
-              "status": "same",
-              "description": "Promotion Play-off",
-              "all": {
-                "played": 46,
-                "win": 28,
-                "draw": 12,
-                "lose": 6,
-                "goals": {
-                  "for": 81,
-                  "against": 37
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 16,
-                "draw": 6,
-                "lose": 1,
-                "goals": {
-                  "for": 49,
-                  "against": 16
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 12,
-                "draw": 6,
-                "lose": 5,
-                "goals": {
-                  "for": 32,
-                  "against": 21
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 4,
-              "team": {
-                "id": 747,
-                "name": "Barnsley",
-                "logo": "https://media-1.api-sports.io/football/teams/747.png"
-              },
-              "points": 86,
-              "goalsDiff": 33,
-              "group": "League One: Regular Season",
-              "form": "LDLWD",
-              "status": "same",
-              "description": "Promotion Play-off",
-              "all": {
-                "played": 46,
-                "win": 26,
-                "draw": 8,
-                "lose": 12,
-                "goals": {
-                  "for": 80,
-                  "against": 47
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 16,
-                "draw": 1,
-                "lose": 6,
-                "goals": {
-                  "for": 45,
-                  "against": 24
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 10,
-                "draw": 7,
-                "lose": 6,
-                "goals": {
-                  "for": 35,
-                  "against": 23
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 5,
-              "team": {
-                "id": 68,
-                "name": "Bolton",
-                "logo": "https://media-1.api-sports.io/football/teams/68.png"
-              },
-              "points": 81,
-              "goalsDiff": 26,
-              "group": "League One: Regular Season",
-              "form": "WWLWD",
-              "status": "same",
-              "description": "Promotion Play-off",
-              "all": {
-                "played": 46,
-                "win": 23,
-                "draw": 12,
-                "lose": 11,
-                "goals": {
-                  "for": 62,
-                  "against": 36
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 14,
-                "draw": 5,
-                "lose": 4,
-                "goals": {
-                  "for": 32,
-                  "against": 13
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 9,
-                "draw": 7,
-                "lose": 7,
-                "goals": {
-                  "for": 30,
-                  "against": 23
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 6,
-              "team": {
-                "id": 1350,
-                "name": "Peterborough",
-                "logo": "https://media-3.api-sports.io/football/teams/1350.png"
-              },
-              "points": 77,
-              "goalsDiff": 21,
-              "group": "League One: Regular Season",
-              "form": "WDLWL",
-              "status": "same",
-              "description": "Promotion Play-off",
-              "all": {
-                "played": 46,
-                "win": 24,
-                "draw": 5,
-                "lose": 17,
-                "goals": {
-                  "for": 75,
-                  "against": 54
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 13,
-                "draw": 4,
-                "lose": 6,
-                "goals": {
-                  "for": 38,
-                  "against": 25
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 11,
-                "draw": 1,
-                "lose": 11,
-                "goals": {
-                  "for": 37,
-                  "against": 29
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 7,
-              "team": {
-                "id": 69,
-                "name": "Derby",
-                "logo": "https://media-1.api-sports.io/football/teams/69.png"
-              },
-              "points": 76,
-              "goalsDiff": 21,
-              "group": "League One: Regular Season",
+              "points": 8,
+              "goalsDiff": 1,
+              "group": "Copa Liga Profesional - Winners Stage: Group A",
               "form": "LDWWD",
               "status": "same",
               "description": null,
               "all": {
-                "played": 46,
-                "win": 21,
-                "draw": 13,
-                "lose": 12,
+                "played": 5,
+                "win": 2,
+                "draw": 2,
+                "lose": 1,
                 "goals": {
-                  "for": 67,
-                  "against": 46
+                  "for": 8,
+                  "against": 7
                 }
               },
               "home": {
-                "played": 23,
-                "win": 13,
-                "draw": 6,
-                "lose": 4,
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
                 "goals": {
-                  "for": 40,
-                  "against": 20
+                  "for": 3,
+                  "against": 4
                 }
               },
               "away": {
-                "played": 23,
-                "win": 8,
-                "draw": 7,
-                "lose": 8,
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
                 "goals": {
-                  "for": 27,
-                  "against": 26
+                  "for": 5,
+                  "against": 3
                 }
               },
-              "update": "2023-05-29T00:00:00+00:00"
+              "update": "2021-01-18T00:00:00+00:00"
             },
             {
-              "rank": 8,
+              "rank": 3,
               "team": {
-                "id": 1355,
-                "name": "Portsmouth",
-                "logo": "https://media-3.api-sports.io/football/teams/1355.png"
+                "id": 458,
+                "name": "Argentinos JRS",
+                "logo": "https://media-2.api-sports.io/football/teams/458.png"
               },
-              "points": 70,
-              "goalsDiff": 11,
-              "group": "League One: Regular Season",
-              "form": "DDWDD",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 17,
-                "draw": 19,
-                "lose": 10,
-                "goals": {
-                  "for": 61,
-                  "against": 50
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 9,
-                "draw": 11,
-                "lose": 3,
-                "goals": {
-                  "for": 34,
-                  "against": 22
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 8,
-                "draw": 8,
-                "lose": 7,
-                "goals": {
-                  "for": 27,
-                  "against": 28
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 9,
-              "team": {
-                "id": 1358,
-                "name": "Wycombe",
-                "logo": "https://media-2.api-sports.io/football/teams/1358.png"
-              },
-              "points": 69,
-              "goalsDiff": 8,
-              "group": "League One: Regular Season",
-              "form": "DLLWL",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 20,
-                "draw": 9,
-                "lose": 17,
-                "goals": {
-                  "for": 59,
-                  "against": 51
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 11,
-                "draw": 5,
-                "lose": 7,
-                "goals": {
-                  "for": 32,
-                  "against": 24
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 9,
-                "draw": 4,
-                "lose": 10,
-                "goals": {
-                  "for": 27,
-                  "against": 27
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 10,
-              "team": {
-                "id": 1335,
-                "name": "Charlton",
-                "logo": "https://media-3.api-sports.io/football/teams/1335.png"
-              },
-              "points": 62,
-              "goalsDiff": 4,
-              "group": "League One: Regular Season",
-              "form": "DWLWL",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 16,
-                "draw": 14,
-                "lose": 16,
-                "goals": {
-                  "for": 70,
-                  "against": 66
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 9,
-                "draw": 7,
-                "lose": 7,
-                "goals": {
-                  "for": 44,
-                  "against": 31
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 7,
-                "draw": 7,
-                "lose": 9,
-                "goals": {
-                  "for": 26,
-                  "against": 35
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 11,
-              "team": {
-                "id": 1379,
-                "name": "Lincoln",
-                "logo": "https://media-1.api-sports.io/football/teams/1379.png"
-              },
-              "points": 62,
+              "points": 8,
               "goalsDiff": 0,
-              "group": "League One: Regular Season",
-              "form": "WLLWD",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 14,
-                "draw": 20,
-                "lose": 12,
-                "goals": {
-                  "for": 47,
-                  "against": 47
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 7,
-                "draw": 14,
-                "lose": 2,
-                "goals": {
-                  "for": 22,
-                  "against": 17
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 7,
-                "draw": 6,
-                "lose": 10,
-                "goals": {
-                  "for": 25,
-                  "against": 30
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 12,
-              "team": {
-                "id": 1352,
-                "name": "Shrewsbury",
-                "logo": "https://media-2.api-sports.io/football/teams/1352.png"
-              },
-              "points": 59,
-              "goalsDiff": -9,
-              "group": "League One: Regular Season",
-              "form": "LWLLL",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 17,
-                "draw": 8,
-                "lose": 21,
-                "goals": {
-                  "for": 52,
-                  "against": 61
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 11,
-                "draw": 3,
-                "lose": 9,
-                "goals": {
-                  "for": 32,
-                  "against": 32
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 6,
-                "draw": 5,
-                "lose": 12,
-                "goals": {
-                  "for": 20,
-                  "against": 29
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 13,
-              "team": {
-                "id": 1336,
-                "name": "Fleetwood Town",
-                "logo": "https://media-1.api-sports.io/football/teams/1336.png"
-              },
-              "points": 58,
-              "goalsDiff": 2,
-              "group": "League One: Regular Season",
-              "form": "DLWDW",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 14,
-                "draw": 16,
-                "lose": 16,
-                "goals": {
-                  "for": 53,
-                  "against": 51
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 7,
-                "draw": 8,
-                "lose": 8,
-                "goals": {
-                  "for": 25,
-                  "against": 25
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 7,
-                "draw": 8,
-                "lose": 8,
-                "goals": {
-                  "for": 28,
-                  "against": 26
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 14,
-              "team": {
-                "id": 1364,
-                "name": "Exeter City",
-                "logo": "https://media-2.api-sports.io/football/teams/1364.png"
-              },
-              "points": 56,
-              "goalsDiff": -4,
-              "group": "League One: Regular Season",
-              "form": "WLLLL",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 15,
-                "draw": 11,
-                "lose": 20,
-                "goals": {
-                  "for": 64,
-                  "against": 68
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 10,
-                "draw": 5,
-                "lose": 8,
-                "goals": {
-                  "for": 36,
-                  "against": 27
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 5,
-                "draw": 6,
-                "lose": 12,
-                "goals": {
-                  "for": 28,
-                  "against": 41
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 15,
-              "team": {
-                "id": 748,
-                "name": "Burton Albion",
-                "logo": "https://media-1.api-sports.io/football/teams/748.png"
-              },
-              "points": 56,
-              "goalsDiff": -22,
-              "group": "League One: Regular Season",
-              "form": "DWLWL",
-              "status": "same",
-              "description": null,
-              "all": {
-                "played": 46,
-                "win": 15,
-                "draw": 11,
-                "lose": 20,
-                "goals": {
-                  "for": 57,
-                  "against": 79
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 9,
-                "draw": 7,
-                "lose": 7,
-                "goals": {
-                  "for": 28,
-                  "against": 33
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 6,
-                "draw": 4,
-                "lose": 13,
-                "goals": {
-                  "for": 29,
-                  "against": 46
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 16,
-              "team": {
-                "id": 1372,
-                "name": "Cheltenham",
-                "logo": "https://media-2.api-sports.io/football/teams/1372.png"
-              },
-              "points": 54,
-              "goalsDiff": -16,
-              "group": "League One: Regular Season",
+              "group": "Copa Liga Profesional - Winners Stage: Group A",
               "form": "DWLWD",
               "status": "same",
               "description": null,
               "all": {
-                "played": 46,
-                "win": 14,
-                "draw": 12,
-                "lose": 20,
+                "played": 5,
+                "win": 2,
+                "draw": 2,
+                "lose": 1,
                 "goals": {
-                  "for": 45,
-                  "against": 61
+                  "for": 5,
+                  "against": 5
                 }
               },
               "home": {
-                "played": 23,
-                "win": 8,
-                "draw": 8,
-                "lose": 7,
+                "played": 2,
+                "win": 0,
+                "draw": 1,
+                "lose": 1,
                 "goals": {
-                  "for": 25,
-                  "against": 27
+                  "for": 2,
+                  "against": 4
                 }
               },
               "away": {
-                "played": 23,
-                "win": 6,
-                "draw": 4,
-                "lose": 13,
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
                 "goals": {
-                  "for": 20,
-                  "against": 34
+                  "for": 3,
+                  "against": 1
                 }
               },
-              "update": "2023-05-29T00:00:00+00:00"
+              "update": "2021-01-18T00:00:00+00:00"
             },
             {
-              "rank": 17,
+              "rank": 4,
               "team": {
-                "id": 1334,
-                "name": "Bristol Rovers",
-                "logo": "https://media-3.api-sports.io/football/teams/1334.png"
+                "id": 459,
+                "name": "Arsenal Sarandi",
+                "logo": "https://media-1.api-sports.io/football/teams/459.png"
               },
-              "points": 53,
-              "goalsDiff": -15,
-              "group": "League One: Regular Season",
-              "form": "LLDLL",
+              "points": 7,
+              "goalsDiff": 0,
+              "group": "Copa Liga Profesional - Winners Stage: Group A",
+              "form": "WWLLD",
               "status": "same",
               "description": null,
               "all": {
-                "played": 46,
-                "win": 14,
-                "draw": 11,
-                "lose": 21,
+                "played": 5,
+                "win": 2,
+                "draw": 1,
+                "lose": 2,
                 "goals": {
-                  "for": 58,
-                  "against": 73
+                  "for": 7,
+                  "against": 7
                 }
               },
               "home": {
-                "played": 23,
-                "win": 6,
-                "draw": 7,
-                "lose": 10,
+                "played": 2,
+                "win": 1,
+                "draw": 0,
+                "lose": 1,
                 "goals": {
-                  "for": 27,
-                  "against": 36
+                  "for": 1,
+                  "against": 1
                 }
               },
               "away": {
-                "played": 23,
-                "win": 8,
-                "draw": 4,
-                "lose": 11,
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
                 "goals": {
-                  "for": 31,
-                  "against": 37
+                  "for": 6,
+                  "against": 6
                 }
               },
-              "update": "2023-05-29T00:00:00+00:00"
+              "update": "2021-01-18T00:00:00+00:00"
             },
             {
-              "rank": 18,
+              "rank": 5,
               "team": {
-                "id": 1351,
-                "name": "Port Vale",
-                "logo": "https://media-1.api-sports.io/football/teams/1351.png"
+                "id": 453,
+                "name": "Independiente",
+                "logo": "https://media-1.api-sports.io/football/teams/453.png"
               },
-              "points": 49,
-              "goalsDiff": -23,
-              "group": "League One: Regular Season",
-              "form": "LLWLL",
+              "points": 6,
+              "goalsDiff": 1,
+              "group": "Copa Liga Profesional - Winners Stage: Group A",
+              "form": "WLWLL",
               "status": "same",
               "description": null,
               "all": {
-                "played": 46,
-                "win": 13,
-                "draw": 10,
-                "lose": 23,
+                "played": 5,
+                "win": 2,
+                "draw": 0,
+                "lose": 3,
                 "goals": {
-                  "for": 48,
-                  "against": 71
+                  "for": 10,
+                  "against": 9
                 }
               },
               "home": {
-                "played": 23,
-                "win": 8,
-                "draw": 5,
-                "lose": 10,
+                "played": 2,
+                "win": 0,
+                "draw": 0,
+                "lose": 2,
                 "goals": {
-                  "for": 23,
-                  "against": 30
+                  "for": 4,
+                  "against": 6
                 }
               },
               "away": {
-                "played": 23,
-                "win": 5,
-                "draw": 5,
-                "lose": 13,
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
                 "goals": {
-                  "for": 25,
-                  "against": 41
+                  "for": 6,
+                  "against": 3
                 }
               },
-              "update": "2023-05-29T00:00:00+00:00"
+              "update": "2021-01-18T00:00:00+00:00"
             },
             {
-              "rank": 19,
+              "rank": 6,
               "team": {
-                "id": 1338,
-                "name": "Oxford United",
-                "logo": "https://media-3.api-sports.io/football/teams/1338.png"
+                "id": 445,
+                "name": "Huracan",
+                "logo": "https://media-1.api-sports.io/football/teams/445.png"
               },
-              "points": 47,
+              "points": 3,
+              "goalsDiff": -6,
+              "group": "Copa Liga Profesional - Winners Stage: Group A",
+              "form": "LLLLW",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 0,
+                "lose": 4,
+                "goals": {
+                  "for": 4,
+                  "against": 10
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 4,
+                  "against": 6
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 0,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 0,
+                  "against": 4
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 449,
+                "name": "Banfield",
+                "logo": "https://media-3.api-sports.io/football/teams/449.png"
+              },
+              "points": 12,
+              "goalsDiff": 6,
+              "group": "Copa Liga Profesional - Winners Stage: Group B",
+              "form": "WLWWW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners Play Offs)",
+              "all": {
+                "played": 5,
+                "win": 4,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 12,
+                  "against": 6
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 2,
+                "draw": 0,
+                "lose": 0,
+                "goals": {
+                  "for": 6,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 6,
+                  "against": 4
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 456,
+                "name": "Talleres Cordoba",
+                "logo": "https://media-3.api-sports.io/football/teams/456.png"
+              },
+              "points": 11,
+              "goalsDiff": 4,
+              "group": "Copa Liga Profesional - Winners Stage: Group B",
+              "form": "WWDDW",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 3,
+                "draw": 2,
+                "lose": 0,
+                "goals": {
+                  "for": 10,
+                  "against": 6
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 4,
+                  "against": 3
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 6,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 434,
+                "name": "Gimnasia L.P.",
+                "logo": "https://media-1.api-sports.io/football/teams/434.png"
+              },
+              "points": 7,
+              "goalsDiff": 1,
+              "group": "Copa Liga Profesional - Winners Stage: Group B",
+              "form": "LWDLW",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 2,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 7,
+                  "against": 6
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 0,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 2,
+                  "against": 3
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 5,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 448,
+                "name": "Colon Santa Fe",
+                "logo": "https://media-1.api-sports.io/football/teams/448.png"
+              },
+              "points": 4,
+              "goalsDiff": -2,
+              "group": "Copa Liga Profesional - Winners Stage: Group B",
+              "form": "LWLDL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 6,
+                  "against": 8
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 0,
+                "lose": 3,
+                "goals": {
+                  "for": 2,
+                  "against": 6
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 4,
+                  "against": 2
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 5,
+              "team": {
+                "id": 460,
+                "name": "San Lorenzo",
+                "logo": "https://media-3.api-sports.io/football/teams/460.png"
+              },
+              "points": 4,
+              "goalsDiff": -4,
+              "group": "Copa Liga Profesional - Winners Stage: Group B",
+              "form": "LLWDL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 7,
+                  "against": 11
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 3,
+                  "against": 6
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 4,
+                  "against": 5
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 6,
+              "team": {
+                "id": 455,
+                "name": "Atletico Tucuman",
+                "logo": "https://media-1.api-sports.io/football/teams/455.png"
+              },
+              "points": 4,
+              "goalsDiff": -5,
+              "group": "Copa Liga Profesional - Winners Stage: Group B",
+              "form": "WLLDL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 3,
+                  "against": 8
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 0,
+                "lose": 3,
+                "goals": {
+                  "for": 1,
+                  "against": 7
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 2,
+                  "against": 1
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 437,
+                "name": "Rosario Central",
+                "logo": "https://media-3.api-sports.io/football/teams/437.png"
+              },
+              "points": 10,
+              "goalsDiff": 6,
+              "group": "Copa Liga Profesional - Losers Stage: Group A",
+              "form": "LWWDW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Losers Play Offs)",
+              "all": {
+                "played": 5,
+                "win": 3,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 10,
+                  "against": 4
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 9,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 1,
+                  "against": 2
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 446,
+                "name": "Lanus",
+                "logo": "https://media-1.api-sports.io/football/teams/446.png"
+              },
+              "points": 8,
+              "goalsDiff": 1,
+              "group": "Copa Liga Profesional - Losers Stage: Group A",
+              "form": "WDLDW",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 2,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 6,
+                  "against": 5
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 3,
+                  "against": 1
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 3,
+                  "against": 4
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 442,
+                "name": "Defensa Y Justicia",
+                "logo": "https://media-2.api-sports.io/football/teams/442.png"
+              },
+              "points": 8,
+              "goalsDiff": 0,
+              "group": "Copa Liga Profesional - Losers Stage: Group A",
+              "form": "DLWDW",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 2,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 10,
+                  "against": 10
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 6,
+                  "against": 5
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 4,
+                  "against": 5
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 441,
+                "name": "Union Santa Fe",
+                "logo": "https://media-3.api-sports.io/football/teams/441.png"
+              },
+              "points": 7,
+              "goalsDiff": 1,
+              "group": "Copa Liga Profesional - Losers Stage: Group A",
+              "form": "LWWDL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 2,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 9,
+                  "against": 8
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 4,
+                  "against": 5
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 5,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 5,
+              "team": {
+                "id": 463,
+                "name": "Aldosivi",
+                "logo": "https://media-1.api-sports.io/football/teams/463.png"
+              },
+              "points": 4,
+              "goalsDiff": -3,
+              "group": "Copa Liga Profesional - Losers Stage: Group A",
+              "form": "DLLWL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 7,
+                  "against": 10
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 0,
+                "lose": 3,
+                "goals": {
+                  "for": 2,
+                  "against": 6
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 5,
+                  "against": 4
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 6,
+              "team": {
+                "id": 444,
+                "name": "Patronato",
+                "logo": "https://media-3.api-sports.io/football/teams/444.png"
+              },
+              "points": 4,
+              "goalsDiff": -5,
+              "group": "Copa Liga Profesional - Losers Stage: Group A",
+              "form": "WDLLL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 4,
+                  "against": 9
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 0,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 1,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 3,
+                  "against": 7
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 438,
+                "name": "Velez Sarsfield",
+                "logo": "https://media-2.api-sports.io/football/teams/438.png"
+              },
+              "points": 12,
+              "goalsDiff": 4,
+              "group": "Copa Liga Profesional - Losers Stage: Group B",
+              "form": "WWLWW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Losers Play Offs)",
+              "all": {
+                "played": 5,
+                "win": 4,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 10,
+                  "against": 6
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 7,
+                  "against": 6
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 2,
+                "draw": 0,
+                "lose": 0,
+                "goals": {
+                  "for": 3,
+                  "against": 0
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 457,
+                "name": "Newells Old Boys",
+                "logo": "https://media-3.api-sports.io/football/teams/457.png"
+              },
+              "points": 9,
+              "goalsDiff": 3,
+              "group": "Copa Liga Profesional - Losers Stage: Group B",
+              "form": "LLWWW",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 3,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 8,
+                  "against": 5
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 4,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 4,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 436,
+                "name": "Racing Club",
+                "logo": "https://media-3.api-sports.io/football/teams/436.png"
+              },
+              "points": 8,
+              "goalsDiff": 6,
+              "group": "Copa Liga Profesional - Losers Stage: Group B",
+              "form": "WDWDL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 2,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 13,
+                  "against": 7
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 2,
+                "draw": 0,
+                "lose": 0,
+                "goals": {
+                  "for": 9,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 0,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 4,
+                  "against": 5
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 1065,
+                "name": "Central Cordoba de Santiago",
+                "logo": "https://media-2.api-sports.io/football/teams/1065.png"
+              },
+              "points": 5,
+              "goalsDiff": -3,
+              "group": "Copa Liga Profesional - Losers Stage: Group B",
+              "form": "WDLLD",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 2,
+                "lose": 2,
+                "goals": {
+                  "for": 6,
+                  "against": 9
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 3,
+                  "against": 5
+                }
+              },
+              "away": {
+                "played": 2,
+                "win": 1,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 3,
+                  "against": 4
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 5,
+              "team": {
+                "id": 450,
+                "name": "Estudiantes L.P.",
+                "logo": "https://media-1.api-sports.io/football/teams/450.png"
+              },
+              "points": 4,
+              "goalsDiff": -2,
+              "group": "Copa Liga Profesional - Losers Stage: Group B",
+              "form": "LLWDL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 5,
+                  "against": 7
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 0,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 2,
+                  "against": 3
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 3,
+                  "against": 4
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 6,
+              "team": {
+                "id": 439,
+                "name": "Godoy Cruz",
+                "logo": "https://media-1.api-sports.io/football/teams/439.png"
+              },
+              "points": 4,
+              "goalsDiff": -8,
+              "group": "Copa Liga Profesional - Losers Stage: Group B",
+              "form": "LWLLD",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 5,
+                "win": 1,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 5,
+                  "against": 13
+                }
+              },
+              "home": {
+                "played": 2,
+                "win": 1,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 1,
+                  "against": 3
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 4,
+                  "against": 10
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 455,
+                "name": "Atletico Tucuman",
+                "logo": "https://media-3.api-sports.io/football/teams/455.png"
+              },
+              "points": 18,
+              "goalsDiff": 11,
+              "group": "Copa Liga Profesional - First Stage: Group 1",
+              "form": "WWWWW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 6,
+                "draw": 0,
+                "lose": 0,
+                "goals": {
+                  "for": 19,
+                  "against": 8
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 3,
+                "draw": 0,
+                "lose": 0,
+                "goals": {
+                  "for": 8,
+                  "against": 3
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 3,
+                "draw": 0,
+                "lose": 0,
+                "goals": {
+                  "for": 11,
+                  "against": 5
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 459,
+                "name": "Arsenal Sarandi",
+                "logo": "https://media-3.api-sports.io/football/teams/459.png"
+              },
+              "points": 7,
+              "goalsDiff": 0,
+              "group": "Copa Liga Profesional - First Stage: Group 1",
+              "form": "WLLWL",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 2,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 8,
+                  "against": 8
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 4,
+                  "against": 5
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 4,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 441,
+                "name": "Union Santa Fe",
+                "logo": "https://media-2.api-sports.io/football/teams/441.png"
+              },
+              "points": 7,
+              "goalsDiff": -2,
+              "group": "Copa Liga Profesional - First Stage: Group 1",
+              "form": "LLWLW",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 2,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 9,
+                  "against": 11
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 5,
+                  "against": 5
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 4,
+                  "against": 6
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 436,
+                "name": "Racing Club",
+                "logo": "https://media-1.api-sports.io/football/teams/436.png"
+              },
+              "points": 3,
+              "goalsDiff": -9,
+              "group": "Copa Liga Profesional - First Stage: Group 1",
+              "form": "LWLLL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 1,
+                "draw": 0,
+                "lose": 5,
+                "goals": {
+                  "for": 2,
+                  "against": 11
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 2,
+                  "against": 6
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 0,
+                "draw": 0,
+                "lose": 3,
+                "goals": {
+                  "for": 0,
+                  "against": 5
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 448,
+                "name": "Colon Santa Fe",
+                "logo": "https://media-2.api-sports.io/football/teams/448.png"
+              },
+              "points": 13,
+              "goalsDiff": 8,
+              "group": "Copa Liga Profesional - First Stage: Group 2",
+              "form": "WLWWD",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 4,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 11,
+                  "against": 3
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 5,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 6,
+                  "against": 1
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 453,
+                "name": "Independiente",
+                "logo": "https://media-1.api-sports.io/football/teams/453.png"
+              },
+              "points": 12,
+              "goalsDiff": 3,
+              "group": "Copa Liga Profesional - First Stage: Group 2",
+              "form": "WWDDD",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 3,
+                "draw": 3,
+                "lose": 0,
+                "goals": {
+                  "for": 5,
+                  "against": 2
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 2,
+                "lose": 0,
+                "goals": {
+                  "for": 2,
+                  "against": 1
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 3,
+                  "against": 1
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 1065,
+                "name": "Central Cordoba de Santiago",
+                "logo": "https://media-2.api-sports.io/football/teams/1065.png"
+              },
+              "points": 5,
+              "goalsDiff": -4,
+              "group": "Copa Liga Profesional - First Stage: Group 2",
+              "form": "LWDLD",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 1,
+                "draw": 2,
+                "lose": 3,
+                "goals": {
+                  "for": 5,
+                  "against": 9
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 2,
+                  "against": 5
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 3,
+                  "against": 4
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 442,
+                "name": "Defensa Y Justicia",
+                "logo": "https://media-2.api-sports.io/football/teams/442.png"
+              },
+              "points": 2,
               "goalsDiff": -7,
-              "group": "League One: Regular Season",
+              "group": "Copa Liga Profesional - First Stage: Group 2",
+              "form": "LLLDD",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 0,
+                "draw": 2,
+                "lose": 4,
+                "goals": {
+                  "for": 4,
+                  "against": 11
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 2,
+                  "against": 6
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 2,
+                  "against": 5
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 435,
+                "name": "River Plate",
+                "logo": "https://media-2.api-sports.io/football/teams/435.png"
+              },
+              "points": 15,
+              "goalsDiff": 6,
+              "group": "Copa Liga Profesional - First Stage: Group 3",
+              "form": "WWWWW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 5,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 11,
+                  "against": 5
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 6,
+                  "against": 5
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 3,
+                "draw": 0,
+                "lose": 0,
+                "goals": {
+                  "for": 5,
+                  "against": 0
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 449,
+                "name": "Banfield",
+                "logo": "https://media-2.api-sports.io/football/teams/449.png"
+              },
+              "points": 11,
+              "goalsDiff": 3,
+              "group": "Copa Liga Profesional - First Stage: Group 3",
+              "form": "DDLWW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 3,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 9,
+                  "against": 6
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 2,
+                  "against": 3
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 7,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 437,
+                "name": "Rosario Central",
+                "logo": "https://media-3.api-sports.io/football/teams/437.png"
+              },
+              "points": 7,
+              "goalsDiff": -3,
+              "group": "Copa Liga Profesional - First Stage: Group 3",
+              "form": "DLWLL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 2,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 7,
+                  "against": 10
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 4,
+                  "against": 7
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 3,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 439,
+                "name": "Godoy Cruz",
+                "logo": "https://media-1.api-sports.io/football/teams/439.png"
+              },
+              "points": 1,
+              "goalsDiff": -6,
+              "group": "Copa Liga Profesional - First Stage: Group 3",
+              "form": "LDLLL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 0,
+                "draw": 1,
+                "lose": 5,
+                "goals": {
+                  "for": 2,
+                  "against": 8
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 0,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 0,
+                "draw": 0,
+                "lose": 3,
+                "goals": {
+                  "for": 2,
+                  "against": 6
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 451,
+                "name": "Boca Juniors",
+                "logo": "https://media-2.api-sports.io/football/teams/451.png"
+              },
+              "points": 10,
+              "goalsDiff": 3,
+              "group": "Copa Liga Profesional - First Stage: Group 4",
+              "form": "DWLLW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 3,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 7,
+                  "against": 4
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 3,
+                  "against": 3
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 4,
+                  "against": 1
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 456,
+                "name": "Talleres Cordoba",
+                "logo": "https://media-2.api-sports.io/football/teams/456.png"
+              },
+              "points": 9,
+              "goalsDiff": 2,
+              "group": "Copa Liga Profesional - First Stage: Group 4",
+              "form": "DLDWD",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 2,
+                "draw": 3,
+                "lose": 1,
+                "goals": {
+                  "for": 6,
+                  "against": 4
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 2,
+                "lose": 0,
+                "goals": {
+                  "for": 4,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 2,
+                  "against": 2
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 457,
+                "name": "Newells Old Boys",
+                "logo": "https://media-3.api-sports.io/football/teams/457.png"
+              },
+              "points": 7,
+              "goalsDiff": -2,
+              "group": "Copa Liga Profesional - First Stage: Group 4",
+              "form": "WLDWL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 2,
+                "draw": 1,
+                "lose": 3,
+                "goals": {
+                  "for": 9,
+                  "against": 11
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 4,
+                  "against": 4
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
+                "goals": {
+                  "for": 5,
+                  "against": 7
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 446,
+                "name": "Lanus",
+                "logo": "https://media-3.api-sports.io/football/teams/446.png"
+              },
+              "points": 7,
+              "goalsDiff": -3,
+              "group": "Copa Liga Profesional - First Stage: Group 4",
               "form": "LWWLD",
               "status": "same",
               "description": null,
               "all": {
-                "played": 46,
-                "win": 11,
-                "draw": 14,
-                "lose": 21,
+                "played": 6,
+                "win": 2,
+                "draw": 1,
+                "lose": 3,
                 "goals": {
-                  "for": 49,
-                  "against": 56
+                  "for": 8,
+                  "against": 11
                 }
               },
               "home": {
-                "played": 23,
-                "win": 6,
-                "draw": 5,
-                "lose": 12,
+                "played": 3,
+                "win": 1,
+                "draw": 0,
+                "lose": 2,
                 "goals": {
-                  "for": 29,
-                  "against": 31
+                  "for": 4,
+                  "against": 6
                 }
               },
               "away": {
-                "played": 23,
-                "win": 5,
-                "draw": 9,
-                "lose": 9,
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
                 "goals": {
-                  "for": 20,
-                  "against": 25
+                  "for": 4,
+                  "against": 5
                 }
               },
-              "update": "2023-05-29T00:00:00+00:00"
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 460,
+                "name": "San Lorenzo",
+                "logo": "https://media-2.api-sports.io/football/teams/460.png"
+              },
+              "points": 12,
+              "goalsDiff": 7,
+              "group": "Copa Liga Profesional - First Stage: Group 5",
+              "form": "DDWWW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 3,
+                "draw": 3,
+                "lose": 0,
+                "goals": {
+                  "for": 8,
+                  "against": 1
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
+                "goals": {
+                  "for": 4,
+                  "against": 0
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 2,
+                "lose": 0,
+                "goals": {
+                  "for": 4,
+                  "against": 1
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
             },
             {
-              "rank": 20,
+              "rank": 2,
               "team": {
-                "id": 1370,
-                "name": "Cambridge United",
-                "logo": "https://media-3.api-sports.io/football/teams/1370.png"
+                "id": 458,
+                "name": "Argentinos JRS",
+                "logo": "https://media-2.api-sports.io/football/teams/458.png"
               },
-              "points": 46,
-              "goalsDiff": -27,
-              "group": "League One: Regular Season",
-              "form": "WLWLL",
+              "points": 10,
+              "goalsDiff": 2,
+              "group": "Copa Liga Profesional - First Stage: Group 5",
+              "form": "WWLWL",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 3,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 6,
+                  "against": 4
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 1,
+                  "against": 1
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 5,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 463,
+                "name": "Aldosivi",
+                "logo": "https://media-2.api-sports.io/football/teams/463.png"
+              },
+              "points": 8,
+              "goalsDiff": -4,
+              "group": "Copa Liga Profesional - First Stage: Group 5",
+              "form": "DLWLW",
               "status": "same",
               "description": null,
               "all": {
-                "played": 46,
-                "win": 13,
-                "draw": 7,
-                "lose": 26,
-                "goals": {
-                  "for": 41,
-                  "against": 68
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 9,
-                "draw": 4,
-                "lose": 10,
-                "goals": {
-                  "for": 24,
-                  "against": 26
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 4,
-                "draw": 3,
-                "lose": 16,
-                "goals": {
-                  "for": 17,
-                  "against": 42
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 21,
-              "team": {
-                "id": 1348,
-                "name": "Milton Keynes Dons",
-                "logo": "https://media-3.api-sports.io/football/teams/1348.png"
-              },
-              "points": 45,
-              "goalsDiff": -22,
-              "group": "League One: Regular Season",
-              "form": "DDLLD",
-              "status": "same",
-              "description": "Relegation",
-              "all": {
-                "played": 46,
-                "win": 11,
-                "draw": 12,
-                "lose": 23,
-                "goals": {
-                  "for": 44,
-                  "against": 66
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 4,
-                "draw": 7,
-                "lose": 12,
-                "goals": {
-                  "for": 20,
-                  "against": 33
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 7,
-                "draw": 5,
-                "lose": 11,
-                "goals": {
-                  "for": 24,
-                  "against": 33
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 22,
-              "team": {
-                "id": 1375,
-                "name": "Morecambe",
-                "logo": "https://media-1.api-sports.io/football/teams/1375.png"
-              },
-              "points": 44,
-              "goalsDiff": -31,
-              "group": "League One: Regular Season",
-              "form": "LWWWD",
-              "status": "same",
-              "description": "Relegation",
-              "all": {
-                "played": 46,
-                "win": 10,
-                "draw": 14,
-                "lose": 22,
-                "goals": {
-                  "for": 47,
-                  "against": 78
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 8,
-                "draw": 8,
-                "lose": 7,
-                "goals": {
-                  "for": 30,
-                  "against": 31
-                }
-              },
-              "away": {
-                "played": 23,
+                "played": 6,
                 "win": 2,
-                "draw": 6,
-                "lose": 15,
-                "goals": {
-                  "for": 17,
-                  "against": 47
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 23,
-              "team": {
-                "id": 1360,
-                "name": "Accrington ST",
-                "logo": "https://media-2.api-sports.io/football/teams/1360.png"
-              },
-              "points": 44,
-              "goalsDiff": -37,
-              "group": "League One: Regular Season",
-              "form": "WLWLL",
-              "status": "same",
-              "description": "Relegation",
-              "all": {
-                "played": 46,
-                "win": 11,
-                "draw": 11,
-                "lose": 24,
-                "goals": {
-                  "for": 40,
-                  "against": 77
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 6,
-                "draw": 5,
-                "lose": 12,
-                "goals": {
-                  "for": 27,
-                  "against": 39
-                }
-              },
-              "away": {
-                "played": 23,
-                "win": 5,
-                "draw": 6,
-                "lose": 12,
-                "goals": {
-                  "for": 13,
-                  "against": 38
-                }
-              },
-              "update": "2023-05-29T00:00:00+00:00"
-            },
-            {
-              "rank": 24,
-              "team": {
-                "id": 1378,
-                "name": "Forest Green",
-                "logo": "https://media-1.api-sports.io/football/teams/1378.png"
-              },
-              "points": 27,
-              "goalsDiff": -58,
-              "group": "League One: Regular Season",
-              "form": "LLLDL",
-              "status": "same",
-              "description": "Relegation",
-              "all": {
-                "played": 46,
-                "win": 6,
-                "draw": 9,
-                "lose": 31,
-                "goals": {
-                  "for": 31,
-                  "against": 89
-                }
-              },
-              "home": {
-                "played": 23,
-                "win": 5,
                 "draw": 2,
-                "lose": 16,
+                "lose": 2,
                 "goals": {
-                  "for": 15,
-                  "against": 42
+                  "for": 4,
+                  "against": 8
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 2,
+                  "against": 8
                 }
               },
               "away": {
-                "played": 23,
-                "win": 1,
-                "draw": 7,
-                "lose": 15,
+                "played": 3,
+                "win": 2,
+                "draw": 1,
+                "lose": 0,
                 "goals": {
-                  "for": 16,
-                  "against": 47
+                  "for": 2,
+                  "against": 0
                 }
               },
-              "update": "2023-05-29T00:00:00+00:00"
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 450,
+                "name": "Estudiantes L.P.",
+                "logo": "https://media-1.api-sports.io/football/teams/450.png"
+              },
+              "points": 2,
+              "goalsDiff": -5,
+              "group": "Copa Liga Profesional - First Stage: Group 5",
+              "form": "LDLLL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 0,
+                "draw": 2,
+                "lose": 4,
+                "goals": {
+                  "for": 0,
+                  "against": 5
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 0,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 0,
+                "draw": 1,
+                "lose": 2,
+                "goals": {
+                  "for": 0,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            }
+          ],
+          [
+            {
+              "rank": 1,
+              "team": {
+                "id": 445,
+                "name": "Huracan",
+                "logo": "https://media-1.api-sports.io/football/teams/445.png"
+              },
+              "points": 11,
+              "goalsDiff": 2,
+              "group": "Copa Liga Profesional - First Stage: Group 6",
+              "form": "DWLWW",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 3,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 8,
+                  "against": 6
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 2,
+                "draw": 0,
+                "lose": 1,
+                "goals": {
+                  "for": 5,
+                  "against": 4
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 2,
+                "lose": 0,
+                "goals": {
+                  "for": 3,
+                  "against": 2
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": 434,
+                "name": "Gimnasia L.P.",
+                "logo": "https://media-3.api-sports.io/football/teams/434.png"
+              },
+              "points": 9,
+              "goalsDiff": 3,
+              "group": "Copa Liga Profesional - First Stage: Group 6",
+              "form": "DWDLD",
+              "status": "same",
+              "description": "Promotion - Copa Diego Maradona (Winners stage)",
+              "all": {
+                "played": 6,
+                "win": 2,
+                "draw": 3,
+                "lose": 1,
+                "goals": {
+                  "for": 8,
+                  "against": 5
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 2,
+                "lose": 0,
+                "goals": {
+                  "for": 5,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 3,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": 438,
+                "name": "Velez Sarsfield",
+                "logo": "https://media-2.api-sports.io/football/teams/438.png"
+              },
+              "points": 9,
+              "goalsDiff": 1,
+              "group": "Copa Liga Profesional - First Stage: Group 6",
+              "form": "DLWWD",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 2,
+                "draw": 3,
+                "lose": 1,
+                "goals": {
+                  "for": 6,
+                  "against": 5
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 1,
+                "draw": 1,
+                "lose": 1,
+                "goals": {
+                  "for": 2,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 1,
+                "draw": 2,
+                "lose": 0,
+                "goals": {
+                  "for": 4,
+                  "against": 3
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": 444,
+                "name": "Patronato",
+                "logo": "https://media-2.api-sports.io/football/teams/444.png"
+              },
+              "points": 2,
+              "goalsDiff": -6,
+              "group": "Copa Liga Profesional - First Stage: Group 6",
+              "form": "DLDLL",
+              "status": "same",
+              "description": null,
+              "all": {
+                "played": 6,
+                "win": 0,
+                "draw": 2,
+                "lose": 4,
+                "goals": {
+                  "for": 1,
+                  "against": 7
+                }
+              },
+              "home": {
+                "played": 3,
+                "win": 0,
+                "draw": 2,
+                "lose": 1,
+                "goals": {
+                  "for": 1,
+                  "against": 2
+                }
+              },
+              "away": {
+                "played": 3,
+                "win": 0,
+                "draw": 0,
+                "lose": 3,
+                "goals": {
+                  "for": 0,
+                  "against": 5
+                }
+              },
+              "update": "2021-01-18T00:00:00+00:00"
             }
           ]
         ]

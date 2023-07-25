@@ -1,6 +1,5 @@
 ﻿<tr class="table_font_size table_nowrap">
     <td>
-        
         <span><b>#:data.rank#</b></span>
         <span><img src="#:data.team.logo#" class="table_logo"></span>
         <span><b>#:data.team.name#</b></span>
@@ -30,7 +29,26 @@
         <span><b>#:data.points#</b></span>
     </td>
     <td>
-        <span><b>#:data.form#</b></span>
+
+        # for (var k = 0; k < data.FormChars.length; k++) 
+        { #
+            # if (data.FormChars[k] == 'W' ) 
+            {#
+                <span class="wg_form wg_form_win">W</span>#
+            }#
+            
+            # if (data.FormChars[k] == 'L' )
+            {#
+                <span class="wg_form wg_form_lose">L</span>#
+            }#
+
+            # if (data.FormChars[k] == 'D' )
+            {#
+                <span class="wg_form wg_form_draw">D</span>#
+            }#
+
+        # } #
+        
     </td>
 </tr>
 

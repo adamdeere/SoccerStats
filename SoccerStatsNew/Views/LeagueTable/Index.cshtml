@@ -1,4 +1,5 @@
-﻿<h6>welcome to the league table page</h6>
+﻿@using UtilityLibraries;
+<h6>welcome to the league table page</h6>
 
 @model SoccerStatsData.RequestModels.LeagueTableRoot
 
@@ -15,12 +16,18 @@
     <span>@leagueResponse.League.Name :</span>
     <span>@leagueResponse.League.Season :</span>
 
-    @foreach (var leagueStandings in leagueResponse.League.Standings)
+    @for (int i = 0; i < leagueResponse.League.Standings.Count; i++)
     {
-        @(Html.Kendo().Grid(leagueStandings)
-                    .Name("table-grid")
-                    .Columns(columns =>
-                    {
+        var team = leagueResponse.League.Standings[i];
+
+        @foreach (var s in team)
+        {
+            s.FormChars = StringHelper.ToCharArray(s.Form);
+        }
+        @(Html.Kendo().Grid(team)
+                        .Name($"table-grid-{i}")
+                        .Columns(columns =>
+                        {
                             columns.Bound(p => p.Rank)
                             .Title("Team")
                                    .Width(1);
@@ -61,17 +68,16 @@
                             columns.Bound(p => p.Form)
                             .Title("Form")
                             .Width(1);
-                           
-                    })
-                    .ClientRowTemplate(@line)
-                    .DataSource(dataSource => dataSource
-                                .Ajax()
-                                .Batch(true)
-                                .PageSize(24)
-                                .ServerOperation(false))
-                   
-                    .ColumnMenu(col => col.Filterable(false))
-                    )
+
+                        })
+                        .ClientRowTemplate(@line)
+                        .DataSource(dataSource => dataSource
+                                    .Ajax()
+                                    .Batch(true)
+                                    .PageSize(24)
+                                    .ServerOperation(false))
+
+                        .ColumnMenu(col => col.Filterable(false)))
     }
 }
 
